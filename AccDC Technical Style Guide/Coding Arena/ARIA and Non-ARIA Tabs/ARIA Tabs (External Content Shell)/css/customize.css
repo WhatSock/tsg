@@ -1,0 +1,22 @@
+
+/* The container element with role="tablist" */
+ul.tabs {
+}
+
+/* The first level childNodes of the container element with role="tablist" */
+ul.tabs > * {
+}
+
+/* The triggering elements with role="tab" */
+a.accTab {
+}
+
+/* The currently expanded triggering element with role="tab" */
+a.accTab.active {
+}
+
+/* All elements that have focus */
+*:focus {
+outline: #990000 2px inset;
+}
+

@@ -1,0 +1,407 @@
+@import url("http://fonts.googleapis.com/css?family=Alfa+Slab+One");
+@import url("http://fonts.googleapis.com/css?family=Boogaloo");
+
+button.toggleBtn {
+margin: 100px 0;
+font-size: 1.5em;
+padding: 10px;
+}
+
+div.desc {
+width: 80%;
+}
+
+/*
+Derived from: Animated Web Banners With CSS3 | Codrops
+http://tympanus.net/codrops/2012/01/10/animated-web-banners-with-css3/
+*/
+
+div.banner div, div.banner ul, div.banner ol, div.banner li, div.banner form, div.banner input {
+margin:0;
+padding:0;
+}
+div.banner ol, div.banner ul {
+list-style:none;
+}
+div.banner .h2, div.banner .h3 {
+font-size:100%;
+font-weight:normal;
+}
+div.banner {
+font-family: Constantia, Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;
+font-weight: 400;
+font-size: 15px;
+color: #936a46;
+position: fixed;
+top: 0;
+right: 0;
+width: 160px;
+height: 600px;
+text-align: center;
+}
+div.banner a {
+color: #333;
+text-decoration: none;
+}
+
+#ad-2 {
+width: 160px;
+height: 600px;
+background-image: url(../img/ad-2/background.png);
+background-position: center;
+background-repeat: no-repeat;
+overflow: hidden;
+position: relative;
+box-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+text-align: center;
+}
+#ad-2 .h2 {
+font-family: 'Alfa Slab One', cursive;
+color: #137dd5;
+font-size: 40px;
+line-height: 50px;
+text-shadow: 0px 0px 4px #fff;
+margin-top: 110px;
+-webkit-animation: h2-animation-2 10s 1 ease-in-out;
+-moz-animation: h2-animation-2 10s 1 ease-in-out;
+-o-animation: h2-animation-2 5s 1 ease-in-out;
+-ms-animation: h2-animation-2 5s 1 ease-in-out;
+animation: h2-animation-2 5s 1 ease-in-out;
+}
+#ad-2 ul#boat {
+width: 96px;
+height: 84px;
+overflow: visible;
+z-index: 2;
+position: absolute;
+top: 326px;
+left: 10px;
+-webkit-animation: boat-in-animation-2 15s 1 ease-in-out;
+-moz-animation: boat-in-animation-2 15s 1 ease-in-out;
+-o-animation: boat-in-animation-2 15s 1 ease-in-out;
+-ms-animation: boat-in-animation-2 15s 1 ease-in-out;
+animation: boat-in-animation-2 15s 1 ease-in-out;
+}
+#ad-2 ul#boat li {
+width: 96px;
+height: 84px;
+z-index: 2;
+position: relative;
+top: 0px;
+left: 0px;
+background-image: url(../img/ad-2/boat.png);
+-webkit-animation: boat-animation-2 2.5s infinite ease-out;
+-moz-animation: boat-animation-2 2.5s infinite ease-out;
+-o-animation: boat-animation-2 2.5s infinite ease-out;
+-ms-animation: boat-in-animation-2 2.5s infinite ease-out;
+animation: boat-animation-2 2.5s infinite ease-out;
+}
+#ad-2 #water {
+position: absolute;
+top: 382px;
+-webkit-animation: water-in-animation-2 2s 1 ease-out;
+-moz-animation: water-in-animation-2 2s 1 ease-out;
+-o-animation: water-in-animation-2 2s 1 ease-out;
+-ms-animation: water-in-animation-2 2s 1 ease-out;
+animation: water-in-animation-2 2s 1 ease-out;
+}
+#ad-2 #water-back {
+width: 200px;
+height: 75px;
+background-image: url(../img/ad-2/water-back.png);
+background-repeat: repeat-x;
+z-index: 1;
+position: absolute;
+top: 0px;
+left: -22px;
+-webkit-animation: water-back-animation-2 3s infinite ease-in-out;
+-moz-animation: water-back-animation-2 3s infinite ease-in-out;
+-o-animation: water-back-animation-2 3s infinite ease-in-out;
+-ms-animation: water-back-animation-2 3s infinite ease-in-out;
+animation: water-back-animation-2 3s infinite ease-in-out;
+}
+#ad-2 #water-front {
+width: 200px;
+height: 368px;
+background-image: url(../img/ad-2/water-front.png);
+background-repeat: repeat-x;
+z-index: 3;
+position: absolute;
+top: 2px;
+left:-30px;
+-webkit-animation: water-front-animation-2 2s infinite ease-in-out;
+-moz-animation: water-front-animation-2 2s infinite ease-in-out;
+-o-animation: water-front-animation-2 2s infinite ease-in-out;
+-ms-animation: water-front-animation-2 2s infinite ease-in-out;
+animation: water-front-animation-2 2s infinite ease-in-out;
+}
+#ad-2 #content {
+width: 100%;
+position: absolute;
+bottom: 0px;
+z-index: 4;
+-webkit-animation: content-in-animation-2 15s 1 ease-in-out;
+-moz-animation: content-in-animation-2 15s 1 ease-in-out;
+-o-animation: content-in-animation-2 15s 1 ease-in-out;
+-ms-animation: content-in-animation-2 15s 1 ease-in-out;
+animation: content-in-animation-2 15s 1 ease-in-out;
+}
+#ad-2 #content .h3 {
+color: #fff;
+font-family: 'Boogaloo', cursive;
+font-size: 30px;
+line-height: 32px;
+text-shadow: 0px 0px 4px #137dd5;
+}
+#ad-2 #content a:link, #ad-2 #content a:visited {
+display: inline-block;
+height: 20px;
+padding: 15px;
+font-family: 'Boogaloo', cursive;
+font-size: 20px;
+line-height: 20px;
+color: #137dd5;
+text-shadow: 1px 1px 0px #fff;
+background-color: #fff;
+border-radius: 5px;
+margin: 20px 0px;
+box-shadow: 2px 2px 0px #137dd5;
+border: 1px solid #fff;
+background-image: linear-gradient(bottom, rgb(238,238,238) 10%, rgb(255,255,255) 55%);
+background-image: -o-linear-gradient(bottom, rgb(238,238,238) 10%, rgb(255,255,255) 55%);
+background-image: -moz-linear-gradient(bottom, rgb(238,238,238) 10%, rgb(255,255,255) 55%);
+background-image: -webkit-linear-gradient(bottom, rgb(238,238,238) 10%, rgb(255,255,255) 55%);
+background-image: -ms-linear-gradient(bottom, rgb(238,238,238) 10%, rgb(255,255,255) 55%);
+}
+#ad-2 #content a:hover, #ad-2 #content a:active {
+background-image: linear-gradient(bottom, rgb(255,255,255) 10%, rgb(255,255,255) 55%);
+background-image: -o-linear-gradient(bottom, rgb(255,255,255) 10%, rgb(255,255,255) 55%);
+background-image: -moz-linear-gradient(bottom, rgb(255,255,255) 10%, rgb(255,255,255) 55%);
+background-image: -webkit-linear-gradient(bottom, rgb(255,255,255) 10%, rgb(255,255,255) 55%);
+background-image: -ms-linear-gradient(bottom, rgb(255,255,255) 10%, rgb(255,255,255) 55%);
+}
+
+/* WebKit Animations */
+
+@-webkit-keyframes h2-animation-2 {
+0%   {opacity: 0; font-size: 0px;}
+90%  {opacity: 0; font-size: 0px;}
+95%  {opacity: 1; font-size: 60px;}
+100% {font-size: 50px;}
+}
+@-webkit-keyframes content-in-animation-2 {
+0%   {opacity: 0;}
+90%  {opacity: 0;}
+95%  {opacity: 1;}
+100% {opacity: 1;}
+}
+@-webkit-keyframes water-in-animation-2 {
+0%   {top: 600px; left: -10px;}
+100% {top: 380px; left: 0px;}
+}
+@-webkit-keyframes water-front-animation-2 {
+0%   {top: 2px; left: -30px;}
+25%  {top: 0px; left: -32px;}
+70%  {top: 4px; left: -34px;}
+100% {top: 1px; left: -30px;}
+}
+@-webkit-keyframes water-back-animation-2 {
+0%   {top: 0px; left: -20px;}
+25%  {top: -2px; left: -22px;}
+70%  {top: 2px; left: -24px;}
+100% {top: -1px; left: -20px;}
+}
+@-webkit-keyframes boat-in-animation-2 {
+0%       {left: -150px;}
+7%       {left: -150px;}
+75%      {left: 310px;}
+75.0001% {left: -100px;}
+90%      {left: 10px;}
+100%     {left: 10px;}
+}
+@-webkit-keyframes boat-animation-2 {
+0%   {top: 0px; left: 0px;}
+25%  {top: -2px; left: -2px;}
+70%  {top: 2px; left: -2px;}
+100% {top: -1px; left: -1px;}
+}
+
+/* FireFox Animations */
+
+@-moz-keyframes h2-animation-2 {
+0%   {opacity: 0; font-size: 0px;}
+90%  {opacity: 0; font-size: 0px;}
+95%  {opacity: 1; font-size: 60px;}
+100% {font-size: 50px;}
+}
+@-moz-keyframes content-in-animation-2 {
+0%   {opacity: 0;}
+90%  {opacity: 0;}
+95%  {opacity: 1;}
+100% {opacity: 1;}
+}
+@-moz-keyframes water-in-animation-2 {
+0%   {top: 600px; left: -10px;}
+100% {top: 380px; left: 0px;}
+}
+@-moz-keyframes water-front-animation-2 {
+0%   {top: 2px; left: -30px;}
+25%  {top: 0px; left: -32px;}
+70%  {top: 4px; left: -34px;}
+100% {top: 1px; left: -30px;}
+}
+@-moz-keyframes water-back-animation-2 {
+0%   {top: 0px; left: -20px;}
+25%  {top: -2px; left: -22px;}
+70%  {top: 2px; left: -24px;}
+100% {top: -1px; left: -20px;}
+}
+@-moz-keyframes boat-in-animation-2 {
+0%       {left: -150px;}
+7%       {left: -150px;}
+75%      {left: 310px;}
+75.0001% {left: -100px;}
+90%      {left: 10px;}
+100%     {left: 10px;}
+}
+@-moz-keyframes boat-animation-2 {
+0%   {top: 0px; left: 0px;}
+25%  {top: -2px; left: -2px;}
+70%  {top: 2px; left: -2px;}
+100% {top: -1px; left: -1px;}
+}
+
+/* Opera Animations */
+
+@-o-keyframes h2-animation-2 {
+0%   {opacity: 0; font-size: 0px;}
+90%  {opacity: 0; font-size: 0px;}
+95%  {opacity: 1; font-size: 60px;}
+100% {font-size: 50px;}
+}
+@-o-keyframes content-in-animation-2 {
+0%   {opacity: 0;}
+90%  {opacity: 0;}
+95%  {opacity: 1;}
+100% {opacity: 1;}
+}
+@-o-keyframes water-in-animation-2 {
+0%   {top: 600px; left: -10px;}
+100% {top: 380px; left: 0px;}
+}
+@-o-keyframes water-front-animation-2 {
+0%   {top: 2px; left: -30px;}
+25%  {top: 0px; left: -32px;}
+70%  {top: 4px; left: -34px;}
+100% {top: 1px; left: -30px;}
+}
+@-o-keyframes water-back-animation-2 {
+0%   {top: 0px; left: -20px;}
+25%  {top: -2px; left: -22px;}
+70%  {top: 2px; left: -24px;}
+100% {top: -1px; left: -20px;}
+}
+@-o-keyframes boat-in-animation-2 {
+0%       {left: -150px;}
+7%       {left: -150px;}
+75%      {left: 310px;}
+75.0001% {left: -100px;}
+90%      {left: 10px;}
+100%     {left: 10px;}
+}
+@-o-keyframes boat-animation-2 {
+0%   {top: 0px; left: 0px;}
+25%  {top: -2px; left: -2px;}
+70%  {top: 2px; left: -2px;}
+100% {top: -1px; left: -1px;}
+}
+
+/* IE Animations */
+
+@-ms-keyframes h2-animation-2 {
+0%   {opacity: 0; font-size: 0px;}
+90%  {opacity: 0; font-size: 0px;}
+95%  {opacity: 1; font-size: 60px;}
+100% {font-size: 50px;}
+}
+@-ms-keyframes content-in-animation-2 {
+0%   {opacity: 0;}
+90%  {opacity: 0;}
+95%  {opacity: 1;}
+100% {opacity: 1;}
+}
+@-ms-keyframes water-in-animation-2 {
+0%   {top: 600px; left: -10px;}
+100% {top: 380px; left: 0px;}
+}
+@-ms-keyframes water-front-animation-2 {
+0%   {top: 2px; left: -30px;}
+25%  {top: 0px; left: -32px;}
+70%  {top: 4px; left: -34px;}
+100% {top: 1px; left: -30px;}
+}
+@-ms-keyframes water-back-animation-2 {
+0%   {top: 0px; left: -20px;}
+25%  {top: -2px; left: -22px;}
+70%  {top: 2px; left: -24px;}
+100% {top: -1px; left: -20px;}
+}
+@-ms-keyframes boat-in-animation-2 {
+0%       {left: -150px;}
+7%       {left: -150px;}
+75%      {left: 310px;}
+75.0001% {left: -100px;}
+90%      {left: 10px;}
+100%     {left: 10px;}
+}
+@-ms-keyframes boat-animation-2 {
+0%   {top: 0px; left: 0px;}
+25%  {top: -2px; left: -2px;}
+70%  {top: 2px; left: -2px;}
+100% {top: -1px; left: -1px;}
+}
+
+/* Animations */
+
+@keyframes h2-animation-2 {
+0%   {opacity: 0; font-size: 0px;}
+90%  {opacity: 0; font-size: 0px;}
+95%  {opacity: 1; font-size: 60px;}
+100% {font-size: 50px;}
+}
+@keyframes content-in-animation-2 {
+0%   {opacity: 0;}
+90%  {opacity: 0;}
+95%  {opacity: 1;}
+100% {opacity: 1;}
+}
+@keyframes water-in-animation-2 {
+0%   {top: 600px; left: -10px;}
+100% {top: 380px; left: 0px;}
+}
+@keyframes water-front-animation-2 {
+0%   {top: 2px; left: -30px;}
+25%  {top: 0px; left: -32px;}
+70%  {top: 4px; left: -34px;}
+100% {top: 1px; left: -30px;}
+}
+@keyframes water-back-animation-2 {
+0%   {top: 0px; left: -20px;}
+25%  {top: -2px; left: -22px;}
+70%  {top: 2px; left: -24px;}
+100% {top: -1px; left: -20px;}
+}
+@keyframes boat-in-animation-2 {
+0%       {left: -150px;}
+7%       {left: -150px;}
+75%      {left: 310px;}
+75.0001% {left: -100px;}
+90%      {left: 10px;}
+100%     {left: 10px;}
+}
+@keyframes boat-animation-2 {
+0%   {top: 0px; left: 0px;}
+25%  {top: -2px; left: -2px;}
+70%  {top: 2px; left: -2px;}
+100% {top: -1px; left: -1px;}
+}

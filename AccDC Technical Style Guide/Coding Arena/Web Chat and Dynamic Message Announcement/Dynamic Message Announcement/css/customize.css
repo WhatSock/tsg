@@ -1,0 +1,9 @@
+
+div.options > label {
+float: left;
+margin: 50px;
+}
+
+div.options > label > * {
+float: left;
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Practice Template Page</title>
+
+<link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+<link rel="stylesheet" type="text/css" href="css/customize.css" />
+
+<script type="text/javascript" src="../../_common/js/jquery-1.8.3.min.js">
+// Load jQuery.
+// This is not necessary if using the Standalone AccDC API version.
+</script>
+
+<script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+// Load the AccDC API, which all modules are plugged into as the common interface.
+</script>
+
+<!-- Now load all desired modules, which plugs them into AccDC. -->
+<script type="text/javascript" src="../../../2 Accessible Component Modules/aria_listbox_generator.min.js"></script>
+
+<script type="text/javascript" src="js/setup.js">
+// Run the setup script where module invocation statements are contained.
+</script>
+
+</head>
+<body>
+<div>
+
+<div class="intro tal">
+
+<div class="clearfix sample">
+
+<span id="sortableLbl1">
+Keyboard Accessible ARIA Sortable Listbox
+</span>
+
+<!-- The Listbox container element must include the attribute role="listbox", and all list item nodes must include the attribute role="option" to ensure accessibility for screen reader users. 
+Additionally, the Listbox container element and all list item nodes must include unique ID values.
+The innerHTML for each list item node must contain a textual label, which may be positioned offscreen to hide it visually if desired.
+This textual label is necessary so that screen reader users will be able to identify the purpose of the node.
+Images may also be used within list item nodes if desired, and if an Alt attribute is present and contains informative text, this too is added to the list item label for screen reader users.
+If an image is present but is not informative, it should include the attribute alt="" to hide it from screen reader users.
+All list item nodes (with role="option") must consist of A tags with href attributes to ensure keyboard accessibility, and the A tag must be a first level childNode of the parent LI tag.
+The use of role="application" below, makes it possible for screen reader users to use the Escape key without exiting Forms Mode in JAWS automatically.
+ -->
+
+<div class="sortableWrapper" role="application" >
+
+<ul role="listbox" id="sortableLB" >
+<li>
+<a href="#" role="option" id="sortableOpt1" >
+<span class="lbl">Orange</span>
+</a>
+</li>
+<li>
+<a href="#" role="option" id="sortableOpt2" >
+<span class="lbl">Purple</span>
+</a>
+</li>
+<li>
+<a href="#" role="option" id="sortableOpt3" >
+<span class="lbl">Green</span>
+</a>
+</li>
+<li>
+<a href="#" role="option" id="sortableOpt4" >
+<span class="lbl">Blue</span>
+</a>
+</li>
+<li>
+<a href="#" role="option" id="sortableOpt5" >
+<span class="lbl">Black</span>
+</a>
+</li>
+</ul>
+
+</div>
+
+</div>
+
+<div class="desc">
+<p>
+The list items within the ARIA Listbox are sortable.
+</p>
+<p><pre>
+Set focus on the Listbox or the Select field.
+Press the Arrow keys to change options,
+or press Home or End to jump to the beginning or end of the list.
+Press the Spacebar to toggle grabbability on the ARIA Listbox.
+Use the Arrow keys to navigate to a new location, then use the Spacebar to drop the grabbed item.
+Press Escape to cancel a grab action without dropping.
+Mouse users can click a list item to grab it, then click another item to drop the grabbed item in that location.
+</pre></p>
+</div>
+
+</div>
+
+</div>
+</body>
+</html>

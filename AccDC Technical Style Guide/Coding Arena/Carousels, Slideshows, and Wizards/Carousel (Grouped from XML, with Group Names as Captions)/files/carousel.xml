@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<carousel role="Carousel" accStart="Start" accEnd="End" height="170" width="280" className="carouselCls" prevTitle="Previous" nextTitle="Next" slideName="Slide" groupName="Group" showGroup="yes" groupPosTop="no" btnPText="&#8592;" btnNText="&#8594;" btnPGText="&#8656;" btnNGText="&#8658;" isGrouped="yes" btnPAccesskey="1" btnNAccesskey="2" btnPGAccesskey="3" btnNGAccesskey="4" direction="lr" cycle="yes" timer="5000" animDelay="2000" forward="yes" hiddenMsg="Press Escape to stop automatic cycling" >
+<group name="Emiliana Torrini &lt;br&gt; Love in the Time of Science" >
+<slide announce="" ><![CDATA[
+<img src="img/music/ar_et_lts.jpg" alt="Emiliana Torrini - Love in the Time of Science" title="Emiliana Torrini - Love in the Time of Science" />
+]]></slide>
+</group>
+<group name="Frente &lt;br&gt; Labour of Love" >
+<slide announce="" ><![CDATA[
+<img src="img/music/ar_f_ll.jpg" alt="Frente - Labour of Love" title="Frente - Labour of Love" />
+]]></slide>
+</group>
+<group name="Hooverphonic &lt;br&gt; Blue Wonder Power Milk" >
+<slide announce="" ><![CDATA[
+<img src="img/music/ar_h_bwpm.jpg" alt="Hooverphonic - Blue Wonder Power Milk" title="Hooverphonic - Blue Wonder Power Milk" />
+]]></slide>
+</group>
+<group name="New Order &lt;br&gt; Substance" >
+<slide announce="" ><![CDATA[
+<img src="img/music/ar_no_s.jpg" alt="New Order - Substance" title="New Order - Substance" />
+]]></slide>
+</group>
+<group name="U2 &lt;br&gt; The Unforgettable Fire" >
+<slide announce="" ><![CDATA[
+<img src="img/music/ar_u_uf.jpg" alt="U2 - The Unforgettable Fire" title="U2 - The Unforgettable Fire" />
+]]></slide>
+</group>
+</carousel>

@@ -1,0 +1,69 @@
+
+a#myPopup {
+float: left;
+margin: 100px;
+display: inline-block;
+text-decoration: none;
+font: bold 12px/12px HelveticaNeue, Arial;
+padding: 8px 11px;
+border: 1px solid #dedede;
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
+background: #f5f5f5;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#f0f0f0'); /* IE */
+background: -webkit-gradient(linear, left top, left bottom, from(#f9f9f9), to(#f0f0f0)); /* WebKit */
+background: -moz-linear-gradient(top, #f9f9f9, #f0f0f0);
+border-color: #dedede #d8d8d8 #d3d3d3;
+color: #555;
+text-shadow: 0 1px 0 #fff;
+-webkit-box-shadow: 0 1px 1px #eaeaea, inset 0 1px 0 #fbfbfb;
+-moz-box-shadow: 0 1px 1px #eaeaea, inset 0 1px 0 #fbfbfb;
+box-shadow: 0 1px 1px #eaeaea, inset 0 1px 0 #fbfbfb;
+}
+
+a#myPopup[aria-pressed="true"] {
+background: #f4f4f4;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#efefef', endColorstr='#f8f8f8'); /* IE */
+background: -webkit-gradient(linear, left top, left bottom, from(#efefef), to(#f8f8f8)); /* WebKit */
+background: -moz-linear-gradient(top, #efefef, #f8f8f8);
+border-color: #c7c7c7 #c3c3c3 #bebebe;
+text-shadow: 0 1px 0 #fdfdfd;
+-webkit-box-shadow: 0 1px 1px #ebebeb, inset 0 1px 0 #f3f3f3;
+-moz-box-shadow: 0 1px 1px #ebebeb, inset 0 1px 0 #f3f3f3;
+box-shadow: 0 1px 1px #ebebeb, inset 0 1px 0 #f3f3f3;
+}
+
+div.popup {
+position: absolute;
+z-index: 1;
+height: 340px;
+width: 390px;
+padding: 5px;
+font-family: Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif;
+text-align: left;
+font-size: 1.2em;
+background: url("../img/scroll/backdrop.jpg") #000 no-repeat;
+color: #fff;
+overflow-x: hidden;
+overflow-y: auto;
+-webkit-box-shadow: 0 10px 6px -6px #777;
+-moz-box-shadow: 0 10px 6px -6px #777;
+box-shadow: 0 10px 6px -6px #777;
+}
+
+#scrollContentId {
+width: 390px;
+}
+
+*:focus {
+outline: blue 1px inset;
+}
+
+div.popup > a.popupClose {
+position: absolute;
+z-index: 2;
+background-color: #f5f5f5;
+color: blue;
+font-size: 0.8em;
+}

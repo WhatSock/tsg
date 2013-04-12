@@ -1,0 +1,46 @@
+
+a#myPopup {
+float: left;
+margin: 100px;
+}
+
+div.popup {
+position: absolute;
+z-index: 1;
+color: #191970;
+background-color: #f5f5f5;
+font-size: 1.5em;
+text-align: left;
+border: solid 1px #777;
+-webkit-box-shadow: 0 10px 6px -6px #777;
+-moz-box-shadow: 0 10px 6px -6px #777;
+box-shadow: 0 10px 6px -6px #777;
+}
+
+div.popup > a.popupClose {
+position: relative;
+z-index: 2;
+color: #191970;
+background-color: #f5f5f5;
+font-size: 0.7em;
+}
+
+#popup-info > div {
+width: 49%;
+float: left;
+}
+
+#popup-info div.title {
+text-align: center;
+font-weight: bold;
+}
+
+#popup-info div.close {
+text-align: right;
+}
+
+#popup-info blockquote {
+clear: both;
+width: 100%;
+float: left;
+}

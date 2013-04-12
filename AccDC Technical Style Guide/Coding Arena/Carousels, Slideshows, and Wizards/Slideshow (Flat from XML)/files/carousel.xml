@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<carousel role="Slideshow" accStart="Start" accEnd="End" height="170" width="280" className="carouselCls" prevTitle="Previous" nextTitle="Next" slideName="Slide" groupName="" showGroup="" groupPosTop="" btnPText="&#8593;" btnNText="&#8595;" btnPGText="" btnNGText="" isGrouped="no" btnPAccesskey="1" btnNAccesskey="2" btnPGAccesskey="" btnNGAccesskey="" direction="tb" cycle="yes" timer="0" animDelay="1250" forward="yes" hiddenMsg="" >
+<slide announce="Emiliana Torrini - Love in the Time of Science" ><![CDATA[
+<img src="img/music/ar_et_lts.jpg" alt="Emiliana Torrini - Love in the Time of Science" title="Emiliana Torrini - Love in the Time of Science" />
+]]></slide>
+<slide announce="Frente - Labour of Love" ><![CDATA[
+<img src="img/music/ar_f_ll.jpg" alt="Frente - Labour of Love" title="Frente - Labour of Love" />
+]]></slide>
+<slide announce="Hooverphonic - Blue Wonder Power Milk" ><![CDATA[
+<img src="img/music/ar_h_bwpm.jpg" alt="Hooverphonic - Blue Wonder Power Milk" title="Hooverphonic - Blue Wonder Power Milk" />
+]]></slide>
+<slide announce="New Order - Substance" ><![CDATA[
+<img src="img/music/ar_no_s.jpg" alt="New Order - Substance" title="New Order - Substance" />
+]]></slide>
+<slide announce="U2 - The Unforgettable Fire" ><![CDATA[
+<img src="img/music/ar_u_uf.jpg" alt="U2 - The Unforgettable Fire" title="U2 - The Unforgettable Fire" />
+]]></slide>
+</carousel>

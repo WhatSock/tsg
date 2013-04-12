@@ -1,0 +1,21 @@
+
+#a1, #div1, #span1, #helpIcon {
+cursor: pointer;
+}
+
+*:focus {
+outline: blue 2px inset;
+}
+
+.button > *:focus {
+outline-style: none;
+}
+
+dd > * {
+float: left;
+margin: 2px 10px 5px 0;
+}
+
+#helpIcon {
+border: 0;
+}

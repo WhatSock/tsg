@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Practice Template Page</title>
+
+<link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+<link rel="stylesheet" type="text/css" href="css/customize.css" />
+<link rel="stylesheet" type="text/css" href="css/banner.css" />
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Alfa+Slab+One" />
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Boogaloo" />
+
+<script type="text/javascript" src="../../_common/js/jquery-1.8.3.min.js">
+// Load jQuery.
+// This is not necessary if using the Standalone AccDC API version.
+</script>
+
+<script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+// Load the AccDC API, which all modules are plugged into as the common interface.
+</script>
+
+<!-- Now load all desired modules, which plugs them into AccDC. -->
+<script type="text/javascript" src="../../../2 Accessible Component Modules/banner_module.min.js"></script>
+
+<script type="text/javascript" src="js/setup.js">
+// Run the setup script where module invocation statements are contained.
+</script>
+
+</head>
+<body>
+<div>
+
+<div class="hd">
+<h1>
+Dynamic Banner (Internal)
+</h1>
+</div>
+
+<div class="intro tal">
+
+<!-- The onclick handler below simply references the Banner AccDC Object using the ID that was returned in the setup script, and invokes the object's 'open()' method to rerender the banner content.
+All such methods and properties are documented as part of the AccDC API, on the Core API tab at WhatSock.com. -->
+
+<button onclick="$A.reg[bannerId].open();" class="reloadBtn"> Reload Banner </button>
+
+</div>
+
+<div class="desc">
+<p>
+The banner is loaded from an external page using it's ID.
+</p>
+<p><pre>
+Activate the Submit button to close the banner.
+Activate the Reload button to rerender the banner content.
+</pre></p>
+</div>
+
+</div>
+
+<div class="hidden">
+
+<div id="ad-1">
+<div id="content">
+<div class="h2">Lost at sea?</div>
+<div class="h3">Relax - we've got your rudder.</div>
+<form>
+<input type="text" id="email" title="Email address..." />
+<input type="submit" id="submit" value="Guide me" />
+</form>
+</div>
+<div id="clouds">
+<ul id="cloud-group-1">
+<li class="cloud-1"></li>
+<li class="cloud-2"></li>
+<li class="cloud-3"></li>
+</ul>
+<ul id="cloud-group-2">
+<li class="cloud-1"></li>
+<li class="cloud-2"></li>
+<li class="cloud-3"></li>
+</ul>
+</div>
+<ul id="boat">
+<li>
+<div id="question-mark"></div>
+</li>
+</ul>
+<ul id="water">
+<li id="water-back"></li>
+<li id="water-front"></li>
+</ul>
+</div>
+
+</div>
+
+</body>
+</html>

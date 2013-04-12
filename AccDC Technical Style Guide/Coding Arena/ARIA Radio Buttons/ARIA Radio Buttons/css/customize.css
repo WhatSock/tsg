@@ -1,0 +1,61 @@
+
+form, fieldset {
+padding: 0;
+margin: 0;
+}
+
+div.rGroup > *, fieldset.radiogroup > * {
+float: left;
+margin-right: 20px;
+padding: 10px 0;
+text-align: center;
+}
+
+div.rGroup span.rLabel, fieldset.radiogroup legend {
+width: 200px;
+border: solid thin black;
+}
+
+div.rGroup a.accRadio span {
+display: block;
+width: 75px;
+}
+
+div.rGroup a.accRadio {
+margin-bottom: 20px;
+text-decoration: none;
+font: bold 12px/12px HelveticaNeue, Arial;
+padding: 8px 11px;
+border: 1px solid #dedede;
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
+background: #525252;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5e5e5e', endColorstr='#434343'); /* IE */
+background: -webkit-gradient(linear, left top, left bottom, from(#5e5e5e), to(#434343)); /* WebKit */
+background: -moz-linear-gradient(top, #5e5e5e, #434343);
+border-color: #4c4c4c #313131 #1f1f1f;
+color: #fff;
+text-shadow: 0 1px 0 #2e2e2e;
+-webkit-box-shadow: 0 1px 1px #afafaf, inset 0 1px 0 #868686;
+-moz-box-shadow: 0 1px 1px #afafaf, inset 0 1px 0 #868686;
+box-shadow: 0 1px 1px #afafaf, inset 0 1px 0 #868686;        
+}
+
+div.rGroup a.accRadio[aria-checked="true"] {
+background: #5a5a5a;
+border-color: #2c2c2c #1c1c1c #101010;
+text-shadow: 0 1px 0 #363636;
+-webkit-box-shadow: 0 1px 1px #b1b1b1, inset 0 1px 0 #838383;
+-moz-box-shadow: 0 1px 1px #b1b1b1, inset 0 1px 0 #838383;
+box-shadow: 0 1px 1px #b1b1b1, inset 0 1px 0 #838383;
+}
+
+#formId {
+margin-top: 60px;
+}
+
+fieldset.radiogroup label {
+cursor: pointer;
+width: 124px;
+}

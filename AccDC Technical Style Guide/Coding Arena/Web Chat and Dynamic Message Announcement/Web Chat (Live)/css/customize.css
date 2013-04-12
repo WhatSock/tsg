@@ -1,0 +1,96 @@
+
+div.button > div {
+float: left;
+margin: 100px;
+}
+
+div.popup {
+position: fixed;
+z-index: 1;
+color: #191970;
+background-color: #f5f5f5;
+font-size: 0.9em;
+text-align: left;
+padding: 5px;
+font-family: Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif;
+-webkit-box-shadow: 0 10px 6px -6px #777;
+-moz-box-shadow: 0 10px 6px -6px #777;
+box-shadow: 0 10px 6px -6px #777;
+width: 400px;
+}
+
+#popup-chat > div.title, #popup-chat > div.close {
+float: left;
+}
+
+#popup-chat div.title {
+width: 70%;
+text-align: center;
+font-weight: bold;
+color: #483d8b;
+text-shadow: 0px 1px 1px rgba(112,128,144,0.8);
+font-size: 1.2em;
+}
+
+#popup-chat div.close {
+width: 28%;
+text-align: right;
+}
+
+#popup-chat div.close img {
+height: 15px;
+width: 15px;
+}
+
+#popup-chat div.chatPane {
+clear: both;
+width: 390px;
+padding: 5px;
+height: 90px;
+overflow-x: hidden;
+overflow-y: auto;
+border: solid 1px black;
+}
+
+#popup-chat div.chatPane > * {
+width: 390px;
+color: #228b22;
+}
+
+div.msg, div.hisBtn {
+clear: both;
+float: left;
+}
+
+div.msg {
+width: 100%;
+}
+
+#msgField {
+width: 100%;
+height: 40px;
+overflow: auto;
+word-wrap: break-word;
+}
+
+div.tooltip {
+position: absolute;
+z-index: 2;
+font: bold 12px/12px HelveticaNeue, Arial;
+padding: 3px 4px;
+border: 1px solid #dedede;
+background: #a5b8c6;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#becbd6', endColorstr='#88a1b4'); /* IE */
+background: -webkit-gradient(linear, left top, left bottom, from(#becbd6), to(#88a1b4)); /* WebKit */
+background: -moz-linear-gradient(top, #becbd6, #88a1b4);
+border-color: #a2afb8 #8696a1 #6f818f;
+color: #515f6a;
+text-shadow: 0 1px 0 #c4d0d9;
+-webkit-box-shadow: 0 1px 1px #d3d3d3, inset 0 1px 0 #ced8e0;
+-moz-box-shadow: 0 1px 1px #d3d3d3, inset 0 1px 0 #ced8e0;
+box-shadow: 0 1px 1px #d3d3d3, inset 0 1px 0 #ced8e0;  
+}
+
+*:focus {
+outline: blue 1px inset;
+}

@@ -1,0 +1,65 @@
+
+div.sample > * {
+float: left;
+}
+
+.multiselectWrapper {
+overflow-x: hidden;
+overflow-y: auto;
+border: solid thin black;
+position: relative;
+padding: 0 10px;
+margin: 0 10px;
+}
+
+#multiselectLB {
+padding: 0;
+margin: 0;
+list-style: none;
+}
+
+#multiselectLB > li {
+padding: 3px;
+}
+
+#multiselectLB > li > a {
+cursor: pointer;
+display: inline-block;
+text-decoration: none;
+font: bold 15px/15px HelveticaNeue, Arial;
+padding: 3px 5px;
+border: 1px solid #dedede;
+background: #9cedef;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#b7f2f4', endColorstr='#7ce7ea'); /* IE */
+background: -webkit-gradient(linear, left top, left bottom, from(#b7f2f4), to(#7ce7ea)); /* WebKit */
+background: -moz-linear-gradient(top, #b7f2f4, #7ce7ea);
+border-color: #90c6c8 #78bdc0 #65b6ba;
+color: #000;
+text-shadow: 0 1px 0 #bef3f5;
+-webkit-box-shadow: 0 1px 1px #d5d5d5, inset 0 1px 0 #c9f5f7;
+-moz-box-shadow: 0 1px 1px #d5d5d5, inset 0 1px 0 #c9f5f7;
+box-shadow: 0 1px 1px #d5d5d5, inset 0 1px 0 #c9f5f7;  
+}
+
+#multiselectLB > li > a.selected {
+background: #9fedf0;
+border-color: #7db9bb #6bb2b5 #5dacaf;
+text-shadow: 0 1px 0 #c5f4f6;
+-webkit-box-shadow: 0 1px 1px #d5d5d5, inset 0 1px 0 #b7f2f4;
+-moz-box-shadow: 0 1px 1px #d5d5d5, inset 0 1px 0 #b7f2f4;
+box-shadow: 0 1px 1px #d5d5d5, inset 0 1px 0 #b7f2f4;  
+}
+
+#multiselectLB > li > a > span {
+display: block;
+width: 80px;
+text-align: left;
+}
+
+#standardSelect {
+margin-left: 50px;
+}
+
+form, .desc {
+clear: both;
+}

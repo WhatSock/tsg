@@ -1,0 +1,27 @@
+
+#img1, #input1, #div1 {
+cursor: pointer;
+}
+
+*:focus {
+outline: blue 2px inset;
+}
+
+dd > * {
+float: left;
+margin: 2px 10px 5px 0;
+}
+
+dd > input[type="checkbox"] {
+margin-left: 200px;
+}
+
+#div1 {
+height: 59px;
+width: 58px;
+background: url("../img/checkiconblue.png") #f5f5f5; no-repeat;
+}
+
+#div1.checked {
+background: url("../img/checkiconred.png") #f5f5f5; no-repeat;
+}

@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>ARIA Menu Demo </title>
+
+<link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+<link rel="stylesheet" type="text/css" href="css/customize.css" />
+
+<script type="text/javascript" src="../../_common/js/jquery-1.8.3.min.js">
+// Load jQuery.
+// This is not necessary if using the Standalone AccDC API version.
+</script>
+
+<script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+// Load the AccDC API, which all modules are plugged into as the common interface.
+</script>
+
+<!-- Now load all desired modules, which plugs them into AccDC. -->
+<script type="text/javascript" src="../../../2 Accessible Component Modules/aria_menu_module.min.js"></script>
+
+<script type="text/javascript" src="../../../3 AccDC Bootstrap/accdc_bootstrap.js">
+// Load AccDC Bootstrap to enable HTML parsing.
+</script>
+
+</head>
+<body>
+<div>
+
+<div class="intro tal clearfix">
+
+<!-- The Dropdown is tied to menu structures within a hidden Div at the bottom of this page. -->
+
+<!-- To ensure keyboard accessibility, an active element such as an A tag or Button tag should be used as the triggering element.
+
+Required class:
+"accMenu" : Specifies a menu triggering element to be configured by the Bootstrap module.
+
+Attributes explained:
+• data-src : The resource path and pointer to the ID attribute of the top level menu list.
+If pointing to a menu list within the same document, only the ID attribute should be included here. 
+• data-internal : The ID attribute of the container element for all menu lists within the same document.
+If data-src is set to an external source, data-internal should be blank or not included. 
+• data-role : The role name that is conveyed to screen reader users at the beginning and end of each menu section. "Menu" is set by default if no value
+is specified. 
+• data-starttext : The role state that is conveyed to screen reader users at the beginning of each menu section. "Start" is set by default if no value is
+specified. 
+• data-endtext : The role state that is conveyed to screen reader users at the end of each menu section. "End" is set by default if no value is specified.
+• data-openstate : The open state text that is conveyed to screen reader users within the triggering link when open. "Open" is set by default if no value
+is specified. 
+• data-containerclass : The class name that will be added dynamically to the surrounding Div tag for each menu group when rendered. "menu" is set by default
+if no value is specified. 
+• data-menutag : The tag name for the container element that contains all menu item tags. All menu item tags must be contained within this container element,
+even if they are not first level child nodes. "ol" is set by default if no value is specified. 
+• data-menuclass : The shared class name that is contained within every menu container element. All menu tags specified by data-menutag must include this
+class name. "menu" is set by default if no value is specified. 
+• data-menuitemtag : The shared tag name that specifies all menu item tags. All menu item tags must be contained within the container element specified
+by data-menutag, even if they are not first level child nodes. "a" is set by default if no value is specified. 
+• data-menufolderclass : The shared class name that is contained within every menu tag that opens a submenu. "submenu" is set by default if no value is
+specified. 
+• data-menulinkclass : The shared class name that is contained within every menu tag that does not open a submenu. "link" is set by default if no value
+is specified. 
+• data-flyout="true" : Specifies a horizontal flyout menu where the Left and Right arrow keys will be used to navigate menu item nodes, and Up and Down
+will be used to close or open submenus. If data-flyout is not included within the markup, the default vertically oriented keyboard assignments will be
+applied automatically.  
+-->
+
+<button class="accMenu menu"
+data-internal="hiddenDivId"
+data-src="uniqueId1"
+>Options (Vertical Dropdown)</button>
+
+</div>
+
+<div class="intro tal">
+
+<div class="desc">
+<p>
+The menus are keyboard accessible.
+</p>
+<p><pre>
+Activate the triggering element using the keyboard.
+Press the Up and Down Arrow keys to move focus between the menu options.
+Press the Left and Right Arrow keys to open or close submenus.
+Press Enter to activate a menu option.
+Press Escape to close the currently open menu.
+Press Tab or set focus back on the triggering element to close the menu and all submenus.
+Mouse users can click the desired menu option as usual.
+</pre></p>
+</div>
+</div>
+
+</div>
+
+<div id="hiddenDivId" class="hidden">
+
+<!-- These are the menu structures tied to the triggering element. 
+The lists can be set to any tag, such as OL, UL, etc, as long as this is specified in the menuTag property within the JavaScript declaration statement or within the data-menutag attribute if Bootstrapped.
+The same is true for the menu item nodes, which is specified using the menuItemTag property in the JavaScript declaration statement, or within the data-menuitemtag attribute if Bootstrapped.
+Menus and submenus may be nested or broken out into separate lists if desired, as long as they are all contained within the same top level container element specified by ID within the JavaScript invocation statement, or within the data-internal attribute if Bootstrapped.
+All menu container elements and menu item nodes must include unique ID attributes.
+Submenus are mapped by combining the ID attribute of the top level menu container ID and the submenu pointer link ID, which points to the ID of the referenced submenu.
+All menu item nodes must include innerText to ensure accessibility for screen reader users.
+Don't include any ARIA attributes within the menu markup, since this is handled automatically by the Menu module.
+-->
+
+<ol class="menu" id="uniqueId1">
+<li>
+
+<a href="#" class="submenu" id="-uniqueId2">
+Subfolder Menu Item One Name (Level 1)
+</a>
+
+<ol class="menu" id="uniqueId1-uniqueId2">
+<li>
+
+<a href="#" class="submenu" id="-uniqueId2-1">
+Subfolder Submenu Item One Name (Level 2)
+</a>
+
+<ol class="menu" id="uniqueId1-uniqueId2-uniqueId2-1">
+<li>
+
+<a href="#" class="link" id="uniqueId2-1-1">
+Submenu Item One Name (Level 3)
+</a>
+
+</li>
+</ol>
+
+</li>
+<li>
+
+<a href="#" class="link" id="uniqueId2-2">
+Submenu Item Two Name (Level 2)
+</a>
+
+</li>
+</ol>
+
+</li>
+<li>
+
+<a href="#" class="link" id="uniqueId3">
+Menu Item Two Name (Level 1)
+</a>
+
+</li>
+</ol>
+
+</div>
+
+</body>
+</html>

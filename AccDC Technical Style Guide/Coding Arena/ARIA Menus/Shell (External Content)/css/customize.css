@@ -1,0 +1,29 @@
+
+/* This is just the triggering element */
+button.menu {
+}
+
+/* This is the top level Div for all menu structures */
+div.menu {
+}
+
+/* This is the menu container element with role="menu" */
+div.menu ol.menu {
+background-color: #F5DEB3;
+}
+
+/* This is the divider element between the menu container and the menuitem links */
+div.menu ol.menu > li {
+}
+
+/* This points to all keyboard focusable menu links with role="menuitem" */
+div.menu ol.menu a {
+}
+
+/* This points to the keyboard focusable menu link with role="menuitem" that currently has focus */
+div.menu ol.menu a:focus {
+}
+
+/* This points to all keyboard focusable menu links with role="menuitem" that open submenus */
+div.menu ol.menu a.submenu {
+}

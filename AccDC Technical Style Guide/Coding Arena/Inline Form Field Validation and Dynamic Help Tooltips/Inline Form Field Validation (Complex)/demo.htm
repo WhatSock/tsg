@@ -1,0 +1,222 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Practice Template Page</title>
+
+<link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+<link rel="stylesheet" type="text/css" href="css/customize.css" />
+
+<script type="text/javascript" src="../../_common/js/jquery-1.8.3.min.js">
+// Load jQuery.
+// This is not necessary if using the Standalone AccDC API version.
+</script>
+
+<script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+// Load the AccDC API, which all modules are plugged into as the common interface.
+</script>
+
+<!-- Now load all desired modules, which plugs them into AccDC. -->
+<script type="text/javascript" src="../../../2 Accessible Component Modules/form_field_validator.min.js"></script>
+
+<script type="text/javascript" src="js/setup.js">
+// Run the setup script where module invocation statements are contained.
+</script>
+
+</head>
+<body>
+<div>
+
+<div>
+
+<form id="addressForm">
+
+<div class="middle">
+<table role="presentation"><tr>
+
+<td colspan="4">
+<div class="top">
+Enter your billing and shipping addresses.
+</div>
+</td>
+
+</tr><tr>
+
+<td>
+<div role="heading" aria-level="3">
+Billing:
+</div>
+</td>
+
+<td>
+<table role="presentation">
+<tr class="required">
+<td>
+<div>
+<label aria-hidden="true">
+Address1:
+</label>
+</div>
+</td>
+<td>
+<div>
+<input title="Billing Address1" type="text" name="b-add1" id="b-add1" />
+</div>
+</td>
+</tr><tr>
+<td>
+<div>
+<label aria-hidden="true">
+Address2:
+</label>
+</div>
+</td>
+<td>
+<div>
+<input title="Billing Address2" type="text" name="b-add2" id="b-add2" />
+</div>
+</td>
+</tr><tr class="required">
+<td>
+<div>
+<label aria-hidden="true">
+City:
+</label>
+</div>
+</td>
+<td>
+<div>
+<input title="Billing Address City" type="text" name="b-city" id="b-city" />
+</div>
+</td>
+</tr><tr class="required">
+<td>
+<div>
+<label aria-hidden="true">
+State:
+</label>
+</div>
+</td>
+<td>
+<div>
+<input title="Billing Address State" type="text" name="b-state" id="b-state" />
+</div>
+</td>
+</tr><tr class="required">
+<td>
+<div>
+<label aria-hidden="true">
+Zipcode:
+</label>
+</div>
+</td>
+<td>
+<div>
+<input title="Billing Address Zipcode" type="text" name="b-zip" id="b-zip" />
+</div>
+</td>
+</tr>
+</table>
+</td>
+
+<td>
+<div role="heading" aria-level="3">
+Shipping:
+</div>
+</td>
+
+<td>
+<table role="presentation">
+<tr class="required">
+<td>
+<div>
+<label aria-hidden="true">
+Address1:
+</label>
+</div>
+</td>
+<td>
+<div>
+<input title="Shipping Address1" type="text" name="m-add1" id="m-add1" />
+</div>
+</td>
+</tr><tr>
+<td>
+<div>
+<label aria-hidden="true">
+Address2:
+</label>
+</div>
+</td>
+<td>
+<div>
+<input title="Shipping Address2" type="text" name="m-add2" id="m-add2" />
+</div>
+</td>
+</tr><tr class="required">
+<td>
+<div>
+<label aria-hidden="true">
+City:
+</label>
+</div>
+</td>
+<td>
+<div>
+<input title="Shipping Address City" type="text" name="m-city" id="m-city" />
+</div>
+</td>
+</tr><tr class="required">
+<td>
+<div>
+<label aria-hidden="true">
+State:
+</label>
+</div>
+</td>
+<td>
+<div>
+<input title="Shipping Address State" type="text" name="m-state" id="m-state" />
+</div>
+</td>
+</tr><tr class="required">
+<td>
+<div>
+<label aria-hidden="true">
+Zipcode:
+</label>
+</div>
+</td>
+<td>
+<div>
+<input title="Shipping Address Zipcode" type="text" name="m-zip" id="m-zip" />
+</div>
+</td>
+</tr>
+</table>
+</td>
+
+</tr><tr>
+
+<td colspan="4">
+<div class="foot">
+<input title="" type="submit" value="Submit" />
+</div>
+</td>
+
+</tr></table>
+</div>
+
+</form>
+
+<div class="desc">
+<p>
+Error tooltips are automatically rendered when focus moves away from each required form field.
+</p>
+</div>
+
+</div>
+
+</div>
+</body>
+</html>

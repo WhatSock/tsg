@@ -1,0 +1,74 @@
+
+/* The container element where the dynamically generated carousel will be inserted */
+#carouselId {
+display: block;
+height: 170px;
+margin-bottom: 25px;
+}
+
+/* The top level Div element that holds all carousel nodes */
+#carouselId div.carouselCls {
+text-align: center;
+}
+
+/* The left and right content Div elements where Nav buttons are added */
+#carouselId div.lNav, #carouselId div.rNav {
+position: absolute;
+height: 158px;
+padding: 6px;
+}
+
+/* The center Div element where rotating slides are added */
+#carouselId div.centerContent {
+position: absolute;
+left: 50px;
+width: 165px;
+height: 170px;
+overflow: hidden;
+border: solid thin black;
+}
+
+/* The right content Div element where Nav buttons are added */
+#carouselId div.rNav {
+left: 227px;
+}
+
+/* Point to all Nav buttons in the carousel */
+#carouselId .navButton {
+border: 0;
+padding: 0;
+margin: 0;
+}
+
+/* Point to all Nav buttons in the carousel */
+#carouselId .navButton {
+cursor: pointer;
+display: block;
+text-decoration: none;
+font: bold 12px/12px HelveticaNeue, Arial;
+padding: 6px 6px;
+border: 1px solid #dedede;
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
+background: #525252;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5e5e5e', endColorstr='#434343'); /* IE */
+background: -webkit-gradient(linear, left top, left bottom, from(#5e5e5e), to(#434343)); /* WebKit */
+background: -moz-linear-gradient(top, #5e5e5e, #434343);
+border-color: #4c4c4c #313131 #1f1f1f;
+color: #fff;
+text-shadow: 0 1px 0 #2e2e2e;
+-webkit-box-shadow: 0 1px 1px #afafaf, inset 0 1px 0 #868686;
+-moz-box-shadow: 0 1px 1px #afafaf, inset 0 1px 0 #868686;
+box-shadow: 0 1px 1px #afafaf, inset 0 1px 0 #868686;    
+}
+
+/* Point to the Previous and Next Slide buttons */
+#carouselId div.lNav .navSlideButton {
+margin-top: 0;
+}
+
+/* Point to the Next Slide button only */
+#carouselId div.rNav .navSlideButton {
+margin-top: 128px;
+}

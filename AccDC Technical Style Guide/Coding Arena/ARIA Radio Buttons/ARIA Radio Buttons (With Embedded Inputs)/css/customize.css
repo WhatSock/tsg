@@ -1,0 +1,24 @@
+
+form > div > * {
+float: left;
+margin-right: 20px;
+}
+
+form > div > div > * {
+float: left;
+}
+
+a[role="radio"] {
+display: inline-block;
+height: 59px;
+width: 58px;
+background: url("../img/checkiconblue.png") #f5f5f5; no-repeat;
+}
+
+a[role="radio"][aria-checked="true"] {
+background: url("../img/checkiconred.png") #f5f5f5; no-repeat;
+}
+
+form > input {
+float: right;
+}

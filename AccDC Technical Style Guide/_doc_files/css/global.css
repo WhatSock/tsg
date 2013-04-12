@@ -1,0 +1,186 @@
+@import url("http://fonts.googleapis.com/css?family=Alfa+Slab+One");
+@import url("http://fonts.googleapis.com/css?family=Boogaloo");
+
+.clearfix:after {
+visibility: hidden;
+display: block;
+font-size: 0;
+content: " ";
+clear: both;
+height: 0;
+}
+.clearfix {
+display: inline-block;
+}
+* html .clearfix {
+height: 1%;
+}
+.clearfix {
+display: block;
+}
+
+body {
+text-align: center;
+font-family: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 0.93em;
+background-color: #f5f5f5;
+color: #000;
+}
+
+a:link, a:visited, a:active, a:hover {
+color: #0000b0;
+}
+
+*:focus {
+outline: #b00020 2px inset;
+}
+
+#skipLnks, #pgContent {
+width: 90%;
+margin-left: 5%;
+}
+
+div.hd {
+padding: 20px 30px 10px 30px;
+margin: 20px 20px 20px 20%;
+position: relative;
+display: block;
+text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+text-align: center;
+}
+
+h1 {
+font-size: 1.6em;
+outline-style: none;
+font-family: 'Alfa Slab One', 'Arial Narrow', Arial, sans-serif;
+position: relative;
+font-weight: 400;
+color: #483d8b;
+text-shadow: 1px 1px 1px rgba(112,128,144,0.8);
+padding: 0px 0px 5px 0px;
+}
+
+h1 span {
+text-shadow: 0px 1px 1px rgba(112,128,144,0.8);
+}
+
+h2, h3, h4, h5, h6 {
+font-size: 1.4em;
+outline-style: none;
+font-family: 'Boogaloo', 'Arial Narrow', Arial, sans-serif;
+font-style: italic;
+color: #483d8b;
+text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+}
+
+h2 span, h3 span, h4 span, h5 span, h6 span {
+text-shadow: 0px 1px 1px rgba(112,128,144,0.8);
+}
+
+h4 {
+color: #228b22;
+}
+
+i {
+font-size: 0.9em;
+}
+
+.tal {
+text-align: left;
+}
+
+.tac {
+text-align: center;
+}
+
+div.copyright {
+font-size: 0.9em;
+text-align: center;
+}
+
+div.heading {
+font-size: 1.1em;
+font-style: italic;
+color: #8fbc8f;
+}
+
+div.menuLinks {
+width: 18%;
+text-align: center;
+position: absolute;
+}
+
+div.logo a {
+display: block;
+width: 98%;
+position: relative;
+}
+
+div.logo a img {
+width: 100%;
+}
+
+.cl {
+clear: left;
+}
+
+.cr {
+clear: right;
+}
+
+.cb {
+clear: both;
+}
+
+.fl {
+float: left;
+}
+
+.fr {
+float: right;
+}
+
+.hidden {
+display: none;
+visibility: hidden;
+}
+
+.liFl {
+overflow: hidden;
+margin: 0;
+padding: 0;
+list-style: none;
+}
+
+.liFl > li {
+float: left;
+width: 20%;
+}
+
+div.topLink {
+position: fixed;
+z-index: 1;
+bottom: 0px;
+right: 0px;
+}
+
+dl.hdn > dd {
+display: none;
+visibility: hidden;
+}
+
+div.expand-collapse > a {
+margin-left: 50px;
+}
+
+div.expand-collapse > a > span {
+display: block;
+width: 100px;
+text-align: center;
+}
+
+dl > dt > a > span {
+display: block;
+width: 300px;
+text-align: center;
+}

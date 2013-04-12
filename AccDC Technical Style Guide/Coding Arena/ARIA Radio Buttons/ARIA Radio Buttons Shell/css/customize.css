@@ -1,0 +1,12 @@
+
+/* This points to all Radio elements with role="radio" */
+div.rGroup a.accRadio {
+}
+
+/* This points to the Span tag within all Radio elements with role="radio" */
+div.rGroup a.accRadio span {
+}
+
+/* This points to the Radio element with role="radio" that is currently checked */
+div.rGroup a.accRadio[aria-checked="true"] {
+}

@@ -1,0 +1,1 @@
+All of the Accessible Component Modules within this folder plug directly into the AccDC API, so it's important to load the module code after the AccDC API is loaded first.

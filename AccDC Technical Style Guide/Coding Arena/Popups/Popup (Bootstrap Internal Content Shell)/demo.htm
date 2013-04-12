@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Practice Template Page</title>
+
+<link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+<link rel="stylesheet" type="text/css" href="css/customize.css" />
+
+<script type="text/javascript" src="../../_common/js/jquery-1.8.3.min.js">
+// Load jQuery.
+// This is not necessary if using the Standalone AccDC API version.
+</script>
+
+<script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+// Load the AccDC API, which all modules are plugged into as the common interface.
+</script>
+
+<!-- Now load all desired modules, which plugs them into AccDC. -->
+<script type="text/javascript" src="../../../2 Accessible Component Modules/popup_module.min.js"></script>
+
+<script type="text/javascript" src="../../../3 AccDC Bootstrap/accdc_bootstrap.js">
+// Load AccDC Bootstrap to enable HTML parsing.
+</script>
+
+</head>
+<body>
+<div>
+
+<p>
+
+<!-- Attributes explained
+
+• class="accPopup" : The bootstrap class name that specifies an accessible popup. 
+• data-src : The resource path and pointer to the ID attribute of the popup container element. If set, data-internal should be blank or not included. 
+• data-internal : The ID attribute of the popup container element within the same document.
+If data-internal is set, data-src should be blank or not included. 
+• data-role : The role name that is conveyed to screen reader users as beginning and ending boundary text for the new content. "Popup" is set by default if no value is specified.
+• data-autoposition : The autoPosition override, which dynamically positions the new content relative to the triggering element. This reflects the autoPosition property documented within AccDC, and may be a value between 0 and 12. The default is 3 if left blank or not included. 
+• data-offsetleft : The offsetLeft override, which dynamically positions the new content relative to the triggering element. The default is 10 if left blank
+or not included. 
+• data-offsettop : The offsetTop override, which dynamically positions the new content relative to the triggering element. The default is -20 if left blank or not included. 
+• id : The unique ID of the element. This value is also registered as the ID of the popup AccDC Object, making it possible to invoke the object programmatically.
+E.G $A.reg.uniqueID.open();
+// All other AccDC API properties and methods are similarly available. 
+-->
+
+<a id="myPopup" href="#" class="accPopup" data-internal="popupContainerId" data-role="Popup" data-offsetleft="10" data-offsettop="200">
+Open Popup
+</a>
+
+</p>
+
+<div class="desc">
+<p>
+The popup is optomized for screen reader and keyboard only users.
+</p>
+<p><pre>
+Activate the Quote link to open the popup.
+The content will be inserted inline with the triggering element,
+and focus will automatically move to the beginning of the new content.
+Press Tab to set focus to the Close link and press Enter to close the popup,
+or press Escape to close the popup directly.
+When closed, focus will move back to the triggering element.
+</pre></p>
+</div>
+
+</div>
+
+<div class="hidden">
+
+<!-- Important
+
+When Implementing a Close link or button, the className must match the "closeClassName" property within the script declaration.
+(If not explicitly set, the default value "popupClose" is configured within the module script file, and should be used for all Close links or buttons)
+Doing so will automatically bind the close methods with this element, and set keyboard focus properly when the AccDC Object is closed.
+-->
+
+<div id="popupContainerId">
+<div class="title">
+Popup Name
+</div>
+<div>
+<a href="#" class="popupClose"><img
+src="img/close.png"
+alt="Close Popup"
+title="Close Popup"
+/></a>
+</div>
+<div>
+Content goes here
+</div>
+</div>
+
+</div>
+
+</body>
+</html>

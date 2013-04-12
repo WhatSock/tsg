@@ -1,0 +1,28 @@
+
+/* The wrapper Div tag surrounding the listbox container */
+.standardWrapper {
+}
+
+/* The list container element with role="listbox" */
+#standardLB {
+}
+
+/* The childNodes of the list container element with role="listbox" */
+#standardLB > li {
+}
+
+/* The listbox option elements with role="option" */
+#standardLB > li > a {
+}
+
+/* The currently selected listbox option element with role="option" */
+#standardLB > li > a.selected {
+}
+
+/* The Span tag within the listbox option elements */
+#standardLB > li > a > span {
+}
+
+*:focus {
+outline: orange 1px inset;
+}

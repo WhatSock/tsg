@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Practice Template Page</title>
+
+<link rel="stylesheet" type="text/css" href="../_common/css/global.css" />
+<link rel="stylesheet" type="text/css" href="css/customize.css" />
+
+<script type="text/javascript" src="../_common/js/jquery-1.8.3.min.js">
+// Load jQuery.
+// This is not necessary if using the Standalone AccDC API version.
+</script>
+
+<script type="text/javascript" src="../../1 AccDC API/For jQuery/Acc.DC.API.js">
+// Load the AccDC API, which all modules are plugged into as the common interface.
+</script>
+
+<!-- Now load all desired modules, which plugs them into AccDC. -->
+<script type="text/javascript" src="../../2 Accessible Component Modules/css_drag_drop_module.min.js"></script>
+
+<script type="text/javascript" src="js/setup.js">
+// Run the setup script where module invocation statements are contained.
+</script>
+
+</head>
+<body>
+<div>
+
+<div>
+
+<div class="title">
+Drag the books you wish to purchase from the SHELF into the CART.
+<br />
+<i>
+(I know, it doesn't look like a shelf or a cart, just use your imagination)
+</i>
+</div>
+
+<div class="booksWrapper clearfix">
+
+<div class="availableBooks">
+<div role="heading" aria-level="2" title="Pretend this looks like a bookshelf...">
+SHELF
+</div>
+<ul id="options" class="clearfix">
+<li>
+<img data-label="A Short History of Nearly Everything by Bill Bryson" data-price="15.94" src="img/AShortHistoryOfNearlyEverything.jpg" alt="A Short History of Nearly Everything by Bill Bryson ($15.94)" title="A Short History of Nearly Everything by Bill Bryson ($15.94)" />
+</li>
+<li>
+<img data-label="Fierce Invalids Home From Hot Climates by Tom Robbins" data-price="10.90" src="img/FierceInvalidsHomeFromHotClimates.jpg" alt="Fierce Invalids Home From Hot Climates by Tom Robbins ($10.90)" title="Fierce Invalids Home From Hot Climates by Tom Robbins ($10.90)" />
+</li>
+<li>
+<img data-label="Neuromancer by William Gibson" data-price="12.50" src="img/Neuromancer.jpg" alt="Neuromancer by William Gibson ($12.50)" title="Neuromancer by William Gibson ($12.50)" />
+</li>
+<li>
+<img data-label="Swords and Deviltry by Fritz Leiber" data-price="10.99" src="img/SwordsAndDeviltry.jpg" alt="Swords and Deviltry by Fritz Leiber ($10.99)" title="Swords and Deviltry by Fritz Leiber ($10.99)" />
+</li>
+<li>
+<img data-label="The Magicians by Lev Grossman" data-price="16.01" src="img/TheMagicians.jpg" alt="The Magicians by Lev Grossman ($16.01)" title="The Magicians by Lev Grossman ($16.01)" />
+</li>
+<li>
+<img data-label="The Face in the Frost by John Bellairs" data-price="9.11" src="img/TheFaceInTheFrost.jpg" alt="The Face in the Frost by John Bellairs ($9.11)" title="The Face in the Frost by John Bellairs ($9.11)" />
+</li>
+<li>
+<img data-label="The Last Unicorn by Peter S. Beagle" data-price="8.93" src="img/TheLastUnicorn.jpg" alt="The Last Unicorn by Peter S. Beagle ($8.93)" title="The Last Unicorn by Peter S. Beagle ($8.93)" />
+</li>
+<li>
+<img data-label="Snow Crash by Neal Stevenson" data-price="14.44" src="img/SnowCrash.jpg" alt="Snow Crash by Neal Stevenson ($14.44)" title="Snow Crash by Neal Stevenson ($14.44)" />
+</li>
+<li>
+<img data-label="Altered Carbon by Richard K. Morgan" data-price="15.40" src="img/AlteredCarbon.jpg" alt="Altered Carbon by Richard K. Morgan ($15.40)" title="Altered Carbon by Richard K. Morgan ($15.40)" />
+</li>
+<li>
+<img data-label="Empire of the East by Fred Saberhagen" data-price="11.22" src="img/EmpireOfTheEast.jpg" alt="Empire of the East by Fred Saberhagen ($11.22)" title="Empire of the East by Fred Saberhagen ($11.22)" />
+</li>
+</ul>
+</div>
+
+<div class="chosenBooks">
+<div role="heading" aria-level="2" title="Pretend this looks like a shopping cart">
+CART
+</div>
+<ol id="selections" class="clearfix"></ol>
+</div>
+
+</div>
+
+<div class="totals clearfix">
+<div id="subtotals">
+Quantity:
+<span id="quantity">0</span>
+Subtotal:
+<span id="subtotal">$0.00</span>
+</div>
+<button id="checkout">
+Proceed to Checkout!
+</button>
+</div>
+
+<div class="desc">
+<p>
+The draggable items are keyboard accessible.
+</p>
+<p><pre>
+Press the Tab and Shift+Tab keys to switch between items.
+Press the Enter key to toggle selection.
+Press the Tab key until the Drop link is reached.
+Press Enter on the Drop link to drag the item over to that location.
+Mouse users can drag and drop the desired item as usual.
+</pre></p>
+</div>
+
+</div>
+
+</div>
+</body>
+</html>

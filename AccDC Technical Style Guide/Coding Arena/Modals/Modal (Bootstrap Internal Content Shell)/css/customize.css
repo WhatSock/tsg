@@ -1,0 +1,34 @@
+
+/* This is just the triggering element */
+#modalTrigger {
+float: left;
+margin: 150px 100px;
+}
+
+/* This is the top level container for the modal,
+which matches the className property declared in the setup script. */
+div.modal {
+position: fixed;
+top: 35%;
+left: 37%;
+z-index: 1000;
+background-color: #fff;
+overflow: auto;
+padding: 30px 10px;
+}
+
+/* Now shade out the backdrop Div */
+div.modalBackdrop {
+background-color: #000;
+-moz-opacity: 0.7;
+opacity: .70;
+filter: alpha(opacity=70);
+position: fixed;
+z-index: 999;
+left: 0;
+top: 0;
+height: 100%;
+width: 100%;
+}
+
+/* Set other modal styles here */

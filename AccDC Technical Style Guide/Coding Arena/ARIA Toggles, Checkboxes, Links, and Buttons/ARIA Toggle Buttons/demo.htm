@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Practice Template Page</title>
+
+<link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+<link rel="stylesheet" type="text/css" href="css/customize.css" />
+<link rel="stylesheet" type="text/css" href="css/simple_web_buttons.css" />
+
+<script type="text/javascript" src="../../_common/js/jquery-1.8.3.min.js">
+// Load jQuery.
+// This is not necessary if using the Standalone AccDC API version.
+</script>
+
+<script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+// Load the AccDC API, which all modules are plugged into as the common interface.
+</script>
+
+<!-- Now load all desired modules, which plugs them into AccDC. -->
+<script type="text/javascript" src="../../../2 Accessible Component Modules/aria_toggler.min.js"></script>
+
+<script type="text/javascript" src="js/setup.js">
+// Run the setup script where module invocation statements are contained.
+</script>
+
+</head>
+<body>
+<div>
+
+<div class="intro tal">
+
+<div class="title">
+ARIA Toggle Buttons: What do you want to be when you grow up?
+</div>
+
+<dl>
+
+<dt>
+Standard A tag as a toggle:
+</dt>
+
+<dd class="clearfix">
+
+<!-- For all container elements that support innerHTML, the following attributes and rules are required to ensure accessibility for the widest range of screen readers:
+1. role="button" : Specifies an ARIA Toggle Button control. (Must only be present on the active element, and nowhere else.)
+2. Inner Text : Specifies a textual label for screen reader users. This may be visible or positioned using offscreenText. (Must not be hidden using display:none or visibility:hidden) offscreenText is required to ensure the same level of accessibility for iOS devices using Voiceover.
+3. No Embedded Active Elements : Don't embed any other active elements, including mouse clickable images, links, or anything else that needs to be activated separately. The only actionable element should be the element with role="button".
+
+To add a tooltip for sighted mouse users, use the Title attribute. This must match the text contained within the innerText label.
+-->
+
+<a href="#" id="a1"
+role="button"
+class="button black">
+<span class="lbl">
+A Horse!
+</span>
+</a>
+
+<input type="checkbox" id="a1mirror" title="Checkbox mirror of A Horse" />
+</dd>
+
+<dt>
+Standard DIV tag as a toggle:
+</dt>
+
+<dd class="clearfix">
+
+<!-- For all container elements that support innerHTML, the following attributes and rules are required to ensure accessibility for the widest range of screen readers:
+1. role="button" : Specifies an ARIA Toggle Button control. (Must only be present on the active element, and nowhere else.)
+2. Inner Text : Specifies a textual label for screen reader users. This may be visible or positioned using offscreenText. (Must not be hidden using display:none or visibility:hidden) offscreenText is required to ensure the same level of accessibility for iOS devices using Voiceover.
+3. No Embedded Active Elements : Don't embed any other active elements, including mouse clickable images, links, or anything else that needs to be activated separately. The only actionable element should be the element with role="button".
+
+To add a tooltip for sighted mouse users, use the Title attribute. This must match the text contained within the innerText label.
+-->
+
+<div id="div1"
+role="button"
+class="button black">
+<span class="lbl">
+A Donkey!
+</span>
+</div>
+
+<input type="checkbox" id="div1mirror" title="Checkbox mirror of A Donkey" />
+</dd>
+
+<dt>
+Standard SPAN tag as a toggle:
+</dt>
+
+<dd class="clearfix">
+
+<!-- For all container elements that support innerHTML, the following attributes and rules are required to ensure accessibility for the widest range of screen readers:
+1. role="button" : Specifies an ARIA Toggle Button control. (Must only be present on the active element, and nowhere else.)
+2. Inner Text : Specifies a textual label for screen reader users. This may be visible or positioned using offscreenText. (Must not be hidden using display:none or visibility:hidden) offscreenText is required to ensure the same level of accessibility for iOS devices using Voiceover.
+3. No Embedded Active Elements : Don't embed any other active elements, including mouse clickable images, links, or anything else that needs to be activated separately. The only actionable element should be the element with role="button".
+
+To add a tooltip for sighted mouse users, use the Title attribute. This must match the text contained within the innerText label.
+-->
+
+<span id="span1"
+role="button"
+class="button black">
+<span class="lbl">
+A Goat!
+</span>
+</span>
+
+<input type="checkbox" id="span1mirror" title="Checkbox mirror of A Goat" />
+</dd>
+
+</dl>
+
+<div class="clearfix">
+
+<!-- For IMG tags, the following attributes are required to ensure accessibility for the widest range of screen readers:
+1. role="button" : Specifies an ARIA Toggle Button control. (Must only be present on the active element, and nowhere else.)
+2. aria-label : Specifies a textual label for screen reader users. (The Alt alone won't work for this purpose)
+3. alt="" : Hides the image from screen reader users when no tooltip is desired for mouse users.
+
+To add a tooltip for sighted mouse users, use both the Alt and Title attributes. The text for both must match the text contained within the aria-label attribute, so that all three are the same.
+-->
+
+<img id="helpIcon"
+role="button"
+aria-label="Learn more about this page"
+title="Learn more about this page"
+alt="Learn more about this page"
+src="img/help.png" />
+
+<div id="helpSect1" class="hidden">
+<div class="desc">
+<p>
+The ARIA toggle button controls are keyboard accessible.
+</p>
+<p><pre>
+Press the Tab key to navigate between the ARIA toggle buttons. 
+Press the Spacebar to toggle the state of the selected toggle button.
+Mouse users can click a toggle button to toggle the state as usual.
+</pre></p>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+</body>
+</html>

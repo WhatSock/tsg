@@ -1,0 +1,56 @@
+
+table.sample {
+width: 100%;
+height: 450px;
+}
+
+table.sample td {
+vertical-align: top;
+width: 50%;
+}
+
+.slider2 {
+width: 50px;
+height: 430px;
+}
+
+.min2, .max2 {
+height: 40px;
+background-color: #000;
+color: #f5f5f5;
+}
+
+.min2 span, .max2 span {
+position: relative;
+top: 10px;
+}
+
+.slide2 {
+height: 350px;
+width: 48px;
+border-left: solid thin black;
+border-right: solid thin black;
+}
+
+.slide2 > div.nub2 {
+width: 48px;
+height: 46px;
+background-color: #000;
+color: #f5f5f5;
+cursor: pointer;
+}
+
+#handle2 span {
+position: relative;
+top: 5px;
+}
+
+.slide2 > div.nub:focus {
+outline: red 2px inset;
+}
+
+#syncSelect {
+position: relative;
+top: 40px;
+}
+

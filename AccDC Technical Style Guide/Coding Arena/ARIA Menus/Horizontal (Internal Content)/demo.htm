@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>ARIA Menu Demo </title>
+
+<link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+<link rel="stylesheet" type="text/css" href="css/menus.css" />
+
+<script type="text/javascript" src="../../_common/js/jquery-1.8.3.min.js">
+// Load jQuery.
+// This is not necessary if using the Standalone AccDC API version.
+</script>
+
+<script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+// Load the AccDC API, which all modules are plugged into as the common interface.
+</script>
+
+<!-- Now load all desired modules, which plugs them into AccDC. -->
+<script type="text/javascript" src="../../../2 Accessible Component Modules/aria_menu_module.min.js"></script>
+
+<script type="text/javascript" src="js/setup.js">
+// Now run the setup script where module invocation statements are contained.
+</script>
+
+</head>
+<body>
+<div>
+
+<div class="intro tal clearfix">
+
+<!-- The Flyout is tied to menu structures at the bottom of this page in a hidden Div tag. -->
+
+<a role="button" class="menu2">Options</a>
+
+</div>
+
+<div class="intro tal">
+
+<div class="desc">
+<p>
+The menus are keyboard accessible.
+</p>
+<p><pre>
+Activate the triggering element using the keyboard.
+Press the Left and Right Arrow keys to move focus between the menu options.
+Press the Up and Down Arrow keys to open or close submenus.
+Press Enter to activate a menu option.
+Press Escape to close the currently open menu.
+Press Tab or set focus back on the triggering element to close the menu and all submenus.
+Mouse users can click the desired menu option as usual.
+</pre></p>
+</div>
+</div>
+
+</div>
+
+<div id="hiddenDivId" class="hidden">
+
+<!-- These are the menu structures tied to the triggering element. 
+The lists can be set to any tag, such as OL, UL, etc, as long as this is specified in the menuTag property within the JavaScript declaration statement or within the data-menutag attribute if Bootstrapped.
+The same is true for the menu item nodes, which is specified using the menuItemTag property in the JavaScript declaration statement, or within the data-menuitemtag attribute if Bootstrapped.
+Menus and submenus may be nested or broken out into separate lists if desired, as long as they are all contained within the same top level container element specified by ID within the JavaScript invocation statement, or within the data-internal attribute if Bootstrapped.
+All menu container elements and menu item nodes must include unique ID attributes.
+Submenus are mapped by combining the ID attribute of the top level menu container ID and the submenu pointer link ID, which points to the ID of the referenced submenu.
+All menu item nodes must include innerText to ensure accessibility for screen reader users.
+Don't include any ARIA attributes within the menu markup, since this is handled automatically by the Menu module.
+-->
+
+<ul data-autoposition="3" data-offsetleft="10" title="Options" class="menu2 clearfix" id="menu-options2">
+<li>
+<a href="#" class="submenu2" id="-profile2">
+Profile
+</a>
+
+<ul title="Profile" class="menu2 clearfix" id="menu-options2-profile2">
+<li>
+<a href="#" class="submenu2" id="-personal2">
+Personal
+</a>
+
+<ul title="Personal" class="menu2 clearfix" id="menu-options2-profile2-personal2">
+<li>
+<a href="#" class="link2" id="-name2">
+Name
+</a>
+</li>
+<li>
+<a href="#" class="link2" id="-interests2">
+Interests
+</a>
+</li>
+<li>
+<a href="#" class="link2" id="-education2">
+Education
+</a>
+</li>
+</ul>
+
+</li>
+<li>
+<a href="#" class="submenu2" id="-business2">
+Business
+</a>
+
+<ul title="Business" class="menu2 clearfix" id="menu-options2-profile2-business2">
+<li>
+<a href="#" class="link2" id="business-name2">
+Name
+</a>
+</li>
+<li>
+<a href="#" class="link2" id="business-contact2">
+Contact
+</a>
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+<li>
+<a href="#" class="submenu2" id="-settings2">
+Settings
+</a>
+
+<ul title="Settings" class="menu2 clearfix" id="menu-options2-settings2">
+<li>
+<a href="#" class="link2" id="settings-search2">
+Search
+</a>
+</li>
+<li>
+<a href="#" class="link2" id="settings-cookies2">
+Cookies
+</a>
+</li>
+<li>
+<a href="#" class="link2" id="settings-layout2">
+Layout
+</a>
+</li>
+</ul>
+
+</li>
+<li>
+<a href="#" class="submenu2" id="-account2">
+Account
+</a>
+
+<ul title="Account" class="menu2 clearfix" id="menu-options2-account2">
+<li>
+<a href="#" class="link2" id="account-username2">
+Username
+</a>
+</li>
+<li>
+<a href="#" class="link2" id="account-password2">
+Password
+</a>
+</li>
+<li>
+<a href="#" class="link2" id="account-email2">
+Email
+</a>
+</li>
+</ul>
+
+</li>
+<li>
+<a href="#" class="submenu2" id="-services2">
+Services
+</a>
+
+<ul title="Services" class="menu2 clearfix" id="menu-options2-services2">
+<li>
+<a href="#" class="link2" id="services-campaigns2">
+Campaigns
+</a>
+</li>
+<li>
+<a href="#" class="link2" id="services-payments2">
+Payments
+</a>
+</li>
+<li>
+<a href="#" class="link2" id="services-billing2">
+Billing
+</a>
+</li>
+</ul>
+
+</li>
+<li>
+<a href="#" class="link2" id="-properties2">
+Properties...
+</a>
+</li>
+<li>
+<a href="#" class="link2" id="-help2">
+Help...
+</a>
+</li>
+</ul>
+
+</div>
+
+</body>
+</html>

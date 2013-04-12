@@ -1,0 +1,1 @@
+This implementation pulls banner content from an external page.

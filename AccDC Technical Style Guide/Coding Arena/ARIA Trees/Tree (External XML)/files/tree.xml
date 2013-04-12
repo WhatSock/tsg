@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<tree>
+<branch id="node1" name="ACT I">
+<leaf id="node1-1" name="SCENE I." load="files/pages/act-i.htm #scene1"></leaf>
+<leaf id="node1-2" name="SCENE II." load="files/pages/act-i.htm #scene2"></leaf>
+<leaf id="node1-3" name="SCENE III." load="files/pages/act-i.htm #scene3"></leaf>
+</branch>
+<branch id="node2" name="ACT II">
+<leaf id="node2-1" name="SCENE I." load="files/pages/act-ii.htm #scene1"></leaf>
+<leaf id="node2-2" name="SCENE II." load="files/pages/act-ii.htm #scene2"></leaf>
+</branch>
+<branch id="node3" name="ACT III">
+<leaf id="node3-1" name="SCENE I." load="files/pages/act-iii.htm #scene1"></leaf>
+<leaf id="node3-2" name="SCENE II." load="files/pages/act-iii.htm #scene2"></leaf>
+<leaf id="node3-3" name="SCENE III." load="files/pages/act-iii.htm #scene3"></leaf>
+</branch>
+<branch id="node4" name="ACT IV">
+<leaf id="node4-1" name="SCENE I." load="files/pages/act-iv.htm #scene1"></leaf>
+<leaf id="node4-2" name="SCENE II." load="files/pages/act-iv.htm #scene2"></leaf>
+<leaf id="node4-3" name="SCENE III." load="files/pages/act-iv.htm #scene3"></leaf>
+</branch>
+</tree>

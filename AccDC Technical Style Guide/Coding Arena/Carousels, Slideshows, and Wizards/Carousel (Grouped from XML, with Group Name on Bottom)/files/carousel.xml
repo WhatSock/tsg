@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<carousel role="Carousel" accStart="Start" accEnd="End" height="170" width="280" className="carouselCls" prevTitle="Previous" nextTitle="Next" slideName="Slide" groupName="Group" showGroup="yes" groupPosTop="no" btnPText="&#8592;" btnNText="&#8594;" btnPGText="&#8656;" btnNGText="&#8658;" isGrouped="yes" btnPAccesskey="1" btnNAccesskey="2" btnPGAccesskey="3" btnNGAccesskey="4" direction="lr" cycle="yes" timer="5000" animDelay="2000" forward="yes" hiddenMsg="Press Escape to stop automatic cycling" >
+<group name="Alternative Rock" >
+<slide announce="Emiliana Torrini - Love in the Time of Science" ><![CDATA[
+<img src="img/music/ar_et_lts.jpg" alt="Emiliana Torrini - Love in the Time of Science" title="Emiliana Torrini - Love in the Time of Science" />
+]]></slide>
+<slide announce="Frente - Labour of Love" ><![CDATA[
+<img src="img/music/ar_f_ll.jpg" alt="Frente - Labour of Love" title="Frente - Labour of Love" />
+]]></slide>
+<slide announce="Hooverphonic - Blue Wonder Power Milk" ><![CDATA[
+<img src="img/music/ar_h_bwpm.jpg" alt="Hooverphonic - Blue Wonder Power Milk" title="Hooverphonic - Blue Wonder Power Milk" />
+]]></slide>
+<slide announce="New Order - Substance" ><![CDATA[
+<img src="img/music/ar_no_s.jpg" alt="New Order - Substance" title="New Order - Substance" />
+]]></slide>
+<slide announce="U2 - The Unforgettable Fire" ><![CDATA[
+<img src="img/music/ar_u_uf.jpg" alt="U2 - The Unforgettable Fire" title="U2 - The Unforgettable Fire" />
+]]></slide>
+</group>
+<group name="Classical" >
+<slide announce="Bach" ><![CDATA[
+<img src="img/music/c_ba.jpg" alt="Bach" title="Bach" />
+]]></slide>
+<slide announce="Beethoven" ><![CDATA[
+<img src="img/music/c_be.jpg" alt="Beethoven" title="Beethoven" />
+]]></slide>
+<slide announce="Chopin" ><![CDATA[
+<img src="img/music/c_c.jpg" alt="Chopin" title="Chopin" />
+]]></slide>
+<slide announce="Mozart" ><![CDATA[
+<img src="img/music/c_m.jpg" alt="Mozart" title="Mozart" />
+]]></slide>
+<slide announce="Vivaldi" ><![CDATA[
+<img src="img/music/c_v.jpg" alt="Vivaldi" title="Vivaldi" />
+]]></slide>
+</group>
+<group name="Rock" >
+<slide announce="Guns N' Roses - Use Your Illusion 1" ><![CDATA[
+<img src="img/music/r_gnr_uyi.jpg" alt="Guns N' Roses - Use Your Illusion 1" title="Guns N' Roses - Use Your Illusion 1" />
+]]></slide>
+<slide announce="Pearl Jam - Ten" ><![CDATA[
+<img src="img/music/r_pj_t.jpg" alt="Pearl Jam - Ten" title="Pearl Jam - Ten" />
+]]></slide>
+<slide announce="Pink Floyd - Delicate Sound of Thunder" ><![CDATA[
+<img src="img/music/r_pf_dst.jpg" alt="Pink Floyd - Delicate Sound of Thunder" title="Pink Floyd - Delicate Sound of Thunder" />
+]]></slide>
+<slide announce="Scorpions - Crazy World" ><![CDATA[
+<img src="img/music/r_s_cw.jpg" alt="Scorpions - Crazy World" title="Scorpions - Crazy World" />
+]]></slide>
+<slide announce="Tom Petty - Full Moon Fever" ><![CDATA[
+<img src="img/music/r_tp_fmf.jpg" alt="Tom Petty - Full Moon Fever" title="Tom Petty - Full Moon Fever" />
+]]></slide>
+</group>
+</carousel>

@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Practice Template Page</title>
+
+<link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+<link rel="stylesheet" type="text/css" href="css/customize.css" />
+
+<script type="text/javascript" src="../../_common/js/jquery-1.8.3.min.js">
+// Load jQuery.
+// This is not necessary if using the Standalone AccDC API version.
+</script>
+
+<script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+// Load the AccDC API, which all modules are plugged into as the common interface.
+</script>
+
+<!-- Now load all desired modules, which plugs them into AccDC. -->
+<script type="text/javascript" src="../../../2 Accessible Component Modules/modal_module.min.js"></script>
+
+<script type="text/javascript" src="../../../3 AccDC Bootstrap/accdc_bootstrap.js">
+// Load AccDC Bootstrap to enable HTML parsing.
+</script>
+
+</head>
+<body>
+<div>
+
+<p>
+
+<!-- Attributes explained
+
+• class="accModal" : The bootstrap class name that specifies an accessible modal. 
+• data-src : The resource path and pointer to the ID attribute of the modal container element. If set, data-internal should be blank or not included. 
+• data-internal : The ID attribute of the modal container element within the same document.
+If data-internal is set, data-src should be blank or not included. 
+• data-role : The role name that is conveyed to screen reader users as beginning and ending boundary text for the new content. "Modal" is set by default if no value is specified. 
+• id : The unique ID of the element. This value is also registered as the ID of the modal AccDC Object, making it possible to invoke the object programmatically.
+E.G $A.reg.uniqueID.open();
+// All other AccDC API properties and methods are similarly available.  
+-->
+
+<button id="loginBtn" data-internal="modal-login" data-role="Login" class="accModal lightbox">Login</button>
+
+</p>
+
+<div class="desc">
+<p>
+The modal is optomized for screen reader and keyboard only users.
+</p>
+<p><pre>
+Activate the Login button to open the modal.
+Screen reader users will be confined within the modal content, and will not be able to see the background page content. (Confirmed in both Windows platform and iOS touch screen devices)
+Keyboard focus is automatically restricted to active elements within the modal, which is handled using HTML5 attributes within the first and last form fields within the markup.
+</pre></p>
+</div>
+
+</div>
+
+<div class="hidden">
+
+<!-- Important
+
+To ensure proper keyboard focus scycling within the modal when using the Tab and Shift+Tab keys, the following HTML5 attributes must be added to the first and last focusable active elements within the modal.
+
+data-first="true" : Must be added to the first focusable active element within the modal.
+data-last="true" : Must be added to the last focusable active element within the modal.
+
+Also, when Implementing a Close link or button, the className must match the "closeClassName" property within the script declaration.
+(If not explicitly set, the default value "lbClose" is configured within the module script file, and should be used for all Close links or buttons)
+Doing so will automatically bind the close methods with this element, and set keyboard focus properly when the AccDC Object is closed.
+-->
+
+<div id="modal-login">
+<form id="lbForm">
+<label for="uname">
+Username:
+<input data-first="true" type="text" id="uname" name="uname" />
+</label>
+<br />
+<label for="pass">
+Password:
+<input type="password" id="pass" name="pass" />
+</label>
+<br />
+<span>
+<button type="submit" id="lbSubmit">OK</button>
+</span>
+<span>
+<button data-last="true" class="lbClose" id="lbCancel">Cancel</button>
+</span>
+</form>
+</div>
+
+</div>
+
+</body>
+</html>

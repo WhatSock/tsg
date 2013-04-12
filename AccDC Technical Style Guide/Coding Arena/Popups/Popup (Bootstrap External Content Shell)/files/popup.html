@@ -1,0 +1,28 @@
+<html>
+<body>
+
+<!-- Important
+
+When Implementing a Close link or button, the className must match the "closeClassName" property within the script declaration.
+(If not explicitly set, the default value "popupClose" is configured within the module script file, and should be used for all Close links or buttons)
+Doing so will automatically bind the close methods with this element, and set keyboard focus properly when the AccDC Object is closed.
+-->
+
+<div id="popupContainerId">
+<div class="title">
+Popup Name
+</div>
+<div>
+<a href="#" class="popupClose"><img
+src="img/close.png"
+alt="Close Popup"
+title="Close Popup"
+/></a>
+</div>
+<div>
+Content goes here
+</div>
+</div>
+
+</body>
+</html>

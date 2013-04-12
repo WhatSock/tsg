@@ -1,0 +1,117 @@
+
+div.calendar {
+text-align: center;
+background-color: #E4E7EB;
+padding: 5px;
+border: solid 1px #777;
+-webkit-box-shadow: 0 10px 6px -6px #777;
+-moz-box-shadow: 0 10px 6px -6px #777;
+box-shadow: 0 10px 6px -6px #777;
+}
+
+table.calendar {
+table-layout: fixed;
+border-collapse: separate;
+border-spacing: 6px;
+}
+
+table.calendar td, table.calendar th {
+padding: 8px 8px;
+}
+
+table.calendar td span, table.calendar th span {
+}
+
+td.empty {
+border: solid thin black;
+}
+
+th.week {
+}
+
+td.nav, td.day {
+cursor: pointer;
+font: bold 16px/16px HelveticaNeue, Arial;
+border: 1px solid #dedede;
+background: #f5f5f5;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#f0f0f0'); /* IE */
+background: -webkit-gradient(linear, left top, left bottom, from(#f9f9f9), to(#f0f0f0)); /* WebKit */
+background: -moz-linear-gradient(top, #f9f9f9, #f0f0f0);
+border-color: #dedede #d8d8d8 #d3d3d3;
+color: #000;
+text-shadow: 0 1px 0 #fff;
+-webkit-box-shadow: 0 1px 1px #eaeaea, inset 0 1px 0 #fbfbfb;
+-moz-box-shadow: 0 1px 1px #eaeaea, inset 0 1px 0 #fbfbfb;
+box-shadow: 0 1px 1px #eaeaea, inset 0 1px 0 #fbfbfb;
+}
+
+td.selected {
+background: #f4f4f4;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#efefef', endColorstr='#f8f8f8'); /* IE */
+background: -webkit-gradient(linear, left top, left bottom, from(#efefef), to(#f8f8f8)); /* WebKit */
+background: -moz-linear-gradient(top, #efefef, #f8f8f8);
+border-color: #c7c7c7 #c3c3c3 #bebebe;
+text-shadow: 0 1px 0 #fdfdfd;
+-webkit-box-shadow: 0 1px 1px #ebebeb, inset 0 1px 0 #f3f3f3;
+-moz-box-shadow: 0 1px 1px #ebebeb, inset 0 1px 0 #f3f3f3;
+box-shadow: 0 1px 1px #ebebeb, inset 0 1px 0 #f3f3f3;
+}
+
+div.calendar *:focus {
+outline: blue 1px inset;
+}
+
+td.comment {
+background: #fecc5f;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#feda71', endColorstr='#febb4a'); /* IE */
+background: -webkit-gradient(linear, left top, left bottom, from(#feda71), to(#febb4a)); /* WebKit */
+background: -moz-linear-gradient(top, #feda71, #febb4a);
+border-color: #f5b74e #e5a73e #d6982f;
+color: #996633;
+text-shadow: 0 1px 0 #fedd9b;
+-webkit-box-shadow: 0 1px 1px #d3d3d3, inset 0 1px 0 #fee395;
+-moz-box-shadow: 0 1px 1px #d3d3d3, inset 0 1px 0 #fee395;
+box-shadow: 0 1px 1px #d3d3d3, inset 0 1px 0 #fee395;  
+}
+
+td.comment.selected {
+background: #fecb5e;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fec354', endColorstr='#fecd61'); /* IE */
+background: -webkit-gradient(linear, left top, left bottom, from(#fec354), to(#fecd61)); /* WebKit */
+background: -moz-linear-gradient(top, #fec354, #fecd61);
+border-color: #d29a3a #cc9436 #c89133;
+text-shadow: 0 1px 0 #fee1a0;
+-webkit-box-shadow: 0 1px 1px #d4d4d4, inset 0 1px 0 #fed17e;
+-moz-box-shadow: 0 1px 1px #d4d4d4, inset 0 1px 0 #fed17e;
+box-shadow: 0 1px 1px #d4d4d4, inset 0 1px 0 #fed17e;  
+}
+
+td.comment > span {
+border: solid thin orange;
+}
+
+td.disabled {
+cursor: auto;
+background: #bdbdbd;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cacaca', endColorstr='#aeaeae'); /* IE */
+background: -webkit-gradient(linear, left top, left bottom, from(#cacaca), to(#aeaeae)); /* WebKit */
+background: -moz-linear-gradient(top, #cacaca, #aeaeae);
+border-color: #b5b5b5 #a1a1a1 #8f8f8f;
+color: #555;
+text-shadow: 0 1px 0 #d4d4d4;
+-webkit-box-shadow: 0 1px 1px #c9c9c9, inset 0 1px 0 #d7d7d7;
+-moz-box-shadow: 0 1px 1px #c9c9c9, inset 0 1px 0 #d7d7d7;
+box-shadow: 0 1px 1px #c9c9c9, inset 0 1px 0 #d7d7d7;  
+}
+
+td.disabled.selected {
+background: #c2c2c2;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#bcbcbc', endColorstr='#c2c2c2'); /* IE */
+background: -webkit-gradient(linear, left top, left bottom, from(#bcbcbc), to(#c2c2c2)); /* WebKit */
+background: -moz-linear-gradient(top, #bcbcbc, #c2c2c2);
+border-color: #989898 #8e8e8e #878787;
+text-shadow: 0 1px 0 #dadada;
+-webkit-box-shadow: 0 1px 1px #cdcdcd, inset 0 1px 0 #ccc;
+-moz-box-shadow: 0 1px 1px #cdcdcd, inset 0 1px 0 #ccc;
+box-shadow: 0 1px 1px #cdcdcd, inset 0 1px 0 #ccc;  
+}

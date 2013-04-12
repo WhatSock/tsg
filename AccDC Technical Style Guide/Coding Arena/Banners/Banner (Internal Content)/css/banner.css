@@ -1,0 +1,544 @@
+/*
+Derived from: Animated Web Banners With CSS3 | Codrops
+http://tympanus.net/codrops/2012/01/10/animated-web-banners-with-css3/
+*/
+
+div.banner div, div.banner ul, div.banner ol, div.banner li, div.banner form, div.banner input {
+margin:0;
+padding:0;
+}
+div.banner ol, div.banner ul {
+list-style:none;
+}
+div.banner .h2, div.banner .h3 {
+font-size:100%;
+font-weight:normal;
+}
+div.banner {
+font-family: Constantia, Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;
+font-weight: 400;
+font-size: 15px;
+color: #936a46;
+position: fixed;
+text-align: center;
+margin: 40px auto 0;
+width: 720px;
+height: 300px;
+top: 0;
+left: 14%;
+}
+div.banner a {
+color: #333;
+text-decoration: none;
+}
+
+#ad-1 {
+position: relative;
+width: 720px;
+height: 300px;
+background-image: url(../img/ad-1/background.png);
+background-position: center;
+background-repeat: no-repeat;
+overflow: hidden;
+box-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+}
+#ad-1 #content {
+width: 325px;
+float: right;
+margin: 40px;
+text-align: center;
+z-index: 4;
+position: relative;
+overflow: visible;
+}
+#ad-1 #content .h2 {
+font-family: 'Alfa Slab One', cursive;
+color: #137dd5;
+font-size: 50px;
+line-height: 50px;
+text-shadow: 0px 0px 4px #fff;
+-webkit-animation: h2-animation 7s 1 ease-in-out;
+-moz-animation: h2-animation 7s 1 ease-in-out;
+-o-animation: h2-animation 7s 1 ease-in-out;
+-ms-animation: h2-animation 7s 1 ease-in-out;
+animation: h2-animation 7s 1 ease-in-out;
+}
+#ad-1 #content .h3 {
+font-family: 'Boogaloo', cursive;
+color: #202224;
+font-size: 31px;
+line-height: 31px;
+text-shadow: 0px 0px 4px #fff;
+-webkit-animation: h3-animation 10s 1 ease-in-out;
+-moz-animation: h3-animation 10s 1 ease-in-out;
+-o-animation: h3-animation 10s 1 ease-in-out;
+-ms-animation: h3-animation 10s 1 ease-in-out;
+animation: h3-animation 10s 1 ease-in-out;
+}
+#ad-1 #content form {
+margin: 30px 0 0 6px;
+position: relative;
+-webkit-animation: form-animation 12s 1 ease-in-out;
+-moz-animation: form-animation 12s 1 ease-in-out;
+-o-animation: form-animation 12s 1 ease-in-out;
+-ms-animation: form-animation 12s 1 ease-in-out;
+animation: form-animation 12s 1 ease-in-out;
+}
+#ad-1 #content #email {
+width: 158px;
+height: 48px;
+float: left;
+padding: 0 20px;
+font-size: 16px;
+font-family: 'Lucida Grande', sans-serif;
+color: #fff;
+text-shadow: 1px 1px 0px #a2917d;
+border-top-left-radius: 5px;
+border-bottom-left-radius: 5px;
+border:1px solid #a2917d;
+outline: none;
+box-shadow: -1px -1px 1px #fff;
+background-color: #c7b29b;
+background-image: linear-gradient(bottom, rgb(216,201,185) 0%, rgb(199,178,155) 100%);
+background-image: -o-linear-gradient(bottom, rgb(216,201,185) 0%, rgb(199,178,155) 100%);
+background-image: -moz-linear-gradient(bottom, rgb(216,201,185) 0%, rgb(199,178,155) 100%);
+background-image: -webkit-linear-gradient(bottom, rgb(216,201,185) 0%, rgb(199,178,155) 100%);
+background-image: -ms-linear-gradient(bottom, rgb(216,201,185) 0%, rgb(199,178,155) 100%);
+}
+#ad-1 #content #email:focus {
+background-image: linear-gradient(bottom, rgb(199,178,155) 0%, rgb(199,178,155) 100%);
+background-image: -o-linear-gradient(bottom, rgb(199,178,155) 0%, rgb(199,178,155) 100%);
+background-image: -moz-linear-gradient(bottom, rgb(199,178,155) 0%, rgb(199,178,155) 100%);
+background-image: -webkit-linear-gradient(bottom, rgb(199,178,155) 0%, rgb(199,178,155) 100%);
+background-image: -ms-linear-gradient(bottom, rgb(199,178,155) 0%, rgb(199,178,155) 100%);
+
+}
+#ad-1 #content #submit {
+height: 50px;
+float: left;
+padding: 0 20px;
+font-size: 20px;
+font-family: 'Boogaloo', cursive;
+color: #137dd5;
+text-shadow: 1px 1px 0px #fff;
+border-top-right-radius: 5px;
+border-bottom-right-radius: 5px;
+border:1px solid #bcc0c4;
+border-left: none;
+background-color: #fff;
+background-image: linear-gradient(bottom, rgb(245,247,249) 0%, rgb(255,255,255) 100%);
+background-image: -o-linear-gradient(bottom, rgb(245,247,249) 0%, rgb(255,255,255) 100%);
+background-image: -moz-linear-gradient(bottom, rgb(245,247,249) 0%, rgb(255,255,255) 100%);
+background-image: -webkit-linear-gradient(bottom, rgb(245,247,249) 0%, rgb(255,255,255) 100%);
+background-image: -ms-linear-gradient(bottom, rgb(245,247,249) 0%, rgb(255,255,255) 100%);
+cursor: pointer;
+}
+#ad-1 #content #submit:hover {
+background-image: linear-gradient(bottom, rgb(255,255,255) 0%, rgb(255,255,255) 100%);
+background-image: -o-linear-gradient(bottom, rgb(255,255,255) 0%, rgb(255,255,255) 100%);
+background-image: -moz-linear-gradient(bottom, rgb(255,255,255) 0%, rgb(255,255,255) 100%);
+background-image: -webkit-linear-gradient(bottom, rgb(255,255,255) 0%, rgb(255,255,255) 100%);
+background-image: -ms-linear-gradient(bottom, rgb(255,255,255) 0%, rgb(255,255,255) 100%);
+}
+#ad-1 ul#water{
+}
+#ad-1 li#water-back {
+width: 1200px;
+height: 84px;
+background-image: url(../img/ad-1/water-back.png);
+background-repeat: repeat-x;
+z-index: 1;
+position: absolute;
+bottom: 10px;
+left: -20px;
+-webkit-animation: water-back-animation 3s infinite ease-in-out;
+-moz-animation: water-back-animation 3s infinite ease-in-out;
+-o-animation: water-back-animation 3s infinite ease-in-out;
+-ms-animation: water-back-animation 3s infinite ease-in-out;
+animation: water-back-animation 3s infinite ease-in-out;
+}
+#ad-1 li#water-front {
+width: 1200px;
+height: 158px;
+background-image: url(../img/ad-1/water-front.png);
+background-repeat: repeat-x;
+z-index: 3;
+position: absolute;
+bottom: -70px;
+left:-30px;
+-webkit-animation: water-front-animation 2s infinite ease-in-out;
+-moz-animation: water-front-animation 2s infinite ease-in-out;
+-o-animation: water-front-animation 2s infinite ease-in-out;
+-ms-animation: water-front-animation 2s infinite ease-in-out;
+animation: water-front-animation 2s infinite ease-in-out;
+}
+#ad-1 ul#boat {
+width: 249px;
+height: 215px;
+z-index: 2;
+position: absolute;
+bottom: 25px;
+left: 20px;
+overflow: visible;
+-webkit-animation: boat-in-animation 3s 1 ease-out;
+-moz-animation: boat-in-animation 3s 1 ease-out;
+-o-animation: boat-in-animation 3s 1 ease-out;
+-ms-animation: boat-in-animation 3s 1 ease-out;
+animation: boat-in-animation 3s 1 ease-out;
+}
+#ad-1 ul#boat li {
+width: 249px;
+height: 215px;
+background-image: url(../img/ad-1/boat.png);
+position: absolute;
+bottom: 0px;
+left: 0px;
+overflow: visible;
+-webkit-animation: boat-animation 2s infinite ease-in-out;
+-moz-animation: boat-animation 2s infinite ease-in-out;
+-o-animation: boat-animation 2s infinite ease-in-out;
+-ms-animation: boat-animation 2s infinite ease-in-out;
+animation: boat-animation 2s infinite ease-in-out;
+}
+#ad-1 #question-mark {
+width: 24px;
+height: 50px;
+background-image: url(../img/ad-1/question-mark.png);
+position: absolute;
+right: 34px;
+top: -30px;
+-webkit-animation: question-mark-animation 4s 1 ease-in-out;
+-moz-animation: question-mark-animation 4s 1 ease-in-out;
+-o-animation: question-mark-animation 4s 1 ease-in-out;
+-ms-animation: question-mark-animation 4s 1 ease-in-out;
+animation: question-mark-animation 4s 1 ease-in-out;
+}
+#ad-1 #clouds {
+position: absolute;
+top: 0px;
+z-index: 0;
+}
+#ad-1 #cloud-group-1 {
+width:720px;
+position: absolute;
+left:0px;
+-webkit-animation: cloud-group-1-animation 30s infinite linear;
+-moz-animation: cloud-group-1-animation 30s infinite linear;
+-o-animation: cloud-group-1-animation 30s infinite linear;
+-ms-animation: cloud-group-1-animation 30s infinite linear;
+animation: cloud-group-1-animation 30s infinite linear;
+}
+#ad-1 #cloud-group-2 {
+width: 720px;
+position: absolute;
+left: 720px;
+-webkit-animation: cloud-group-2-animation 30s infinite linear;
+-moz-animation: cloud-group-2-animation 30s infinite linear;
+-o-animation: cloud-group-2-animation 30s infinite linear;
+-ms-animation: cloud-group-2-animation 30s infinite linear;
+animation: cloud-group-2-animation 30s infinite linear;
+}
+#ad-1 .cloud-1 {
+width: 172px;
+height: 121px;
+background-image: url(../img/ad-1/cloud-1.png);
+position: absolute;
+top: 10px;
+left: 40px;
+}
+#ad-1 .cloud-2 {
+width: 121px;
+height: 75px;
+background-image: url(../img/ad-1/cloud-2.png);
+position: absolute;
+top: -25px;
+left: 300px;
+}
+#ad-1 .cloud-3 {
+width: 132px;
+height: 105px;
+background-image: url(../img/ad-1/cloud-3.png);
+position: absolute;
+top: -5px;
+left: 530px;
+}
+
+/* WebKit Animations */
+
+@-webkit-keyframes h2-animation {
+0%   {opacity: 0;}
+80%  {opacity: 0;}
+100% {opacity: 1;}
+}
+@-webkit-keyframes h3-animation {
+0%   {opacity: 0;}
+80%  {opacity: 0;}
+100% {opacity: 1;}
+}
+@-webkit-keyframes form-animation {
+0%   {opacity: 0; right: -400px;}
+90%  {opacity: 0; right: -400px;}
+95%  {opacity: 0.5; right: 20px;}
+100% {opacity: 1; right: 0px;}
+}
+@-webkit-keyframes boat-in-animation {
+0%   {left: -200px;}
+100% {left: 20px;}
+}
+@-webkit-keyframes boat-animation {
+0%   {bottom: 0px; left: 0px;}
+25%  {bottom: -2px; left: -2px;}
+70%  {bottom: 2px; left: -4px;}
+100% {bottom: -1px; left: 0px;}
+}
+@-webkit-keyframes question-mark-animation {
+0%   {opacity:0;}
+80%   {opacity:0;}
+100% {opacity:1;}
+}
+@-webkit-keyframes cloud-group-1-animation {
+0%       {left: 0px;}
+99.9999%   {left: -720px;}
+100%     {left: 0px;}
+}
+@-webkit-keyframes cloud-group-2-animation {
+0%       {left: 720px;}
+99.9999%   {left: 0px;}
+100%     {left: 720px;}
+}
+@-webkit-keyframes water-back-animation {
+0%   {bottom: 10px; left: -20px;}
+25%  {bottom: 8px; left: -22px;}
+70%  {bottom: 12px; left: -24px;}
+100% {bottom: 9px; left: -20px;}
+}
+@-webkit-keyframes water-front-animation {
+0%   {bottom: -70px; left: -30px;}
+25%  {bottom: -68px; left: -32px;}
+70%  {bottom: -72px; left: -34px;}
+100% {bottom: -69px; left: -30px;}
+}
+
+/* FireFox Animations */
+
+@-moz-keyframes h2-animation {
+0%   {opacity: 0;}
+80%  {opacity: 0;}
+100% {opacity: 1;}
+}
+@-moz-keyframes h3-animation {
+0%   {opacity: 0;}
+80%  {opacity: 0;}
+100% {opacity: 1;}
+}
+@-moz-keyframes form-animation {
+0%   {opacity: 0; right: -400px;}
+90%  {opacity: 0; right: -400px;}
+95%  {opacity: 0.5; right: 20px;}
+100% {opacity: 1; right: 0px;}
+}
+@-moz-keyframes boat-in-animation {
+0%   {left: -200px;}
+100% {left: 20px;}
+}
+@-moz-keyframes boat-animation {
+0%   {bottom: 0px; left: 0px;}
+25%  {bottom: -2px; left: -2px;}
+70%  {bottom: 2px; left: -4px;}
+100% {bottom: -1px; left: 0px;}
+}
+@-moz-keyframes question-mark-animation {
+0%   {opacity:0;}
+80%   {opacity:0;}
+100% {opacity:1;}
+}
+@-moz-keyframes cloud-group-1-animation {
+0%       {left: 0px;}
+99.9999%   {left: -720px;}
+100%     {left: 0px;}
+}
+@-moz-keyframes cloud-group-2-animation {
+0%       {left: 720px;}
+99.9999%   {left: 0px;}
+100%     {left: 720px;}
+}
+@-moz-keyframes water-back-animation {
+0%   {bottom: 10px; left: -20px;}
+25%  {bottom: 8px; left: -22px;}
+70%  {bottom: 12px; left: -24px;}
+100% {bottom: 9px; left: -20px;}
+}
+@-moz-keyframes water-front-animation {
+0%   {bottom: -70px; left: -30px;}
+25%  {bottom: -68px; left: -32px;}
+70%  {bottom: -72px; left: -34px;}
+100% {bottom: -69px; left: -30px;}
+}
+
+/* Opera Animations */
+
+@-o-keyframes h2-animation {
+0%   {opacity: 0;}
+80%  {opacity: 0;}
+100% {opacity: 1;}
+}
+@-o-keyframes h3-animation {
+0%   {opacity: 0;}
+80%  {opacity: 0;}
+100% {opacity: 1;}
+}
+@-o-keyframes form-animation {
+0%   {opacity: 0; right: -400px;}
+90%  {opacity: 0; right: -400px;}
+95%  {opacity: 0.5; right: 20px;}
+100% {opacity: 1; right: 0px;}
+}
+@-o-keyframes boat-in-animation {
+0%   {left: -200px;}
+100% {left: 20px;}
+}
+@-o-keyframes boat-animation {
+0%   {bottom: 0px; left: 0px;}
+25%  {bottom: -2px; left: -2px;}
+70%  {bottom: 2px; left: -4px;}
+100% {bottom: -1px; left: 0px;}
+}
+@-o-keyframes question-mark-animation {
+0%   {opacity:0;}
+80%   {opacity:0;}
+100% {opacity:1;}
+}
+@-o-keyframes cloud-group-1-animation {
+0%       {left: 0px;}
+99.9999%   {left: -720px;}
+100%     {left: 0px;}
+}
+@-o-keyframes cloud-group-2-animation {
+0%       {left: 720px;}
+99.9999%   {left: 0px;}
+100%     {left: 720px;}
+}
+@-o-keyframes water-back-animation {
+0%   {bottom: 10px; left: -20px;}
+25%  {bottom: 8px; left: -22px;}
+70%  {bottom: 12px; left: -24px;}
+100% {bottom: 9px; left: -20px;}
+}
+@-o-keyframes water-front-animation {
+0%   {bottom: -70px; left: -30px;}
+25%  {bottom: -68px; left: -32px;}
+70%  {bottom: -72px; left: -34px;}
+100% {bottom: -69px; left: -30px;}
+}
+
+/* IE Animations */
+
+@-ms-keyframes h2-animation {
+0%   {opacity: 0;}
+80%  {opacity: 0;}
+100% {opacity: 1;}
+}
+@-ms-keyframes h3-animation {
+0%   {opacity: 0;}
+80%  {opacity: 0;}
+100% {opacity: 1;}
+}
+@-ms-keyframes form-animation {
+0%   {opacity: 0; right: -400px;}
+90%  {opacity: 0; right: -400px;}
+95%  {opacity: 0.5; right: 20px;}
+100% {opacity: 1; right: 0px;}
+}
+@-ms-keyframes boat-in-animation {
+0%   {left: -200px;}
+100% {left: 20px;}
+}
+@-ms-keyframes boat-animation {
+0%   {bottom: 0px; left: 0px;}
+25%  {bottom: -2px; left: -2px;}
+70%  {bottom: 2px; left: -4px;}
+100% {bottom: -1px; left: 0px;}
+}
+@-ms-keyframes question-mark-animation {
+0%   {opacity:0;}
+80%   {opacity:0;}
+100% {opacity:1;}
+}
+@-ms-keyframes cloud-group-1-animation {
+0%       {left: 0px;}
+99.9999%   {left: -720px;}
+100%     {left: 0px;}
+}
+@-ms-keyframes cloud-group-2-animation {
+0%       {left: 720px;}
+99.9999%   {left: 0px;}
+100%     {left: 720px;}
+}
+@-ms-keyframes water-back-animation {
+0%   {bottom: 10px; left: -20px;}
+25%  {bottom: 8px; left: -22px;}
+70%  {bottom: 12px; left: -24px;}
+100% {bottom: 9px; left: -20px;}
+}
+@-ms-keyframes water-front-animation {
+0%   {bottom: -70px; left: -30px;}
+25%  {bottom: -68px; left: -32px;}
+70%  {bottom: -72px; left: -34px;}
+100% {bottom: -69px; left: -30px;}
+}
+
+/* Animations */
+
+@keyframes h2-animation {
+0%   {opacity: 0;}
+80%  {opacity: 0;}
+100% {opacity: 1;}
+}
+@keyframes h3-animation {
+0%   {opacity: 0;}
+80%  {opacity: 0;}
+100% {opacity: 1;}
+}
+@keyframes form-animation {
+0%   {opacity: 0; right: -400px;}
+90%  {opacity: 0; right: -400px;}
+95%  {opacity: 0.5; right: 20px;}
+100% {opacity: 1; right: 0px;}
+}
+@keyframes boat-in-animation {
+0%   {left: -200px;}
+100% {left: 20px;}
+}
+@keyframes boat-animation {
+0%   {bottom: 0px; left: 0px;}
+25%  {bottom: -2px; left: -2px;}
+70%  {bottom: 2px; left: -4px;}
+100% {bottom: -1px; left: 0px;}
+}
+@keyframes question-mark-animation {
+0%   {opacity:0;}
+80%   {opacity:0;}
+100% {opacity:1;}
+}
+@keyframes cloud-group-1-animation {
+0%       {left: 0px;}
+99.9999%   {left: -720px;}
+100%     {left: 0px;}
+}
+@keyframes cloud-group-2-animation {
+0%       {left: 720px;}
+99.9999%   {left: 0px;}
+100%     {left: 720px;}
+}
+@keyframes water-back-animation {
+0%   {bottom: 10px; left: -20px;}
+25%  {bottom: 8px; left: -22px;}
+70%  {bottom: 12px; left: -24px;}
+100% {bottom: 9px; left: -20px;}
+}
+@keyframes water-front-animation {
+0%   {bottom: -70px; left: -30px;}
+25%  {bottom: -68px; left: -32px;}
+70%  {bottom: -72px; left: -34px;}
+100% {bottom: -69px; left: -30px;}
+}

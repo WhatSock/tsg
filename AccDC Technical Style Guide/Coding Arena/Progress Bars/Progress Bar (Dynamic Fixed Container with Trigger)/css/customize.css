@@ -1,0 +1,32 @@
+
+button#downloadBtn {
+margin: 100px;
+}
+
+div.progressBar {
+position: fixed;
+z-index: 100;
+font-size: 2em;
+background-color: #f5f5f5;
+-webkit-box-shadow: 0 10px 6px -6px #777;
+-moz-box-shadow: 0 10px 6px -6px #777;
+box-shadow: 0 10px 6px -6px #777;
+}
+
+/*
+Modifications to the progress element styling are based on the article "Cross Browser HTML5 Progress Bars In Depth"
+http://www.useragentman.com/blog/2012/01/03/cross-browser-html5-progress-bars-in-depth/
+*/
+
+progress,          /* All HTML5 progress enabled browsers */
+progress[role]     /* polyfill */
+{
+/* Needs to be in here for Safari polyfill so background images work as expected. */
+background-size: auto;
+}
+ 
+/* Polyfill */
+progress[role]:after {
+background-image: none; /* removes default background from polyfill */
+}
+ 

@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Practice Template Page</title>
+
+<link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+<link rel="stylesheet" type="text/css" href="css/customize.css" />
+
+<script type="text/javascript" src="../../_common/js/jquery-1.8.3.min.js">
+// Load jQuery.
+// This is not necessary if using the Standalone AccDC API version.
+</script>
+
+<script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+// Load the AccDC API, which all modules are plugged into as the common interface.
+</script>
+
+<!-- Now load all desired modules, which plugs them into AccDC. -->
+<script type="text/javascript" src="../../../2 Accessible Component Modules/aria_tabs_module.min.js"></script>
+
+<script type="text/javascript" src="../../../3 AccDC Bootstrap/accdc_bootstrap.js">
+// Load AccDC Bootstrap to enable HTML parsing.
+</script>
+
+</head>
+<body>
+<div>
+
+<div class="intro tac">
+
+<!-- The tab list container element must include the attribute role="tablist", and all tab item nodes must include the attribute role="tab" to ensure accessibility for screen reader users. 
+Additionally, both the tab list container element and all tab item nodes must include unique ID values.
+The innerHTML for each tab item node must contain a textual label, which may be positioned offscreen to hide it visually if desired.
+This textual label is necessary so that screen reader users will be able to identify the purpose of the node, and also to ensure proper feedback in iOS devices when using Voiceover.
+Images may also be used within tab item nodes if desired, but should include the attribute alt="" to hide them from screen reader users.
+Even if an image is present, innerText must still be included for the accessible label text for screen reader users.
+
+Required class:
+"accTab" : Specifies a tab control to be configured by the Bootstrap module.
+
+Attributes explained:
+• role="tablist" : The ARIA role that specifies a group of tab controls. This must only be included within the element that contains all individual tabs.
+• role="tab" : The ARIA role that specifies an individual tab control. To ensure accessibility, this element must not contain any other active elements.
+• class="accTab" : The bootstrap class name that specifies an accessible tab. 
+• data-src : The resource path and pointer to the ID attribute of the tab content container element. If set, data-internal should be blank or not included.
+• data-internal : The ID attribute of the tab panel container element within the same document.
+If data-internal is set, data-src should be blank or not included. 
+• data-defaultopen="true" : Specifies that the referenced tab will open automatically. Only one tab per group should include this attribute. 
+• data-role : The role name that is conveyed to screen reader users as beginning and ending boundary text for the tab panel content. "Tab" is set by default
+if no value is specified. 
+• data-insert : The ID attribute of the container element where tab panel content will be inserted. 
+• data-group : The shared group name for all related tabs. This is used to differentiate separate tab groups within the same document. 
+• data-headinglvl : The heading level of the tab panel section for screen reader users. This should reflect proper nesting. If the tab panel content is
+inserted within an H1, data-headinglvl should be set to '2', and so on. If no value is specified, and if no override is set within accdc_bootstrap.js via
+ariaLevel:#, '3' will be set by default. 
+• id : The unique ID of the element. This value is also registered as the ID of the individual tab AccDC Object, making it possible to invoke the object
+programmatically.
+E.G $A.reg.uniqueID.open();
+// All other AccDC API properties and methods are similarly available.  
+
+Note:
+List markup is used below, because the use of Divs at this time (02/18/2013), exposes a bug in JAWS 14 in IE, where the tab controls will be duplicated as phantom controls. This does not occur when list markup is used however. (Likely to be fixed in the future.)
+ -->
+
+<ul class="tabs clearfix" role="tablist">
+
+<li>
+<a role="tab" href="#" id="xTab1id" class="accTab tab1" data-internal="tab1content" data-role="Tab" data-insert="tabInsertId" data-defaultopen="true" data-group="SharedGroupName" data-headinglvl="2">
+<span>Name 1</span>
+</a>
+</li>
+
+<li>
+<a role="tab" href="#" id="xTab2id" class="accTab tab2" data-internal="tab2content" data-role="Tab" data-insert="tabInsertId" data-group="SharedGroupName" data-headinglvl="2">
+<span>Name 2</span>
+</a>
+</li>
+
+<li>
+<a role="tab" href="#" id="xTab3id" class="accTab tab3" data-internal="tab3content" data-role="Tab" data-insert="tabInsertId" data-group="SharedGroupName" data-headinglvl="2">
+<span>Name 3</span>
+</a>
+</li>
+
+<li>
+<a role="tab" href="#" id="xTab4id" class="accTab tab4" data-internal="tab4content" data-role="Tab" data-insert="tabInsertId" data-group="SharedGroupName" data-headinglvl="2">
+<span>Name 4</span>
+</a>
+</li>
+
+</ul>
+
+<div class="content" id="tabInsertId"></div>
+
+<div class="desc">
+<p>
+The tab controls are keyboard accessible.
+</p>
+<p><pre>
+Set focus on the tab control.
+Press the Arrow keys to move focus between tabs.
+Press the Spacebar to open (or optionally toggle if configured) the selected tab.
+Mouse users can click the desired tab as usual.
+</pre></p>
+</div>
+
+</div>
+
+</div>
+
+<div class="hidden">
+
+<div id="tab1content">
+<div>
+Tab Panel One Content
+</div>
+</div>
+
+<div id="tab2content">
+<div>
+Tab Panel Two Content
+</div>
+</div>
+
+<div id="tab3content">
+<div>
+Tab Panel Three Content
+</div>
+</div>
+
+<div id="tab4content">
+<div>
+Tab Panel Four Content
+</div>
+</div>
+
+</div>
+
+</body>
+</html>

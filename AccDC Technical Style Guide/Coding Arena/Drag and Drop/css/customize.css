@@ -1,0 +1,91 @@
+
+div.title {
+text-align: center;
+}
+
+div.booksWrapper > * {
+float: left;
+width: 49%;
+}
+
+div.booksWrapper div[role="heading"] {
+text-align: center;
+font-size: 1.4em;
+font-style: italic;
+color: orange;
+text-shadow: 0px 1px 1px rgba(112,128,144,0.8);
+}
+
+div.booksWrapper img {
+height: 75px;
+border: 0;
+}
+
+div.availableBooks {
+background-color: blue;
+height: 240px;
+}
+
+ul, ol {
+list-style: none;
+padding: 0;
+margin: 0;
+border: 0;
+}
+
+ul > li, ol > li {
+text-align: center;
+float: left;
+width: 19%;
+padding: 5px 0;
+height: 85px;
+}
+
+ul#options {
+}
+
+div.chosenBooks {
+background-color: green;
+height: 240px;
+}
+
+ol#selections {
+}
+
+div.totals {
+margin: 10px 0;
+}
+
+div.totals > * {
+float: left;
+}
+
+span#quantity {
+margin-right: 20px;
+padding: 0 5px;
+}
+
+span#subtotal {
+padding: 0 5px;
+}
+
+button#checkout {
+margin-left: 30px;
+}
+
+ddLink {
+text-decoration: none;
+font: bold 12px/12px HelveticaNeue, Arial;
+padding: 3px 3px;
+border: 1px solid #dedede;
+background: #a5b8c6;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#becbd6', endColorstr='#88a1b4'); /* IE */
+background: -webkit-gradient(linear, left top, left bottom, from(#becbd6), to(#88a1b4)); /* WebKit */
+background: -moz-linear-gradient(top, #becbd6, #88a1b4);
+border-color: #a2afb8 #8696a1 #6f818f;
+color: #515f6a;
+text-shadow: 0 1px 0 #c4d0d9;
+-webkit-box-shadow: 0 1px 1px #d3d3d3, inset 0 1px 0 #ced8e0;
+-moz-box-shadow: 0 1px 1px #d3d3d3, inset 0 1px 0 #ced8e0;
+box-shadow: 0 1px 1px #d3d3d3, inset 0 1px 0 #ced8e0;  
+}

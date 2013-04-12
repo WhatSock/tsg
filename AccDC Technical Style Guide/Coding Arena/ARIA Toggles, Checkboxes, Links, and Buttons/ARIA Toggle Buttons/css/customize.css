@@ -1,0 +1,36 @@
+
+#a1, #div1, #span1, #helpIcon {
+cursor: pointer;
+}
+
+*:focus {
+outline: blue 2px inset;
+}
+
+.button > *:focus {
+outline-style: none;
+}
+
+dd > * {
+float: left;
+margin: 2px 10px 5px 0;
+}
+
+dd > input[type="checkbox"] {
+margin-left: 200px;
+}
+
+#a1 > span, #div1 > span, #span1 > span {
+display: block;
+width: 70px;
+}
+
+#helpIcon.pressed {
+float: left;
+}
+
+#helpSect1 {
+width: 80%;
+float: left;
+margin-left: 10px;
+}

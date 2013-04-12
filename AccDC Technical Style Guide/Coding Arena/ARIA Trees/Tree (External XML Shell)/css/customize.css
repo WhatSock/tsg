@@ -1,0 +1,28 @@
+
+/* This is the wrapper Div that surrounds the top level tree Div  */
+#wrapper {
+}
+
+/* This is the Div where the dynamic tree structure will be inserted
+(This is the firstChild element of #wrapper) */
+div.tree {
+}
+
+/* This is the top level container for the dynamic tree structure,
+which matches the topClass property declared in the setup script.
+Notice that div.tree > div.TreeView is used to denote hierarchy
+This is needed because div.TreeView will style the top level tree as well as all subtrees otherwise. */
+div.tree > div.TreeView {
+}
+
+/* This styles the top level tree and all subtrees */
+div.TreeView {
+}
+
+/* This styles all treeitem links that expand or collapse subtrees */
+div.TreeView a.branch {
+}
+
+/* This styles all treeitem links that are leaf nodes */
+div.TreeView a.link {
+}
