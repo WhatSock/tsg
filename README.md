@@ -5,9 +5,9 @@ The AccDC Technical Style Guide is designed to provide reliable and consistent i
 
 Functional Accessibility means that each component is fully accessible from the keyboard, with or without a screen reader running. 
 
-Included with the AccDC Technical Style Guide, is the fully interactive Coding Arena, where developers and engineering students can gladiatorially hack it out with the cut and thrust of accessible development!
-
 AccDC was awarded the "Above and Beyond Accessibility Award" from the United States Department of Labor, and was presented at the Developing with Accessibility Event, hosted by the Federal Communications Commission in Washington DC in 2012.
+
+Included with the AccDC Technical Style Guide, is the fully interactive Coding Arena, where developers and engineering students can gladiatorially hack it out with the cut and thrust of accessible development!
 
 The Coding Arena includes all of the following top level categories and implementation types:
 
