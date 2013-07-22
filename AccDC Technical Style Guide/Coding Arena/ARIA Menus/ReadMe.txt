@@ -120,6 +120,8 @@ The following attributes are handled automatically by the Menu Module:
 • tabindex
 • role="menuitem"
 • aria-selected
+• aria-posinset
+• aria-setsize
 
 HTML5 attributes that can optionally be added to the menu list container markup:
 
