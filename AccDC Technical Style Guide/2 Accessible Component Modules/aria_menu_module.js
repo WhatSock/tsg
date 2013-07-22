@@ -1,5 +1,5 @@
 /*!
-ARIA Menu Module R2.1
+ARIA Menu Module R2.2
 Copyright 2010-2013 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 	*/
@@ -104,7 +104,11 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 					dc.top.close();
 
 					if (dc.handler && typeof dc.handler === 'function')
-						return dc.handler.apply(this, [ev, dc]);
+						return dc.handler.apply(this,
+										[
+										ev,
+										dc
+										]);
 				});
 
 				// if (o.parentNode != dc.mNode)
@@ -239,6 +243,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 			$A.setAttr(o,
 							{
 							role: 'menuitem',
+							'aria-posinset': i + 1,
 							tabindex: -1
 							});
 
@@ -289,6 +294,9 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 								}
 							}
 							});
+		});
+		$A.query(items, function(i, o){
+			$A.setAttr(o, 'aria-setsize', items.length);
 		});
 		setFocus.apply(items[index]);
 	};
