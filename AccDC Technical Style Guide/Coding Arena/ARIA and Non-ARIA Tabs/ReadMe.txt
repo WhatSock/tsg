@@ -93,6 +93,8 @@ The following attributes are handled automatically by the Tab Module:
 • aria-owns
 • aria-selected
 • aria-expanded
+• aria-posinset
+• aria-setsize
 
 JavaScript invocation statement syntax:
 

@@ -1,5 +1,5 @@
 /*!
-ARIA Tabs Module R1.3
+ARIA Tabs Module R1.4
 Copyright 2010-2013 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
@@ -146,10 +146,11 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 			if (!s)
 				cur.focus();
-		}, tabs = $A.query(selector, context, function(){
+		}, tabs = $A.query(selector, context, function(z){
 			$A.setAttr(this,
 							{
 							tabindex: '-1',
+							'aria-posinset': z + 1,
 							'aria-expanded': 'false',
 							'aria-selected': 'false',
 							'aria-label': $A.getText(this)
@@ -182,6 +183,10 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 								}
 							}
 							});
+		});
+
+		$A.query(tabs, function(i, o){
+			$A.setAttr(o, 'aria-setsize', tabs.length);
 		});
 
 		if (tabs.length){
