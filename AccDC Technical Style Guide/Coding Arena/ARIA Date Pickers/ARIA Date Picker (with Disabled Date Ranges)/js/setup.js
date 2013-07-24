@@ -101,11 +101,11 @@ $A.bind(window, 'load', function(){
 					posAnchor: ''
 					});
 
-	// Set disabled date ranges for the newly created Calendar AccDC Object using it's ID "BasicCalendar"
+	// Set disabled date ranges for the newly created Calendar AccDC Object using it's ID "UniqueCalendarId"
 
 	// Get a reference to the AccDC Object
 
-	var bc = $A.reg['BasicCalendar'];
+	var bc = $A.reg['UniqueCalendarId'];
 
 	// Disable dates in January. (Change '*' to a year such as 2013 to localize date ranges)
 
