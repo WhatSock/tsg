@@ -1,12 +1,10 @@
 /*!
-ARIA Calendar Module R1.3.4
+ARIA Calendar Module R1.4
 Copyright 2010-2013 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 
 (function(){
-
-	//   $A.fn.debug = true;
 
 	$A.setCalendar = function(pId, trigger, targ, commentsEnabled, callback, config){
 
@@ -380,6 +378,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 								dc.reopen = true;
 								dc.open();
 							};
+							var isKP = false;
 							$A.bind('td.day',
 											{
 											focus: function(ev){
@@ -432,6 +431,8 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 												var k = ev.which || ev.keyCode;
 
 												if (k == 13){
+													isKP = true;
+
 													if ($A.inArray(dc.range.current.mDay, dc.range[dc.range.current.month].disabled[dc.range.current.year]
 														|| dc.range[dc.range.current.month].disabled['*'] || []) === -1){
 														handleClick.apply(this,
@@ -455,7 +456,21 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 												changePressed(ev);
 												var k = ev.which || ev.keyCode;
 
-												if ((k >= 37 && k <= 40) || k == 27 || (k >= 33 && k <= 36)){
+												if (k == 13 && !isKP){
+													if ($A.inArray(dc.range.current.mDay, dc.range[dc.range.current.month].disabled[dc.range.current.year]
+														|| dc.range[dc.range.current.month].disabled['*'] || []) === -1){
+														handleClick.apply(this,
+																		[
+																		ev,
+																		dc,
+																		targ
+																		]);
+													}
+
+													ev.preventDefault();
+												}
+
+												else if ((k >= 37 && k <= 40) || k == 27 || (k >= 33 && k <= 36)){
 													var wd = dc.range.current.wDay;
 
 													if (k == 37){
@@ -576,6 +591,8 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 													}
 													ev.preventDefault();
 												}
+
+												isKP = false;
 											},
 											keyup: function(ev){
 												changePressed(ev);
