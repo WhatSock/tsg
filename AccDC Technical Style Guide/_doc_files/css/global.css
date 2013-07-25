@@ -187,3 +187,13 @@ display: block;
 width: 300px;
 text-align: center;
 }
+
+p.honors > * {
+float: left;
+margin: 10px;
+width: 220px;
+}
+
+p.honors img {
+width: 100%;
+}
