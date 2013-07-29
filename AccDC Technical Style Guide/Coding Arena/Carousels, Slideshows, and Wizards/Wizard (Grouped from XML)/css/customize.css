@@ -115,3 +115,7 @@ clear: left;
 #carouselId div.centerContent form > label, #carouselId div.centerContent form > input {
 margin-bottom: 50px;
 }
+
+*[aria-required="true"] {
+border: solid thin red;
+}
