@@ -1,5 +1,5 @@
 /*!
-ARIA Menu Module R2.2
+ARIA Menu Module R2.3
 Copyright 2010-2013 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 	*/
@@ -218,7 +218,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 	var createMenu = function(parent, children, dc, config){
 		var index = 0;
 		$A.query(parent, dc.containerDiv, function(i, o){
-			$A.setAttr(o, 'role', 'menu');
+			$A.setAttr(o, 'role', dc.hor ? 'menubar' : 'menu');
 		});
 
 		var setFocus = function(){

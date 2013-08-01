@@ -115,6 +115,7 @@ Example:
 
 The following attributes are handled automatically by the Menu Module:
 
+• role="menubar"
 • role="menu"
 • aria-owns
 • tabindex
