@@ -1,5 +1,5 @@
 /*!
-ARIA Menu Module R2.3
+ARIA Menu Module R2.4
 Copyright 2010-2013 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 	*/
@@ -216,7 +216,23 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 	};
 
 	var createMenu = function(parent, children, dc, config){
-		var index = 0;
+		var index = 0, xItems = [], move = function(l){
+			for (var i = index + 1; i <= (items.length - 1); i++){
+				if (l.toLowerCase() == xItems[i].replace(/^\s+|\s+$/g, '').substring(0, 1).toLowerCase()){
+					index = i;
+					setFocus.apply(items[index]);
+					return;
+				}
+			}
+
+			for (var i = 0; i < index; i++){
+				if (l.toLowerCase() == xItems[i].replace(/^\s+|\s+$/g, '').substring(0, 1).toLowerCase()){
+					index = i;
+					setFocus.apply(items[index]);
+					return;
+				}
+			}
+		};
 		$A.query(parent, dc.containerDiv, function(i, o){
 			$A.setAttr(o, 'role', dc.hor ? 'menubar' : 'menu');
 		});
@@ -240,6 +256,8 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							'aria-selected': 'true'
 							}).focus();
 		}, items = dc.iNodes = $A.query(children, dc.containerDiv, function(i, o){
+			xItems.push($A.getText(o));
+
 			$A.setAttr(o,
 							{
 							role: 'menuitem',
@@ -291,6 +309,11 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 										if (items.length)
 											setFocus.apply(items[index]);
 									}
+								}
+
+								else if ((k >= 48 && k <= 57) || (k >= 65 && k <= 90)){
+									move(String.fromCharCode(k));
+									ev.preventDefault();
 								}
 							}
 							});
