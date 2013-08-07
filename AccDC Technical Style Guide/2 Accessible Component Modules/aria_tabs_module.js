@@ -1,5 +1,5 @@
 /*!
-ARIA Tabs Module R1.4
+ARIA Tabs Module R1.5
 Copyright 2010-2013 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
@@ -146,7 +146,25 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 			if (!s)
 				cur.focus();
+		}, xItems = [], move = function(l){
+			for (var i = index + 1; i <= (tabs.length - 1); i++){
+				if (l.toLowerCase() == xItems[i].replace(/^\s+|\s+$/g, '').substring(0, 1).toLowerCase()){
+					index = i;
+					setFocus.apply(tabs[index]);
+					return;
+				}
+			}
+
+			for (var i = 0; i < index; i++){
+				if (l.toLowerCase() == xItems[i].replace(/^\s+|\s+$/g, '').substring(0, 1).toLowerCase()){
+					index = i;
+					setFocus.apply(tabs[index]);
+					return;
+				}
+			}
 		}, tabs = $A.query(selector, context, function(z){
+			xItems.push($A.getText(this));
+
 			$A.setAttr(this,
 							{
 							tabindex: '-1',
@@ -179,6 +197,11 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 								else if (k == 13 || k == 32){
 									$A.trigger(tabs[index], 'click');
+									ev.preventDefault();
+								}
+
+								else if ((k >= 48 && k <= 57) || (k >= 65 && k <= 90)){
+									move(String.fromCharCode(k));
 									ev.preventDefault();
 								}
 							}
