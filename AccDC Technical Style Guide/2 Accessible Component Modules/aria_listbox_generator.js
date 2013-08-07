@@ -1,5 +1,5 @@
 /*!
-ARIA Listbox Generator Module R2.1
+ARIA Listbox Generator Module R2.2
 Copyright 2010-2013 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 	*/
@@ -47,7 +47,11 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 				if (config.callback && typeof config.callback === 'function')
 					setTimeout(function(){
-						config.callback.apply(that, [that.options[i], that.options]);
+						config.callback.apply(that,
+										[
+										that.options[i],
+										that.options
+										]);
 					}, 1);
 			}
 		}, updateChecked = function(){
@@ -235,6 +239,11 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 									ev.preventDefault();
 									rem(track[this.id]);
 								}
+
+								else if ((k >= 48 && k <= 57) || (k >= 65 && k <= 90)){
+									move(String.fromCharCode(k));
+									ev.preventDefault();
+								}
 							}
 							});
 		}, getLabel = function(o){
@@ -246,13 +255,29 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 				});
 				return s;
 			})() + (o.innerText || o.textContent);
+		}, items = [], move = function(l){
+			for (var i = that.index + 1; i <= max; i++){
+				if (l.toLowerCase() == items[i].replace(/^\s+|\s+$/g, '').substring(0, 1).toLowerCase()){
+					select(i, true);
+					return;
+				}
+			}
+
+			for (var i = 0; i < that.index; i++){
+				if (l.toLowerCase() == items[i].replace(/^\s+|\s+$/g, '').substring(0, 1).toLowerCase()){
+					select(i, true);
+					return;
+				}
+			}
 		}, setOptions = function(s){
 			track = [];
+			items = [];
 			toggle = [];
 			max = 0;
 			var ids = [];
 			that.options = $A.query('#' + list.id + ' > li > a', function(i, o){
 				track[o.id] = i;
+				items.push($A.getText(o));
 
 				if (config.isMultiselect)
 					toggle[o.id] = false;
