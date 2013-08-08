@@ -1,5 +1,5 @@
 /*!
-ARIA Tabs Module R1.5
+ARIA Tabs Module R1.6
 Copyright 2010-2013 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
@@ -183,13 +183,19 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							keydown: function(ev){
 								var k = ev.which || ev.keyCode;
 
-								// 37 left, 38 up, 39 right, 40 down
-								if (k >= 37 && k <= 40){
+								// 37 left, 38 up, 39 right, 40 down, 35 end, 36 home
+								if (k >= 35 && k <= 40){
 									if (k == 37 || k == 38)
 										index = index === 0 ? tabs.length - 1 : index - 1;
 
 									else if (k == 39 || k == 40)
 										index = index === tabs.length - 1 ? 0 : index + 1;
+
+									else if (k == 35)
+										index = tabs.length - 1;
+
+									else if (k == 36)
+										index = 0;
 
 									setFocus.apply(tabs[index]);
 									ev.preventDefault();
