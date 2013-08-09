@@ -4,12 +4,12 @@ margin: 100px 0;
 text-align: left;
 }
 
-#questionForm span {
-border: solid thin red;
+.clrRed {
+color: red;
 }
 
 #questionForm span.passedValidation {
-border: solid thin green;
+border: solid medium green;
 }
 
 div.helpTooltip {

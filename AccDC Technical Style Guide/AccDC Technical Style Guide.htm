@@ -86,7 +86,7 @@ Using NVDA and JAWS 14 in IE 10 with Win8.
 </li><li>
 Using NVDA and JAWS 12 through 14 in FF with Win XP, Win7, and Win8.
 </li><li>
-Using Voiceover in Safari with iOS on the iPhone/iPad.
+Using VoiceOver in Safari with iOS on the iPhone/iPad.
 </li><li>
 Using Dragon Naturally Speaking in IE and FF with Win7 and Win8 via standard keyboard interaction commands.
 </li></ul>
@@ -1151,7 +1151,7 @@ Both the Tablist container element and all Tab item links must include unique ID
 </p>
 <p>
 The innerHTML for each Tab item link must contain a textual label, which may be positioned offscreen to hide it visually if desired.
-(This textual label is necessary so that screen reader users will be able to identify the purpose of the node, and also to ensure proper feedback in iOS devices when using Voiceover.)
+(This textual label is necessary so that screen reader users will be able to identify the purpose of the node, and also to ensure proper feedback in iOS devices when using VoiceOver.)
 </p>
 <p>
 Images may also be used within Tab item links if desired, however, they must include the attribute alt="" to hide them from screen reader users.
@@ -2347,7 +2347,7 @@ The current value for a Radio Control is the ID attribute of the currently selec
 This textual label is critical so that screen reader users will be able to identify the purpose of the radio button.<br />
 If the textual label is included within another tag (such as a Span tag) for formatting purposes, aria-labelledby must be used to explicitly associate the label text with the element that includes role="radio" by referencing its ID.<br />
 Additionally, the textual label must be included within the opening and closing tags of the element with role="radio".
-If this is not done, the radio buttons will not be accessible in iOS devices using Voiceover, because iOS does not support aria-label, aria-labelledby, nor aria-describedby at this time.
+If this is not done, the radio buttons will not be accessible in iOS devices using VoiceOver, because iOS does not support aria-label, aria-labelledby, nor aria-describedby at this time.
 </li><li>
  If using an A tag, an href attribute is required to ensure keyboard accessibility.
 </li><li>
@@ -2677,10 +2677,10 @@ Don't include any other ARIA attributes however, the Slider module handles this 
 The slide icon can be changed to anything, or an image or CSS background image can be used instead, and the styling can be configured for any layout, and it will still be accessible for screen reader and keyboard only users.
 </p>
 <p>
-Voiceover instructions for use on iOS touch screen devices:
+VoiceOver instructions for use on iOS touch screen devices:
 </p>
 <p>
-When Voiceover is used on iOS touch screen devices, Voiceover instructs the user to swipe up and down with one finger to adjust the slider value, which is incorrect. (Last verified on 04/07/2013)
+When VoiceOver is used on iOS touch screen devices, VoiceOver instructs the user to swipe up and down with one finger to adjust the slider value, which is incorrect. (Last verified on 04/07/2013)
 </p>
 <p>
 Instead, do the following:
@@ -2694,7 +2694,7 @@ Instead, do the following:
 </li></ol>
 <p>
 <i>
-(Credit goes to David Hilbert Poehlman for providing Voiceover pass-through technique instructions.)
+(Credit goes to David Hilbert Poehlman for providing VoiceOver pass-through technique instructions.)
 </i>
 </p>
 </dd>
@@ -2758,7 +2758,7 @@ For IMG tags, the following attributes are required to ensure accessibility for 
  aria-label : Specifies a textual label for screen reader users. (The Alt alone won't work for this purpose)
 </li><li>
  alt="" : Hides the image from screen reader users when no tooltip is desired for mouse users.<br />
-To add a tooltip for sighted mouse users, use both the Alt and Title attributes. The text for both must match the text contained within the aria-label attribute, so that all three are the same. This will also maximize accessibility in iOS devices using Voiceover.
+To add a tooltip for sighted mouse users, use both the Alt and Title attributes. The text for both must match the text contained within the aria-label attribute, so that all three are the same. This will also maximize accessibility in iOS devices using VoiceOver.
 </li><li>
  role="button" must be added for toggles, or role="checkbox" must be added for checkboxes.
 </li><li>
@@ -2832,7 +2832,7 @@ For all other container elements that support innerHTML such as DIVs and SPANs, 
 </p>
 <ol><li>
  Inner Text : Specifies a textual label for screen reader users. This may be visible or positioned using offscreenText.
-OffscreenText is required to ensure the same level of accessibility for iOS devices using Voiceover.
+OffscreenText is required to ensure the same level of accessibility for iOS devices using VoiceOver.
 </li><li>
  No Embedded Active Elements : Don't embed any other active elements, including mouse clickable images, links, or anything else that needs to be activated separately. (The only actionable element should be the element with role="button" or role="checkbox".)
 </li><li>
@@ -5496,7 +5496,7 @@ The first parameter is the DOM node of the scrollable div container (with 'overf
 </li><li>
 <p>
 The second parameter is the text string that will be announced to screen reader users the first time that focus moves into the Scrollable Div.
-(This message alerts Voiceover users that the region is scrollable.)
+(This message alerts VoiceOver users that the region is scrollable.)
 'Scrollable Region' is set by default if no value is specified.
 </p>
 </li></ol>
@@ -5587,14 +5587,14 @@ In short, don't use aria-haspopup unless you are triggering a menu.
 Additionally, no ARIA attributes are necessary to make a Scrollable Div accessible for screen reader users.
 </p>
 <p>
-Voiceover instructions for use on iOS touch screen devices:
+VoiceOver instructions for use on iOS touch screen devices:
 </p>
 <p>
-To navigate the content of a Scrollable Div using Voiceover, use the Rotator (turn three fingers like turning a knob) to select Line Mode, then use one finger to swipe up and down within the scrollable content to navigate.
+To navigate the content of a Scrollable Div using VoiceOver, use the Rotator (turn three fingers like turning a knob) to select Line Mode, then use one finger to swipe up and down within the scrollable content to navigate.
 </p>
 <p>
 <i>
-(Credit goes to David Hilbert Poehlman for providing Voiceover rotator navigation technique instructions.)
+(Credit goes to David Hilbert Poehlman for providing VoiceOver rotator navigation technique instructions.)
 </i>
 </p>
 </dd>
@@ -5947,7 +5947,7 @@ Announce Method Details
 </h4>
 </div>
 <p>
-The AccDC Announce method has been tested successfully using JAWS 11-14, NVDA, and Voiceover, in Internet Explorer 8-9, Firefox, Chrome, and Safari with applicable screen readers.
+The AccDC Announce method has been tested successfully using JAWS 11-14, NVDA, and VoiceOver, in Internet Explorer 8-9, Firefox, Chrome, and Safari with applicable screen readers.
 </p>
 <div class="hd">
 <h4>
@@ -6240,7 +6240,7 @@ Put another way, the addition of role="dialog" and all of the required supportin
 Actually, the opposite is true.
 </p>
 <p>
-The first dialog is fully accessible in IE, Firefox, Chrome, and Safari using JAWS, NVDA, and Voiceover.
+The first dialog is fully accessible in IE, Firefox, Chrome, and Safari using JAWS, NVDA, and VoiceOver.
 </p>
 <p>
 The second dialog has major accessibility issues in JAWS 12 and 13 in IE, and requires manually aborting Applications Mode using the hotkey Insert+Z in order to read the dialog content.
@@ -6394,7 +6394,7 @@ Conclusion
 Whenever ARIA is applied, it  must be thoroughly tested using JAWS in Internet Explorer and using NVDA in Firefox. These are the two most widely used Windows based screen readers in the world. JAWS is hard coded to work best in Internet Explorer, and NVDA is hard coded to work best in Firefox.
 </p>
 <p>
-If mobile support is needed, Voiceover on iOS devices is the most widely used screen reader that should be used for testing. TalkBack on the Android is the second most widely used.
+If mobile support is needed, VoiceOver on iOS devices is the most widely used screen reader that should be used for testing. TalkBack on the Android is the second most widely used.
 </p>
 <p>
 Important: Even when ARIA is implemented correctly and precisely according to the specification, if adding certain ARIA attributes causes accessibility issues for screen reader users to occur, then they should not be used.
@@ -6508,7 +6508,7 @@ Doorknob
 It is now impossible for screen reader users to navigate the data table using table navigation commands.
 </p>
 <p>
-Whenever role="presentation" is added to HTML markup, it must always be tested using JAWS, NVDA, and Voiceover (if applicable) to ensure that the element type remains accessible for screen reader users.
+Whenever role="presentation" is added to HTML markup, it must always be tested using JAWS, NVDA, and VoiceOver (if applicable) to ensure that the element type remains accessible for screen reader users.
 </p>
 </dd>
 </dl>
