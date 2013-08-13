@@ -1,4 +1,9 @@
 
+div.hd {
+margin-left: 0;
+font-size: 2em;
+}
+
 form {
 margin: 100px 0;
 text-align: left;

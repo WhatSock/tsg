@@ -12,11 +12,11 @@ $A.bind(window, 'load', function(){
 									{
 
 									// Set default help text
-									helpText: 'Would you like a hint? It rymes with "Sarah".',
+									helpText: 'Would you like a hint? It rhymes with "Sarah".',
 									validate: function(ev, dc){
 										// First check if the field is blank
 										if (!this.value){
-											dc.source = 'Would you like a hint? It rymes with "Sarah".';
+											dc.source = 'Would you like a hint? It rhymes with "Sarah".';
 											dc.open();
 											return false;
 										}
