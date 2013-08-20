@@ -1,14 +1,17 @@
 /*!
-Accordion Generator Module R2.1
+Accordion Generator Module R2.2
 Copyright 2010-2013 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 
 (function(){
 
-	$A.generateAccordion = function(selector, overrides, context, callback){
+	$A.generateAccordion = function(selector, overrides, context, callback, isAria){
 		var accordionIds = [], wheel = [], context = context || document,
 			accordions = $A.query(selector, context, function(i, o){
+			if (!isAria && $A.getAttr(o, 'role') == 'button')
+				isAria = true;
+
 			if ($A.reg[o.id]){
 				var tdc = $A.reg[o.id];
 
@@ -70,8 +73,8 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 			ovrs.showHiddenBounds = overrides.showHiddenBounds || false;
 			ovrs.bind = 'click';
 			ovrs.isTab = true;
-			ovrs.tabRole = overrides.accordionRole || 'Accordion';
-			ovrs.tabState = overrides.accordionState || 'Expanded';
+			ovrs.tabRole = isAria ? '' : (overrides.accordionRole || 'Accordion');
+			ovrs.tabState = isAria ? '' : (overrides.accordionState || 'Expanded');
 			ovrs.toggleClass = overrides.toggleClass || 'open';
 			ovrs.isToggle = typeof overrides.isToggle === 'boolean' ? overrides.isToggle : true;
 			ovrs.allowCascade = true;
@@ -81,11 +84,25 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 			ovrs.runAfter = function(dc){
 				$A.addClass(dc.triggerObj, dc.toggleClass);
 
+				if (isAria)
+					$A.setAttr(dc.triggerObj,
+									{
+									'aria-pressed': 'true',
+									'aria-expanded': 'true'
+									});
+
 				if (callback && typeof callback === 'function')
 					callback.apply(dc.triggerObj, [dc]);
 			};
 			ovrs.runAfterClose = function(dc){
 				$A.remClass(dc.triggerObj, dc.toggleClass);
+
+				if (isAria)
+					$A.setAttr(dc.triggerObj,
+									{
+									'aria-pressed': 'false',
+									'aria-expanded': 'false'
+									});
 
 				if (callback && typeof callback === 'function')
 					callback.apply(dc.triggerObj, [dc]);
@@ -105,6 +122,13 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 					ev.preventDefault();
 				}
 			});
+
+			if (isAria)
+				$A.setAttr(o,
+								{
+								'aria-pressed': 'false',
+								'aria-expanded': 'false'
+								});
 
 			wheel.push(ovrs);
 			accordionIds.push(id);
