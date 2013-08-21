@@ -1,11 +1,11 @@
 /*!
-AccDC API - 2.0.3 (03/19/2013)
+AccDC API - 2.0.3 Standalone (08/21/2013)
 Copyright 2010-2013 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 (function( window, undefined ) {
 
-var version = '2.0.2',
+var version = '2.0.3',
 document = window.document,
 accDC = {},
 
@@ -1209,7 +1209,7 @@ cache: {},
 // Please use with caution
 uuid: 0,
 // Unique for each copy of pL on the page
-expando: "pL" + now(),
+expando: "AccDC" + now(),
 // The following elements throw uncatchable exceptions if you
 // attempt to add expando properties to them.
 noData: {
@@ -6124,7 +6124,7 @@ dc.fn.toggleFocus = true;
 dc.fn.override = true;
 if (dc.returnFocus && dc.triggerObj && !dc.fn.bypass){
 if (dc.triggerObj.nodeName.toLowerCase() == 'form'){
-var s = pL(dc.triggerObj).find('[type=submit]').get(0);
+var s = pL(dc.triggerObj).find('*[type="submit"]').get(0);
 if (s && s.focus) s.focus();
 } else {
 if (dc.triggerObj.focus) dc.triggerObj.focus();
