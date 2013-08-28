@@ -1,5 +1,5 @@
 /*!
-AccDC API - 2.0.3 for jQuery (08/21/2013)
+AccDC API - 2.0.3 for jQuery (08/28/2013)
 Copyright 2010-2013 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
@@ -1420,26 +1420,7 @@ return ta;
 
 window[(window.AccDCNamespace ? window.AccDCNamespace : '$A')] = $A;
 
-var sraClass = 'sra' + now(),
-
-sraTemp = '<span class="' + sraClass + '" style="position: absolute; clip: rect(1px 1px 1px 1px); padding: 0; border: 0; height: 1px; width: 1px; overflow: hidden; z-index: -1000;"></span>',
-
-refDOM = function(dc){
-var c = dc ? dc.accDCObj : document;
-$A.query('.' + sraClass, c, function(){
-css(this, {
-display: '',
-visibility: ''
-});
-pL(this).html('&nbsp;').html('');
-css(this, {
-display: 'none',
-visibility: 'hidden'
-});
-});
-},
-
-calcPosition = function(dc, objArg, posVal){
+var calcPosition = function(dc, objArg, posVal){
 var obj = objArg || dc.posAnchor;
 if (obj && typeof obj == 'string') obj = pL(obj).get(0);
 else if (!obj) obj = dc.triggerObj;
@@ -1635,8 +1616,6 @@ dc.containerId = dc.containerDivId = 'AccDC' + (nid + (nowI+=1));
 if (dc.importCSS) dc.fn.importCSSId = 'AccDC' + (nid + (nowI+=1));
 dc.fn.sraStart = createEl('div', null, sraCSS);
 dc.fn.sraEnd = createEl('div', null, sraCSS);
-pL(dc.fn.sraStart).html(sraTemp);
-pL(dc.fn.sraEnd).html(sraTemp);
 dc.containerDiv = createEl('div', {
 id: dc.containerId
 });
@@ -1985,7 +1964,6 @@ if (dc.autoFix && (!dc.isDraggable || !dc.drag.persist || !dc.drag.x || !dc.drag
 sizeAutoFix(dc);
 if (dc.isDraggable)
 setDrag(dc);
-//refDOM(dc);
 if (forceFocus)
 $A.setFocus(dc.fn.sraStart);
 if ($A.fn.debug && !getEl(dc.containerId))
