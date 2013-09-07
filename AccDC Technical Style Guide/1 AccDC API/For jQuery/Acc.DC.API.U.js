@@ -1,5 +1,5 @@
 /*!
-AccDC API - 2.0.3 for jQuery (08/28/2013)
+AccDC API - 2.0.3 for jQuery (09/07/2013)
 Copyright 2010-2013 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
@@ -1627,11 +1627,11 @@ pL(dc.accDCObj)
 .append(dc.fn.sraStart)
 .append(dc.containerDiv)
 .append(dc.fn.sraEnd);
-$A.bind(dc.accDCObj, {
-mouseover: function(ev){
+var events = {
+mouseOver: function(ev){
 dc.mouseOver.apply(this, [ev, dc]);
 },
-mouseout: function(ev){
+mouseOut: function(ev){
 dc.mouseOut.apply(this, [ev, dc]);
 },
 resize: function(ev){
@@ -1643,43 +1643,49 @@ dc.scroll.apply(this, [ev, dc]);
 click: function(ev){
 dc.click.apply(this, [ev, dc]);
 },
-dblclick: function(ev){
+dblClick: function(ev){
 dc.dblClick.apply(this, [ev, dc]);
 },
-mousedown: function(ev){
+mouseDown: function(ev){
 dc.mouseDown.apply(this, [ev, dc]);
 },
-mouseup: function(ev){
+mouseUp: function(ev){
 dc.mouseUp.apply(this, [ev, dc]);
 },
-mousemove: function(ev){
+mouseMove: function(ev){
 dc.mouseMove.apply(this, [ev, dc]);
 },
-mouseenter: function(ev){
+mouseEnter: function(ev){
 dc.mouseEnter.apply(this, [ev, dc]);
 },
-mouseleave: function(ev){
+mouseLeave: function(ev){
 dc.mouseLeave.apply(this, [ev, dc]);
 },
-keydown: function(ev){
+keyDown: function(ev){
 dc.keyDown.apply(this, [ev, dc]);
 },
-keypress: function(ev){
+keyPress: function(ev){
 dc.keyPress.apply(this, [ev, dc]);
 },
-keyup: function(ev){
+keyUp: function(ev){
 dc.keyUp.apply(this, [ev, dc]);
 },
 error: function(ev){
 dc.error.apply(this, [ev, dc]);
 },
-focusin: function(ev){
+focusIn: function(ev){
 dc.focusIn.apply(this, [ev, dc]);
 },
-focusout: function(ev){
+focusOut: function(ev){
 dc.focusOut.apply(this, [ev, dc]);
 }
-});
+},
+toBind = {};
+for (var ev in events){
+if (dc[ev] && typeof dc[ev] === 'function')
+toBind[ev.toLowerCase()] = events[ev];
+}
+$A.bind(dc.accDCObj, toBind);
 if (!dc.ranJSOnceBefore){
 dc.ranJSOnceBefore = true;
 if (dc.reverseJSOrder){
@@ -2685,6 +2691,7 @@ dc.onDragEnd.apply(dc.accDD.dragDD.target, [ev, dc.accDD.dragDD, dc]);
 }
 },
 
+/*
 mouseOver: function(ev, dc){ },
 mouseOut: function(ev, dc){ },
 resize: function(ev, dc){ },
@@ -2702,6 +2709,8 @@ keyUp: function(ev, dc){ },
 error: function(ev, dc){ },
 focusIn: function(ev, dc){ },
 focusOut: function(ev, dc){ },
+*/
+
 tabOut: function(ev, dc){ },
 timeoutVal: 0,
 timeout: function(dc){ },
