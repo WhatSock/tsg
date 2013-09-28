@@ -197,3 +197,9 @@ width: 220px;
 p.honors img {
 width: 100%;
 }
+
+#AccDCCurrentVer {
+font-style: italic;
+font-weight: bold;
+font-size: 1.2em;
+}

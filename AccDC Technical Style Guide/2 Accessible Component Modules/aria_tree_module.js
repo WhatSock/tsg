@@ -1,5 +1,5 @@
 /*!
-ARIA Tree From XML Module R2.0
+ARIA Tree From XML Module R2.1
 Copyright 2010-2013 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 	*/
@@ -30,7 +30,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 					if (d.nodeName.toLowerCase() == 'a')
 						$A.setAttr(d, 'href', '#');
-					$A.setAttr(d, 'id', n.attributes.getNamedItem('id').nodeValue);
+					$A.setAttr(d, 'id', n.attributes.getNamedItem('id').value);
 					dc.tree.ids.push(d.id);
 
 					var isBranch = false;
@@ -45,7 +45,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 					else
 						$A.addClass(d, treeitemClass);
-					d.innerHTML = '<span>' + n.attributes.getNamedItem('name').nodeValue + '</span>';
+					d.innerHTML = '<span>' + n.attributes.getNamedItem('name').value + '</span>';
 					$A.setAttr(d, 'aria-label', $A.getText(d));
 					c.appendChild(d);
 					dc.tree.node.appendChild(c);
@@ -97,10 +97,11 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 									});
 
 				else
-					$A.setAttr(l, {
-tabindex: '-1',
+					$A.setAttr(l,
+									{
+									tabindex: '-1',
 									'aria-selected': 'false'
-});
+									});
 
 				if ($A.hasClass(l, folderClass))
 					$A.setAttr(l, 'aria-expanded', 'false');
@@ -285,6 +286,31 @@ tabindex: '-1',
 										}
 										ev.preventDefault();
 									}
+
+									else if ((k >= 48 && k <= 57) || (k >= 65 && k <= 90)){
+										var move = function(l){
+											if (ix === -1)
+												return;
+
+											for (var i = ix + 1; i <= dc.tree.childNodes.length; i++){
+												if (l.toLowerCase()
+													== $A.getText(dc.tree.childNodes[i]).replace(/^\s+|\s+$/g, '').substring(0, 1).toLowerCase()){
+													$A.trigger(dc.tree.childNodes[i], 'focustreeitem');
+													return;
+												}
+											}
+
+											for (var i = 0; i < ix; i++){
+												if (l.toLowerCase()
+													== $A.getText(dc.tree.childNodes[i]).replace(/^\s+|\s+$/g, '').substring(0, 1).toLowerCase()){
+													$A.trigger(dc.tree.childNodes[i], 'focustreeitem');
+													return;
+												}
+											}
+										}, ix = $A.inArray(this, dc.tree.childNodes);
+										move(String.fromCharCode(k));
+										ev.preventDefault();
+									}
 								}
 								});
 			}
@@ -318,7 +344,11 @@ tabindex: '-1',
 
 			if (config.bind && config.callback && typeof config.callback === 'function')
 				$A.bind(dc.tree.childNodes, config.bind, function(ev){
-					config.callback.apply(this, [ev, dc]);
+					config.callback.apply(this,
+									[
+									ev,
+									dc
+									]);
 				});
 
 // Then register all newly formed AccDC Objects to set recursive functionality

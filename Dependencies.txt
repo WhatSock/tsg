@@ -1,0 +1,70 @@
+Notes and Dependencies
+
+1.
+
+In order to view the Core API reference materials and Functionality Templates in Chrome, the source code files must be hosted on a web server. IE and FF will load correctly from the local file system.
+
+2.
+
+When making changes to the JavaScript code and HTML markup of Functionality Templates, it is very important to test these changes using the keyboard (without using the mouse at all), to ensure that keyboard accessibility is maintained. 
+
+Similarly, to ensure that all code changes remain fully accessible to screen reader users as well, all newly added features should be tested with the following screen reader and browser combinations: (Again, without use of the mouse at all)
+
+a) The latest release of JAWS For Windows from http://www.freedomscientific.com/
+Using: IE 8 and 9 on Win XP and Win7 and +>.
+
+And
+
+b) The latest release of NVDA from http://www.nvda-project.org/
+Using: The latest release of Firefox on Win XP and Win7 and +>.
+
+3.
+
+Important CSS considerations:
+
+You can change the visual styling for all Functionality Templates to fit the visual layout of any UI design without negatively impacting screen reader or keyboard accessibility.
+
+E.G: Foreground and background coloration, bordering, font and window sizes, floating and positioning, etc.
+
+With the following exceptions:
+
+a)
+
+Pure white font on a black background should not be used anywhere within the same page.
+E.G: "color: #fff; background-color: #000;"
+
+Doing so, will cause JAWS13 (and +?) to announce the text with this color combination every time a control that uses role=dialog is opened and keyboard focus is set within.
+
+Setting the foreground color to White Smoke will prevent this issue from occurring.
+E.G: "color: #f5f5f5; background-color: #000;"
+
+b)
+
+The styles "display: none;" and "visibility: hidden;" will hide all contained elements and text from both sighted users and screen reader users alike.
+
+To hide all contained elements and text from sighted users, while at the same time keeping the same elements and text visible for screen reader users, the following styling may be used instead:
+
+.sraCSS {
+position: absolute;
+clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+clip: rect(1px, 1px, 1px, 1px);
+padding: 0;
+border: 0;
+height: 1px; 
+width: 1px; 
+overflow: hidden;
+z-index: -1000;
+}
+
+This is referred to as Screen Reader Accessible Hidden Text or Off Screen Text, and will ensure that the element and all content within is invisible for sighted users, while at the same time keeping it visible to screen readers.
+
+Screen Reader Accessible Hidden Text should only be used when it's desirable to present additional content to screen reader users, and should never be used simply to hide content, nor should it be used to embed SEO content within pages since this will cause screen reader users to stumble across nonsensical information during navigation.
+
+4.
+
+Tips:
+
+a)
+
+To view and test the DOM positioning and verbiage of Screen Reader Accessible Hidden Text, simply disable CSS in the browser.
+

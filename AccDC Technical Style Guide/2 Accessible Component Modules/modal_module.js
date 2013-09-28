@@ -1,5 +1,5 @@
 /*!
-Modal Module R1.1
+Modal Module R1.2
 Copyright 2010-2013 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
@@ -72,16 +72,12 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 						// Run script before the AccDC Object closes
 						runBeforeClose: function(dc){
+							$A.unbind(window, '.accmodal');
+							$A.unbind('body', '.accmodal');
 							$A.query('body > *', function(){
 								$A.setAttr(this, 'aria-hidden', 'false');
 								$A.remAttr(this, 'aria-hidden');
 							});
-						},
-
-						// Run script after the AccDC Object finishes closing
-						runAfterClose: function(dc){
-							$A.unbind(window, '.accmodal');
-							$A.unbind('body', '.accmodal');
 						},
 
 						// Set a localized focusIn handler on the AccDC Object to control circular tabbing

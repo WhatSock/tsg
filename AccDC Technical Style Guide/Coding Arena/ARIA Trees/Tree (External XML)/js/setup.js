@@ -54,7 +54,7 @@ $A.bind(window, 'load', function(){
 							var xNode = $A.query('#' + this.id, dc.top.xmlDocument)[0],
 
 							// Then store the 'load' attribute value set on this XML node
-							loadVal = xNode.attributes.getNamedItem('load').nodeValue;
+							loadVal = xNode.attributes.getNamedItem('load').value;
 
 							// To learn more about the XML DOM and supported properties and methods, visit
 							// http://www.w3schools.com/dom/default.asp

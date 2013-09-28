@@ -1,10 +1,14 @@
 /*!
-ARIA Footnote Generator Module R2.1
+ARIA Footnote Generator Module R2.3
 Copyright 2010-2013 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 
 (function(){
+
+	var base = 'footnotes' + $A.genId();
+	$A[base] = {};
+	$A[base + 'a'] = {};
 
 	$A.setFootnotes = function(selector, context, config){
 
@@ -23,8 +27,20 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 								targ: $A.getEl(fnId)
 								};
 
-			var a = $A.createEl('a',
+			if ($A[base][base + fnId + i] && $A[base][base + fnId + i].nodeType === 1 && $A[base][base + fnId + i].parentNode){
+				$A[base][base + fnId + i].parentNode.removeChild($A[base][base + fnId + i]);
+				delete $A[base][base + fnId + i];
+			}
+
+			if ($A[base + 'a'][base + fnId + i] && $A[base + 'a'][base + fnId + i].nodeType === 1
+				&& $A[base + 'a'][base + fnId + i].parentNode){
+				$A[base + 'a'][base + fnId + i].parentNode.removeChild($A[base + 'a'][base + fnId + i]);
+				delete $A[base + 'a'][base + fnId + i];
+			}
+
+			var a = $A[base][base + fnId + i] = $A.createEl('a',
 							{
+							id: base + fnId + i,
 							href: '#',
 							title: fnText + (i + 1),
 							'aria-label': fnText + (i + 1)
@@ -43,7 +59,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 			});
 
 			if (!pair[fnId].fn){
-				var a2 = $A.createEl('a',
+				var a2 = $A[base + 'a'][base + fnId + i] = $A.createEl('a',
 								{
 								href: '#',
 								title: backText + ' ' + pair[fnId].name,
