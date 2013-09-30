@@ -1,5 +1,5 @@
 /*!
-ARIA Calendar Module R1.4
+ARIA Calendar Module R1.5
 Copyright 2010-2013 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
@@ -585,18 +585,19 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 												if (k == 13 && !isKP){
 													if ($A.inArray(dc.range.current.mDay, dc.range[dc.range.current.month].disabled[dc.range.current.year]
 														|| dc.range[dc.range.current.month].disabled['*'] || []) === -1){
-														handleClick.apply(this,
-																		[
-																		ev,
-																		dc,
-																		targ
-																		]);
+														if (!dc.setFocus.firstOpen)
+															handleClick.apply(this,
+																			[
+																			ev,
+																			dc,
+																			targ
+																			]);
 													}
 
 													ev.preventDefault();
 												}
 
-												isKP = false;
+												isKP = dc.setFocus.firstOpen = false;
 											}
 											});
 
@@ -711,6 +712,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 											});
 
 							dc.range.index = $A.query('td.day', dc.containerDiv);
+							dc.setFocus.firstOpen = true;
 							dc.setFocus(dc.range.index[dc.range.current.mDay - 1]);
 
 							if (commentsEnabled && config.editor && config.editor.show)
