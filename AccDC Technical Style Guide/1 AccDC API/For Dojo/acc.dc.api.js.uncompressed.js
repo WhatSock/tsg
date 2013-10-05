@@ -1,12 +1,12 @@
 /*!
-AccDC API - 3.0 for Dojo (09/23/2013)
+AccDC API - 3.0 for Dojo (10/04/2013)
 Copyright 2010-2013 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 define("dojo/acc.dc.api", ["./query!css3", "./on", "./ready", "./request", "./html", "./dom-construct", "./request/script"],
 function(dojoQuery, dojoOn, dojoReady, dojoRequest, dojoHtml, dojoConst, dojoScript, undefined){
 
-var accDCVersion = '3.0 (09/23/2013)',
+var accDCVersion = '3.0 (10/04/2013)',
 document = window.document,
 accDC = {},
 
@@ -197,6 +197,15 @@ var e = e ? e.firstChild : null;
 while(e){
 if (e.nodeType === 1 && (!t || t.toLowerCase() === e.nodeName.toLowerCase())) break;
 e = e.nextSibling;
+}
+return e;
+},
+
+lastChild = function(e, t){
+var e = e ? e.lastChild : null;
+while(e){
+if (e.nodeType === 1 && (!t || t.toLowerCase() === e.nodeName.toLowerCase())) break;
+e = e.previousSibling;
 }
 return e;
 },
@@ -2191,6 +2200,10 @@ pL.handleSuccess(s, xhr, xhr && xhr.response && xhr.response.status ? xhr.respon
 function(error){
 // error/fail
 pL.handleError(s, xhr, xhr && xhr.response && xhr.response.status ? xhr.response.status : null, error);
+})
+.always(function(dataOrError){
+// complete
+pL.handleComplete(s, xhr, xhr && xhr.response && xhr.response.status ? xhr.response.status : null, dataOrError);
 });
 }
 } else{
@@ -2209,7 +2222,7 @@ pL.handleProgress(s, xhr, xhr && xhr.response && xhr.response.status ? xhr.respo
 })
 .always(function(dataOrError){
 // complete
-pL.handleComplete(s, xhr, xhr.response.status, dataOrError);
+pL.handleComplete(s, xhr, xhr && xhr.response && xhr.response.status ? xhr.response.status : null, dataOrError);
 });
 }
 
@@ -2341,8 +2354,11 @@ var r = $A.reg[id],
 a = r.accDCObj,
 c = r.containerDiv;
 if (p && r.loaded){
-dojoConst.place(a, c, 'after');
-remAttr(c, 'id');
+var lc = lastChild(c);
+while(lc){
+dojoConst.place(lc, a, 'after');
+lc = lastChild(c);
+}
 }
 if (r.loaded)
 dojoConst.destroy(a);

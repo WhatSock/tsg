@@ -1,11 +1,11 @@
 /*!
-AccDC API - 3.0 Standalone (09/23/2013)
+AccDC API - 3.0 Standalone (10/04/2013)
 Copyright 2010-2013 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 (function( window, undefined ) {
 
-var accDCVersion = '3.0 (09/23/2013)',
+var accDCVersion = '3.0 (10/04/2013)',
 document = window.document,
 accDC = {},
 
@@ -196,6 +196,15 @@ var e = e ? e.firstChild : null;
 while(e){
 if (e.nodeType === 1 && (!t || t.toLowerCase() === e.nodeName.toLowerCase())) break;
 e = e.nextSibling;
+}
+return e;
+},
+
+lastChild = function(e, t){
+var e = e ? e.lastChild : null;
+while(e){
+if (e.nodeType === 1 && (!t || t.toLowerCase() === e.nodeName.toLowerCase())) break;
+e = e.previousSibling;
 }
 return e;
 },
@@ -4526,8 +4535,11 @@ var r = $A.reg[id],
 a = r.accDCObj,
 c = r.containerDiv;
 if (p && r.loaded){
-pL(a).after(c);
-remAttr(c, 'id');
+var lc = lastChild(c);
+while(lc){
+pL(a).after(lc);
+lc = lastChild(c);
+}
 }
 if (r.loaded)
 pL(a).remove();
