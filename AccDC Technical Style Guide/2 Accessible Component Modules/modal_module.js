@@ -1,5 +1,5 @@
 /*!
-Modal Module R1.2
+Modal Module R1.3
 Copyright 2010-2013 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
@@ -77,6 +77,10 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							$A.query('body > *', function(){
 								$A.setAttr(this, 'aria-hidden', 'false');
 								$A.remAttr(this, 'aria-hidden');
+							});
+							// To prevent memory leaks in Dojo/MooTools, unbind all other event handlers within the modal
+							$A.query('*', dc.containerDiv, function(i, o){
+								$A.unbind(o, '*');
 							});
 						},
 

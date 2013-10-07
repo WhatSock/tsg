@@ -1,12 +1,12 @@
 /*!
-AccDC API - 3.0 for Dojo (10/04/2013)
+AccDC API - 3.0 for Dojo (10/07/2013)
 Copyright 2010-2013 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 define("dojo/acc.dc.api", ["./query!css3", "./on", "./ready", "./request", "./html", "./dom-construct", "./request/script"],
 function(dojoQuery, dojoOn, dojoReady, dojoRequest, dojoHtml, dojoConst, dojoScript, undefined){
 
-var accDCVersion = '3.0 (10/04/2013)',
+var accDCVersion = '3.0 (10/07/2013)',
 document = window.document,
 accDC = {},
 
@@ -1923,6 +1923,45 @@ area: [ 1, "<map>", "</map>" ],
 _default: [ 0, "", "" ]
 };
 
+pL.fn.extend({
+remove: function( selector, keepData ) {
+for ( var i = 0, elem; (elem = this[i]) != null; i++ ) {
+if ( !selector || pL.filter( selector, [ elem ] ).length ) {
+if ( !keepData && elem.nodeType === 1 ) {
+pL.cleanData( elem.getElementsByTagName("*") );
+pL.cleanData( [ elem ] );
+}
+if ( elem.parentNode ) {
+ elem.parentNode.removeChild( elem );
+}
+}
+}
+return this;
+}
+});
+
+pL.extend({
+cleanData: function( elems ) {
+var data, id, cache = pL.cache,
+special = pL.event.special;
+for ( var i = 0, elem; (elem = elems[i]) != null; i++ ) {
+if ( elem.nodeName && pL.noData[elem.nodeName.toLowerCase()] ) {
+continue;
+}
+id = elem[ pL.expando ];
+if ( id ) {
+data = cache[ id ];
+// Dojo
+$A.unbind(elem, '*');
+if ( elem.removeAttribute ) {
+elem.removeAttribute( pL.expando );
+}
+delete cache[ id ];
+}
+}
+}
+});
+
 pL.buildFragment = function( args, nodes, scripts ) {
 var fragment, cacheable, cacheresults,
 doc = (nodes && nodes[0] ? nodes[0].ownerDocument || nodes[0] : document);
@@ -2476,17 +2515,17 @@ evsa.push(evs[x].split('.'));
 pL(ta).each(function(i, o){
 if (data && kn)
 pL.data(o, kn, data);
+var stor = pL.data(o, eventHashTS) || [];
 for (var x = 0; x < evsa.length; x++){
-var h = dojoOn(o, evsa[x][0], e2[e] || fn),
-stor = pL.data(o, eventHashTS) || [];
+var h = dojoOn(o, evsa[x][0], e2[e] || fn);
 stor.push({
 e: evsa[x][0],
 h: h,
 f: e2[e] || fn,
 n: evsa[x][1] || ''
 });
-pL.data(o, eventHashTS, stor);
 }
+pL.data(o, eventHashTS, stor);
 });
 }
 } else{
@@ -2515,10 +2554,10 @@ evsa.push(evs[x].split('.'));
 pL(ta).each(function(i, o){
 if (kn && typeof kn === 'string')
 pL.removeData(o, kn);
+var stor = pL.data(o, eventHashTS) || [],
+storI = stor.length;
 for (var x = 0; x < evsa.length; x++){
-var stor = pL.data(o, eventHashTS) || [];
 if (stor.length){
-var storI = stor.length;
 for (var z = stor.length - 1; z >= 0; z--){
 if (
 (evsa[x][0] && evsa[x][0] == stor[z].e && !evsa[x][1] && (typeof kn !== 'function' || kn === stor[z].f)) ||
@@ -2530,10 +2569,10 @@ stor[z].h.remove();
 stor.splice(z, 1);
 }
 }
+}
+}
 if (storI != stor.length)
 pL.data(o, eventHashTS, stor);
-}
-}
 });
 }
 return ta2;
@@ -3137,7 +3176,7 @@ if (!dc.loaded || dc.lock) return dc;
 dc.closing = true;
 if (dc.isDraggable)
 unsetDrag(dc);
-dc.accDCObj = dc.accDCObj.parentNode.removeChild(dc.accDCObj);
+pL(dc.accDCObj).remove();
 // Force DOM refresh for IE8 and JAWS13
 $A.announce('&nbsp;');
 if (dc.fn.containsFocus && !dc.fn.bypass)
@@ -3508,10 +3547,7 @@ return wheel[dc.indexVal] = dc;
 unsetDrag = function(dc, uDrop){
 var dc = wheel[dc.indexVal];
 if (!dc.closing && !dc.loaded) return dc;
-if (dc.drag.handle)
-$A.unbind(dc.drag.handle, 'draginit dragstart dragend drag');
-else
-$A.unbind(dc.accDCObj, 'draginit dragstart dragend drag');
+$A.unbind(dc.drag.handle ? dc.drag.handle : dc.accDCObj, 'draginit dragstart dragend drag');
 if (dc.dropTarget){
 if (uDrop)
 $A.unbind(dc.dropTarget, 'dropinit dropstart dropend drop');
