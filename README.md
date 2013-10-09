@@ -1,4 +1,4 @@
-AccDC Technical Style Guide for Standalone and jQuery (10/04/2013)
+AccDC Technical Style Guide for Standalone and jQuery (10/08/2013)
 ===
 
 The AccDC Technical Style Guide is designed to provide reliable and consistent interaction designs that are accessible to the highest percentage of people possible, and to establish a baseline for Functional Accessibility that can be utilized, built upon, studied, and tested against. 
@@ -95,11 +95,19 @@ http://whatsock.com/tsg
 Related projects:
 -----
 
-Standalone AccDC API: https://github.com/accdc/accdc
-AccDC API for jQuery: https://github.com/accdc/accdc-jquery
-AccDC API for Dojo: https://github.com/accdc/accdc-dojo
-Standalone AccDC Bootstrap: https://github.com/accdc/bootstrap
-AccDC Bootstrap for jQuery: https://github.com/accdc/bootstrap-jquery
-AccDC Bootstrap for Dojo: https://github.com/accdc/bootstrap-dojo
-Standalone and jQuery AccDC Technical Style Guide: https://github.com/accdc/tsg
-AccDC Technical Style Guide for Dojo: https://github.com/accdc/tsg-dojo
+AccDC API
+Standalone: https://github.com/accdc/accdc
+For jQuery: https://github.com/accdc/accdc-jquery
+For Dojo: https://github.com/accdc/accdc-dojo
+For MooTools: https://github.com/accdc/accdc-mootools
+
+AccDC Bootstrap
+Standalone: https://github.com/accdc/bootstrap
+For jQuery: https://github.com/accdc/bootstrap-jquery
+For Dojo: https://github.com/accdc/bootstrap-dojo
+For MooTools: https://github.com/accdc/bootstrap-mootools
+
+AccDC Technical Style Guide and Coding Arena
+For AccDC Standalone and jQuery: https://github.com/accdc/tsg
+For Dojo: https://github.com/accdc/tsg-dojo
+For MooTools: https://github.com/accdc/tsg-mootools

@@ -1,5 +1,5 @@
 /*!
-CSS Drag and Drop Module R2.0 for Standalone and Dojo
+CSS Drag and Drop Module R2.0 for AccDC Standalone, Dojo, and MooTools
 Copyright 2010-2013 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 	*/

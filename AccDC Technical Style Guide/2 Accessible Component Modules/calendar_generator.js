@@ -1,5 +1,5 @@
 /*!
-ARIA Calendar Module R1.5
+ARIA Calendar Module R1.6
 Copyright 2010-2013 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
@@ -991,6 +991,8 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 												dc.parent,
 												true
 												]);
+
+							dc.parent.setFocus.firstOpen = true;
 						},
 						lock: commentsEnabled && config.editor && config.editor.show ? false : true
 						}
