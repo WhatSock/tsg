@@ -35,16 +35,22 @@ position: relative;
 top: 10px;
 }
 
-.slide2 {
+.slideWrapper {
 height: 48px;
 width: 428px;
 border-top: solid thin black;
 border-bottom: solid thin black;
+padding: 1px;
+}
+
+.slide2 {
+height: 46px;
+width: 426px;
 }
 
 .slide2 > div.nub2 {
 width: 30px;
-height: 48px;
+height: 46px;
 background: url("../img/slider.png") #f5f5f5 no-repeat;
 cursor: pointer;
 }

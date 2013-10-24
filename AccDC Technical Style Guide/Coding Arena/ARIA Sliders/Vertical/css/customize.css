@@ -25,15 +25,21 @@ position: relative;
 top: 10px;
 }
 
-.slide2 {
+.slideWrapper {
 height: 350px;
 width: 48px;
 border-left: solid thin black;
 border-right: solid thin black;
+padding: 1px;
+}
+
+.slide2 {
+height: 348px;
+width: 46px;
 }
 
 .slide2 > div.nub2 {
-width: 48px;
+width: 46px;
 height: 46px;
 background-color: #000;
 color: #f5f5f5;
