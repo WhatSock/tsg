@@ -1,12 +1,10 @@
 /*!
-ARIA Slider Module R1.1.1
+ARIA Slider Module R1.2
 Copyright 2010-2013 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 	*/
 
-(function(window){
-
-	// $A.fn.debug = true;
+(function(){
 
 	$A.setSlider = function(nubId, config){
 
@@ -27,32 +25,41 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 										// Calculate value to relative pixels
 										v2i: function(o, v){
 											if (!config.vertical)
-												return parseInt(v / this.max * (pNode.clientWidth - o.offsetWidth));
+												return parseInt(v / this.max * ($A.xWidth(pNode) - $A.xWidth(o)));
 
 											else
-												return parseInt(v / this.max * (pNode.clientHeight - o.offsetHeight));
+												return parseInt(v / this.max * ($A.xHeight(pNode) - $A.xHeight(o)));
 										},
 										// Calculate relative pixels to value
 										i2v: function(o, v){
 											if (!config.vertical)
-												return parseInt(v / (pNode.clientWidth - o.offsetWidth) * this.max);
+												return parseInt(v / ($A.xWidth(pNode) - $A.xWidth(o)) * this.max);
 
 											else
-												return parseInt(v / (pNode.clientHeight - o.offsetHeight) * this.max);
+												return parseInt(v / ($A.xHeight(pNode) - $A.xHeight(o)) * this.max);
 										},
 										degradeLbl: document.createTextNode(config.degradeLbl || 'Open Manual Slider')
 										},
 						set: function(){
 							var dc = this;
 							dc.update.apply(dc);
-							dc.onDrag.apply(dc.accDCObj, [null, null, dc, dc.config.now, null, true]);
+							dc.onDrag.apply(dc.accDCObj,
+											[
+											null,
+											null,
+											dc,
+											dc.config.now,
+											null,
+											true
+											]);
 						},
 						update: function(){
-							var dc = this;
+							var dc = this, posi = $A.xOffset(pNode);
+
 							dc.css(
 											{
-											top: (config.vertical) ? pNode.offsetTop + dc.config.v2i(dc.accDCObj, dc.config.now) : '',
-											left: (!config.vertical) ? pNode.offsetLeft + dc.config.v2i(dc.accDCObj, dc.config.now) : ''
+											top: (config.vertical) ? posi.top + dc.config.v2i(dc.accDCObj, dc.config.now) : '',
+											left: (!config.vertical) ? posi.left + dc.config.v2i(dc.accDCObj, dc.config.now) : ''
 											});
 						},
 						isDraggable: true,
@@ -62,8 +69,8 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 										},
 						onDrag: function(ev, dd, dc, v, m, s){
 							var v = ( typeof v === 'number' && v >= 0)
-								? v : ((!config.vertical) ? dc.config.i2v(dc.accDCObj, dc.accDCObj.offsetLeft - pNode.offsetLeft)
-								: dc.config.i2v(dc.accDCObj, dc.accDCObj.offsetTop - pNode.offsetTop));
+								? v : ((!config.vertical) ? dc.config.i2v(dc.accDCObj, $A.xOffset(dc.accDCObj).left - $A.xOffset(pNode).left)
+								: dc.config.i2v(dc.accDCObj, $A.xOffset(dc.accDCObj).top - $A.xOffset(pNode).top));
 
 							if (dc.config.past != v){
 								dc.config.now = dc.config.past = v;
@@ -79,7 +86,13 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							}
 
 							if (!s && config.onDrag && typeof config.onDrag === 'function')
-								config.onDrag.apply(this, [ev, dd, dc, v]);
+								config.onDrag.apply(this,
+												[
+												ev,
+												dd,
+												dc,
+												v
+												]);
 						},
 						keyDown: function(ev, dc){
 							var k = ev.which || ev.keyCode;
@@ -106,7 +119,13 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 										< dc.config.max ? dc.config.now + dc.config.inc : dc.config.max;
 								setTimeout(function(){
 									dc.update.apply(dc);
-									dc.onDrag.apply(this, [ev, null, dc, dc.config.now]);
+									dc.onDrag.apply(this,
+													[
+													ev,
+													null,
+													dc,
+													dc.config.now
+													]);
 								}, 1);
 
 								ev.preventDefault();
@@ -129,7 +148,13 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 						runAfter: function(dc){
 							if (dc.config.now){
 								dc.update.apply(dc);
-								dc.onDrag.apply(dc.accDCObj, [null, null, dc, dc.config.now]);
+								dc.onDrag.apply(dc.accDCObj,
+												[
+												null,
+												null,
+												dc,
+												dc.config.now
+												]);
 							}
 
 							dc.config.inc = parseInt(dc.config.max * 0.1);
@@ -172,7 +197,14 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 													if (v != dc.config.now){
 														dc.config.now = v;
 														dc.update.apply(dc);
-														dc.onDrag.apply(dc.accDCObj, [ev, null, dc, v, true]);
+														dc.onDrag.apply(dc.accDCObj,
+																		[
+																		ev,
+																		null,
+																		dc,
+																		v,
+																		true
+																		]);
 													}
 												});
 
@@ -190,4 +222,4 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 						className: config.className || 'nub'
 						});
 	};
-})(window);
+})();

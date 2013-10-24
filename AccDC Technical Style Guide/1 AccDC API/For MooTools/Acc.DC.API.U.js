@@ -1,11 +1,11 @@
 /*!
-AccDC API - 3.0 for MooTools (10/08/2013)
+AccDC API - 3.0 for MooTools (10/24/2013)
 Copyright 2010-2013 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 (function($, undefined){
 
-var accDCVersion = '3.0 (10/08/2013)',
+var accDCVersion = '3.0 (10/24/2013)',
 document = window.document,
 accDC = {},
 
@@ -3473,6 +3473,16 @@ left: dd.offsetX
 },
 height = xHeight(this),
 width = xWidth(this);
+// Correct for flush edges
+if (n.top < dd.limit.top)
+n.top = dd.limit.top;
+if ((n.top + height) > dd.limit.bottom)
+n.top = dd.limit.bottom;
+if (n.left < dd.limit.left)
+n.left = dd.limit.left;
+if ((n.left + width) > dd.limit.right)
+n.left = dd.limit.right;
+// Set positioning
 if (n.top >= dd.limit.top && (n.top + height) <= dd.limit.bottom)
 xTop(this, n.top);
 if (n.left >= dd.limit.left && (n.left + width) <= dd.limit.right)

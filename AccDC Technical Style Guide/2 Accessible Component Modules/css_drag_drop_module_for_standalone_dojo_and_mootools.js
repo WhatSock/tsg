@@ -1,5 +1,5 @@
 /*!
-CSS Drag and Drop Module R2.0 for AccDC Standalone, Dojo, and MooTools
+CSS Drag and Drop Module R2.1 for AccDC Standalone, Dojo, and MooTools
 Copyright 2010-2013 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 	*/
@@ -713,7 +713,18 @@ locate: function( elem, index ){
 var data = $.data( elem, drop.datakey ),
 posi = $A.xOffset(elem),
 height = $A.xHeight(elem), 
-width = $A.xWidth(elem);
+width = $A.xWidth(elem),
+position = $A.css(elem, 'position');
+if (position == 'fixed')
+posi.top = elem.offsetTop;
+else if (position == 'relative'){
+var po = $A.xOffset(elem.parentNode);
+posi = {
+top: posi.top - po.top,
+left: posi.left - po.left
+};
+}
+
 var location = { 
 elem: elem, 
 width: width, 
