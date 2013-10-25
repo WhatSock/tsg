@@ -103,3 +103,7 @@ width: 1px;
 overflow: hidden;
 z-index: -1000;
 }
+
+*:focus {
+outline: 2px red inset;
+}
