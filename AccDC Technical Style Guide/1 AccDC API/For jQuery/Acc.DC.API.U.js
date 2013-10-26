@@ -1,11 +1,11 @@
 /*!
-AccDC API - 3.0 for jQuery (10/24/2013)
+AccDC API - 3.0 for jQuery (10/26/2013)
 Copyright 2010-2013 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 (function(pL){
 
-var accDCVersion = '3.0 (10/24/2013)',
+var accDCVersion = '3.0 (10/26/2013)',
 
 getEl = function(e){
 if (document.getElementById) return document.getElementById(e);
@@ -258,7 +258,12 @@ config.complete.apply(ele);
 }, 10);
 },
 
-xOffset = function(c, p){
+// U@11/25
+xOffset = function(c, p, isR){
+if (isR) return {
+top: c.offsetTop,
+left: c.offsetLeft
+};
 var o = {left:0, top:0},
 p = p || document.body;
 while (c && c != p) {
@@ -618,6 +623,7 @@ return ta;
 
 window[(window.AccDCNamespace ? window.AccDCNamespace : '$A')] = $A;
 
+// U@11/25
 var calcPosition = function(dc, objArg, posVal){
 var obj = objArg || dc.posAnchor;
 if (obj && typeof obj == 'string') obj = pL(obj).get(0);
@@ -630,15 +636,10 @@ aPos = {
 height: xHeight(dc.accDCObj),
 width: xWidth(dc.accDCObj)
 },
-oPos = xOffset(obj);
-var position = css(dc.accDCObj, 'position');
+oPos = xOffset(obj),
+position = css(dc.accDCObj, 'position');
 if (position == 'relative'){
-var po = xOffset(obj.parentNode),
-co = xOffset(obj);
-oPos = {
-top: co.top - po.top,
-left: co.left - po.left
-};
+oPos = xOffset(obj, null, true);
 } else if (position == 'fixed' && css(obj, 'position') == 'fixed')
 oPos.top = obj.offsetTop;
 oPos.height = xHeight(obj);
@@ -1331,6 +1332,7 @@ css(dc.accDCObj, {
 return wheel[dc.indexVal] = dc;
 },
 
+// U@11/25
 setDrag = function(dc){
 var dc = wheel[dc.indexVal];
 if ((!dc.loading && !dc.loaded) || dc.fn.isDragSet) return dc;
@@ -1346,43 +1348,33 @@ pL(dc.accDCObj)
 
 .drag('init', function(ev, dd){
 dc.fn.isDragging = true;
-var position = css(this, 'position');
-if (position == 'fixed')
-css(this, {
-top: dd.offsetY,
-left: dd.offsetX,
-right: '',
-bottom: ''
-});
-else if (position == 'relative'){
-var po = xOffset(this.parentNode),
-co = xOffset(this);
-css(this, {
-top: co.top - po.top,
-left: co.left - po.left
-});
-} else css(this, xOffset(this));
+var cssPos = css(this, 'position'),
+objos = xOffset(this);
+if (cssPos == 'fixed'){
+objos.top = this.offsetTop;
+} else if (cssPos == 'relative'){
+objos = xOffset(this, null, true);
+}
+objos.right = '';
+objos.bottom = '';
+css(this, objos);
 if (typeof dc.drag.confineTo === 'string')
 dc.drag.confineToN = $A.query(dc.drag.confineTo)[0];
 else if (dc.drag.confineTo && dc.drag.confineTo.nodeName)
 dc.drag.confineToN = dc.drag.confineTo;
 if (dc.drag.confineToN && dc.drag.confineToN.nodeName){
 save.nFixed = false;
-var npos = css(dc.drag.confineToN, 'position');
-if (css(this, 'position') == 'relative'){
-dc.drag.confineToN = this.parentNode;
-dd.limit = {
-top: 0,
-left: 0
-};
-} else if (npos == 'fixed'){
+var cssNPos = css(dc.drag.confineToN, 'position'),
+objNos = xOffset(dc.drag.confineToN);
+if (cssPos == 'relative' && this.offsetParent == dc.drag.confineToN){
+objNos = dd.limit = { top: 0, left: 0 };
+} else if (cssPos == 'fixed' && cssNPos == 'fixed'){
+objNos.top = dc.drag.confineToN.offsetTop;
 save.nFixed = true;
-dd.limit = {
-top: dc.drag.confineToN.offsetTop,
-left: xOffset(dc.drag.confineToN).left
-};
-} else
-dd.limit = xOffset(dc.drag.confineToN);
+dd.limit = objNos;
+} else {
+dd.limit = objNos;
+}
 dd.limit.bottom = dd.limit.top + xHeight(dc.drag.confineToN);
 dd.limit.right = dd.limit.left + xWidth(dc.drag.confineToN);
 }
@@ -1516,8 +1508,7 @@ if (position == 'fixed'){
 pos.top = dc.accDD.dropAnchors[i].offsetTop;
 rel = 'fixed';
 } else if (position == 'relative'){
-pos.top = xOffset(dc.accDD.dropAnchors[i]).top - xOffset(dc.accDD.dropAnchors[i].parentNode).top;
-pos.left = xOffset(dc.accDD.dropAnchors[i]).left - xOffset(dc.accDD.dropAnchors[i].parentNode).left;
+pos = xOffset(dc.accDD.dropAnchors[i], null, true);
 rel = 'relative';
 }
 css(sraCSSClear(this), {
@@ -1550,6 +1541,7 @@ ev.preventDefault();
 });
 }
 }
+
 return wheel[dc.indexVal] = dc;
 },
 
@@ -1774,6 +1766,8 @@ dc = this;
 unsetDrag(dc, uDrop);
 return dc;
 },
+
+// U@11/25
 accDD: {
 on: false,
 dragText: 'Drag',
@@ -1826,8 +1820,9 @@ var position = css(this, 'position');
 if (position == 'fixed')
 dc.accDD.dragDD.originalY = this.offsetTop;
 else if (position == 'relative'){
-dc.accDD.dragDD.originalY = xOffset(this).top - xOffset(this.parentNode).top;
-dc.accDD.dragDD.originalX = xOffset(this).left - xOffset(this.parentNode).left;
+var xos = xOffset(this, null, true);
+dc.accDD.dragDD.originalY = xos.top;
+dc.accDD.dragDD.originalX = xos.left;
 }
 },
 fireDrop: function(ev, dc){
@@ -1856,8 +1851,9 @@ var position = css(this, 'position');
 if (position == 'fixed')
 dc.accDD.dropDD.offsetY = this.offsetTop;
 else if (position == 'relative'){
-dc.accDD.dropDD.offsetY = xOffset(this).top - xOffset(this.parentNode).top;
-dc.accDD.dropDD.offsetX = xOffset(this).left - xOffset(this.parentNode).left;
+var xos = xOffset(this, null, true);
+dc.accDD.dropDD.offsetY = xos.top;
+dc.accDD.dropDD.offsetX = xos.left;
 }
 function update(){
 var position = css(dc.accDD.dragDD.drag, 'position'),
@@ -1867,8 +1863,9 @@ dc.accDD.dragDD.offsetX = os.left;
 if (position == 'fixed')
 dc.accDD.dragDD.offsetY = dc.accDD.dragDD.drag.offsetTop;
 else if (position == 'relative'){
-dc.accDD.dragDD.offsetY = xOffset(dc.accDD.dragDD.drag).top - xOffset(dc.accDD.dragDD.drag.parentNode).top;
-dc.accDD.dragDD.offsetX = xOffset(dc.accDD.dragDD.drag).left - xOffset(dc.accDD.dragDD.drag.parentNode).left;
+var xos = xOffset(dc.accDD.dragDD.drag, null, true);
+dc.accDD.dragDD.offsetY = xos.top;
+dc.accDD.dragDD.offsetX = xos.left;
 }
 }
 transition(dc.accDD.dragDD.drag, {

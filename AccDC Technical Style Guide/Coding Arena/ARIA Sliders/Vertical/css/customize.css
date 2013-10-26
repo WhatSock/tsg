@@ -36,6 +36,7 @@ padding: 1px;
 .slide2 {
 height: 348px;
 width: 46px;
+position: relative; /* Important: The parentNode of the draggable nub must be relatively positioned. */
 }
 
 .slide2 > div.nub2 {

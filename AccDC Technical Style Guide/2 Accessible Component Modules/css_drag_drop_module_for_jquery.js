@@ -1,5 +1,5 @@
 /*!
-CSS Drag and Drop Module R2.1 for jQuery
+CSS Drag and Drop Module R2.2 for jQuery
 Copyright 2010-2013 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 	*/
@@ -165,11 +165,8 @@ position = $A.css(elem, 'position');
 if (position == 'fixed')
 offset.top = elem.offsetTop;
 else if (dd.relative || position == 'relative'){
-var po = $A.xOffset(elem.parentNode);
-offset = {
-top: offset.top - po.top,
-left: offset.left - po.left
-};
+// U@11/25
+offset = $A.xOffset(elem, null, true);
 }
 return {
 drag: elem, 
@@ -622,11 +619,8 @@ position = $A.css(elem, 'position');
 if (position == 'fixed')
 posi.top = elem.offsetTop;
 else if (position == 'relative'){
-var po = $A.xOffset(elem.parentNode);
-posi = {
-top: posi.top - po.top,
-left: posi.left - po.left
-};
+// U@11/25
+posi = $A.xOffset(elem, null, true);
 }
 
 var location = { 

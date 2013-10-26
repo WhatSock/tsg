@@ -2715,11 +2715,15 @@ HTML Syntax
 &lt;span>0%&lt;/span>
 &lt;/div>
 
+&lt;div class="slideWrapper">
+
 &lt;div class="slide clearfix">
 
 &lt;div class="nub" id="handleId">&lt;!--
 This is the slider thumb icon
 -->&lt;/div>
+
+&lt;/div>
 
 &lt;/div>
 
@@ -2730,7 +2734,10 @@ This is the slider thumb icon
 &lt;/div>
 </pre>
 <p>
-Notice that aria-hidden="true" is used on the Min and Max container tags.
+Important: The first parentNode container of the draggable slide element must be relatively positioned to set this as the offsetParent. In the above markup, this is the Div tag with class="slide clearfix".
+</p>
+<p>
+Also, notice that aria-hidden="true" is used on the Min and Max container tags.
 Since these values will be provided to screen reader users as part of the ARIA Slider Control, having them announced during navigation would only repeat the same information twice, which is unnecessary. So aria-hidden is used to remove them from the Virtual Buffer for screen reader users.
 </p>
 <p>
