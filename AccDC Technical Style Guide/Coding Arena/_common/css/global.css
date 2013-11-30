@@ -42,9 +42,9 @@ clear: both;
 }
 
 h1 {
-font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", sans-serif;
+font-family: 'Arial Narrow', Arial, sans-serif;
 font-size: 1.6em;
-color: #87ceeb;
+color: #000;
 text-align: center;
 outline-style: none;
 }

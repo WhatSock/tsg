@@ -1,0 +1,30 @@
+
+div.paginate > *, div.modify > *, div.configure > *, div.mode > * {
+float: left;
+margin-left: 10px;
+}
+
+div.paginate input {
+width: 50px;
+}
+
+#popupId {
+border: 1px solid #dedede;
+background: #f5f5f5;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#f0f0f0'); /* IE */
+background: -webkit-gradient(linear, left top, left bottom, from(#f9f9f9), to(#f0f0f0)); /* WebKit */
+background: -moz-linear-gradient(top, #f9f9f9, #f0f0f0);
+border-color: #000;
+color: #000;
+text-shadow: 0 1px 0 #fff;
+-webkit-box-shadow: 0 1px 1px #eaeaea, inset 0 1px 0 #fbfbfb;
+-moz-box-shadow: 0 1px 1px #eaeaea, inset 0 1px 0 #fbfbfb;
+box-shadow: 0 1px 1px #eaeaea, inset 0 1px 0 #fbfbfb;
+text-align: left;
+position: fixed;
+z-index: 1;
+width: 300px;
+padding: 5px;
+top: 45%;
+left: 45%;
+}
