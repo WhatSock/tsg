@@ -145,6 +145,7 @@ grid.setChangeListener(function(originalCellObject, newValue, rowObject, gridIns
 });
 
 // Enable or disable double click or single click mouse interaction for selectable rows and editable cells
+// This must be followed by grid.open() to rerender the grid after a change is made
 // When set to false, a single mouse click will toggle selectability or trigger an edit action
 
 grid.useDblClick(false);
