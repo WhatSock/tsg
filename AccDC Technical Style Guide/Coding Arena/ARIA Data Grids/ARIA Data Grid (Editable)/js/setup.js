@@ -42,7 +42,7 @@ $A.bind(window, 'load', function(){
 					pageRole: 'Page',
 					// Set the active state and help tooltip text for mouse users
 					editLinkAction: 'Editable',
-					dblClickTitle: 'Double click to activate',
+					dblClickTitle: 'Click to activate',
 					// Set the title text for the edit field
 					editFieldTitle: 'Press Enter to save, or Escape to cancel.'
 					});

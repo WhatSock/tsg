@@ -1,5 +1,5 @@
 /*!
-ARIA Data Grid Module R1.0
+ARIA Data Grid Module R1.1
 Copyright 2010-2013 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
@@ -116,7 +116,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 															}
 															return d;
 														},
-														dblClickTitle: 'Double click to activate',
+														dblClickTitle: 'Click to activate',
 														editFieldTitle: 'Press Enter to save, or Escape to cancel.',
 														cellOffset: function(cellObject){
 															var o = $A.xOffset(cellObject.cellNodeA);
@@ -320,15 +320,35 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 																				ev.preventDefault();
 																			},
 																			'dblclick.gridcontrol': function(ev){
-																				if (this != config.page.row.focusedCell)
-																					config.page.row.move(config.page.row.resetPos(this));
+																				if (useDblClick){
+																					if (this != config.page.row.focusedCell)
+																						config.page.row.move(config.page.row.resetPos(this));
 
-																				if (!('ontouchstart' in window)){
-																					cellObject = getCellObject(this);
-																					trigger();
+																					if (!('ontouchstart' in window)){
+																						cellObject = getCellObject(this);
+																						trigger();
+																					}
+																					ev.stopPropagation();
+																					ev.preventDefault();
 																				}
-																				ev.stopPropagation();
-																				ev.preventDefault();
+																			},
+																			'mouseup.gridcontrol': function(ev){
+																				if (!useDblClick){
+																					if (!ev.which && ev.button && ev.button & 1)
+																						ev.which = 1;
+
+																					if (ev.which === 1){
+																						if (this != config.page.row.focusedCell)
+																							config.page.row.move(config.page.row.resetPos(this));
+
+																						if (!('ontouchstart' in window)){
+																							cellObject = getCellObject(this);
+																							trigger();
+																						}
+																						ev.stopPropagation();
+																						ev.preventDefault();
+																					}
+																				}
 																			},
 																			'keydown.gridcontrol': function(ev){
 																				var k = ev.which || ev.keyCode;
@@ -1514,6 +1534,12 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 		that.focus = function(){
 			config.page.row.move();
+		};
+
+		var useDblClick = false;
+
+		that.useDblClick = function(b){
+			useDblClick = b ? true : false;
 		};
 
 		return that;

@@ -37,7 +37,7 @@ $A.bind(window, 'load', function(){
 					pageRole: 'Page',
 					// Set the active state and help tooltip text for mouse users
 					selectState: 'Selected',
-					dblClickTitle: 'Double click to activate'
+					dblClickTitle: 'Click to activate'
 					});
 
 	grid.mapColumnNames(

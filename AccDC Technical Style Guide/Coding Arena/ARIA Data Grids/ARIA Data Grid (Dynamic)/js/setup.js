@@ -116,7 +116,7 @@ $A.bind(window, 'load', function(){
 					// Set the active state and help tooltip text for mouse users
 					selectState: 'Selected',
 					editLinkAction: 'Editable',
-					dblClickTitle: 'Double click to activate',
+					dblClickTitle: 'Click to activate',
 					// Set the title text for the edit field
 					editFieldTitle: 'Press Enter to save, or Escape to cancel.'
 					});
