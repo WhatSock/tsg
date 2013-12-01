@@ -392,6 +392,23 @@ $A.bind(window, 'load', function(){
 		}
 	});
 
+	var isDblC = false;
+	$A.bind('#cdbl', 'click change', function(){
+		// Toggle whether double click is used to activate selectable rows and editable cells
+		var nV = this.checked;
+
+		if (isDblC != nV){
+			isDblC = nV;
+			grid.useDblClick(nV);
+			grid.setAccessibleText(
+							{
+							dblClickTitle: nV ? 'Double click to activate' : 'Click to activate'
+							});
+
+			grid.open(grid.currentPage());
+		}
+	});
+
 	// Configure button bindings for modifying the table rows
 
 	$A.bind('#bsa', 'click', function(ev){
