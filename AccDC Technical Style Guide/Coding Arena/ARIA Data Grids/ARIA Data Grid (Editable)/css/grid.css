@@ -2,6 +2,7 @@
 #dataGridId {
 border: solid thin black;
 font-size: 0.9em;
+min-height: 600px;
 }
 
 table.data-grid {
