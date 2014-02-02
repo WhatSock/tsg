@@ -1,5 +1,5 @@
 /*!
-Accordion Generator Module R2.2
+Accordion Generator Module R2.3
 Copyright 2010-2013 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
@@ -9,7 +9,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 	$A.generateAccordion = function(selector, overrides, context, callback, isAria){
 		var accordionIds = [], wheel = [], context = context || document,
 			accordions = $A.query(selector, context, function(i, o){
-			if (!isAria && $A.getAttr(o, 'role') == 'button')
+			if (!isAria && ($A.getAttr(o, 'role') == 'button' || $A.getAttr(o, 'role') == 'link'))
 				isAria = true;
 
 			if ($A.reg[o.id]){
@@ -85,9 +85,12 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 				$A.addClass(dc.triggerObj, dc.toggleClass);
 
 				if (isAria)
-					$A.setAttr(dc.triggerObj,
+					$A.setAttr(dc.triggerObj, $A.getAttr(dc.triggerObj, 'role') == 'button' ?
 									{
 									'aria-pressed': 'true',
+									'aria-expanded': 'true'
+									} :
+									{
 									'aria-expanded': 'true'
 									});
 
@@ -98,9 +101,12 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 				$A.remClass(dc.triggerObj, dc.toggleClass);
 
 				if (isAria)
-					$A.setAttr(dc.triggerObj,
+					$A.setAttr(dc.triggerObj, $A.getAttr(dc.triggerObj, 'role') == 'button' ?
 									{
 									'aria-pressed': 'false',
+									'aria-expanded': 'false'
+									} :
+									{
 									'aria-expanded': 'false'
 									});
 
@@ -124,9 +130,12 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 			});
 
 			if (isAria)
-				$A.setAttr(o,
+				$A.setAttr(o, $A.getAttr(o, 'role') == 'button' ?
 								{
 								'aria-pressed': 'false',
+								'aria-expanded': 'false'
+								} :
+								{
 								'aria-expanded': 'false'
 								});
 

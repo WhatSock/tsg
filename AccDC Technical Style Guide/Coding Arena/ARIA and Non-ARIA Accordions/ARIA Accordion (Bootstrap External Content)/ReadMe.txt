@@ -1,4 +1,4 @@
-To automatically render an ARIA Toggle as the accordion triggering element, simply add role="button" to the triggering element.
+To automatically render an ARIA Toggle or Expand Link as the accordion triggering element, simply add role="button" or role="link" to the triggering element.
 
 This implementation pulls accordion content from an external page.
 Both markup and images are optionally preloaded for closed accordion sections, to increase speed and performance when opened.
