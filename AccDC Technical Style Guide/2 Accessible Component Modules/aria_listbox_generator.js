@@ -1,6 +1,6 @@
 /*!
-ARIA Listbox Generator Module R2.4
-Copyright 2010-2013 Bryan Garaventa (WhatSock.com)
+ARIA Listbox Generator Module R2.5
+Copyright 2010-2014 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 	*/
 
@@ -20,19 +20,29 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 				$A.query('#' + list.id + ' > li > a', function(j, o){
 					$A.setAttr(o,
 									{
-									tabindex: '-1',
-									// 'aria-hidden': 'true',
-									'aria-selected': 'false'
+									tabindex: '-1'
+									// 'aria-hidden': 'true'
 									});
+
+					if (!config.isMultiselect)
+						$A.setAttr(o,
+										{
+										'aria-selected': 'false'
+										});
 				});
 
 			if (that.options[i]){
 				$A.setAttr(that.options[i],
 								{
-								tabindex: '0',
-								// 'aria-hidden': 'false',
-								'aria-selected': 'true'
+								tabindex: '0'
+								// 'aria-hidden': 'false'
 								});
+
+				if (!config.isMultiselect)
+					$A.setAttr(that.options[i],
+									{
+									'aria-selected': 'true'
+									});
 
 				that.options[i].scrollIntoView();
 
@@ -116,7 +126,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 									});
 
 					if (config.isSortable || config.isMultiselect)
-						$A.setAttr(o, config.isSortable ? 'aria-grabbed' : 'aria-checked', 'false');
+						$A.setAttr(o, config.isSortable ? 'aria-grabbed' : 'aria-selected', 'false');
 
 					li.appendChild(o);
 					list.appendChild(li);
@@ -166,7 +176,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 			else if (config.isMultiselect){
 				toggle[this.id] = toggle[this.id] ? false : true;
-				$A.setAttr(this, 'aria-checked', toggle[this.id] ? 'true' : 'false');
+				$A.setAttr(this, 'aria-selected', toggle[this.id] ? 'true' : 'false');
 				updateChecked();
 				select(that.index);
 			}
@@ -188,7 +198,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 								else if (config.isMultiselect){
 									toggle[this.id] = toggle[this.id] ? false : true;
-									$A.setAttr(this, 'aria-checked', toggle[this.id] ? 'true' : 'false');
+									$A.setAttr(this, 'aria-selected', toggle[this.id] ? 'true' : 'false');
 									updateChecked();
 								}
 								select(track[this.id]);
@@ -264,7 +274,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							}
 							});
 		}, getLabel = function(o){
-			return(function(){
+			return (function(){
 				var s = '';
 				$A.query('img', o, function(j, p){
 					if (p.alt)
@@ -312,7 +322,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 				$A.setAttr(o, 'aria-posinset', i + 1);
 
 				if (!s && (config.isSortable || config.isMultiselect))
-					$A.setAttr(o, config.isSortable ? 'aria-grabbed' : 'aria-checked', 'false');
+					$A.setAttr(o, config.isSortable ? 'aria-grabbed' : 'aria-selected', 'false');
 
 				if (o.id)
 					ids.push(o.id);
@@ -329,6 +339,9 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 				select(0);
 			that.empty = false;
 		};
+
+		if (config.isMultiselect)
+			$A.setAttr(list, 'aria-multiselectable', 'true');
 
 		if (config.label)
 			$A.setAttr(list, 'aria-label', config.label);
@@ -352,9 +365,9 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 				};
 
 				for (var k = 0; k < that.options.length; k++){
-					if ((inI(that.options[k].id) && $A.getAttr(that.options[k], 'aria-checked') != 'true')
-						|| (!inI(that.options[k].id) && $A.getAttr(that.options[k], 'aria-checked') != 'false')
-							|| (!i.length && $A.getAttr(that.options[k], 'aria-checked') != 'false'))
+					if ((inI(that.options[k].id) && $A.getAttr(that.options[k], 'aria-selected') != 'true')
+						|| (!inI(that.options[k].id) && $A.getAttr(that.options[k], 'aria-selected') != 'false')
+							|| (!i.length && $A.getAttr(that.options[k], 'aria-selected') != 'false'))
 						activate.apply(that.options[k]);
 				}
 			}
