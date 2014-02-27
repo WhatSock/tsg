@@ -1,12 +1,12 @@
 /*!
-AccDC API - 3.0 for Dojo (10/26/2013)
-Copyright 2010-2013 Bryan Garaventa (WhatSock.com)
+AccDC API - 3.0 for Dojo (02/26/2014)
+Copyright 2010-2014 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 define("dojo/acc.dc.api", ["./query!css3", "./on", "./ready", "./request", "./html", "./dom-construct", "./request/script"],
 function(dojoQuery, dojoOn, dojoReady, dojoRequest, dojoHtml, dojoConst, dojoScript, undefined){
 
-var accDCVersion = '3.0 (10/26/2013)',
+var accDCVersion = '3.0 (02/26/2014)',
 document = window.document,
 accDC = {},
 
@@ -3466,7 +3466,10 @@ if (da) dc.accDD.dropAnchors[0] = da;
 dc.accDD.dragLink = createEl('a', {
 href: '#'
 }, dc.sraCSS, dc.accDD.dragClassName, createText(dc.accDD.dragText + ' ' + dc.role));
-pL(dc.containerDiv).append(dc.accDD.dragLink);
+
+// BG Fixed 3:46 PM Wednesday, February 26, 2014
+dc.containerDiv.appendChild(dc.accDD.dragLink);
+
 $A.bind(dc.accDD.dragLink, {
 focus: function(ev){
 css(sraCSSClear(this), {
@@ -3483,7 +3486,10 @@ dc.accDD.isDragging = false;
 pL.each(dc.accDD.dropLinks, function(i, v){
 pL(v).remove();
 });
-pL(dc.accDD.dragLink).html(dc.accDD.dragText + '&nbsp;' + dc.role);
+
+// BG Fixed 4:02 PM Wednesday, February 26, 2014
+dc.accDD.dragLink.innerHTML = dc.accDD.dragText + '&nbsp;' + dc.role;
+
 } else {
 dc.accDD.isDragging = true;
 pL.each(dc.accDD.dropLinks, function(i, v){
@@ -3513,7 +3519,10 @@ css(this, dc.sraCSS);
 },
 click: function(ev){
 dc.accDD.isDragging = false;
-pL(dc.accDD.dragLink).html(dc.accDD.dragText + '&nbsp;' + dc.role);
+
+// BG Fixed 4:03 PM Wednesday, February 26, 2014
+dc.accDD.dragLink.innerHTML = dc.accDD.dragText + '&nbsp;' + dc.role;
+
 pL.each(dc.accDD.dropLinks, function(e, g){
 pL(g).remove();
 });
@@ -3523,7 +3532,10 @@ ev.preventDefault();
 }
 });
 });
-pL(dc.accDD.dragLink).html(dc.accDD.actionText + '&nbsp;' + dc.role);
+
+// BG Fixed 3:58 PM Wednesday, February 26, 2014
+dc.accDD.dragLink.innerHTML = dc.accDD.actionText + '&nbsp;' + dc.role;
+
 dc.accDD.fireDrag.apply(dc.accDCObj, [ev, dc]);
 }
 ev.preventDefault();
