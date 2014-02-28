@@ -107,20 +107,19 @@ font-style: italic;
 color: #000099;
 }
 
+div.logo a {
+display: block;
+}
+
+div.logo a img {
+max-width: 60%;
+border: solid thin black;
+}
+
 div.menuLinks {
 width: 18%;
 text-align: center;
 position: absolute;
-}
-
-div.logo a {
-display: block;
-width: 98%;
-position: relative;
-}
-
-div.logo a img {
-width: 100%;
 }
 
 .cl {
