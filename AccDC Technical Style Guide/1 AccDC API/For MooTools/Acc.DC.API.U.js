@@ -1,11 +1,11 @@
 /*!
-AccDC API - 3.0 for MooTools (02/26/2014)
+AccDC API - 3.0 for MooTools (03/14/2014)
 Copyright 2010-2014 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 (function($, undefined){
 
-var accDCVersion = '3.0 (02/26/2014)',
+var accDCVersion = '3.0 (03/14/2014)',
 document = window.document,
 accDC = {},
 
@@ -3438,6 +3438,10 @@ dd.limit = objNos;
 dd.limit.bottom = dd.limit.top + xHeight(dc.drag.confineToN);
 dd.limit.right = dd.limit.left + xWidth(dc.drag.confineToN);
 }
+
+// BG Added ARIA 3:08 AM Friday, March 14, 2014
+setAttr(dc.accDCObj, 'aria-grabbed', 'true');
+
 if (dc.drag.init && typeof dc.drag.init === 'function')
 dc.drag.init.apply(this, [ev, dd, dc]);
 })
@@ -3495,6 +3499,10 @@ save.x = dd.offsetX;
 dc.fn.isDragging = false;
 dc.drag.y = dd.offsetY;
 dc.drag.x = dd.offsetX;
+
+// BG Added ARIA 3:08 AM Friday, March 14, 2014
+setAttr(dc.accDCObj, 'aria-grabbed', 'false');
+
 dc.onDragEnd.apply(this, [ev, dd, dc]);
 }, opts);
 
@@ -3527,6 +3535,10 @@ pL.drop(dc.drop);
 if (dc.accDD.on){
 dc.accDD.dropLinks = [];
 $A.query(dc.accDD.dropTargets, function(i, v){
+
+// BG Added ARIA 3:08 AM Friday, March 14, 2014
+setAttr(v, 'aria-dropeffect', 'move');
+
 dc.accDD.dropLinks.push(createEl('a', {
 href: '#'
 }, null, dc.accDD.dropClassName, createText(dc.accDD.dropText + ' ' + dc.role)));
@@ -3539,6 +3551,9 @@ href: '#'
 
 // BG Fixed 3:46 PM Wednesday, February 26, 2014
 dc.containerDiv.appendChild(dc.accDD.dragLink);
+
+// BG Added ARIA 3:08 AM Friday, March 14, 2014
+setAttr(dc.accDCObj, 'aria-grabbed', 'false');
 
 $A.bind(dc.accDD.dragLink, {
 focus: function(ev){
@@ -3559,6 +3574,9 @@ pL(v).remove();
 
 // BG Fixed 4:02 PM Wednesday, February 26, 2014
 dc.accDD.dragLink.innerHTML = dc.accDD.dragText + '&nbsp;' + dc.role;
+
+// BG Added ARIA 3:08 AM Friday, March 14, 2014
+setAttr(dc.accDCObj, 'aria-grabbed', 'false');
 
 } else {
 dc.accDD.isDragging = true;
@@ -3606,6 +3624,9 @@ ev.preventDefault();
 // BG Fixed 3:58 PM Wednesday, February 26, 2014
 dc.accDD.dragLink.innerHTML = dc.accDD.actionText + '&nbsp;' + dc.role;
 
+// BG Added ARIA 3:08 AM Friday, March 14, 2014
+setAttr(dc.accDCObj, 'aria-grabbed', 'true');
+
 dc.accDD.fireDrag.apply(dc.accDCObj, [ev, dc]);
 }
 ev.preventDefault();
@@ -3624,9 +3645,20 @@ if (dc.drag.handle)
 $A.unbind(dc.drag.handle, 'draginit dragstart dragend drag');
 else
 $A.unbind(dc.accDCObj, 'draginit dragstart dragend drag');
+
+// BG Added ARIA 3:08 AM Friday, March 14, 2014
+remAttr(dc.accDCObj, 'aria-grabbed');
+
 if (dc.dropTarget){
-if (uDrop)
+if (uDrop){
 $A.unbind(dc.dropTarget, 'dropinit dropstart dropend drop');
+
+// BG Added ARIA 3:08 AM Friday, March 14, 2014
+$A.query(dc.dropTarget, function(i, v){
+remAttr(v, 'aria-dropeffect');
+});
+
+}
 if (dc.accDD.on){
 pL.each(dc.accDD.dropLinks, function(i, v){
 if (v.parentNode)
