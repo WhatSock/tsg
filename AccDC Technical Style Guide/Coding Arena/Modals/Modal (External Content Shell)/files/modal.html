@@ -10,11 +10,6 @@ data-last="true" : Must be added to the last focusable active element within the
 Also, when Implementing a Close link or button, the className must match the "closeClassName" property within the script declaration.
 (If not explicitly set, the default value "lbClose" is configured within the module script file, and should be used for all Close links or buttons)
 Doing so will automatically bind the close methods with this element, and set keyboard focus properly when the AccDC Object is closed.
-
-Lastly, it may be tempting to add role="dialog" or role="application" to the markup. Do not do that!
-The reasons: Screen readers such as JAWS and NVDA will prevent Virtual Buffer navigation using the arrow keys within the content of the modal if you do this. This is especially true for role="dialog", thus rendering textual content within the modal innaccessible.
-This is the case in JAWS 12 and 13. In JAWS 14 however, Freedom Scientific has changed the rules so that Applications Mode is not enforced as it was previously. Nevertheless this still occurs in versions 12 and 13, and also in NVDA, so now role="dialog" is not even consistently implemented across screen readers.
-So, to prevent inadvertent accessibility issues, simply don't use role="dialog" or role="application" for modals.
 -->
 
 <div id="modalContainer">

@@ -9,5 +9,3 @@ Required HTML5 attributes for the modal container element:
 Also, when Implementing a Close link or button, the className must match the "closeClassName" property within the JavaScript invocation statement.
 (If not explicitly set, the default value "lbClose" will be set by default, and should be used for all Close links or buttons)
 Doing so will automatically bind the AccDC Close Methods with this element, and return keyboard focus properly when the AccDC Object is closed.
-
-To prevent possible accessibility issues for screen reader users, do not use role="dialog" or role="application" within the markup.

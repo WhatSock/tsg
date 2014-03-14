@@ -194,17 +194,3 @@ NVDA2013 announces as "Menu Button SubMenu"
 <button aria-haspopup="true"> Triggering Element Three </button>
 
 In short, don't use aria-haspopup unless you are triggering a menu.
-
-Do not use role="dialog" or role="application" on popups.
-
-It may be tempting to apply the ARIA attributes role="dialog" or role="application" to the popup container markup, since the component is supposed to simulate an application pane.
-
-Doing so however when variable content is involved, is more likely to cause accessibility issues to occur.
-
-When role="dialog" is applied, JAWS 12 and 13, and NVDA, enforce Applications Mode, so that Virtual Buffer navigation is not possible for screen reader users without performing a manual override. 
-
-This means that, all static text within the popup will be inaccessible to screen reader users.
-
-The use of role="application" works in a similar manner in JAWS 14 and in NVDA, by restricting the use of Virtual Buffer navigation.
-
-Since the popup content is already fully accessible to screen reader users, the addition of role="dialog" or role="application" does not increase accessibility in any way for screen reader users, and increases the likelihood that textual content will not be accessible to screen reader users.
