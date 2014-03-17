@@ -26,8 +26,8 @@ setDrag: 'ul#options li > img',
 // Specify the initial drop zone
 setDrop: 'div.chosenBooks',
 
-// Set the insertion point for Drop links
-dropAnchor: 'div.chosenBooks h3',
+// CSS Selector or DOM node that specifies an optional strategic focus point where programmatic focus will return after a drop action completes
+returnFocusTo: 'div.chosenBooks h3',
 
 // Set the context node
 root: document,
@@ -117,21 +117,24 @@ confineTo: 'div.booksWrapper',
 duration: 2000,
 
 // Set keywords for screen reader and keyboard only users
-dragText: 'Drag',
-dropText: 'Drop',
+dragText: 'Move',
+toText: 'to',
+
+// IMPORTANT: All dropTarget elements must include a data-label attribute to specify a unique name for the drop region for screen reader and keyboard only users.
+// View the Coding Arena HTML markup for examples.
+
 actionText: 'Dragging',
 
 // Override default relative positioning to use absolute instead
-// Effects only the hidden drag and drop links when they receive focus
+// Effects only the hidden drag links when they receive focus
 ddCSS:
 {
 position: 'absolute',
 zIndex: 10
 },
 
-// Set class names for the drag and drop links
-dragClassName: 'ddLink',
-dropClassName: 'ddLink'
+// Set class names for the drag links
+dragClassName: 'ddLink'
 
 }
 

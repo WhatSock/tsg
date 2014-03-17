@@ -92,8 +92,8 @@ $A.bind(window, 'load', function(){
 						// This will be tracked separately for each Image AccDC Object
 						dc.tmp.zone = divs[0];
 
-						// Set a custom target zone where keyboard accessible drop links will appear
-						dc.accDD.dropAnchor = 'ol#selections';
+						// Set a container where focus will be returned to after a drop action is initiated
+						dc.accDD.returnFocusTo = 'div.availableBooks div[role="heading"]';
 					},
 
 					// Run script after the AccDC Object opens
@@ -129,8 +129,8 @@ $A.bind(window, 'load', function(){
 
 												// Specify a new drop zone
 												dc.dropTarget = 'div.availableBooks';
-												// Specify a new drop anchor for inserting drag and drop links
-												dc.accDD.dropAnchor = 'ul#options';
+												// Set a new container where focus will be returned to after a drop action is initiated
+												dc.accDD.returnFocusTo = 'div.chosenBooks div[role="heading"]';
 												// Move the dropped node accordingly (parentNode grabs the LI tag as well)
 												lists[1].appendChild(dc.accDCObj.parentNode);
 
@@ -139,7 +139,7 @@ $A.bind(window, 'load', function(){
 
 											else{
 												dc.dropTarget = 'div.chosenBooks';
-												dc.accDD.dropAnchor = 'ol#selections';
+												dc.accDD.returnFocusTo = 'div.availableBooks div[role="heading"]';
 												lists[0].appendChild(dc.accDCObj.parentNode);
 
 												callback.apply(dc, [dc]);
@@ -164,8 +164,12 @@ $A.bind(window, 'load', function(){
 					duration: 2000,
 
 					// Set keywords for screen reader and keyboard only users
-					dragText: 'Drag',
-					dropText: 'Drop',
+					dragText: 'Move',
+					toText: 'to',
+
+// IMPORTANT: All dropTarget elements must include a data-label attribute to specify a unique name for the drop region for screen reader and keyboard only users.
+// View the Coding Arena HTML markup for examples.
+
 					actionText: 'Dragging',
 
 					// Override default relative positioning to use absolute instead
@@ -175,9 +179,8 @@ $A.bind(window, 'load', function(){
 									zIndex: 10
 									},
 
-					// Set class names for the drag and drop links
-					dragClassName: 'ddLink',
-					dropClassName: 'ddLink'
+					// Set class names for the drag links
+					dragClassName: 'ddLink'
 					});
 
 	// Now, set the bindings for the Checkout button

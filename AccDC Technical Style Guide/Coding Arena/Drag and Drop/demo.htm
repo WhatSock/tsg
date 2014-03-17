@@ -39,7 +39,7 @@ Drag the books you wish to purchase from the SHELF into the CART.
 
 <div class="booksWrapper clearfix">
 
-<div class="availableBooks">
+<div data-label="Bookshelf" class="availableBooks">
 <div role="heading" aria-level="2" title="Pretend this looks like a bookshelf...">
 SHELF
 </div>
@@ -77,7 +77,7 @@ SHELF
 </ul>
 </div>
 
-<div class="chosenBooks">
+<div data-label="Cart" class="chosenBooks">
 <div role="heading" aria-level="2" title="Pretend this looks like a shopping cart">
 CART
 </div>
@@ -104,9 +104,7 @@ The draggable items are keyboard accessible.
 </p>
 <p><pre>
 Press the Tab and Shift+Tab keys to switch between items.
-Press the Enter key to toggle selection.
-Press the Tab key until the Drop link is reached.
-Press Enter on the Drop link to drag the item over to that location.
+Press the Enter key to initiate drag.
 Mouse users can drag and drop the desired item as usual.
 </pre></p>
 </div>

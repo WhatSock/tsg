@@ -1,11 +1,11 @@
 /*!
-AccDC API - 3.0 for jQuery (03/14/2014)
+AccDC API - 3.1 for jQuery (03/16/2014)
 Copyright 2010-2013 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 (function(pL){
 
-var accDCVersion = '3.0 (03/14/2014)',
+var accDCVersion = '3.1 (03/16/2014)',
 
 getEl = function(e){
 if (document.getElementById) return document.getElementById(e);
@@ -1332,7 +1332,6 @@ css(dc.accDCObj, {
 return wheel[dc.indexVal] = dc;
 },
 
-// U@11/25
 setDrag = function(dc){
 var dc = wheel[dc.indexVal];
 if ((!dc.loading && !dc.loaded) || dc.fn.isDragSet) return dc;
@@ -1344,6 +1343,7 @@ if (css(dc.accDCObj, 'position') == 'relative') opts.relative = true;
 if (dc.drag.minDistance && dc.drag.minDistance > 0)
 opts.distance = dc.drag.minDistance;
 dc.drag.confineToN = null;
+
 pL(dc.accDCObj)
 
 .drag('init', function(ev, dd){
@@ -1378,10 +1378,7 @@ dd.limit = objNos;
 dd.limit.bottom = dd.limit.top + xHeight(dc.drag.confineToN);
 dd.limit.right = dd.limit.left + xWidth(dc.drag.confineToN);
 }
-
-// BG Added ARIA 3:08 AM Friday, March 14, 2014
 setAttr(dc.accDCObj, 'aria-grabbed', 'true');
-
 if (dc.drag.init && typeof dc.drag.init === 'function')
 dc.drag.init.apply(this, [ev, dd, dc]);
 })
@@ -1439,14 +1436,12 @@ save.x = dd.offsetX;
 dc.fn.isDragging = false;
 dc.drag.y = dd.offsetY;
 dc.drag.x = dd.offsetX;
-
-// BG Added ARIA 3:08 AM Friday, March 14, 2014
 setAttr(dc.accDCObj, 'aria-grabbed', 'false');
-
 dc.onDragEnd.apply(this, [ev, dd, dc]);
 }, opts);
 
 if (dc.dropTarget){
+
 pL(dc.dropTarget)
 
 .drop('init', function(ev, dd){
@@ -1474,27 +1469,20 @@ dc.onDropEnd.apply(this, [ev, dd, dc]);
 pL.drop(dc.drop);
 
 if (dc.accDD.on){
+
+dc.accDD.dropTargets = [];
+dc.accDD.dropAnchors = [];
 dc.accDD.dropLinks = [];
-$A.query(dc.accDD.dropTargets, function(i, v){
 
-// BG Added ARIA 3:08 AM Friday, March 14, 2014
-setAttr(v, 'aria-dropeffect', 'move');
-
-dc.accDD.dropLinks.push(createEl('a', {
+$A.query(dc.dropTarget, function(i, v){
+dc.accDD.dropAnchors[i] = v;
+dc.accDD.dropTargets[i] = v;
+setAttr(v, 'aria-dropeffect', dc.accDD.dropEffect);
+dc.accDD.dropLinks[i] = createEl('a', {
 href: '#'
-}, null, dc.accDD.dropClassName, createText(dc.accDD.dropText + ' ' + dc.role)));
-});
-var da = pL(dc.accDD.dropAnchor).get(0);
-if (da) dc.accDD.dropAnchors[0] = da;
-dc.accDD.dragLink = createEl('a', {
-href: '#'
-}, dc.sraCSS, dc.accDD.dragClassName, createText(dc.accDD.dragText + ' ' + dc.role));
-pL(dc.containerDiv).append(dc.accDD.dragLink);
-
-// BG Added ARIA 3:08 AM Friday, March 14, 2014
-setAttr(dc.accDCObj, 'aria-grabbed', 'false');
-
-$A.bind(dc.accDD.dragLink, {
+}, dc.sraCSS, dc.accDD.dragClassName, createText(dc.accDD.dragText + ' ' + dc.role + ' ' + dc.accDD.toText + ' ' + getAttr(v, 'data-label')));
+dc.containerDiv.appendChild(dc.accDD.dropLinks[i]);
+$A.bind(dc.accDD.dropLinks[i], {
 focus: function(ev){
 css(sraCSSClear(this), {
 position: 'relative',
@@ -1505,65 +1493,24 @@ blur: function(ev){
 css(this, dc.sraCSS);
 },
 click: function(ev){
-if (dc.accDD.isDragging){
-dc.accDD.isDragging = false;
-pL.each(dc.accDD.dropLinks, function(i, v){
-pL(v).remove();
-});
-pL(dc.accDD.dragLink).html(dc.accDD.dragText + '&nbsp;' + dc.role);
-
-// BG Added ARIA 3:08 AM Friday, March 14, 2014
-setAttr(dc.accDCObj, 'aria-grabbed', 'false');
-
-} else {
+if (!dc.accDD.isDragging){
 dc.accDD.isDragging = true;
-pL.each(dc.accDD.dropLinks, function(i, v){
-css(v, dc.sraCSS);
-insertBefore(dc.accDD.dropAnchors[i], v);
-$A.bind(v, {
-focus: function(ev){
-var pos = xOffset(dc.accDD.dropAnchors[i]),
-rel = 'absolute';
-var position = css(dc.accDD.dropAnchors[i], 'position');
-if (position == 'fixed'){
-pos.top = dc.accDD.dropAnchors[i].offsetTop;
-rel = 'fixed';
-} else if (position == 'relative'){
-pos = xOffset(dc.accDD.dropAnchors[i], null, true);
-rel = 'relative';
-}
-css(sraCSSClear(this), {
-position: rel,
-zIndex: 1000,
-top: pos.top,
-left: pos.left
-}, dc.accDD.dropLinkStyle);
-},
-blur: function(ev){
 css(this, dc.sraCSS);
-},
-click: function(ev){
-dc.accDD.isDragging = false;
-pL(dc.accDD.dragLink).html(dc.accDD.dragText + '&nbsp;' + dc.role);
-pL.each(dc.accDD.dropLinks, function(e, g){
-pL(g).remove();
-});
-dc.accDD.fireDrop.apply(dc.accDD.dropTargets[i], [ev, dc]);
-$A.setFocus(dc.accDD.dropTargets[i]);
-ev.preventDefault();
-}
-});
-});
-pL(dc.accDD.dragLink).html(dc.accDD.actionText + '&nbsp;' + dc.role);
-
-// BG Added ARIA 3:08 AM Friday, March 14, 2014
 setAttr(dc.accDCObj, 'aria-grabbed', 'true');
 
+$A.announce(dc.accDD.actionText);
+
 dc.accDD.fireDrag.apply(dc.accDCObj, [ev, dc]);
+dc.accDD.fireDrop.apply(dc.accDD.dropTargets[i], [ev, dc]);
+
 }
 ev.preventDefault();
 }
 });
+});
+
+setAttr(dc.accDCObj, 'aria-grabbed', 'false');
+
 }
 }
 
@@ -1573,29 +1520,20 @@ return wheel[dc.indexVal] = dc;
 unsetDrag = function(dc, uDrop){
 var dc = wheel[dc.indexVal];
 if (!dc.closing && !dc.loaded) return dc;
-if (dc.drag.handle)
-$A.unbind(dc.drag.handle, 'draginit dragstart dragend drag');
-else
-$A.unbind(dc.accDCObj, 'draginit dragstart dragend drag');
-
-// BG Added ARIA 3:08 AM Friday, March 14, 2014
+$A.unbind(dc.drag.handle ? dc.drag.handle : dc.accDCObj, 'draginit dragstart dragend drag');
 remAttr(dc.accDCObj, 'aria-grabbed');
-
 if (dc.dropTarget){
 if (uDrop){
 $A.unbind(dc.dropTarget, 'dropinit dropstart dropend drop');
-
-// BG Added ARIA 3:08 AM Friday, March 14, 2014
 $A.query(dc.dropTarget, function(i, v){
 remAttr(v, 'aria-dropeffect');
 });
-
 }
 if (dc.accDD.on){
 pL.each(dc.accDD.dropLinks, function(i, v){
-pL(v).remove();
+if (v.parentNode)
+v.parentNode.removeChild(v);
 });
-pL(dc.accDD.dragLink).remove();
 }
 }
 dc.fn.isDragSet = false;
@@ -1784,14 +1722,6 @@ onDrop: function(ev, dd, dc){ },
 onDropEnd: function(ev, dd, dc){ },
 setDrag: function(dc){
 var dc = dc || this;
-if (dc.dropTarget && dc.accDD.on){
-dc.accDD.dropTargets = [];
-dc.accDD.dropAnchors = [];
-$A.query(dc.dropTarget, function(){
-dc.accDD.dropAnchors.push(this);
-dc.accDD.dropTargets.push(this);
-});
-}
 return setDrag(dc);
 },
 unsetDrag: function(dc, uDrop){
@@ -1803,20 +1733,18 @@ unsetDrag(dc, uDrop);
 return dc;
 },
 
-// U@11/25
 accDD: {
 on: false,
-dragText: 'Drag',
-dropText: 'Drop',
-dropAnchor: null,
-dropAnchors: [],
+dragText: 'Move',
+toText: 'to',
 dropTargets: [],
+// Must match the accepted values for aria-dropeffect
+dropEffect: 'move',
 actionText: 'Dragging',
+returnFocusTo: '',
 isDragging: false,
 dragClassName: '',
-dropClassName: '',
 dragLinkStyle: {},
-dropLinkStyle: {},
 duration: 500,
 fireDrag: function(ev, dc){
 var os = xOffset(this);
@@ -1825,6 +1753,7 @@ drag: this,
 proxy: this,
 drop: dc.accDD.dropTargets,
 available: dc.accDD.dropTargets,
+/*
 update: function(dc){
 dc.accDD.dropTargets = [];
 dc.accDD.dropAnchors = [];
@@ -1842,6 +1771,7 @@ var da = pL(dc.accDD.dropAnchor).get(0);
 if (da) dc.accDD.dropAnchors[0] = da;
 return dc.accDD.dragDD.drop = dc.accDD.dragDD.available = dc.accDD.dropTargets;
 },
+*/
 startX: os.left + (xWidth(this) / 2),
 startY: os.top + (xHeight(this) / 2),
 deltaX: 0,
@@ -1860,20 +1790,22 @@ var xos = xOffset(this, null, true);
 dc.accDD.dragDD.originalY = xos.top;
 dc.accDD.dragDD.originalX = xos.left;
 }
+dc.onDragStart.apply(this, [ev, dc.accDD.dragDD, dc]);
 },
 fireDrop: function(ev, dc){
-$A.announce(dc.accDD.actionText);
-dc.onDragStart.apply(dc.accDD.dragDD.target, [ev, dc.accDD.dragDD, dc]);
-var os = xOffset(this);
+var that = this,
+os = xOffset(this);
 dc.accDD.dropDD = {
 target: this,
 drag: dc.accDD.dragDD.drag,
 proxy: dc.accDD.dragDD.proxy,
 drop: dc.accDD.dragDD.drop,
 available: dc.accDD.dragDD.available,
+/*
 update: function(dc){
 return dc.accDD.dropDD.drop = dc.accDD.dropDD.available = dc.accDD.dragDD.update(dc);
 },
+*/
 startX: dc.accDD.dragDD.startX,
 startY: dc.accDD.dragDD.startY,
 originalX: dc.accDD.dragDD.originalX,
@@ -1904,6 +1836,7 @@ dc.accDD.dragDD.offsetY = xos.top;
 dc.accDD.dragDD.offsetX = xos.left;
 }
 }
+
 transition(dc.accDD.dragDD.drag, {
 top: dc.accDD.dropDD.offsetY,
 left: dc.accDD.dropDD.offsetX
@@ -1911,7 +1844,7 @@ left: dc.accDD.dropDD.offsetX
 duration: dc.accDD.duration,
 step: function(){
 update();
-dc.onDrag.apply(dc.accDD.dragDD.target, [ev, dc.accDD.dragDD, dc]);
+dc.onDrag.apply(dc.accDD.dragDD.drag, [ev, dc.accDD.dragDD, dc]);
 },
 complete: function(){
 update();
@@ -1923,10 +1856,20 @@ if (dc.accDD.dragDD.originalX <= dc.accDD.dragDD.offsetX)
 dc.accDD.dragDD.deltaX = dc.accDD.dropDD.deltaX = dc.accDD.dragDD.originalX - dc.accDD.dragDD.offsetX;
 else if (dc.accDD.dragDD.originalX >= dc.accDD.dragDD.offsetX)
 dc.accDD.dragDD.deltaX = dc.accDD.dropDD.deltaX = 0 - (dc.accDD.dragDD.offsetX - dc.accDD.dragDD.originalX);
-dc.onDropStart.apply(dc.accDD.dropDD.target, [ev, dc.accDD.dropDD, dc]);
-dc.onDrop.apply(dc.accDD.dropDD.target, [ev, dc.accDD.dropDD, dc]);
-dc.onDropEnd.apply(dc.accDD.dropDD.target, [ev, dc.accDD.dropDD, dc]);
-dc.onDragEnd.apply(dc.accDD.dragDD.target, [ev, dc.accDD.dragDD, dc]);
+
+var rft = dc.accDD.returnFocusTo;
+
+dc.onDropStart.apply(that, [ev, dc.accDD.dropDD, dc]);
+dc.onDrop.apply(that, [ev, dc.accDD.dropDD, dc]);
+dc.onDropEnd.apply(that, [ev, dc.accDD.dropDD, dc]);
+dc.onDragEnd.apply(dc.accDD.dragDD.drag, [ev, dc.accDD.dragDD, dc]);
+
+$A.setFocus((rft.nodeType === 1 ?
+rft :
+pL(rft).get(0)) || dc.accDCObj);
+
+dc.accDD.isDragging = false;
+setAttr(dc.accDCObj, 'aria-grabbed', 'false');
 }
 });
 }
