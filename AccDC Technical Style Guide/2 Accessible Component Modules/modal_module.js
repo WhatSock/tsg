@@ -1,6 +1,6 @@
 /*!
-Modal Module R1.3
-Copyright 2010-2013 Bryan Garaventa (WhatSock.com)
+Modal Module R1.4
+Copyright 2010-2014 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 
@@ -50,6 +50,11 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							$A.addClass(dc.containerDiv, 'containerDiv');
 							dc.firstField = $A.query('*[data-first="true"]', dc.containerDiv)[0];
 							dc.lastField = $A.query('*[data-last="true"]', dc.containerDiv)[0];
+							$A.setAttr(dc.fn.closeLink,
+											{
+											'aria-hidden': 'true',
+											role: 'presentation'
+											}).innerHTML = '';
 						},
 
 						// Run script after the AccDC Object finishes loading
