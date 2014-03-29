@@ -70,7 +70,10 @@ $A.bind(window, 'load', function(){
 					runAfterClose: function(dc){
 						if (dc.backdrop)
 							dc.backdrop.parentNode.removeChild(dc.backdrop);
-					}
+					},
+
+					// Announce the dialog content for screen reader users when first rendered
+					announce: true
 
 					// (Other AccDC API properties and methods can be declared here also to customize functionality and behavior)
 

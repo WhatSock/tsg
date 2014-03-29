@@ -1,7 +1,10 @@
 /*!
-AccDC Bootstrap R1.5
-Copyright 2010-2013 Bryan Garaventa (WhatSock.com)
+AccDC Bootstrap R1.6
+Copyright 2010-2014 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
+
+Please edit this file however desired to customize functionality.
+
 */
 
 (function(){
@@ -77,7 +80,11 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 									className: 'modal',
 // Set the class name for the screen reader accessible close link
 // This must match the class name for any close links or buttons within the modal content, which will cause Close Method Binding to automatically occur when the content is rendered.
-									closeClassName: 'lbClose'
+									closeClassName: 'lbClose',
+
+									// Announce the dialog content for screen reader users when first rendered
+									announce: true
+
 									// (Other AccDC API properties and methods can be declared here also to customize functionality and behavior)
 									});
 			});
@@ -119,8 +126,8 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 // Set the class name for the screen reader accessible close link
 // This must match the class name for any close links or buttons within the popup content, which will cause Close Method Binding to automatically occur when the content is rendered.
 									closeClassName: 'popupClose',
-// Set the heading level that will be accessible for screen reader users
-ariaLevel: 2
+									// Set the heading level that will be accessible for screen reader users
+									ariaLevel: 2
 									// (Other AccDC API properties and methods can be declared here also to customize functionality and behavior)
 									});
 			});
@@ -157,8 +164,8 @@ ariaLevel: 2
 									autoPosition: isNaN(autoPosition) ? 3 : autoPosition,
 									offsetLeft: isNaN(offsetLeft) ? 10 : offsetLeft,
 									offsetTop: isNaN(offsetTop) ? 0 : offsetTop,
-// Set the heading level that will be accessible for screen reader users
-ariaLevel: 2
+									// Set the heading level that will be accessible for screen reader users
+									ariaLevel: 2
 									});
 			});
 
@@ -196,8 +203,8 @@ ariaLevel: 2
 									// Clear inline styling and prevent auto positioning, to use a style sheet instead
 									cssObj: {},
 									autoFix: 0,
-// Set the heading level that will be accessible for screen reader users
-ariaLevel: 2,
+									// Set the heading level that will be accessible for screen reader users
+									ariaLevel: 2,
 									// Configure a mouse event handler for the AccDC Object
 									mouseOut: function(ev, dc){
 									// Remove this if you don't want to close the banner onMouseOut
@@ -217,6 +224,7 @@ ariaLevel: 2,
 				if (g){
 					if (!track[g])
 						track[g] = [];
+
 					track[g].push(o);
 				}
 			});
@@ -318,6 +326,7 @@ dividerTag: 'li',
 										if (t == 'google-map'){
 											if (dc.tmp)
 												clearTimeout(dc.tmp);
+
 											var i = $A.inArray(this, dc.tree.childNodes), lat = dc.xmlNodes[i].attributes.getNamedItem('lat').value,
 												lng = dc.xmlNodes[i].attributes.getNamedItem('lng').value,
 												zoom = dc.xmlNodes[i].attributes.getNamedItem('zoom').value;
@@ -415,6 +424,7 @@ dividerTag: 'li',
 				if (g){
 					if (!track[g])
 						track[g] = [];
+
 					track[g].push(o);
 				}
 			});
