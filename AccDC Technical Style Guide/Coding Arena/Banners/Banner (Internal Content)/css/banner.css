@@ -542,3 +542,7 @@ left: 530px;
 70%  {bottom: -72px; left: -34px;}
 100% {bottom: -69px; left: -30px;}
 }
+
+*:focus {
+outline: 2px red inset;
+}
