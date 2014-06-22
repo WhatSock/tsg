@@ -1,4 +1,4 @@
-AccDC Technical Style Guide for Standalone and jQuery (03/16/2014)
+AccDC Technical Style Guide for Standalone and jQuery (06/21/2014)
 ===
 
 The AccDC Technical Style Guide is designed to provide reliable and consistent interaction designs that are accessible to the highest percentage of people possible, and to establish a baseline for Functional Accessibility that can be utilized, built upon, studied, and tested against. 

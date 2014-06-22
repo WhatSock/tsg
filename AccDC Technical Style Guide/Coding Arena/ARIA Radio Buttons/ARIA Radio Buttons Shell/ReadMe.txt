@@ -16,8 +16,6 @@ This textual label is critical so that screen reader users will be able to ident
 If the textual label is included within another tag (such as a Span tag) for formatting purposes, aria-labelledby must be used to explicitly associate the label text with the element that includes role="radio" by referencing its ID.
 This will ensure the highest level of accessibility for the highest percentage of people.
 Additionally, the textual label must be included within the opening and closing tags of the element with role="radio".
-If this is not done, the radio buttons will not be accessible in iOS devices using Voiceover, because iOS does not support aria-label, aria-labelledby, nor aria-describedby at this time.
-However, including the textual label within the opening and closing tags of the element with role="radio", will cause Voiceover to announce the radio button label regardless.
 
 If using an A tag, an href attribute is required to ensure keyboard accessibility.
 Images may also be used within radio option nodes if desired.

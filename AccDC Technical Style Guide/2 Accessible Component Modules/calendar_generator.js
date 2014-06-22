@@ -1,6 +1,6 @@
 /*!
-ARIA Calendar Module R1.6
-Copyright 2010-2013 Bryan Garaventa (WhatSock.com)
+ARIA Calendar Module R1.7
+Copyright 2010-2014 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 
@@ -229,11 +229,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 						runBefore: function(dc){
 							if (config.ajax && typeof config.ajax === 'function' && !dc.stopAjax && !dc.ajaxLoading){
 								dc.ajaxLoading = dc.cancel = true;
-								config.ajax.apply(dc,
-												[
-												dc,
-												false
-												]);
+								config.ajax.apply(dc, [dc, false]);
 							}
 
 							if (dc.range.current.month === 1)
@@ -243,17 +239,23 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							dc.nextBtnId = dc.baseId + 'n';
 							dc.source = '<table role="application" class="calendar" aria-label="' + dc.role
 								+ '"><tr role="presentation"><td class="nav" accesskey="1" title="' + dc.prevTxt.replace(/<|>|\"/g, '') + ' '
+								+ dc.yearTxt.replace(/<|>|\"/g, '') + '" aria-label="' + dc.prevTxt.replace(/<|>|\"/g, '') + ' '
 								+ dc.yearTxt.replace(/<|>|\"/g, '') + '" role="button" id="' + dc.prevBtnId
-								+ 'Y" tabindex="0"><span>&#8656;</span></td><td title="' + dc.tooltipTxt.replace(/<|>|\"/g, '')
-								+ '" colspan="5" class="year"><span>' + dc.range.current.year
-								+ '</span></td><td class="nav" accesskey="2" title="' + dc.nextTxt.replace(/<|>|\"/g, '') + ' '
+								+ 'Y" tabindex="0"><span aria-hidden="true">&#8656;</span></td><td title="'
+								+ dc.tooltipTxt.replace(/<|>|\"/g, '') + '" colspan="5" class="year" role="presentation"><span>'
+								+ dc.range.current.year + '</span></td><td class="nav" accesskey="2" title="'
+								+ dc.nextTxt.replace(/<|>|\"/g, '') + ' '
+								+ dc.yearTxt.replace(/<|>|\"/g, '') + '" aria-label="' + dc.nextTxt.replace(/<|>|\"/g, '') + ' '
 								+ dc.yearTxt.replace(/<|>|\"/g, '') + '" role="button" id="' + dc.nextBtnId
-								+ 'Y" tabindex="0"><span>&#8658;</span></td></tr><tr role="presentation"><td class="nav" accesskey="3" title="'
+								+ 'Y" tabindex="0"><span aria-hidden="true">&#8658;</span></td></tr><tr role="presentation"><td class="nav" accesskey="3" title="'
+								+ dc.prevTxt.replace(/<|>|\"/g, '') + ' ' + dc.monthTxt.replace(/<|>|\"/g, '') + '" aria-label="'
 								+ dc.prevTxt.replace(/<|>|\"/g, '') + ' ' + dc.monthTxt.replace(/<|>|\"/g, '') + '" role="button" id="'
-								+ dc.prevBtnId + '" tabindex="0"><span>&#8592;</span></td><td colspan="5" class="month"><span>'
+								+ dc.prevBtnId
+								+ '" tabindex="0"><span aria-hidden="true">&#8592;</span></td><td colspan="5" class="month" role="presentation"><span>'
 								+ dc.range[dc.range.current.month].name + '</span></td><td class="nav" accesskey="4" title="'
+								+ dc.nextTxt.replace(/<|>|\"/g, '') + ' ' + dc.monthTxt.replace(/<|>|\"/g, '') + '" aria-label="'
 								+ dc.nextTxt.replace(/<|>|\"/g, '') + ' ' + dc.monthTxt.replace(/<|>|\"/g, '') + '" role="button" id="'
-								+ dc.nextBtnId + '" tabindex="0"><span>&#8594;</span></td></tr><tr role="presentation">';
+								+ dc.nextBtnId + '" tabindex="0"><span aria-hidden="true">&#8594;</span></td></tr><tr role="presentation">';
 							var pMonth = dc.range.current.month > 0 ? dc.range.current.month - 1 : 11,
 								nMonth = dc.range.current.month < 11 ? dc.range.current.month + 1 : 0;
 							dc.iter = 0;
@@ -265,7 +267,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 									dc.iter = dc.iterE = (di + 6) > 6 ? -1 + di : di + 6;
 									dc.iterS = di;
 								}
-								dc.source += '<th class="week" title="' + d.lng + '"><span>' + d.shrt + '</span></th>';
+								dc.source += '<th class="week" title="' + d.lng + '" role="presentation"><span>' + d.shrt + '</span></th>';
 							}
 							dc.source += '</tr><tr role="presentation">';
 							var m = new Date();
@@ -278,7 +280,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 							while (w != f){
 								w = (w + 1) > 6 ? 0 : w + 1;
-								dc.source += '<td class="empty"><span>&nbsp;</span></td>';
+								dc.source += '<td class="empty" role="presentation"><span>&nbsp;</span></td>';
 							}
 							dc.range.track = {};
 							var disabled = dc.range[dc.range.current.month].disabled[dc.range.current.year],
@@ -297,10 +299,13 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 								else if (commentsAll && commentsAll[i])
 									comm = commentsAll[i];
-								dc.source += '<td aria-label="';
+
+								dc.source += '<td ';
 
 								if (dis)
-									dc.source += dc.disabledTxt.replace(/<|>|\"/g, '') + ' ';
+									dc.source += 'aria-disabled="true" ';
+
+								dc.source += 'aria-label="';
 
 								if (comm)
 									dc.source += dc.commentedTxt.replace(/<|>|\"/g, '') + ' ';
@@ -323,7 +328,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 								if (comm)
 									dc.source += ' ' + dc.commentedTxt.replace(/<|>|\"/g, '');
-								dc.source += '" id="' + dc.baseId + i + '"><span>' + i + '</span></td>';
+								dc.source += '" id="' + dc.baseId + i + '"><span aria-hidden="true">' + i + '</span></td>';
 								m.setDate(i);
 								var w = m.getDay();
 
@@ -333,7 +338,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 							while (e != dc.iter){
 								e = (e + 1) > 6 ? 0 : e + 1;
-								dc.source += '<td class="empty"><span>&nbsp;</span></td>';
+								dc.source += '<td class="empty" role="presentation"><span>&nbsp;</span></td>';
 							}
 							dc.source += '</tr></table>';
 
@@ -414,12 +419,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 												if ($A.hasClass(this, 'selected') || (!commentsEnabled && !$A.hasClass(this, 'comment'))){
 													if ($A.inArray(dc.range.current.mDay, dc.range[dc.range.current.month].disabled[dc.range.current.year]
 														|| dc.range[dc.range.current.month].disabled['*'] || []) === -1){
-														handleClick.apply(this,
-																		[
-																		ev,
-																		dc,
-																		targ
-																		]);
+														handleClick.apply(this, [ev, dc, targ]);
 													}
 												}
 
@@ -435,12 +435,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 													if ($A.inArray(dc.range.current.mDay, dc.range[dc.range.current.month].disabled[dc.range.current.year]
 														|| dc.range[dc.range.current.month].disabled['*'] || []) === -1){
-														handleClick.apply(this,
-																		[
-																		ev,
-																		dc,
-																		targ
-																		]);
+														handleClick.apply(this, [ev, dc, targ]);
 													}
 
 													ev.preventDefault();
@@ -586,12 +581,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 													if ($A.inArray(dc.range.current.mDay, dc.range[dc.range.current.month].disabled[dc.range.current.year]
 														|| dc.range[dc.range.current.month].disabled['*'] || []) === -1){
 														if (!dc.setFocus.firstOpen)
-															handleClick.apply(this,
-																			[
-																			ev,
-																			dc,
-																			targ
-																			]);
+															handleClick.apply(this, [ev, dc, targ]);
 													}
 
 													ev.preventDefault();
@@ -986,11 +976,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							$A.unbind(window, 'resize.dateeditor');
 
 							if (config.ajax && typeof config.ajax === 'function')
-								config.ajax.apply(dc.parent,
-												[
-												dc.parent,
-												true
-												]);
+								config.ajax.apply(dc.parent, [dc.parent, true]);
 
 							dc.parent.setFocus.firstOpen = true;
 						},
