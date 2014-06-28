@@ -245,6 +245,8 @@ The variables to reference are as follows:
 dc.range.wDays[dc.range.current.wDay].lng = 'Friday'
 
 dc.range[dc.range.current.month].name = 'November'
+// or
+(dc.range.current.month+1) = numerical month string
 
 dc.range.current.mDay = '30'
 
