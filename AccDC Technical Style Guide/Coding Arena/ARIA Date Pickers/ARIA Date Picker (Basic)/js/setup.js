@@ -11,5 +11,12 @@ $A.bind(window, 'load', function(){
 
 		// Then close the date picker
 		dc.close();
-	});
+	},
+					{
+					// Set CSS positioning calculation for the calendar
+					autoPosition: 3,
+					// Customize with positive or negative offsets
+					offsetTop: 0,
+					offsetLeft: 5
+					});
 });
