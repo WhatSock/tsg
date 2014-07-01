@@ -1,6 +1,6 @@
 /*!
-ARIA Tabs Module R1.6
-Copyright 2010-2013 Bryan Garaventa (WhatSock.com)
+ARIA Tabs Module R1.7
+Copyright 2010-2014 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 
@@ -70,6 +70,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 					return s;
 			})();
 			ovrs.isStatic = '#' + $A.getAttr(o, 'data-insert');
+			ovrs.showHiddenBounds = overrides.showHiddenBounds || false;
 			ovrs.showHiddenClose = overrides.showHiddenClose || false;
 			ovrs.bind = 'click';
 			ovrs.ariaLevel = $A.getAttr(o, 'data-headinglvl') || overrides.ariaLevel || 3;
@@ -78,6 +79,16 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 			ovrs.tabState = useARIA ? '' : (overrides.tabState || 'Selected');
 			ovrs.toggleClass = overrides.toggleClass || 'active';
 			ovrs.allowCascade = true;
+			ovrs.runDuring = function(dc){
+				if (useARIA){
+					$A.setAttr(dc.accDCObj,
+									{
+									role: 'tabpanel',
+									'aria-labelledby': $A.getAttr(dc.triggerObj, 'id')
+									});
+				}
+			};
+
 			ovrs.runAfter = function(dc){
 				$A.query(selector, context, function(j, p){
 					$A.remClass(p, dc.toggleClass);

@@ -1,6 +1,6 @@
 /*!
-Accordion Generator Module R2.3
-Copyright 2010-2013 Bryan Garaventa (WhatSock.com)
+Accordion Generator Module R2.4
+Copyright 2010-2014 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 
@@ -79,7 +79,13 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 			ovrs.isToggle = typeof overrides.isToggle === 'boolean' ? overrides.isToggle : true;
 			ovrs.allowCascade = true;
 			ovrs.runDuring = function(dc){
-				$A.setAttr(dc.accDCObj, 'role', 'region');
+				$A.setAttr(dc.accDCObj,
+								{
+								role: 'complementary',
+								'aria-labelledby': $A.getAttr(dc.triggerObj, 'id')
+								});
+
+				$A.setAttr(dc.triggerObj, 'aria-controls', dc.accDCObjId);
 			};
 			ovrs.runAfter = function(dc){
 				$A.addClass(dc.triggerObj, dc.toggleClass);
