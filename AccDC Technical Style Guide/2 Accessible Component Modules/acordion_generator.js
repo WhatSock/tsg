@@ -1,5 +1,5 @@
 /*!
-Accordion Generator Module R2.4
+Accordion Generator Module R2.5
 Copyright 2010-2014 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
@@ -81,7 +81,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 			ovrs.runDuring = function(dc){
 				$A.setAttr(dc.accDCObj,
 								{
-								role: 'complementary',
+								role: 'group',
 								'aria-labelledby': $A.getAttr(dc.triggerObj, 'id')
 								});
 
