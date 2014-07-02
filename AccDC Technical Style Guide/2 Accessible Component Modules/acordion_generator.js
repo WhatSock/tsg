@@ -81,7 +81,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 			ovrs.runDuring = function(dc){
 				$A.setAttr(dc.accDCObj,
 								{
-								role: 'group',
+								role: 'region',
 								'aria-labelledby': $A.getAttr(dc.triggerObj, 'id')
 								});
 
