@@ -1,5 +1,5 @@
 /*!
-ARIA Tabs Module R1.7
+ARIA Tabs Module R1.8
 Copyright 2010-2014 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
@@ -81,6 +81,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 			ovrs.allowCascade = true;
 			ovrs.runDuring = function(dc){
 				if (useARIA){
+					$A.setAttr(dc.triggerObj, 'aria-controls', dc.accDCObjId);
 					$A.setAttr(dc.accDCObj,
 									{
 									role: 'tabpanel',
