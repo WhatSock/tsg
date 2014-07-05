@@ -1,6 +1,6 @@
 /*!
-ARIA Radio Generator R2.0
-Copyright 2010-2013 Bryan Garaventa (WhatSock.com)
+ARIA Radio Generator R2.1
+Copyright 2010-2014 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 	*/
 
@@ -18,14 +18,14 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							$A.setAttr(that.radios[i],
 											{
 											tabindex: '-1',
-											'aria-selected': 'false',
+											// 'aria-selected': 'false',
 											'aria-checked': 'false'
 											});
 
 			$A.setAttr(that.radios[index],
 							{
 							tabindex: '0',
-							'aria-selected': 'true',
+							// 'aria-selected': 'true',
 							'aria-checked': 'true'
 							});
 
@@ -35,11 +35,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 			that.index = index;
 
 			if (callback && typeof callback === 'function')
-				callback.apply(that,
-								[
-								that.radios[index],
-								that.radios
-								]);
+				callback.apply(that, [that.radios[index], that.radios]);
 		};
 
 		$A.setAttr(rgo, 'aria-label', legendText);
@@ -50,7 +46,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 			$A.setAttr(o,
 							{
 							tabindex: (i === 0 && defaultRadioVal === -1) ? '0' : '-1',
-							'aria-selected': 'false',
+							// 'aria-selected': 'false',
 							'aria-checked': 'false',
 							'aria-posinset': track.max
 							});
