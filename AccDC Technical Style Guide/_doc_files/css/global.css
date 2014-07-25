@@ -197,6 +197,19 @@ p.honors img {
 width: 100%;
 }
 
+div.at-guide {
+float: left;
+padding: 4px;
+background-color: #b00020;
+font-weight: bold;
+font-size: 1.2em;
+text-align: left;
+border: solid 1px #777;
+-webkit-box-shadow: 0 10px 6px -6px #777;
+-moz-box-shadow: 0 10px 6px -6px #777;
+box-shadow: 0 10px 6px -6px #777;
+}
+
 #AccDCCurrentVer {
 font-style: italic;
 font-weight: bold;
