@@ -210,6 +210,10 @@ border: solid 1px #777;
 box-shadow: 0 10px 6px -6px #777;
 }
 
+div.at-guide a {
+color: #000;
+}
+
 #AccDCCurrentVer {
 font-style: italic;
 font-weight: bold;
