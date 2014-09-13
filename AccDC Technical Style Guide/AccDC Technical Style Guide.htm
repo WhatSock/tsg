@@ -690,6 +690,18 @@ Accessible Component Modules
 </h2>
 </div>
 
+<div class="intro important">
+<p>
+IMPORTANT: All of the HTML markup syntax examples found within the expandable Accessible Component Module sections represent the minimal code necessary for using the associated JavaScript module included with the AccDC API, though the actual markup is flexible when implemented.
+</p>
+<p>
+Since the associated JavaScript module handles key attributes such as tabindex, amongst relevant ARIA state and property attributes, these are not included within the HTML markup syntax examples, since assigning these manually would complicate the scripting setup process for each module.
+</p>
+<p>
+To see how tabindex and relevant ARIA attributes are handled, use a DOM viewer utility to examine the rendered output of each live demo within the Coding Arena, where dynamic behaviors can be observed.
+</p>
+</div>
+
 <div class="expand-collapse">
 <a aria-labelledby="h-2 col-2-lbl" id="col-2" href="#" class="button grey" role="button">
 <span id="col-2-lbl">
@@ -737,14 +749,17 @@ The chosen implementation should always match the UI that it's being applied to,
 The Accordion Module automates these processes by adding all related event handlers and managing all related rendering procedures.
 </p>
 <ul><li>
+Accordion with offscreen text to indicate role and state, aria-controls, role=region, and aria-labelledby:<br />
 <a target="ca" href="Coding Arena/ARIA and Non-ARIA Accordions/Accordion (Internal Content)/demo.htm">
 Coding Arena/ARIA and Non-ARIA Accordions/Accordion (Internal Content)/demo.htm
 </a>
 </li><li>
+Accordion with ARIA role=button, aria-pressed, aria-controls, role=region, and aria-labelledby:<br />
 <a target="ca" href="Coding Arena/ARIA and Non-ARIA Accordions/ARIA Accordion (Internal Content)/demo.htm">
 Coding Arena/ARIA and Non-ARIA Accordions/ARIA Accordion (Internal Content)/demo.htm
 </a>
 </li><li>
+Accordion with ARIA role=link, aria-expanded, aria-controls, role=region, and aria-labelledby:<br />
 <a target="ca" href="Coding Arena/ARIA and Non-ARIA Accordions/ARIA Accordion (Internal Content)/demo2.htm">
 Coding Arena/ARIA and Non-ARIA Accordions/ARIA Accordion (Internal Content)/demo2.htm
 </a>
@@ -1054,6 +1069,7 @@ The chosen implementation should always match the UI that it's being applied to,
 The Tab Module automates these processes by adding all related event handlers and managing all related rendering procedures.
 </p>
 <ul><li>
+Tab group with ARIA role=tablist, role=tab, aria-posinset, aria-setsize, aria-expanded, aria-selected, aria-controls, role=tabpanel, aria-labelledby, and aria-owns:<br />
 <a target="ca" href="Coding Arena/ARIA and Non-ARIA Tabs/ARIA Tabs (Internal Content)/demo.htm">
 Coding Arena/ARIA and Non-ARIA Tabs/ARIA Tabs (Internal Content)/demo.htm
 </a>
@@ -1410,6 +1426,7 @@ Expected behaviors: The entire grid should have only one tab stop, one cell shou
 The Data Grid Module automates these processes by adding all related event handlers and managing all related rendering procedures.
 </p>
 <ul><li>
+Grid control with ARIA role=grid, role=rowgroup, role=row, role=gridcell, role=rowheader, role=columnheader, aria-describedby, aria-selected, aria-owns, and aria-labelledby:<br />
 <a target="ca" href="Coding Arena/ARIA Data Grids/ARIA Data Grid (Dynamic)/demo.htm">
 Coding Arena/ARIA Data Grids/ARIA Data Grid (Dynamic)/demo.htm
 </a>
@@ -1957,18 +1974,22 @@ Expected behaviors: The associated INPUT field should not include readonly, an e
 The Calendar Module automates these processes by adding all related event handlers and managing all related rendering procedures.
 </p>
 <ul><li>
+Basic compound component date picker control with ARIA role=button, role=link, aria-label, role=dialog, and role=application:<br />
 <a target="ca" href="Coding Arena/ARIA Date Pickers/ARIA Date Picker (Basic)/demo.htm">
 Coding Arena/ARIA Date Pickers/ARIA Date Picker (Basic)/demo.htm
 </a>
 </li><li>
+Disabled date range compound component date picker control with ARIA role=button, role=link, aria-label, aria-disabled, role=dialog, and role=application:<br />
 <a target="ca" href="Coding Arena/ARIA Date Pickers/ARIA Date Picker (with Disabled Date Ranges)/demo.htm">
 Coding Arena/ARIA Date Pickers/ARIA Date Picker (with Disabled Date Ranges)/demo.htm
 </a>
 </li><li>
+Comment enabled compound component date picker control with ARIA role=button, role=link, aria-label, role=dialog, and role=application:<br />
 <a target="ca" href="Coding Arena/ARIA Date Pickers/ARIA Date Picker (with Tooltip Comments)/demo.htm">
 Coding Arena/ARIA Date Pickers/ARIA Date Picker (with Tooltip Comments)/demo.htm
 </a>
 </li><li>
+Editable comments compound component date picker control with ARIA role=button, role=link, aria-label, role=dialog, and role=application:<br />
 <a target="ca" href="Coding Arena/ARIA Date Pickers/ARIA Date Picker (with Editable Tooltip Comments)/demo.htm">
 Coding Arena/ARIA Date Pickers/ARIA Date Picker (with Editable Tooltip Comments)/demo.htm
 </a>
@@ -2324,22 +2345,27 @@ Expected behaviors: ARIA Listboxes should only receive one tab stop, the Up/Down
 The Listbox Module automates these processes by adding all related event handlers and managing all related rendering procedures.
 </p>
 <ul><li>
+Basic simulated Listbox control with ARIA role=listbox, role=option, aria-posinset, aria-setsize, aria-selected, aria-label, and aria-owns:<br />
 <a target="ca" href="Coding Arena/ARIA Listboxes/Standard/demo.htm">
 Coding Arena/ARIA Listboxes/Standard/demo.htm
 </a>
 </li><li>
+Multiselectable simulated Listbox control with ARIA role=listbox, role=option, aria-posinset, aria-setsize, aria-selected, aria-label, aria-multiselectable, and aria-owns:<br />
 <a target="ca" href="Coding Arena/ARIA Listboxes/Multiselect/demo.htm">
 Coding Arena/ARIA Listboxes/Multiselect/demo.htm
 </a>
 </li><li>
+Basic popup simulated Listbox control with ARIA role=listbox, role=option, aria-posinset, aria-setsize, aria-selected, aria-label, and aria-owns:<br />
 <a target="ca" href="Coding Arena/ARIA Listboxes/Popup Listbox (Internal Content)/demo.htm">
 Coding Arena/ARIA Listboxes/Popup Listbox (Internal Content)/demo.htm
 </a>
 </li><li>
+Dynamic multiselectable simulated Listbox control with ARIA role=listbox, role=option, aria-posinset, aria-setsize, aria-selected, aria-label, aria-multiselectable, and aria-owns:<br />
 <a target="ca" href="Coding Arena/ARIA Listboxes/Redistributable/demo.htm">
 Coding Arena/ARIA Listboxes/Redistributable/demo.htm
 </a>
 </li><li>
+Re-sortable simulated Listbox control with ARIA role=listbox, role=option, aria-posinset, aria-setsize, aria-selected, aria-label, aria-owns, aria-grabbed, and aria-dropeffect:<br />
 <a target="ca" href="Coding Arena/ARIA Listboxes/Sortable/demo.htm">
 Coding Arena/ARIA Listboxes/Sortable/demo.htm
 </a>
@@ -2589,14 +2615,17 @@ You can optionally set different interaction models for specific menus or submen
 The Menu Module automates these processes by adding all related event handlers and managing all related rendering procedures.
 </p>
 <ul><li>
+Basic horizontal popup Menu control with ARIA role=menubar, role=menuitem, aria-posinset, aria-setsize, aria-haspopup, aria-owns, and role=application:<br />
 <a target="ca" href="Coding Arena/ARIA Menus/Horizontal (Internal Content)/demo.htm">
 Coding Arena/ARIA Menus/Horizontal (Internal Content)/demo.htm
 </a>
 </li><li>
+Basic vertical popup Menu control with ARIA role=menu, role=menuitem, aria-posinset, aria-setsize, aria-haspopup, aria-owns, and role=application:<br />
 <a target="ca" href="Coding Arena/ARIA Menus/Vertical (Internal Content)/demo.htm">
 Coding Arena/ARIA Menus/Vertical (Internal Content)/demo.htm
 </a>
 </li><li>
+Shell popup Menu control with no CSS, ARIA role=menu, role=menuitem, aria-posinset, aria-setsize, aria-haspopup, aria-owns, and role=application:<br />
 <a target="ca" href="Coding Arena/ARIA Menus/Shell (Internal Content)/demo.htm">
 Coding Arena/ARIA Menus/Shell (Internal Content)/demo.htm
 </a>
@@ -3081,6 +3110,7 @@ Expected behaviors: Only one radio button should receive focus in the tab order,
 The Radio Button Module automates these processes by adding all related event handlers and managing keyboard focus appropriately.
 </p>
 <ul><li>
+Basic simulated Radio controls with ARIA role=radiogroup, role=radio, aria-posinset, aria-setsize, aria-checked, and aria-owns:<br />
 <a target="ca" href="Coding Arena/ARIA Radio Buttons/ARIA Radio Buttons/demo.htm">
 Coding Arena/ARIA Radio Buttons/ARIA Radio Buttons/demo.htm
 </a>
@@ -3253,10 +3283,12 @@ Expected behaviors: The slider should have only one tab stop in the tab order, t
 The Slider Module automates these processes by adding all related event handlers and managing keyboard focus appropriately.
 </p>
 <ul><li>
+Horizontal Slider control with ARIA role=slider, aria-label, aria-valuemin, aria-valuemax, aria-valuenow, aria-valuetext, and aria-orientation:<br />
 <a target="ca" href="Coding Arena/ARIA Sliders/Horizontal/demo.htm">
 Coding Arena/ARIA Sliders/Horizontal/demo.htm
 </a>
 </li><li>
+Vertical Slider control with ARIA role=slider, aria-label, aria-valuemin, aria-valuemax, aria-valuenow, aria-valuetext, and aria-orientation:<br />
 <a target="ca" href="Coding Arena/ARIA Sliders/Vertical/demo.htm">
 Coding Arena/ARIA Sliders/Vertical/demo.htm
 </a>
@@ -3503,22 +3535,27 @@ Expected behaviors: The general behavior of a Toggle control is to receive keybo
 The Toggle Module automates these processes by adding all related event handlers.
 </p>
 <ul><li>
+Simulated Checkbox controls with ARIA role=checkbox, and aria-checked:<br />
 <a target="ca" href="Coding Arena/ARIA Toggles, Checkboxes, Links, and Buttons/ARIA Checkboxes/demo.htm">
 Coding Arena/ARIA Toggles, Checkboxes, Links, and Buttons/ARIA Checkboxes/demo.htm
 </a>
 </li><li>
+Simulated Checkbox controls with offscreen text and no ARIA:<br />
 <a target="ca" href="Coding Arena/ARIA Toggles, Checkboxes, Links, and Buttons/Checkboxes (Simulated with No ARIA)/demo.htm">
 Coding Arena/ARIA Toggles, Checkboxes, Links, and Buttons/Checkboxes (Simulated with No ARIA)/demo.htm
 </a>
 </li><li>
+Simulated Toggle Button controls with ARIA role=button, and aria-pressed:<br />
 <a target="ca" href="Coding Arena/ARIA Toggles, Checkboxes, Links, and Buttons/ARIA Toggle Buttons/demo.htm">
 Coding Arena/ARIA Toggles, Checkboxes, Links, and Buttons/ARIA Toggle Buttons/demo.htm
 </a>
 </li><li>
+Simulated Toggle Button controls with offscreen text and no ARIA:<br />
 <a target="ca" href="Coding Arena/ARIA Toggles, Checkboxes, Links, and Buttons/Toggle Buttons (Simulated with No ARIA)/demo.htm">
 Coding Arena/ARIA Toggles, Checkboxes, Links, and Buttons/Toggle Buttons (Simulated with No ARIA)/demo.htm
 </a>
 </li><li>
+Simulated Button and Link controls with ARIA role=button or role=link:<br />
 <a target="ca" href="Coding Arena/ARIA Toggles, Checkboxes, Links, and Buttons/ARIA Links and Buttons/demo.htm">
 Coding Arena/ARIA Toggles, Checkboxes, Links, and Buttons/ARIA Links and Buttons/demo.htm
 </a>
@@ -3765,10 +3802,12 @@ Currently, a large part of this is the result of unequal support by screen reade
 Nevertheless, the Tree Module automates these processes accessibly by adding all related event handlers and managing all related rendering procedures using an external XML file for configuration.
 </p>
 <ul><li>
+Tree control with ARIA role=tree or role=group, aria-label, role=treeitem, aria-expanded, aria-selected, aria-level, aria-posinset, aria-setsize, and aria-owns:<br />
 <a target="ca" href="Coding Arena/ARIA Trees/Tree (External XML)/demo.htm">
 Coding Arena/ARIA Trees/Tree (External XML)/demo.htm
 </a>
 </li><li>
+Shell Tree control with no CSS, ARIA role=tree or role=group, aria-label, role=treeitem, aria-expanded, aria-selected, aria-level, aria-posinset, aria-setsize, and aria-owns:<br />
 <a target="ca" href="Coding Arena/ARIA Trees/Tree (External XML Shell)/demo.htm">
 Coding Arena/ARIA Trees/Tree (External XML Shell)/demo.htm
 </a>
@@ -4008,6 +4047,7 @@ Expected behaviors: Ensure that the content of the banner appears at the top of 
 The Banner Module automates these processes by instantiating banner content as an AccDC Object.
 </p>
 <ul><li>
+Basic Banner control with offscreen boundary text:<br />
 <a target="ca" href="Coding Arena/Banners/Banner (Internal Content)/demo.htm">
 Coding Arena/Banners/Banner (Internal Content)/demo.htm
 </a>
@@ -4211,26 +4251,32 @@ Expected behaviors: The beginning and ending boundaries should be conveyed to sc
 The Carousel Module automates these processes by adding all related event handlers and managing all related rendering procedures using an external XML file for configuration.
 </p>
 <ul><li>
+Basic Carousel control with offscreen boundary text, and aria-live=polite:<br />
 <a target="ca" href="Coding Arena/Carousels, Slideshows, and Wizards/Carousel (Flat from XML)/demo.htm">
 Coding Arena/Carousels, Slideshows, and Wizards/Carousel (Flat from XML)/demo.htm
 </a>
 </li><li>
+Bottom grouped Carousel control with offscreen boundary text, and aria-live=polite:<br />
 <a target="ca" href="Coding Arena/Carousels, Slideshows, and Wizards/Carousel (Grouped from XML, with Group Name on Bottom)/demo.htm">
 Coding Arena/Carousels, Slideshows, and Wizards/Carousel (Grouped from XML, with Group Name on Bottom)/demo.htm
 </a>
 </li><li>
+Top grouped Carousel control with offscreen boundary text, and aria-live=polite:<br />
 <a target="ca" href="Coding Arena/Carousels, Slideshows, and Wizards/Carousel (Grouped from XML, with Group Name on Top)/demo.htm">
 Coding Arena/Carousels, Slideshows, and Wizards/Carousel (Grouped from XML, with Group Name on Top)/demo.htm
 </a>
 </li><li>
+Bottom captioned Carousel control with offscreen boundary text, and aria-live=polite:<br />
 <a target="ca" href="Coding Arena/Carousels, Slideshows, and Wizards/Carousel (Grouped from XML, with Group Names as Captions)/demo.htm">
 Coding Arena/Carousels, Slideshows, and Wizards/Carousel (Grouped from XML, with Group Names as Captions)/demo.htm
 </a>
 </li><li>
+Basic Slideshow control with offscreen boundary text, and aria-live=polite:<br />
 <a target="ca" href="Coding Arena/Carousels, Slideshows, and Wizards/Slideshow (Flat from XML)/demo.htm">
 Coding Arena/Carousels, Slideshows, and Wizards/Slideshow (Flat from XML)/demo.htm
 </a>
 </li><li>
+Wizard Slideshow control with offscreen boundary text, and aria-live=polite:<br />
 <a target="ca" href="Coding Arena/Carousels, Slideshows, and Wizards/Wizard (Grouped from XML)/demo.htm">
 Coding Arena/Carousels, Slideshows, and Wizards/Wizard (Grouped from XML)/demo.htm
 </a>
@@ -4640,6 +4686,7 @@ Expected behaviors: All draggable objects must be accessible from the keyboard w
 The Drag and Drop Module automates these processes by adding all related event handlers and managing all related rendering procedures.
 </p>
 <ul><li>
+Drag and Drop controls with offscreen drag links, and aria-live=polite:<br />
 <a target="ca" href="Coding Arena/Drag and Drop/demo.htm">
 Coding Arena/Drag and Drop/demo.htm
 </a>
@@ -4915,6 +4962,7 @@ Expected behaviors: Provide a link as the footnote that jumps to the footnote te
 The Footnotes Module automates these processes by creating all necessary anchor elements, adding all related event handlers, and managing keyboard focus appropriately.
 </p>
 <ul><li>
+Footnote controls with aria-label, and aria-hidden:<br />
 <a target="ca" href="Coding Arena/Footnotes/Footnotes (Internal)/demo.htm">
 Coding Arena/Footnotes/Footnotes (Internal)/demo.htm
 </a>
@@ -5114,18 +5162,22 @@ Dynamic Help Tooltips validate user input as the interaction occurs, so that res
 The Form Field Validation Module automates these processes by adding all related event handlers and managing all related rendering procedures.
 </p>
 <ul><li>
+Simple Help Tooltip control with offscreen boundary text, and aria-live=polite:<br />
 <a target="ca" href="Coding Arena/Inline Form Field Validation and Dynamic Help Tooltips/Dynamic Help Tooltip/demo.htm">
 Coding Arena/Inline Form Field Validation and Dynamic Help Tooltips/Dynamic Help Tooltip/demo.htm
 </a>
 </li><li>
+Simple Error Tooltip control with offscreen boundary text, aria-required, and aria-live=polite:<br />
 <a target="ca" href="Coding Arena/Inline Form Field Validation and Dynamic Help Tooltips/Inline Form Field Validation (Simple)/demo.htm">
 Coding Arena/Inline Form Field Validation and Dynamic Help Tooltips/Inline Form Field Validation (Simple)/demo.htm
 </a>
 </li><li>
+Complex Error Tooltip control with offscreen boundary text, aria-required, and aria-live=polite:<br />
 <a target="ca" href="Coding Arena/Inline Form Field Validation and Dynamic Help Tooltips/Inline Form Field Validation (Complex)/demo.htm">
 Coding Arena/Inline Form Field Validation and Dynamic Help Tooltips/Inline Form Field Validation (Complex)/demo.htm
 </a>
 </li><li>
+Mixed Error and Help Tooltip controls with offscreen boundary text, aria-required, and aria-live=polite:<br />
 <a target="ca" href="Coding Arena/Inline Form Field Validation and Dynamic Help Tooltips/Inline Form Field Validation with Dynamic Help Tooltip (Simple)/demo.htm">
 Coding Arena/Inline Form Field Validation and Dynamic Help Tooltips/Inline Form Field Validation with Dynamic Help Tooltip (Simple)/demo.htm
 </a>
@@ -5400,10 +5452,12 @@ Expected behaviors: Ensure that the background content is hidden from screen rea
 The Modal Module automates these processes by instantiating the content as a Modal AccDC Object, which can be configured and controlled programmatically if desired to enhance functionality.
 </p>
 <ul><li>
+Basic Modal control with offscreen boundary text, and aria-hidden:<br />
 <a target="ca" href="Coding Arena/Modals/Modal (Internal Content)/demo.htm">
 Coding Arena/Modals/Modal (Internal Content)/demo.htm
 </a>
 </li><li>
+Shell Modal control with no CSS, offscreen boundary text, and aria-hidden:<br />
 <a target="ca" href="Coding Arena/Modals/Modal (Internal Content Shell)/demo.htm">
 Coding Arena/Modals/Modal (Internal Content Shell)/demo.htm
 </a>
@@ -5710,18 +5764,22 @@ Expected behaviors: Ensure that the beginning and ending boundaries are conveyed
 The Popup Module automates these processes by instantiating the content as a Popup AccDC Object, which can be configured and controlled programmatically if desired to enhance functionality.
 </p>
 <ul><li>
+Basic Popup control with offscreen boundary text, and aria-live=polite:<br />
 <a target="ca" href="Coding Arena/Popups/Popup (Internal Content)/demo.htm">
 Coding Arena/Popups/Popup (Internal Content)/demo.htm
 </a>
 </li><li>
+Shell basic Popup control with no CSS, offscreen boundary text, and aria-live=polite:<br />
 <a target="ca" href="Coding Arena/Popups/Popup (Internal Content Shell)/demo.htm">
 Coding Arena/Popups/Popup (Internal Content Shell)/demo.htm
 </a>
 </li><li>
+Basic popup simulated Listbox control with offscreen boundary text, ARIA role=listbox, role=option, aria-posinset, aria-setsize, aria-selected, aria-label, and aria-owns:<br />
 <a target="ca" href="Coding Arena/Popups/Popup Listbox (Internal Content)/demo.htm">
 Coding Arena/Popups/Popup Listbox (Internal Content)/demo.htm
 </a>
 </li><li>
+Basic Popup Scrollable Div control with offscreen boundary text, and aria-live=polite:<br />
 <a target="ca" href="Coding Arena/Popups/Scrollable Div Popup (External Content)/demo.htm">
 Coding Arena/Popups/Scrollable Div Popup (External Content)/demo.htm
 </a>
@@ -6009,10 +6067,12 @@ A Progress Bar control is a relatively simple HTML5 control that, nevertheless, 
 The Progress Bar module automates this process by instantiating a Progress Bar control that can be programmatically set at runtime as values change.
 </p>
 <ul><li>
+Basic Popup Progress control with polyfill:<br />
 <a target="ca" href="Coding Arena/Progress Bars/Progress Bar (Dynamic Fixed Container with Trigger)/demo.htm">
 Coding Arena/Progress Bars/Progress Bar (Dynamic Fixed Container with Trigger)/demo.htm
 </a>
 </li><li>
+Basic Insert Progress control with polyfill:<br />
 <a target="ca" href="Coding Arena/Progress Bars/Progress Bar (Static Container Insertion with AutoStart)/demo.htm">
 Coding Arena/Progress Bars/Progress Bar (Static Container Insertion with AutoStart)/demo.htm
 </a>
@@ -6190,10 +6250,12 @@ Expected behaviors: Ensure that the scrollable container element receives keyboa
 The Scrollable Div Module automates these processes by making the scrollable container keyboard accessible.
 </p>
 <ul><li>
+Basic Scrollable Div control:<br />
 <a target="ca" href="Coding Arena/Scrollable Divs/Scrollable Div (Internal Content)/demo.htm">
 Coding Arena/Scrollable Divs/Scrollable Div (Internal Content)/demo.htm
 </a>
 </li><li>
+Basic Popup Scrollable Div control with offscreen boundary text, and aria-live=polite:<br />
 <a target="ca" href="Coding Arena/Scrollable Divs/Scrollable Div Popup (External Content)/demo.htm">
 Coding Arena/Scrollable Divs/Scrollable Div Popup (External Content)/demo.htm
 </a>
@@ -6364,6 +6426,7 @@ Expected behaviors: Ensure that the beginning and ending boundaries are conveyed
 The Tooltip Module automates these processes by instantiating the content as a Tooltip AccDC Object, which can be configured and controlled programmatically if desired to enhance functionality.
 </p>
 <ul><li>
+Simple Tooltip control with offscreen boundary text, and aria-live=polite:<br />
 <a target="ca" href="Coding Arena/Tooltips/Tooltip (Internal Content)/demo.htm">
 Coding Arena/Tooltips/Tooltip (Internal Content)/demo.htm
 </a>
@@ -6629,10 +6692,12 @@ Web Chat
 The concept of Web Chat seems complicated, but it's actually quite easy to make accessible for screen reader and keyboard only users.
 </p>
 <ul><li>
+Simple Web Chat control with offscreen boundary text, role=application, and aria-live=polite:<br />
 <a target="ca" href="Coding Arena/Web Chat and Dynamic Message Announcement/Web Chat (Static)/demo.htm">
 Coding Arena/Web Chat and Dynamic Message Announcement/Web Chat (Static)/demo.htm
 </a>
 </li><li>
+Simple Checkbox controls with aria-live=polite:<br />
 <a target="ca" href="Coding Arena/Web Chat and Dynamic Message Announcement/Dynamic Message Announcement/demo.htm">
 Coding Arena/Web Chat and Dynamic Message Announcement/Dynamic Message Announcement/demo.htm
 </a>
