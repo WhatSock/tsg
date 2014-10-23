@@ -1,6 +1,6 @@
 /*!
-ARIA Data Grid Module R1.1
-Copyright 2010-2013 Bryan Garaventa (WhatSock.com)
+ARIA Data Grid Module R1.2
+Copyright 2010-2014 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 
@@ -313,7 +313,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 																				if (t != this || this != config.page.row.focusedCell)
 																					config.page.row.move(config.page.row.resetPos(this));
 
-																				if ('ontouchstart' in window){
+																				if ('ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0){
 																					cellObject = getCellObject(this);
 																					trigger();
 																				}
@@ -324,7 +324,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 																					if (this != config.page.row.focusedCell)
 																						config.page.row.move(config.page.row.resetPos(this));
 
-																					if (!('ontouchstart' in window)){
+																					if (!('ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0)){
 																						cellObject = getCellObject(this);
 																						trigger();
 																					}
@@ -341,7 +341,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 																						if (this != config.page.row.focusedCell)
 																							config.page.row.move(config.page.row.resetPos(this));
 
-																						if (!('ontouchstart' in window)){
+																						if (!('ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0)){
 																							cellObject = getCellObject(this);
 																							trigger();
 																						}

@@ -1,6 +1,6 @@
 /*!
-CSS Drag and Drop Module R2.2 for AccDC Standalone, Dojo, and MooTools
-Copyright 2010-2013 Bryan Garaventa (WhatSock.com)
+CSS Drag and Drop Module R2.3 for AccDC Standalone, Dojo, and MooTools
+Copyright 2010-2014 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 	*/
 
@@ -132,7 +132,7 @@ return;
 if ( dd.handle && !$( event.target ).closest( dd.handle, event.currentTarget ).length ) 
 return;
 // store/reset some initial attributes
-drag.touched = ("ontouchstart" in window) ? this : null;
+drag.touched = ('ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0) ? this : null;
 dd.propagates = 1;
 dd.interactions = [ drag.interaction( this, dd ) ];
 dd.target = event.target;

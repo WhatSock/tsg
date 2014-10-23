@@ -1,6 +1,6 @@
 /*!
-ARIA Menu Module R2.4
-Copyright 2010-2013 Bryan Garaventa (WhatSock.com)
+ARIA Menu Module R2.5
+Copyright 2010-2014 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 	*/
 
@@ -165,7 +165,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							autoPosition: isNaN(config.autoPosition) ? 3 : config.autoPosition,
 							runOnceBefore: function(dc){
 								$A.bind(dc.triggerObj, 'focus', function(ev){
-									if (dc.loaded && !("ontouchstart" in window))
+									if (dc.loaded && !('ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0))
 										dc.close();
 								});
 							},
@@ -196,7 +196,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							className: config.containerClass || 'menu',
 							ariaLevel: config.ariaLevel || 3,
 							tabOut: function(ev, dc){
-								if (!("ontouchstart" in window)){
+								if (!('ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0)){
 									dc.top.close();
 								}
 							},
