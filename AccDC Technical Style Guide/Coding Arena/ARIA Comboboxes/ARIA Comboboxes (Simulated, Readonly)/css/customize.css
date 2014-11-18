@@ -1,0 +1,125 @@
+
+div.toplevel-div {
+position: absolute;
+z-index: 1;
+background-color: #f5f5f5;
+border: solid 1px #777;
+-webkit-box-shadow: 0 10px 6px -6px #777;
+-moz-box-shadow: 0 10px 6px -6px #777;
+box-shadow: 0 10px 6px -6px #777;
+padding: 3px;
+}
+
+div.middle-div {
+width: 100%;
+height: 100%;
+float: left;
+padding: 0;
+}
+
+ul.listbox {
+list-style: none;
+padding: 0;
+margin: 0;
+overflow: auto;
+border: solid thin black;
+float: left;
+text-align: left;
+height: 0px;
+}
+
+li.option {
+cursor: pointer;
+margin: 3px;
+display: block;
+width: 100%;
+text-decoration: none;
+font: bold 15px/15px HelveticaNeue, Arial;
+padding: 3px 5px;
+border: 1px solid #dedede;
+background: #a5b8c6;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#becbd6', endColorstr='#88a1b4'); /* IE */
+background: -webkit-gradient(linear, left top, left bottom, from(#becbd6), to(#88a1b4)); /* WebKit */
+background: -moz-linear-gradient(top, #becbd6, #88a1b4);
+border-color: #a2afb8 #8696a1 #6f818f;
+color: #000;
+text-shadow: 0 1px 0 #c4d0d9;
+-webkit-box-shadow: 0 1px 1px #d3d3d3, inset 0 1px 0 #ced8e0;
+-moz-box-shadow: 0 1px 1px #d3d3d3, inset 0 1px 0 #ced8e0;
+box-shadow: 0 1px 1px #d3d3d3, inset 0 1px 0 #ced8e0;    
+}
+
+li.option.active {
+background: #adbfcb;
+border-color: #8996a0 #798791 #6c7a85;
+text-shadow: 0 1px 0 #ced9e0;
+-webkit-box-shadow: 0 1px 1px #d3d3d3, inset 0 1px 0 #c2cfd8;
+-moz-box-shadow: 0 1px 1px #d3d3d3, inset 0 1px 0 #c2cfd8;
+box-shadow: 0 1px 1px #d3d3d3, inset 0 1px 0 #c2cfd8;
+outline: red 1px inset;
+}
+
+li.option span {
+text-align: left;
+}
+
+li.option * {
+float: left;
+}
+
+.desc {
+clear: both;
+}
+
+form {
+padding: 40px 20px;
+text-align: left;
+}
+
+form > * {
+float: left;
+margin-right: 30px;
+}
+
+.button {
+cursor: pointer;
+display: inline-block;
+text-decoration: none;
+padding: 8px 10px;
+border: 1px solid #dedede;
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
+background: #92dbf6;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#abe4f8', endColorstr='#6fcef3'); /* IE */
+background: -webkit-gradient(linear, left top, left bottom, from(#abe4f8), to(#6fcef3)); /* WebKit */
+background: -moz-linear-gradient(top, #abe4f8, #6fcef3);
+border-color: #000;
+color: #000;
+text-shadow: 0 1px 0 #b6e6f9;
+-webkit-box-shadow: 0 1px 1px #d6d6d6, inset 0 1px 0 #c0ebfa;
+-moz-box-shadow: 0 1px 1px #d6d6d6, inset 0 1px 0 #c0ebfa;
+box-shadow: 0 1px 1px #d6d6d6, inset 0 1px 0 #c0ebfa;
+}
+
+.button.pressed {
+background: #a5b8c6;
+filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#becbd6', endColorstr='#88a1b4'); /*  IE */
+background: -webkit-gradient(linear, left top, left bottom, from(#becbd6), to(#88a1b4)); /*  WebKit */
+background: -moz-linear-gradient(top,  #becbd6, #88a1b4);
+border-color: #000;
+color: #000;
+text-shadow: 0 1px 0 #c4d0d9;
+-webkit-box-shadow: 0 1px 1px #d3d3d3, inset 0 1px 0 #ced8e0;
+-moz-box-shadow: 0 1px 1px #d3d3d3, inset 0 1px 0 #ced8e0;
+box-shadow: 0 1px 1px #d3d3d3, inset 0 1px 0 #ced8e0;
+}
+
+.button span {
+font-weight: bold;
+}
+
+/* For Fastclick: Disable certain interactions on touch devices */
+body {
+-webkit-touch-callout: none; -webkit-text-size-adjust: none; -webkit-user-select: none; -webkit-highlight: none; -webkit-tap-highlight-color: rgba(0,0,0,0);
+}

@@ -1,4 +1,4 @@
-AccDC Technical Style Guide for Standalone and jQuery (06/27/2014)
+AccDC Technical Style Guide for Standalone and jQuery (11/17/2014)
 ===
 
 The AccDC Technical Style Guide is designed to provide reliable and consistent interaction designs that are accessible to the highest percentage of people possible, and to establish a baseline for Functional Accessibility that can be utilized, built upon, studied, and tested against. 
@@ -26,6 +26,9 @@ Including: Internally and externally referenced content with markup and image pr
 
 ARIA and Non-ARIA Tabs
 Including: Internally and externally referenced content with markup and image preloading, programmatic control of tab panels, flow control, callbacks, and HTML5 Bootstrapping.
+
+ARIA Comboboxes
+Including editable auto-suggest filter fields, readonly input dropdowns, simulated active element support, dynamic population, startstring matches, substring matches, word matches, and full programmatic control.
 
 ARIA Data Grids
 Including: Readonly grids, single or multi-row select, editable strings and toggle values, automatic pagination, infinite scrolling, full programmatic control, and callbacks.

@@ -1,0 +1,285 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Practice Template Page</title>
+
+<link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+<link rel="stylesheet" type="text/css" href="css/customize.css" />
+
+<script type="text/javascript" src="js/detectmobilebrowser.js">
+// Set flag for smart phone displays
+</script>
+
+<script type="text/javascript" src="../../_common/js/jquery-1.8.3.min.js">
+// Load jQuery.
+// This is not necessary if using the Standalone AccDC API version.
+</script>
+
+<script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+// Load the AccDC API, which all modules are plugged into as the common interface.
+</script>
+
+<!-- Now load all desired modules, which plugs them into AccDC. -->
+<script type="text/javascript" src="../../../2 Accessible Component Modules/aria_combobox_module.min.js"></script>
+
+<script type="text/javascript" src="js/setup.js">
+// Run the setup script where module invocation statements are contained.
+</script>
+
+</head>
+<body>
+<div>
+
+<h2>
+Some random page with a language selector
+</h2>
+
+<div>
+
+<form id="frm" class="clearfix">
+
+<!--
+The attribute role=combobox is required;
+So too is the tabindex attribute to ensure keyboard accessibility.
+-->
+
+<span title="Choose language" role="combobox" tabindex="0" id="langBtnId" class="button">
+<span id="langChild"><!--
+Selected values will be dynamically inserted here.
+--></span>
+<sup aria-hidden="true" id="arrowSymbolId">&#8595;</sup>
+</span>
+
+<button>
+Test saved value
+</button>
+
+<select name="language" id="languagesId" style="display: none;">
+<option value="Acholi">Acholi</option>
+<option value="Afrikaans">Afrikaans</option>
+<option value="Akan">Akan</option>
+<option value="Albanian">Albanian</option>
+<option value="Amharic">Amharic</option>
+<option value="Arabic">Arabic</option>
+<option value="Aramaic">Aramaic</option>
+<option value="Armenian">Armenian</option>
+<option value="Bambara">Bambara</option>
+<option value="Bantu">Bantu</option>
+<option value="Bari">Bari</option>
+<option value="Basque">Basque</option>
+<option value="Behdini">Behdini</option>
+<option value="Belarusan">Belarusan</option>
+<option value="Bemba">Bemba</option>
+<option value="Bengali">Bengali</option>
+<option value="Berber">Berber</option>
+<option value="Bikol">Bikol</option>
+<option value="Bosnian">Bosnian</option>
+<option value="Bulgarian">Bulgarian</option>
+<option value="Cambodian  (Khmer)">Cambodian  (Khmer)</option>
+<option value="Cantonese">Cantonese</option>
+<option value="Cape Verdean">Cape Verdean</option>
+<option value="Catalan">Catalan</option>
+<option value="Cebuano">Cebuano</option>
+<option value="Chaldean">Chaldean</option>
+<option value="Chamorro">Chamorro</option>
+<option value="Chichewa">Chichewa</option>
+<option value="Chimwiini">Chimwiini</option>
+<option value="Chiu Chow">Chiu Chow</option>
+<option value="Chuukese">Chuukese</option>
+<option value="Cree">Cree</option>
+<option value="Croatian Czech">Croatian Czech</option>
+<option value="Danish">Danish</option>
+<option value="Dari">Dari</option>
+<option value="Dinka">Dinka</option>
+<option value="Dula">Dula</option>
+<option value="Dutch">Dutch</option>
+<option selected value="English">English</option>
+<option value="Estonian">Estonian</option>
+<option value="Ewe">Ewe</option>
+<option value="Fante">Fante</option>
+<option value="Farsi">Farsi</option>
+<option value="Fiji Hindi">Fiji Hindi</option>
+<option value="Finnish">Finnish</option>
+<option value="Flemish">Flemish</option>
+<option value="Foochow">Foochow</option>
+<option value="French">French</option>
+<option value="French Creole">French Creole</option>
+<option value="Fukienese">Fukienese</option>
+<option value="Fulani">Fulani</option>
+<option value="Fulfulde">Fulfulde</option>
+<option value="Ga">Ga</option>
+<option value="Galician">Galician</option>
+<option value="Georgian">Georgian</option>
+<option value="German">German</option>
+<option value="Greek">Greek</option>
+<option value="Guarani">Guarani</option>
+<option value="Guizhou">Guizhou</option>
+<option value="Gujarati">Gujarati</option>
+<option value="Haitian Creole">Haitian Creole</option>
+<option value="Hakha">Hakha</option>
+<option value="Hakka">Hakka</option>
+<option value="Hamery">Hamery</option>
+<option value="Hausa">Hausa</option>
+<option value="Hebrew Hindi">Hebrew Hindi</option>
+<option value="Hindko">Hindko</option>
+<option value="Hmong">Hmong</option>
+<option value="Hokkien">Hokkien</option>
+<option value="Huizhou">Huizhou</option>
+<option value="Hunanese">Hunanese</option>
+<option value="Hungarian">Hungarian</option>
+<option value="Ibanag">Ibanag</option>
+<option value="Ibo">Ibo</option>
+<option value="Icelandic">Icelandic</option>
+<option value="Ilocano">Ilocano</option>
+<option value="Ilonggo">Ilonggo</option>
+<option value="Indonesian">Indonesian</option>
+<option value="Inupiaq">Inupiaq</option>
+<option value="Italian">Italian</option>
+<option value="Japanese">Japanese</option>
+<option value="Javanese">Javanese</option>
+<option value="Jola">Jola</option>
+<option value="Kachi">Kachi</option>
+<option value="Kannada">Kannada</option>
+<option value="Karen">Karen</option>
+<option value="Karon">Karon</option>
+<option value="Kashmiri">Kashmiri</option>
+<option value="Kayah">Kayah</option>
+<option value="Kazakh">Kazakh</option>
+<option value="Kinyarwanda">Kinyarwanda</option>
+<option value="Kirghiz">Kirghiz</option>
+<option value="Kirundi">Kirundi</option>
+<option value="Korean">Korean</option>
+<option value="Krahn">Krahn</option>
+<option value="Kribati">Kribati</option>
+<option value="Kunama">Kunama</option>
+<option value="Kurdish">Kurdish</option>
+<option value="Kurmanji">Kurmanji</option>
+<option value="Lahu">Lahu</option>
+<option value="Laotian">Laotian</option>
+<option value="Latvian">Latvian</option>
+<option value="Liberian">Liberian</option>
+<option value="Lingala">Lingala</option>
+<option value="Lithuanian">Lithuanian</option>
+<option value="Luo">Luo</option>
+<option value="Luxembourgeois">Luxembourgeois</option>
+<option value="Maay Maay">Maay Maay</option>
+<option value="Macedonian">Macedonian</option>
+<option value="Maharathi">Maharathi</option>
+<option value="Malay">Malay</option>
+<option value="Malayalam">Malayalam</option>
+<option value="Maltese">Maltese</option>
+<option value="Mam">Mam</option>
+<option value="Mandarin">Mandarin</option>
+<option value="Mandingo">Mandingo</option>
+<option value="Maninka">Maninka</option>
+<option value="Marathi">Marathi</option>
+<option value="Marshallese">Marshallese</option>
+<option value="Mien">Mien</option>
+<option value="Mina">Mina</option>
+<option value="Mixteco">Mixteco</option>
+<option value="Moldavian">Moldavian</option>
+<option value="Mongolian">Mongolian</option>
+<option value="Montenegrin">Montenegrin</option>
+<option value="Motlockese">Motlockese</option>
+<option value="Myanmar">Myanmar</option>
+<option value="Navajo">Navajo</option>
+<option value="Neopolitan">Neopolitan</option>
+<option value="Nepali">Nepali</option>
+<option value="Nigerian Pidgin">Nigerian Pidgin</option>
+<option value="Norwegian">Norwegian</option>
+<option value="Nuer">Nuer</option>
+<option value="Nyanja">Nyanja</option>
+<option value="Ojibway">Ojibway</option>
+<option value="Oromo">Oromo</option>
+<option value="Pampangan">Pampangan</option>
+<option value="Pangasinan">Pangasinan</option>
+<option value="Papago">Papago</option>
+<option value="Papiamento">Papiamento</option>
+<option value="Pashto">Pashto</option>
+<option value="Patois">Patois</option>
+<option value="Pidgin Creole">Pidgin Creole</option>
+<option value="Polish">Polish</option>
+<option value="Portuguese">Portuguese</option>
+<option value="Punjabi">Punjabi</option>
+<option value="Quechua">Quechua</option>
+<option value="Romanian">Romanian</option>
+<option value="Romansch">Romansch</option>
+<option value="Russian">Russian</option>
+<option value="Samoan">Samoan</option>
+<option value="Serahule">Serahule</option>
+<option value="Serbian">Serbian</option>
+<option value="Serbo Croatian">Serbo Croatian</option>
+<option value="Shanghainese">Shanghainese</option>
+<option value="Shona">Shona</option>
+<option value="Sierra Leone Creole">Sierra Leone Creole</option>
+<option value="Sindhi">Sindhi</option>
+<option value="Sinhalese">Sinhalese</option>
+<option value="Slovak">Slovak</option>
+<option value="Slovene">Slovene</option>
+<option value="Somali">Somali</option>
+<option value="Sorani">Sorani</option>
+<option value="Sousu">Sousu</option>
+<option value="Spanish">Spanish</option>
+<option value="Sudanese">Sudanese</option>
+<option value="Swahili">Swahili</option>
+<option value="Swedish">Swedish</option>
+<option value="Tagalog">Tagalog</option>
+<option value="Taiwanese">Taiwanese</option>
+<option value="Tajik">Tajik</option>
+<option value="Tamil">Tamil</option>
+<option value="Telegu">Telegu</option>
+<option value="Temne">Temne</option>
+<option value="Thai">Thai</option>
+<option value="Tibetan">Tibetan</option>
+<option value="Tigrinya">Tigrinya</option>
+<option value="Toishanese">Toishanese</option>
+<option value="Tonga">Tonga</option>
+<option value="Tongan">Tongan</option>
+<option value="Turkish">Turkish</option>
+<option value="Twi">Twi</option>
+<option value="Tzotzil">Tzotzil</option>
+<option value="Ukrainian">Ukrainian</option>
+<option value="Urdu">Urdu</option>
+<option value="Uyghur">Uyghur</option>
+<option value="Uzbek">Uzbek</option>
+<option value="Vietnamese">Vietnamese</option>
+<option value="Visayan">Visayan</option>
+<option value="West African Creole">West African Creole</option>
+<option value="Wolof">Wolof</option>
+<option value="Xhosa">Xhosa</option>
+<option value="Yapese">Yapese</option>
+<option value="Yemen">Yemen</option>
+<option value="Yiddish">Yiddish</option>
+<option value="Yoruba">Yoruba</option>
+<option value="Yucatecan">Yucatecan</option>
+<option value="Yupik">Yupik</option>
+<option value="Zulu">Zulu</option>
+</select>
+
+</form>
+
+</div>
+
+<div class="tal">
+The Language field is a readonly ARIA Combobox widget that uses simulated button markup.
+</div>
+
+<div class="desc">
+<p>
+The simulated combobox is optomized for screen reader and keyboard only users.
+</p>
+<p><pre>
+Click the Language button to open the combobox control.
+Within the combobox, press the Down arrow to navigate into the dropdown and use the Up and Down arrow keys to navigate available options.
+Press any letter or number within a readonly field to jump to an option starting with that character or digit.
+Press Enter or Alt+Up to close the dropdown and save the selection.
+To cancel, press Escape, Tab or Shift+Tab to close the dropdown.
+Sighted mouse users can click the desired option to save the selection and close the dropdown.
+</pre></p>
+</div>
+
+</div>
+
+</body>
+</html>

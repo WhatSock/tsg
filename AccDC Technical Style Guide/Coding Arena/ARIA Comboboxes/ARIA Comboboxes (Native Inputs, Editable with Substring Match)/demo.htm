@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Practice Template Page</title>
+
+<link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+<link rel="stylesheet" type="text/css" href="css/customize.css" />
+
+<script type="text/javascript" src="js/detectmobilebrowser.js">
+// Set flag for smart phone displays
+</script>
+
+<script type="text/javascript" src="../../_common/js/jquery-1.8.3.min.js">
+// Load jQuery.
+// This is not necessary if using the Standalone AccDC API version.
+</script>
+
+<script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+// Load the AccDC API, which all modules are plugged into as the common interface.
+</script>
+
+<!-- Now load all desired modules, which plugs them into AccDC. -->
+<script type="text/javascript" src="../../../2 Accessible Component Modules/aria_combobox_module.min.js"></script>
+
+<script type="text/javascript" src="js/setup.js">
+// Run the setup script where module invocation statements are contained.
+</script>
+
+</head>
+<body>
+<div>
+
+<h2>
+Author Search
+</h2>
+<table><tr>
+<td>
+<label for="authrEdit">
+Author name:
+</label>
+</td>
+<td>
+
+<!--
+The attribute role=combobox is required.
+-->
+
+<input role="combobox" type="text" name="author-input-value" required id="authrEdit" />
+
+<!--
+For editable Input elements:
+To ensure accessibility for non-sighted touch screen device users, a dynamic Close icon is needed.
+This must include an active element role such as 'button' or 'link', and include informative label text.
+-->
+
+<img
+id="mobileCloseIcon"
+class="hidden"
+src="img/close.png"
+role="button"
+title="Close Suggestion Dropdown"
+aria-label="Close Suggestion Dropdown"
+/>
+
+</td>
+<td>
+<button class="submit" id="authrBtn">
+Submit
+</button>
+</td>
+</tr></table>
+
+<div class="tal">
+The Author field is an editable ARIA Combobox widget that uses a native Input element.
+<br />
+Substring matches are used to render suggestions.
+<br />
+Type "fantasy", "humor", "scifi", or other strings to match.
+</div>
+
+<div class="desc">
+<p>
+The native input combobox is optomized for screen reader and keyboard only users.
+</p>
+<p><pre>
+Set focus to the Author field to open the combobox control.
+Within the combobox, first type into the field, then press the Down arrow to navigate into the dropdown and use the Up and Down arrow keys to navigate available options.
+Press any other letter or number, or the Left or Right arrow keys to then move focus back into the Input for editing.
+Press Enter or Alt+Up to close the dropdown and save the selection.
+To cancel, press Escape, Tab or Shift+Tab to close the dropdown.
+Sighted mouse users can click the desired option to save the selection and close the dropdown.
+</pre></p>
+</div>
+
+</div>
+
+<select name="authors" id="authors" style="display: none;">
+<option value="Abercrombie, Joe">Abercrombie, Joe - (Fantasy)</option>
+<option value="Adams, Douglas">Adams, Douglas - (SciFi,Humor)</option>
+<option value="Aldiss, Brian">Aldiss, Brian - (Fantasy,SciFi)</option>
+<option value="Alexander, Lloyd">Alexander, Lloyd - (Fantasy)</option>
+<option value="Anderson, Kevin J.">Anderson, Kevin J. - (SciFi,Fantasy)</option>
+<option value="Anthony, Piers">Anthony, Piers - (Fantasy)</option>
+<option value="Asher, Neal">Asher, Neal - (SciFi)</option>
+<option value="Axler, James">Axler, James - (SciFi,PostApocalyptic)</option>
+<option value="Baker, Kage">Baker, Kage - (Fantasy)</option>
+<option value="Barker, Clive">Barker, Clive - (Fantasy,Horror)</option>
+<option value="Barlow, Steve and Skidmore, Steve">Barlow, Steve and Skidmore, Steve - (Fantasy)</option>
+<option value="Beagle, Peter S.">Beagle, Peter S. - (Fantasy,Humor,FairyTale)</option>
+<option value="Bear, Elizabeth">Bear, Elizabeth - (SciFi,Fantasy,CyberPunk)</option>
+<option value="Bear, Greg">Bear, Greg - (SciFi)</option>
+<option value="Bellairs, John">Bellairs, John - (DarkFantasy,Mystery,Humor)</option>
+<option value="Brin, David">Brin, David - (SciFi)</option>
+<option value="Brooks, Terry">Brooks, Terry - (Fantasy)</option>
+<option value="Bryson, Bill">Bryson, Bill - (Memoir,Humor)</option>
+<option value="Buckell, Tobias S.">Buckell, Tobias S. - (SciFi,CyberPunk)</option>
+<option value="Butcher, Jim">Butcher, Jim - (Fantasy,Mystery)</option>
+<option value="Camp, L. Sprague de">Camp, L. Sprague de - (Fantasy)</option>
+<option value="Canavan, Trudi">Canavan, Trudi - (Fantasy)</option>
+<option value="Card, Orson Scott">Card, Orson Scott - (Fantasy)</option>
+<option value="Carman, Patrick">Carman, Patrick - (Fantasy)</option>
+<option value="Cervantes, Miguel de">Cervantes, Miguel de - (Classical,Humor)</option>
+<option value="Chalker, Jack L.">Chalker, Jack L. - (Fantasy)</option>
+<option value="Cherryh, C. J.">Cherryh, C. J. - (SciFi,Fantasy)</option>
+<option value="Clarke, Susanna">Clarke, Susanna - (Fantasy)</option>
+<option value="Cline, Ernest">Cline, Ernest - (SciFi)</option>
+<option value="Collins, Suzanne">Collins, Suzanne - (SciFi, Futuristic)</option>
+<option value="Constantine, Storm">Constantine, Storm - Fantasy</option>
+<option value="Cooper, Susan">Cooper, Susan - (Fantasy)</option>
+<option value="Correia, Larry">Correia, Larry - (SciFi,Fantasy)</option>
+<option value="Crichton, Michael">Crichton, Michael - (SciFi,Suspense)</option>
+<option value="Dick, Philip K.">Dick, Philip K. - (SciFi)</option>
+<option value="Donaldson, Stephen R.">Donaldson, Stephen R. - (Fantasy)</option>
+<option value="Drake, David">Drake, David - (SciFi)</option>
+<option value="DuPrau, Jeanne">DuPrau, Jeanne - (Fantasy)</option>
+<option value="Eddings, David">Eddings, David - (Fantasy)</option>
+<option value="Elliott, Kate">Elliott, Kate - (Fantasy)</option>
+<option value="Erikson, Steven">Erikson, Steven - (Fantasy)</option>
+<option value="Evans, Chris">Evans, Chris - (Fantasy)</option>
+<option value="Farland, David">Farland, David - (Fantasy,SciFi)</option>
+<option value="Feist, Raymond E.">Feist, Raymond E. - (Fantasy,Mythology)</option>
+<option value="Fisher, Jude">Fisher, Jude - (Fantasy)</option>
+<option value="Flynn, Michael">Flynn, Michael - (SciFi)</option>
+<option value="Foster, Alan Dean">Foster, Alan Dean - (SciFi,Fantasy)</option>
+<option value="Friedman, C. S.">Friedman, C. S. - (Fantasy)</option>
+<option value="Frost, Gregory">Frost, Gregory - (Fantasy)</option>
+<option value="Funke, Cornelia">Funke, Cornelia - (Fantasy)</option>
+<option value="Gaiman, Neil">Gaiman, Neil - (Fantasy)</option>
+<option value="Gemmell, David">Gemmell, David - (Fantasy)</option>
+<option value="Gibson, William">Gibson, William - (SciFi,CyberPunk)</option>
+<option value="Gischler, Victor">Gischler, Victor - (Fantasy)</option>
+<option value="Goodkind, Terry">Goodkind, Terry - (Fantasy)</option>
+<option value="Greenwood, Ed">Greenwood, Ed - (Fantasy)</option>
+<option value="Grossman, Lev">Grossman, Lev - (Fantasy)</option>
+<option value="Haldeman, Joe">Haldeman, Joe - (SciFi)</option>
+<option value="Hamilton, Peter F.">Hamilton, Peter F. - (SciFi)</option>
+<option value="Heinlein, Robert A.">Heinlein, Robert A. - (Fantasy,SciFi)</option>
+<option value="Hendee, Barb and J. C.">Hendee, Barb and J. C. - (Fantasy)</option>
+<option value="Herbert, Frank and Brian">Herbert, Frank and Brian - (SciFi)</option>
+<option value="Hines, Jim C.">Hines, Jim C. - (Fantasy)</option>
+<option value="Hobb, Robin">Hobb, Robin - (Fantasy)</option>
+<option value="Holdstock, Robert">Holdstock, Robert - (DarkFantasy)</option>
+<option value="Holt, Tom">Holt, Tom - (Fantasy,Humor)</option>
+<option value="Horowitz, Anthony">Horowitz, Anthony - (Fantasy)</option>
+<option value="Hulick, Douglas">Hulick, Douglas - (Fantasy)</option>
+<option value="Huntington, Geoffrey">Huntington, Geoffrey - (Fantasy)</option>
+<option value="Irving, John">Irving, John - (Contemporary)</option>
+<option value="Jordan, Robert">Jordan, Robert - (Fantasy)</option>
+<option value="Kay, Guy Gavriel">Kay, Guy Gavriel - (Fantasy)</option>
+<option value="King, Stephen">King, Stephen - (Horror,DarkFantasy)</option>
+<option value="Knox, Elizabeth">Knox, Elizabeth - (Fantasy)</option>
+<option value="Koch, G. J.">Koch, G. J. - (SciFi)</option>
+<option value="Koontz, Dean">Koontz, Dean - (Horror,DarkFantasy)</option>
+<option value="Lackey, Mercedes &amp;amp; Norton, Andre">Lackey, Mercedes &amp; Norton, Andre - (Fantasy)</option>
+<option value="Lake, Jay">Lake, Jay - (SciFi,Fantasy)</option>
+<option value="Landy, Derek">Landy, Derek - (Fantasy)</option>
+<option value="Lawhead, Stephen R.">Lawhead, Stephen R. - (Fantasy)</option>
+<option value="Leiber, Fritz">Leiber, Fritz - (Fantasy,SciFi)</option>
+<option value="Lewis, C. S.">Lewis, C. S. - (Fantasy)</option>
+<option value="Lynch, Scott">Lynch, Scott - (Fantasy)</option>
+<option value="MacHale, D. J.">MacHale, D. J. - (Fantasy)</option>
+<option value="Martin, George R. R.">Martin, George R. R. - (Fantasy)</option>
+<option value="McClellan, Brian">McClellan, Brian - (Fantasy)</option>
+<option value="McKiernan, Dennis L.">McKiernan, Dennis L. - (Fantasy)</option>
+<option value="McKillip, Patricia A.">McKillip, Patricia A. - (Fantasy)</option>
+<option value="Mead, Richelle">Mead, Richelle - (Fantasy)</option>
+<option value="Miller, Walter M.">Miller, Walter M. - (PostApocalyptic,Humor)</option>
+<option value="Modesitt Jr, L. E.">Modesitt Jr, L. E. - (Fantasy)</option>
+<option value="Moers, Walter">Moers, Walter - (Fantasy)</option>
+<option value="Moorcock, Michael">Moorcock, Michael - (Fantasy)</option>
+<option value="Morgan, Richard K.">Morgan, Richard K. - (SciFi,CyberPunk,Fantasy)</option>
+<option value="Morgenstern, Erin">Morgenstern, Erin - (Fantasy)</option>
+<option value="Mosley, Walter">Mosley, Walter - (Fantasy)</option>
+<option value="Murphy, Pat">Murphy, Pat - (SciFi,Humor)</option>
+<option value="Newcomb, Robert">Newcomb, Robert - (Fantasy)</option>
+<option value="Niven, Larry">Niven, Larry - (SciFi)</option>
+<option value="Nix, Garth">Nix, Garth - (Fantasy)</option>
+<option value="Norton, Andre">Norton, Andre - (Fantasy)</option>
+<option value="Owen, James A.">Owen, James A. - (Fantasy)</option>
+<option value="Pelevin, Victor">Pelevin, Victor - (Fantasy)</option>
+<option value="Pohl, Frederik">Pohl, Frederik - (SciFi)</option>
+<option value="Pratchett, Terry">Pratchett, Terry - (Fantasy,Humor)</option>
+<option value="Pullman, Philip">Pullman, Philip - (Fantasy)</option>
+<option value="Rankin, Robert">Rankin, Robert - (Fantasy,Humor)</option>
+<option value="Rehder, Ben">Rehder, Ben - (Humor,Mystery)</option>
+<option value="Revis, Beth">Revis, Beth - (SciFi)</option>
+<option value="Reynolds, Alastair">Reynolds, Alastair - (SciFi)</option>
+<option value="Robbins, Tom">Robbins, Tom - (Fiction,Humor)</option>
+<option value="Rosenberg, Joel">Rosenberg, Joel - (Fantasy)</option>
+<option value="Rothfuss, Patrick">Rothfuss, Patrick - (Fantasy)</option>
+<option value="Rowling, J. K.">Rowling, J. K. - (Fantasy)</option>
+<option value="Saberhagen, Fred">Saberhagen, Fred - (SciFi,Fantasy)</option>
+<option value="Sage, Angie">Sage, Angie - (Fantasy)</option>
+<option value="Salvatore, R. A.">Salvatore, R. A. - (Fantasy)</option>
+<option value="Sanderson, Brandon">Sanderson, Brandon - (Fantasy)</option>
+<option value="Scalzi, John">Scalzi, John - (SciFi,Fantasy)</option>
+<option value="Schafer, Courtney">Schafer, Courtney - (Fantasy)</option>
+<option value="Scholes, Ken">Scholes, Ken - (Fantasy)</option>
+<option value="Schroeder, Karl">Schroeder, Karl - (SciFi)</option>
+<option value="Sheffield, Charles">Sheffield, Charles - (SciFi)</option>
+<option value="Shinn, Sharon">Shinn, Sharon - (Fantasy)</option>
+<option value="Silverberg, Robert">Silverberg, Robert - (Fantasy,SciFi)</option>
+<option value="Simmons, Dan">Simmons, Dan - (SciFi)</option>
+<option value="Staveley, Brian">Staveley, Brian - (Fantasy)</option>
+<option value="Steinbeck, John">Steinbeck, John - (Humor)</option>
+<option value="Stephenson, Neal">Stephenson, Neal - (SciFi,CyberPunk)</option>
+<option value="Sterling, Bruce">Sterling, Bruce - (CyberPunk,SciFi)</option>
+<option value="Stewart, Paul &amp;amp; Riddell, Chris">Stewart, Paul &amp; Riddell, Chris - (Fantasy)</option>
+<option value="Stirling, S. M.">Stirling, S. M. - (SciFi)</option>
+<option value="Straub, Peter">Straub, Peter - (Horror)</option>
+<option value="Strieber, Whitley">Strieber, Whitley - (Horror)</option>
+<option value="Stroud, Jonathan">Stroud, Jonathan - (Fantasy)</option>
+<option value="Sturges, Matthew">Sturges, Matthew - (Fantasy)</option>
+<option value="Sullivan, Michael J.">Sullivan, Michael J. - (Fantasy)</option>
+<option value="Swanwick, Michael">Swanwick, Michael - (Fantasy)</option>
+<option value="Taylor, G. P.">Taylor, G. P. - (Fantasy)</option>
+<option value="Theroux, Marcel">Theroux, Marcel - (PostApocalyptic)</option>
+<option value="Tolkien, J. R. R.">Tolkien, J. R. R. - (Fantasy)</option>
+<option value="Turtledove, Harry">Turtledove, Harry - (SciFi,HistoricalFiction,Fantasy)</option>
+<option value="Van Vogt, A. E.">Van Vogt, A. E. - (SciFi)</option>
+<option value="Vance, Jack">Vance, Jack - (SciFi)</option>
+<option value="Weeks, Brent">Weeks, Brent - (Fantasy)</option>
+<option value="Weis, Margaret and Hickman, Tracy">Weis, Margaret and Hickman, Tracy - (Fantasy)</option>
+<option value="Wexler, Django">Wexler, Django - (Fantasy)</option>
+<option value="White, T. H.">White, T. H. - (Fantasy,Humor)</option>
+<option value="Williams, Tad">Williams, Tad - (Fantasy)</option>
+<option value="Winters, Ben">Winters, Ben - (PreApocalyptic,Mystery)</option>
+<option value="Wolfe, Gene">Wolfe, Gene - (SciFi,Fantasy)</option>
+<option value="Wright, John C.">Wright, John C. - (SciFi)</option>
+<option value="Zahn, Timothy">Zahn, Timothy - (SciFi)</option>
+<option value="Zelazny, Roger">Zelazny, Roger - (Fantasy)</option>
+<option value="Zicree, Marc Scott">Zicree, Marc Scott - (Fantasy)</option>
+<option value="Zink, Michelle">Zink, Michelle - (Fantasy)</option>
+</select>
+
+</body>
+</html>
