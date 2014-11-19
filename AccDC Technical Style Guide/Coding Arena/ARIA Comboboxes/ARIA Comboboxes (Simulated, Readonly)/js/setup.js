@@ -5,7 +5,7 @@ $A.bind(window, 'load', function(){
 
 	// Set CSS autopositioning relative to the triggering element.
 	// Accepted AccDC API values between 0-disabled-default and 12
-	// For details, see WhatSock.com > Core API > .autoPosition
+	// For details, see WhatSock.com > Core API > CSS > .autoPosition
 	myLangCB.setAutoPosition(5);
 
 	// Set a positive or negative top/left offset to be applied to the autoPosition property calculation

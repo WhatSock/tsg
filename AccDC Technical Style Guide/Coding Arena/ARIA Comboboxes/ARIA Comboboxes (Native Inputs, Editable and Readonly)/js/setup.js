@@ -8,7 +8,7 @@ $A.bind(window, 'load', function(){
 
 	// Set CSS autopositioning relative to the triggering element.
 	// Accepted AccDC API values between 0-disabled-default and 12
-	// For details, see WhatSock.com > Core API > .autoPosition
+	// For details, see WhatSock.com > Core API > CSS > .autoPosition
 	myStateCombobox.setAutoPosition(5);
 
 	// Set a positive or negative top/left offset to be applied to the autoPosition property calculation
@@ -17,6 +17,9 @@ $A.bind(window, 'load', function(){
 					top: 5,
 					left: 10
 					});
+
+	// Force the highlighted value to be automatically saved when focus moves away from the Combobox
+	myStateCombobox.setAutoComplete(true);
 
 	// Logic to distinguish between touch screen devices
 	if (!('ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0)){
@@ -80,7 +83,6 @@ $A.bind(window, 'load', function(){
 		}
 	});
 
-	// Force the highlighted value to be automatically saved when focus moves away from the Combobox
 	myCountryCombobox.setAutoComplete(true);
 
 	if (!('ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0)){
