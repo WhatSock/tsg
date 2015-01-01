@@ -4,24 +4,4 @@ When a control is bootstrapped, there is no setup.js file. All configurations ar
 
 Bootstrapping is designed to handle common control types that span multiple pages with similar setup configurations.
 
-Load syntax:
-
-<head>
-
-<script type="text/javascript" src="../Coding Arena/_common/js/jquery-1.8.3.min.js">
-// Load jQuery.
-// This is not necessary if using the Standalone AccDC API version.
-</script>
-
-<script type="text/javascript" src="../1 AccDC API/For jQuery/Acc.DC.API.js">
-// Load the AccDC API, which all modules are plugged into as the common interface.
-</script>
-
-<!-- Now load all desired modules, which plugs them into AccDC. -->
-<script type="text/javascript" src="../2 Accessible Component Modules/acordion_generator.min.js"></script>
-
-<script type="text/javascript" src="accdc_bootstrap.js">
-// Load AccDC Bootstrap to enable HTML parsing.
-</script>
-
-</head>
+View bootstrap examples in the Coding Arena, or read the setup instructions within the AccDC Technical Style Guide to learn how to implement the Bootstrap module.
