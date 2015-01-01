@@ -2,7 +2,7 @@ Load syntax:
 
 <head>
 
-<script type="text/javascript" src="../../Coding Arena/_common/js/mootools-core-1.4.5-full-nocompat-yc.js">
+<script type="text/javascript" src="../../Coding Arena/_common/js/MooTools-Core.js">
 // Load MooTools.
 </script>
 
