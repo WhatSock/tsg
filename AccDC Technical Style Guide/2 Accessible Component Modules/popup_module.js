@@ -1,6 +1,6 @@
 /*!
-Popup Module R1.1
-Copyright 2010-2013 Bryan Garaventa (WhatSock.com)
+Popup Module R1.2
+Copyright 2010-2015 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 
@@ -24,6 +24,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 						{
 						role: 'Popup',
 						bind: 'click',
+						isToggle: true,
 						forceFocus: true,
 						accStart: 'Start',
 						accEnd: 'End',
@@ -42,7 +43,12 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							});
 						},
 						announce: true,
+						runAfter: function(dc){
+							$A.setAttr(dc.triggerObj, 'aria-expanded', 'true');
+						},
 						runAfterClose: function(dc){
+							$A.setAttr(dc.triggerObj, 'aria-expanded', 'false');
+
 							// Remove dynamically added resize event
 							$A.unbind(window, '.popup');
 						},
@@ -57,6 +63,12 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 						className: 'popup',
 						closeClassName: 'popupClose'
 						}, true);
+
+		var t = typeof overrides.trigger === 'string'
+			? $A.query(overrides.trigger)[0] : overrides.trigger.nodeType ? overrides.trigger : null;
+
+		if (t)
+			$A.setAttr(t, 'aria-expanded', 'false');
 
 		// Return the new popup AccDC Object ID
 		return overrides.id;
