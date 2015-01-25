@@ -2,7 +2,7 @@ ARIA Menus
 
 An ARIA Menu is a simple control type that can easily be made accessible.
 
-Expected behaviors: A keyboard accessible triggering element opens the menu, the arrow keys are used to browse available menu items or open and close submenus, pressing Tab will close all open menus, and pressing Escape will close the currently open menu.
+Expected behaviors: A keyboard accessible mechanism opens the menu, the arrow keys are used to browse available menu items or open and close submenus, pressing Tab will close all open menus, and pressing Escape will close the currently open menu.
 
 ARIA menus can be implemented in two ways, horizontally or vertically.
 
@@ -13,6 +13,14 @@ A vertical menu is navigated using the Up and Down arrow keys to scroll through 
 A horizontal menu is navigated using the Left and Right arrow keys to scroll through menu items, and Up and Down are used to close or open submenus.
 
 You can optionally set different interaction models for specific menus or submenus depending on how the menu is visually presented, so that the behavior properly fits the UI design.
+
+Additionally, a menu may be triggered using either the left or right click, with accompanying behaviors for each.
+
+A left click menu often uses a link or button as the triggering element, and also supports the Down arrow, Enter, and Space keys to invoke the menu from the keyboard.
+
+For more complex controls, such as interactive ARIA Widgets that include their own functionality attached to the arrow keys and the left click handler, the right click menu may be used, which also supports the Shift+F10 and Application keystrokes for keyboard support.
+
+The right click menu may also be used on the Body element to present a customized page wide context menu that has no dedicated triggering element.
 
 The Menu Module automates these processes by adding all related event handlers and managing all related rendering procedures.
 
@@ -115,14 +123,14 @@ Example:
 
 The following attributes are handled automatically by the Menu Module:
 
-• role="menubar"
-• role="menu"
+• role="menubar" (horizontal)
+• role="menu" (vertical)
 • aria-owns
 • tabindex
 • role="menuitem"
-• aria-selected
 • aria-posinset
 • aria-setsize
+• aria-haspopup
 
 HTML5 attributes that can optionally be added to the menu list container markup:
 
@@ -167,6 +175,7 @@ Parameters
 
 Parameter 1: The triggering element CSS Selector :
 This points to the triggering element link or button that you want to use as the menu triggering element. For instance, the CSS Selector "a.button" points to the A tag with class="button" for this purpose.
+Multiple triggering elements that open the same menu may be specified using one CSS Selector.
 
 Parameter 2: The Locale Path or Container ID :
 When menus are contained within an external HTML file, this string value is the relative file path, such as "files/menus.html".
@@ -179,6 +188,7 @@ Parameter 4: The Callback Function:
 This is where you can set specific functionality to occur whenever a menu item link is activated, whether this is to navigate to another page, or to perform another client side action. 
 When declared, two arguments are passed to the function, first is the event object, and the second is the AccDC Object for the currently open menu object.
 Using 'this' within the function will reference the DOM node for the activated element, which is useful if mapping the ID attribute to a particular action.
+dc.top.triggerObj (where dc is the AccDC Object) provides the DOM node for the original triggering element that first opened the menu.
 
 Parameter 5: Are Menus within the Same Doc:
 A Boolean (true or false), that specifies whether the script should process the Locale parameter as an internal or external resource locator.
@@ -190,22 +200,21 @@ Typically this is set to document, since all of the IDs are relative to this loc
 However, this parameter gives you the ability to reference iFrame documents instead if desired.
 
 Parameter 7: The Config Object:
-This is a key / value mapping of overrides that can be used to customize the element types of menu container and menu item elements, the class names for each, the boundary text that is conveyed to screen reader users, the menu heading level, the default keyboard interaction model, the default auto positioning if desired, plus additional AccDC API overrides if desired.
+This is a key / value mapping of overrides that can be used to customize the element types of menu container and menu item elements, the class names for each, the default keyboard interaction model, the default auto positioning if desired, plus additional AccDC API overrides if desired.
 
 Example:
 
 {
 
-// Assign a role name for screen reader users
-role: 'Menu',
-// Assign beginning and ending text to be appended to the role name for screen reader users
-accStart: 'Start',
-accEnd: 'End',
-// Assign the state text, which will be appended to the triggering element when a menu is open for screen reader users
-openState: 'Open',
+// Enable right click functionality
+// Automatically configures keyboard support using Shift+F10 and the Applications key
+// When set to false, the Enter, Space, and Down arrow keys are supported in addition to onclick
+rightClick: true, // Default: false
 
-// Set the initial menu heading level
-ariaLevel: 3,
+// Set the accessible help description that will be announced for screen reader users
+// Only applicable when rightClick is set to true
+// Will automatically clear on touch screen devices to prevent confusion
+rightClickText: 'Press Shift+F10 or the Applications key to open the popup menu',
 
 // Set the main container class, (which will surround the menu as a Div tag when rendered)
 containerClass: 'menu',
@@ -271,11 +280,66 @@ dc.close();
 
 // All other AccDC API properties and methods can be applied here as well.
 
+Additionally, when a menu is attached to a triggering element, the custom handler 'popupmenu' is attached to that element.
+
+To support both standard and touch device usage as part of responsive design, a specially displayed icon (typically referred to as a Hamburger icon) is often displayed conditionally on touch screen devices to allow for context menus to be actionable.
+Reference: http://gizmodo.com/who-designed-the-iconic-hamburger-icon-1555438787
+
+Such an icon can be programmatically configured to open the popup menu attached to the triggering element by manually triggering the 'popupmenu' event on that element.
+
+E.G
+
+// Detect if running on a touch device
+if ('ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0){
+
+// Unhide the hamburger icon and attach an onclick handler
+$A.bind($A.remClass(hamburgerIconElement, 'hidden'), 'click', function(ev){
+
+// Trigger the menu attached to the original triggering element
+$A.trigger(originalTriggeringElement, 'popupmenu');
+
+ev.stopPropagation(); // Important to prevent bubbling and auto closing
+ev.preventDefault();
+});
+
+}
+
+Similarly, a currently open menu can be programmatically closed by triggering the 'closepopupmenu' event on the triggering element.
+
+E.G
+
+// Close the menu attached to the original triggering element
+$A.trigger(originalTriggeringElement, 'closepopupmenu');
+
+When aria-disabled="true" is programmatically set on any menu item node after rendering, it will automatically be disabled within the menu, so that disabled submenus will not open when clicked or arrowed to, and custom handling for non-submenu links can then be processed individually within the click callback.
+
 Triggering Element Requirements
 
-Regarding the triggering element for opening menus, you should always use an active element for this purpose to ensure accessibility for both screen reader and keyboard only users.
+When a custom menu is applied to the Body element, no triggering element is required.
 
-Within the Coding Arena samples, these are standard links (A tags with an Href attribute). However, you can use whatever type of triggering element you wish, a standard link, button, or image link, with any type of styling. There must be an active element as a triggering element though, to ensure accessibility.
+All other usages for custom popup menus require the use of a keyboard focusable active element that includes a valid active element role, which may consist of any native active element such as a standard link or form field, or a keyboard accessible interactive ARIA Widget type.
+
+Valid interactive ARIA Widget roles include:
+• button
+• checkbox
+• columnheader
+• combobox
+• grid
+• gridcell
+• link
+• listbox
+• option
+• radio
+• rowheader
+• slider
+• spinbutton
+• tab
+• textbox
+• tree
+• treegrid
+• treeitem
+
+Reference: http://www.w3.org/TR/wai-aria/roles
 
 Styling
 
@@ -297,13 +361,6 @@ Available HTML5 attributes for the triggering element:
 If pointing to a menu list within the same document, only the ID attribute should be included here. 
 • data-internal : The ID attribute of the container element for all menu lists within the same document.
 If data-src is set to an external source, data-internal should be blank or not included. 
-• data-role : The role name that is conveyed to screen reader users at the beginning and end of each menu section. "Menu" is set by default if no value
-is specified. 
-• data-starttext : The role state that is conveyed to screen reader users at the beginning of each menu section. "Start" is set by default if no value is
-specified. 
-• data-endtext : The role state that is conveyed to screen reader users at the end of each menu section. "End" is set by default if no value is specified.
-• data-openstate : The open state text that is conveyed to screen reader users within the triggering link when open. "Open" is set by default if no value
-is specified. 
 • data-containerclass : The class name that will be added dynamically to the surrounding Div tag for each menu group when rendered. "menu" is set by default
 if no value is specified. 
 • data-menutag : The tag name for the container element that contains all menu item tags. All menu item tags must be contained within this container element,

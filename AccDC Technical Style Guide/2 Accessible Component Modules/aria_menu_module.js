@@ -1,17 +1,26 @@
 /*!
-ARIA Menu Module R2.5
-Copyright 2010-2014 Bryan Garaventa (WhatSock.com)
+ARIA Menu Module R2.6
+Copyright 2010-2015 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 	*/
 
 (function(){
-	var track = {};
+	var track = {}, trapCM = null, trapC = null;
 
 	$A.setMenu = function(trigger, path, topLvlId, callback, isInternal, context, config){
 		var bfr = isInternal ? $A.getEl(path) : $A.createEl('div'), handler = callback || function(){}, config = config || {},
 
 		// Declare a recursive function for setting up submenus
 		runAfter = function(dc){
+			trapC.menuOpen = true;
+			trapC.currentMenu = dc.top;
+
+			if ('ontouchstart' in window){
+				$A.bind(dc.accDCObj, 'touchstart', function(ev){
+					trapC.pass = true;
+				});
+			}
+
 			dc.mNode = $A.query((config.menuTag || 'ul') + '.' + (config.menuClass || 'menu'), dc.containerDiv)[0], ids = [];
 			var offsetLeft = parseInt($A.getAttr(dc.mNode, 'data-offsetleft')),
 				offsetTop = parseInt($A.getAttr(dc.mNode, 'data-offsettop')), redraw = false,
@@ -49,10 +58,10 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 								role: dc.role,
 								accStart: dc.accStart,
 								accEnd: dc.accEnd,
-								bind: 'click',
+								bind: 'popupsubmenu',
 								isTab: true,
 								tabRole: '',
-								tabState: config.openState || 'Open',
+								tabState: config.openState || '',
 								trigger: o,
 								handler: handler,
 								topLvlId: dc.topLvlId + o.id,
@@ -69,6 +78,12 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 								},
 								runDuring: function(dc){
 									$A.setAttr(dc.accDCObj, 'role', 'application');
+
+									if (dc.showHiddenBounds){
+										dc.fn.sraStart.innerHTML = dc.fn.sraEnd.innerHTML = '';
+										$A.setAttr(dc.fn.sraStart, 'aria-hidden', 'true');
+										$A.setAttr(dc.fn.sraEnd, 'aria-hidden', 'true');
+									}
 								},
 								runAfter: runAfter,
 								runBeforeClose: runBeforeClose,
@@ -94,25 +109,33 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 					tdc.close();
 					tdc.returnFocus = true;
 				}
+
 				// if (o.parentNode != dc.mNode)
 				ids.push(o.id);
 			});
 			$A(dc, subMenuObjects, config.overrides);
 			$A.query(((config.menuTag || 'ul') + '.' + (config.menuClass || 'menu') + ' ' + (config.itemTag || 'li')) + '.'
 				+ (config.linkClass || 'link'), dc.containerDiv, function(i, o){
-				$A.bind(o, 'click', function(ev){
-					dc.top.close();
 
-					if (dc.handler && typeof dc.handler === 'function')
-						return dc.handler.apply(this,
-										[
-										ev,
-										dc
-										]);
-				});
+				var isSet = $A.internal.data(o, 'isset');
 
-				// if (o.parentNode != dc.mNode)
-				ids.push(o.id);
+				if (!isSet){
+					$A.internal.data(o, 'isset', true);
+
+					$A.bind(o, 'menulink', function(ev){
+						dc.top.close();
+
+						if (dc.handler && typeof dc.handler === 'function')
+							return dc.handler.apply(this,
+											[
+											ev,
+											dc
+											]);
+					});
+
+					// if (o.parentNode != dc.mNode)
+					ids.push(o.id);
+				}
 			});
 
 			if (ids.length)
@@ -127,7 +150,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 			}
 
 			if (dc.iNodes && dc.iNodes.length)
-				$A.unbind(dc.iNodes, 'click keypress keydown');
+				$A.unbind(dc.iNodes, 'click keypress keydown popupsubmenu menulink');
 		},
 
 		// Parse menu constructs
@@ -151,23 +174,19 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							{
 							id: topLvlId,
 							role: config.role || 'Menu',
-							accStart: config.accStart || 'Start',
-							accEnd: config.accEnd || 'End',
+							accStart: config.accStart || '',
+							accEnd: config.accEnd || '',
 							controlType: 'MenuControl',
-							bind: 'click',
-							isToggle: true,
-							toggleRole: '',
-							toggleState: config.openState || 'Open',
+							bind: 'popupmenu',
 							trigger: trigger,
 							handler: handler,
 							topLvlId: topLvlId,
 							source: track[topLvlId],
 							autoPosition: isNaN(config.autoPosition) ? 3 : config.autoPosition,
-							runOnceBefore: function(dc){
-								$A.bind(dc.triggerObj, 'focus', function(ev){
-									if (dc.loaded && !('ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0))
-										dc.close();
-								});
+							isStatic: 'body',
+							append: true,
+							click: function(ev, dc){
+								trapC.pass = true;
 							},
 							runBefore: function(dc){
 								// Close all previously opened menus
@@ -185,9 +204,18 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							},
 							runDuring: function(dc){
 								$A.setAttr(dc.accDCObj, 'role', 'application');
+
+								if (dc.showHiddenBounds){
+									dc.fn.sraStart.innerHTML = dc.fn.sraEnd.innerHTML = '';
+									$A.setAttr(dc.fn.sraStart, 'aria-hidden', 'true');
+									$A.setAttr(dc.fn.sraEnd, 'aria-hidden', 'true');
+								}
 							},
 							runAfter: runAfter,
 							runBeforeClose: runBeforeClose,
+							runAfterClose: function(dc){
+								trapC.menuOpen = false;
+							},
 							cssObj:
 											{
 											position: (config.overrides && config.overrides.cssObj && config.overrides.cssObj.position) || 'absolute',
@@ -212,7 +240,165 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 		// Otherwise preload HTML markup using lazy loading
 		else
 			$A.load(bfr, path, postLoad);
-		$A.setAttr($A.query(trigger, context)[0], 'aria-haspopup', 'true');
+
+		if (config.rightClick && config.rightClickText
+			&& !('ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0)){
+			var rcId = 'rc' + $A.genId(), rcDesc = $A.createEl('div',
+							{
+							id: rcId,
+							role: 'tooltip'
+							},
+							{
+							display: 'none'
+							});
+
+			rcDesc.innerHTML = config.rightClickText;
+			document.body.appendChild(rcDesc);
+		}
+
+		if (typeof trapC !== 'function'){
+			trapC = function(ev){
+				if (!trapC.pass && trapC.menuOpen){
+					if (trapC.currentMenu && trapC.currentMenu.id && trapC.currentMenu.loaded)
+						trapC.currentMenu.close();
+				}
+				trapC.pass = false;
+			};
+			trapC.menuOpen = trapC.pass = false;
+			$A.bind(document, 'click touchstart', trapC);
+		}
+
+		if (config.rightClick && typeof trapCM !== 'function'){
+			trapCM = function(ev){
+				if (trapCM.pass){
+					ev.preventDefault();
+				}
+				trapCM.pass = false;
+			};
+			trapCM.pass = false;
+			$A.bind(document, 'contextmenu', trapCM);
+		}
+
+		$A.query(trigger, context, function(i, tgr){
+			if (tgr.nodeName.toLowerCase() != 'body')
+				$A.setAttr(tgr, 'aria-haspopup', 'true');
+
+			if (rcId)
+				addDescribedby(tgr, rcId);
+
+			if (config.rightClick){
+
+				$A.bind(tgr,
+								{
+								contextmenu: function(ev){
+									ev.preventDefault();
+									trapCM.pass = true;
+								},
+								mouseup: function(ev){
+									var btn = -1;
+
+									if (ev.which == null)
+										/* IE case */
+										btn = (ev.button < 2) ? 1 : ((ev.button == 4) ? 3 : 2);
+
+									else
+										/* All others */
+										btn = (ev.which < 2) ? 1 : ((ev.which == 2) ? 3 : 2);
+
+									if (btn == 2){
+										trapCM.pass = true;
+
+										if ($A.reg[topLvlId].loaded)
+											$A.reg[topLvlId].close();
+
+										else
+											$A.trigger(tgr, 'popupmenu');
+										ev.preventDefault();
+									}
+								},
+								keydown: function(ev){
+									var k = ev.which || ev.keyCode;
+
+									if (k == 93 || (ev.shiftKey && k == 121)){
+										trapCM.pass = true;
+										$A.trigger(tgr, 'popupmenu');
+										ev.preventDefault();
+									}
+								}
+								});
+
+				if ('ontouchstart' in window){
+					var touched = 0, released = 0, longTouched = false;
+					$A.bind(tgr,
+									{
+									touchstart: function(ev){
+										touched = new Date().getTime() + 2000;
+									},
+									touchend: function(ev){
+										released = new Date().getTime();
+
+										if (released > touched){
+											longTouched = true;
+											ev.stopPropagation();
+											ev.preventDefault();
+											$A.trigger(tgr, 'popupmenu');
+										}
+
+										else
+											longTouched = false;
+									},
+									click: function(ev){
+										if (longTouched){
+											longTouched = false;
+											ev.stopPropagation();
+											ev.preventDefault();
+										}
+									}
+									});
+				}
+			}
+
+			else{
+
+				$A.bind(tgr,
+								{
+								keydown: function(ev){
+									var k = ev.which || ev.keyCode;
+
+									if (k == 40){
+										$A.trigger(tgr, 'popupmenu');
+										ev.preventDefault();
+									}
+								},
+								keypress: function(ev){
+									var k = ev.which || ev.keyCode;
+
+									if (k == 13 || k == 32){
+										$A.trigger(tgr, 'popupmenu');
+										ev.preventDefault();
+									}
+								},
+								click: function(ev){
+									trapC.pass = true;
+
+									if ($A.reg[topLvlId].loaded)
+										$A.reg[topLvlId].close();
+
+									else
+										$A.trigger(tgr, 'popupmenu');
+									ev.preventDefault();
+								}
+								});
+			}
+
+			$A.bind(tgr,
+							{
+							closepopupmenu: function(ev){
+								if ($A.reg[topLvlId].loaded)
+									$A.reg[topLvlId].close();
+							}
+							});
+		});
 	};
 
 	var createMenu = function(parent, children, dc, config){
@@ -245,15 +431,13 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 					index = j;
 				$A.setAttr(items[j],
 								{
-								tabindex: -1,
-								'aria-selected': 'false'
+								tabindex: -1
 								});
 			}
 
 			$A.setAttr(l,
 							{
-							tabindex: '0',
-							'aria-selected': 'true'
+							tabindex: '0'
 							}).focus();
 		}, items = dc.iNodes = $A.query(children, dc.containerDiv, function(i, o){
 			xItems.push($A.getText(o));
@@ -277,7 +461,16 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 								}
 
 								else if (k == 13){
-									$A.trigger(this, 'click');
+									if ($A.hasClass(this, config.folderClass || 'submenu')){
+										if ($A.getAttr(this, 'aria-disabled') != 'true')
+											$A.trigger(this, 'popupsubmenu');
+
+										else
+											dc.top.close();
+									}
+
+									else
+										$A.trigger(this, 'menulink');
 									ev.preventDefault();
 								}
 							},
@@ -292,8 +485,8 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 										dc.close();
 
 									else if ((k == 39 && !dc.hor) || (k == 40 && dc.hor)){
-										if ($A.hasClass(this, config.folderClass || 'submenu'))
-											$A.trigger(this, 'click');
+										if ($A.hasClass(this, config.folderClass || 'submenu') && $A.getAttr(this, 'aria-disabled') != 'true')
+											$A.trigger(this, 'popupsubmenu');
 									}
 
 									else if ((k == 38 && !dc.hor) || (k == 37 && dc.hor))
@@ -315,6 +508,19 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 									move(String.fromCharCode(k));
 									ev.preventDefault();
 								}
+							},
+							click: function(ev){
+								if ($A.hasClass(this, config.folderClass || 'submenu')){
+									if ($A.getAttr(this, 'aria-disabled') != 'true')
+										$A.trigger(this, 'popupsubmenu');
+
+									else
+										dc.top.close();
+								}
+
+								else
+									$A.trigger(this, 'menulink');
+								ev.preventDefault();
 							}
 							});
 		});
@@ -322,6 +528,41 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 			$A.setAttr(o, 'aria-setsize', items.length);
 		});
 		setFocus.apply(items[index]);
+	}, trim = function(str){
+		return str.replace(/^\s+|\s+$/g, '');
+	}, addDescribedby = function(obj, cn){
+		if (!obj)
+			return null;
+		var o = $A.isArray(obj) ? obj : [obj], names = cn.split(' ');
+
+		for (var i = 0; i < o.length; i++){
+			for (var n = 0; n < names.length; n++){
+				if (!hasDescribedby(o[i], names[n])){
+					var l = $A.getAttr(o[i], 'aria-describedby');
+
+					if (!l)
+						l = '';
+					$A.setAttr(o[i], 'aria-describedby', trim(l + ' ' + names[n]));
+				}
+			}
+		}
+		return obj;
+	}, hasDescribedby = function(obj, cn){
+		var l = $A.getAttr(obj, 'aria-describedby');
+
+		if (!obj || !l)
+			return false;
+
+		var names = cn.split(' '), i = 0;
+
+		for (var n = 0; n < names.length; n++){
+			if (l.indexOf(names[n]) !== -1)
+				i += 1;
+		}
+
+		if (i === names.length)
+			return true;
+		return false;
 	};
 
 	$A.bind(window, 'resize', function(){

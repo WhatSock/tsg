@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>ARIA Menu Demo </title>
+
+<link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+<link rel="stylesheet" type="text/css" href="css/menus.css" />
+
+<script type="text/javascript" src="../../_common/js/jQuery.js">
+// Load jQuery.
+// This is not necessary if using the Standalone AccDC API version.
+</script>
+
+<script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+// Load the AccDC API, which all modules are plugged into as the common interface.
+</script>
+
+<!-- Now load all desired modules, which plugs them into AccDC. -->
+<script type="text/javascript" src="../../../2 Accessible Component Modules/aria_menu_module.min.js"></script>
+
+<script type="text/javascript" src="js/setup.js">
+// Now run the setup script where module invocation statements are contained.
+</script>
+
+</head>
+<body>
+<div>
+
+<div class="intro tal clearfix">
+
+<!-- The context menu is tied to menu structures within a hidden Div at the bottom of this page. -->
+
+</div>
+
+<div class="intro tal">
+
+<div class="desc">
+<p>
+The context menu is keyboard accessible.
+</p>
+<p><pre>
+Press Shift+F10 or the Applications key to open the context menu.
+Press the Up and Down Arrow keys to move focus between the menu options.
+Press the Left and Right Arrow keys to open or close submenus.
+Press any letter or number to jump to a menu item starting with that character or digit.
+Press Enter to activate a menu option.
+Press Escape to close the currently open menu.
+Press Tab to close the menu and all submenus.
+Mouse users can right click on any static region of the page to open the menu as usual.
+Mouse users can cancel and close the menu by clicking anywhere else on the page.
+On a touch screen, touch a static region on the page and hold for about 2.5 seconds then release to open the menu,
+tap a menu item to activate it, or tap anywhere else on the page to cancel and close the menu.
+</pre></p>
+</div>
+</div>
+
+</div>
+
+<div id="hiddenDivId" class="hidden">
+
+<!-- Basic menu structure
+The lists can be set to any tag, such as OL, UL, etc, as long as this is specified in the menuTag property within the JavaScript declaration statement.
+The same is true for the menu item nodes, which is specified using the menuItemTag property in the JavaScript declaration statement.
+Menus and submenus may be nested or broken out into separate lists if desired, as long as they are all contained within the same top level container element specified by ID within the JavaScript invocation statement.
+All menu container elements and menu item nodes must include unique ID attributes.
+Submenus are mapped by combining the ID attribute of the top level menu container ID and the submenu pointer link ID, which points to the ID of the referenced submenu.
+All menu item nodes must include innerText to ensure accessibility for screen reader users.
+Don't include any ARIA attributes within the menu markup, since this is handled automatically by the Menu module.
+-->
+
+<ol class="menu" id="context-menu">
+<li>
+<a href="#" class="link" id="-back">
+Back
+</a>
+</li>
+<li>
+<a href="#" class="link" id="-forward">
+Forward
+</a>
+</li>
+<li>
+<a href="#" class="link" id="-favorite">
+Add to favorites...
+</a>
+</li>
+<li>
+<a href="#" class="submenu" id="-help">
+Help
+</a>
+</li>
+</ol>
+
+<ol class="menu" id="context-menu-help">
+<li>
+<a href="#" class="link" id="-archive">
+Knowledge Base
+</a>
+</li>
+<li>
+<a href="#" class="link" id="-contact">
+Contact Us
+</a>
+</li>
+</ol>
+
+</div>
+
+</body>
+</html>

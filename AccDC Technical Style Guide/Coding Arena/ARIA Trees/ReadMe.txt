@@ -128,7 +128,12 @@ var xmlNode = $A.query('#' + this.id, dc.top.xmlDocument)[0];
 // and how to access custom attributes on each node, visit
 // http://www.w3schools.com/dom/default.asp
 
+},
+
+overrides: {
+// Set optional AccDC API overrides for every AccDC Object that is rendered in the tree
 }
+
 }
 
 Programmatic Control
