@@ -60,7 +60,17 @@ text-shadow: 0 1px 0 #363636;
 box-shadow: 0 1px 1px #b1b1b1, inset 0 1px 0 #838383;
 }
 
-div.foMenu ul.menu2 a.submenu2:before {
-content: '\2193 ';
-color: red;
+div.foMenu ul.menu2 a.submenu2:after {
+content: ' \25BC';
+color: blue;
+}
+
+*.menu[role="button"]:after {
+content: ' \25BC';
+color: black;
+}
+
+*.menu2[role="button"]:after {
+content: ' \25BC';
+color: black;
 }

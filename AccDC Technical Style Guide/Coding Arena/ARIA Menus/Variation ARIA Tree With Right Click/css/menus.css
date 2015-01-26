@@ -61,9 +61,9 @@ text-shadow: 0 1px 0 #363636;
 box-shadow: 0 1px 1px #b1b1b1, inset 0 1px 0 #838383;
 }
 
-div.menu ol.menu a.submenu:before {
-content: '\2192 ';
-color: red;
+div.menu ol.menu a.submenu:after {
+content: ' \25BC';
+color: blue;
 }
 
 a[role="menuitem"][aria-disabled="true"] {
