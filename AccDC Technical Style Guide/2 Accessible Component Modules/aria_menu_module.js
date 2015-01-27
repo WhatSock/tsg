@@ -1,5 +1,5 @@
 /*!
-ARIA Menu Module R2.6
+ARIA Menu Module R2.7
 Copyright 2010-2015 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 	*/
@@ -258,11 +258,11 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 		if (typeof trapC !== 'function'){
 			trapC = function(ev){
-				if (!trapC.pass && trapC.menuOpen){
+				if (!trapC.pass && !trapCM.pass && trapC.menuOpen){
 					if (trapC.currentMenu && trapC.currentMenu.id && trapC.currentMenu.loaded)
 						trapC.currentMenu.close();
 				}
-				trapC.pass = false;
+				trapC.pass = trapCM.pass = false;
 			};
 			trapC.menuOpen = trapC.pass = false;
 			$A.bind(document, 'click touchstart', trapC);

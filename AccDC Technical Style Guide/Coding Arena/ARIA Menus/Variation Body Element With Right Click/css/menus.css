@@ -75,6 +75,7 @@ box-shadow: 0 1px 1px #c9c9c9, inset 0 1px 0 #d7d7d7;
 }
 
 body {
+height: 500px;
 -webkit-user-select: none; /* disable selection/Copy of UIWebView */
 -webkit-touch-callout: none; /* disable the IOS popup when long-press */
 }
