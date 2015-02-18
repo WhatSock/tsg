@@ -91,14 +91,8 @@ toggleClass: 'validateError',
 
 overrides: {
 
-// Change the beginning and ending boundary text for screen reader users
-role: 'Error',
-accStart: 'Start',
-accEnd: 'End',
-
-// Change the heading level for screen reader users
-// 3 is set by default if omitted
-ariaLevel: 4,
+// Change the beginning and ending boundary role text for screen reader users
+role: 'error',
 
 // Set a class for the tooltip container
 className: 'errorTooltip',
@@ -145,14 +139,8 @@ togglePassed: true,
 
 overrides: {
 
-// Change the beginning and ending boundary text for screen reader users
-role: 'Help',
-accStart: 'Start',
-accEnd: 'End',
-
-// Change the heading level for screen reader users
-// 3 is set by default if omitted
-ariaLevel: 4,
+// Change the beginning and ending boundary role text for screen reader users
+role: 'help',
 
 // Set a class for the tooltip container
 className: 'helpTooltip',

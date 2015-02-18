@@ -1,6 +1,6 @@
 /*!
-Form Field Validator R1.1
-Copyright 2010-2013 Bryan Garaventa (WhatSock.com)
+Form Field Validator R1.2
+Copyright 2010-2015 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 
@@ -21,20 +21,26 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							[
 							{
 							id: id,
-							role: (f.overrides && f.overrides.role) || (f.helpText ? 'Help' : 'Error'),
+							role: (f.overrides && f.overrides.role) || (f.helpText ? 'help' : 'error'),
 							source: f.helpText || f.errorText,
 							triggerObj: o,
 							returnFocus: false,
-							showHiddenClose: false,
+							showHiddenBounds: false,
 							allowReopen: true,
 							className: (f.overrides && f.overrides.className) || 'errorTooltip',
 							autoPosition: isNaN(f.overrides && f.overrides.autoPosition) ? 3 : f.overrides.autoPosition,
 							offsetLeft: isNaN(f.overrides && f.overrides.offsetLeft) ? 10 : f.overrides.offsetLeft,
-							ariaLevel: isNaN(f.overrides && f.overrides.ariaLevel) ? 3 : f.overrides.ariaLevel,
 							cssObj:
 											{
 											position: 'absolute'
 											},
+							runDuring: function(dc){
+								$A.setAttr(dc.accDCObj,
+												{
+												role: 'region',
+												'aria-label': dc.role
+												});
+							},
 							runAfter: function(dc){
 								if (!f.togglePassed)
 									$A.addClass(dc.classObj || dc.targetObj || dc.triggerObj, f.toggleClass || 'validateError');

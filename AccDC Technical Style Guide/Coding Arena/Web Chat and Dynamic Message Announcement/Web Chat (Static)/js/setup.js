@@ -159,11 +159,7 @@ $A.bind(window, 'load', function(){
 
 					// Override default bindings so we can manually invoke the tooltip later
 					bind: 'custom',
-
-					// Set the screen reader accessible boundary text values
-					role: 'Tooltip',
-					accStart: 'Start',
-					accEnd: 'End',
+					role: 'tooltip',
 
 					// Specify that literal content is to be rendered
 					mode: 0,
@@ -177,9 +173,6 @@ $A.bind(window, 'load', function(){
 
 					// Set the class name for the top level container element
 					className: 'tooltip',
-
-					// Suppress boundary text for screen reader users
-					showHiddenBounds: false,
 					timeoutVal: 4000,
 					timeout: function(dc){
 						dc.close();

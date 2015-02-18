@@ -41,12 +41,8 @@ $A.bind(window, 'load', function(){
 									overrides:
 													{
 													// Change the beginning and ending boundary role text for screen reader users
-													// 'Error' is set by default if omitted.
-													role: 'Error',
-// Change the accStart and accEnd properties to change the 'Start' and 'End' keywords, which are part of the boundary text for screen reader users.
-// E.G
-													accStart: 'Start',
-													accEnd: 'End',
+													// 'error' is set by default if omitted.
+													role: 'error',
 													// Change the DOM insertion point to the parent Div element by setting targetObj.
 													// The triggering Input field is used by default if omitted
 													targetObj: $A.getEl('b-add1').parentNode,
@@ -64,10 +60,7 @@ $A.bind(window, 'load', function(){
 													offsetLeft: -10,
 													// Set a class for the tooltip container
 													// 'errorTooltip' is set by default if omitted
-													className: 'errorTooltip',
-													// Set proper heading nesting for screen reader users.
-													// 3 is set by default if omitted
-													ariaLevel: 4
+													className: 'errorTooltip'
 													}
 									},
 
@@ -85,8 +78,7 @@ $A.bind(window, 'load', function(){
 													classObj: $A.getEl('b-city').parentNode.parentNode.parentNode,
 													posAnchor: $A.getEl('b-city').parentNode.parentNode.parentNode,
 													autoPosition: 8,
-													offsetLeft: -10,
-													ariaLevel: 4
+													offsetLeft: -10
 													}
 									},
 
@@ -103,8 +95,7 @@ $A.bind(window, 'load', function(){
 													classObj: $A.getEl('b-state').parentNode.parentNode.parentNode,
 													posAnchor: $A.getEl('b-state').parentNode.parentNode.parentNode,
 													autoPosition: 8,
-													offsetLeft: -10,
-													ariaLevel: 4
+													offsetLeft: -10
 													}
 									},
 
@@ -121,8 +112,7 @@ $A.bind(window, 'load', function(){
 													classObj: $A.getEl('b-zip').parentNode.parentNode.parentNode,
 													posAnchor: $A.getEl('b-zip').parentNode.parentNode.parentNode,
 													autoPosition: 8,
-													offsetLeft: -10,
-													ariaLevel: 4
+													offsetLeft: -10
 													}
 									},
 
@@ -140,8 +130,7 @@ $A.bind(window, 'load', function(){
 													posAnchor: $A.getEl('m-add1').parentNode.parentNode.parentNode,
 													// Set the tooltip to appear on the right of the targetObj element
 													autoPosition: 3,
-													offsetLeft: 10,
-													ariaLevel: 4
+													offsetLeft: 10
 													}
 									},
 
@@ -158,8 +147,7 @@ $A.bind(window, 'load', function(){
 													classObj: $A.getEl('m-city').parentNode.parentNode.parentNode,
 													posAnchor: $A.getEl('m-city').parentNode.parentNode.parentNode,
 													autoPosition: 3,
-													offsetLeft: 10,
-													ariaLevel: 4
+													offsetLeft: 10
 													}
 									},
 
@@ -176,8 +164,7 @@ $A.bind(window, 'load', function(){
 													classObj: $A.getEl('m-state').parentNode.parentNode.parentNode,
 													posAnchor: $A.getEl('m-state').parentNode.parentNode.parentNode,
 													autoPosition: 3,
-													offsetLeft: 10,
-													ariaLevel: 4
+													offsetLeft: 10
 													}
 									},
 
@@ -195,7 +182,6 @@ $A.bind(window, 'load', function(){
 													posAnchor: $A.getEl('m-zip').parentNode.parentNode.parentNode,
 													autoPosition: 3,
 													offsetLeft: 10,
-													ariaLevel: 4,
 													runAfter: function(dc){
 													//alert('test');
 													}

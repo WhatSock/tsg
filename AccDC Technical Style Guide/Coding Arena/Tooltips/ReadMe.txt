@@ -46,13 +46,14 @@ Example:
 // Set a unique ID for the Tooltip AccDC Object, which can be referenced through $A.reg['uniqueId']
 id: 'uniqueId',
 
-// Set the screen reader accessible boundary text values
-role: 'Tooltip',
-accStart: 'Start',
-accEnd: 'End',
+// Set the role name for the container
+role: 'tooltip',
 
 // Set the triggering element using a DOM node or a CSS Selector
 trigger: '#tooltipTrigger1',
+
+// Set an optional time delay in milliseconds
+wait: 1500,
 
 // Specify that literal content is to be rendered
 // (Only if pulling content from within the same page, remove otherwise)
@@ -74,10 +75,7 @@ autoPosition: 3,
 offsetLeft: 10,
 
 // Set the class name for the top level container element
-className: 'tooltip',
-
-// Set the heading level that will be accessible for screen reader users
-ariaLevel: 2
+className: 'tooltip'
 
 // (Other AccDC API properties and methods can be declared here also to customize functionality and behavior)
 

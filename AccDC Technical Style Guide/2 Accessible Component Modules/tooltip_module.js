@@ -1,6 +1,6 @@
 /*!
-Tooltip Module R1.2.1
-Copyright 2010-2013 Bryan Garaventa (WhatSock.com)
+Tooltip Module R1.3
+Copyright 2010-2015 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 
@@ -22,13 +22,10 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 		// Tooltip AccDC Object declaration
 		$A([overrides],
 						{
-						role: 'Tooltip',
-						bind: 'mouseover click focusin',
+						role: 'tooltip',
+						bind: 'opentooltip',
 						returnFocus: false,
-						displayHiddenClose: false,
-						accStart: 'Start',
-						accEnd: 'End',
-						accClose: 'Close',
+						showHiddenBounds: false,
 						// Position the AccDC Object to the right of the triggering element
 						autoPosition: 3,
 						// Set a positive offset to move the AccDC Object 10px to the right
@@ -39,27 +36,75 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 										},
 						allowCascade: true,
 						runDuring: function(dc){
-							// Assign a mouseout handler for the triggering element
-							$A.bind(dc.triggerObj, 'mouseout.tooltip blur.tooltip', function(ev){
-								dc.close();
-							});
-							$A.bind(window, 'resize.tooltip', function(ev){
-								if (dc.autoPosition)
-									dc.setPosition();
-							});
+							$A.setAttr(dc.accDCObj,
+											{
+											role: 'region',
+											'aria-label': dc.role
+											});
+
+							$A.setAttr(dc.containerDiv,
+											{
+											tabindex: -1,
+											role: 'tooltip'
+											});
 						},
-						announce: true,
-						// Set a mousout handler on the AccDC Object as well
-						mouseOut: function(ev, dc){
-							dc.close();
+						runAfter: function(dc){
+							$A.setAttr(dc.triggerObj,
+											{
+											'aria-describedby': dc.containerDivId
+											});
 						},
 						runAfterClose: function(dc){
-							$A.unbind(dc.triggerObj, '.tooltip');
-							$A.unbind(window, '.tooltip');
+							$A.remAttr($A.setAttr(dc.triggerObj, 'aria-describedby', ''), 'aria-describedby');
 						},
-						className: 'tooltip',
-						closeClassName: 'tooltipClose'
-						}, true);
+						className: 'tooltip'
+						});
+
+		var dc = $A.reg[overrides.id];
+
+		if (overrides.trigger){
+			if (!dc.wait)
+				dc.wait = 0;
+			var waiting = false, wTo = null;
+			$A.bind(overrides.trigger,
+							{
+							closetooltip: function(ev){
+								dc.close();
+							},
+							'mouseover focusin': function(ev){
+								if (!waiting){
+									waiting = true;
+									var that = this;
+									wTo = setTimeout(function(){
+										$A.trigger(that, 'opentooltip');
+										waiting = false;
+									}, dc.wait);
+								}
+							},
+							'mouseout blur': function(ev){
+								if (waiting){
+									clearTimeout(wTo);
+									waiting = false;
+								}
+
+								if (dc.loaded)
+									dc.close();
+							},
+							keydown: function(ev){
+								var k = ev.which || ev.keyCode;
+
+								if (k == 27 && dc.loaded){
+									dc.close();
+									ev.preventDefault();
+								}
+							}
+							});
+		}
+
+		$A.bind(window, 'resize', function(ev){
+			if (dc.loaded)
+				dc.close();
+		});
 
 		// Return the new tooltip AccDC Object ID
 		return overrides.id;

@@ -94,8 +94,7 @@ $A.bind(window, 'load', function(){
 
 													// Position the help tooltip on the right of the Input field
 													autoPosition: 3,
-													className: 'helpTooltip',
-													ariaLevel: 2
+													className: 'helpTooltip'
 													}
 									}
 					}, function(ev){

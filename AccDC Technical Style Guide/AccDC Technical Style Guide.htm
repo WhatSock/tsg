@@ -5574,22 +5574,22 @@ Dynamic Help Tooltips validate user input as the interaction occurs, so that res
 The Form Field Validation Module automates these processes by adding all related event handlers and managing all related rendering procedures.
 </p>
 <ul><li>
-Simple Help Tooltip control with offscreen boundary text, and aria-live=polite:<br />
+Simple Help Tooltip control with a named region, and aria-live=polite:<br />
 <a target="ca" href="Coding Arena/Inline Form Field Validation and Dynamic Help Tooltips/Dynamic Help Tooltip/demo.htm">
 Coding Arena/Inline Form Field Validation and Dynamic Help Tooltips/Dynamic Help Tooltip/demo.htm
 </a>
 </li><li>
-Simple Error Tooltip control with offscreen boundary text, aria-required, and aria-live=polite:<br />
+Simple Error Tooltip control with a named region, aria-required, and aria-live=polite:<br />
 <a target="ca" href="Coding Arena/Inline Form Field Validation and Dynamic Help Tooltips/Inline Form Field Validation (Simple)/demo.htm">
 Coding Arena/Inline Form Field Validation and Dynamic Help Tooltips/Inline Form Field Validation (Simple)/demo.htm
 </a>
 </li><li>
-Complex Error Tooltip control with offscreen boundary text, aria-required, and aria-live=polite:<br />
+Complex Error Tooltip control with a named region, aria-required, and aria-live=polite:<br />
 <a target="ca" href="Coding Arena/Inline Form Field Validation and Dynamic Help Tooltips/Inline Form Field Validation (Complex)/demo.htm">
 Coding Arena/Inline Form Field Validation and Dynamic Help Tooltips/Inline Form Field Validation (Complex)/demo.htm
 </a>
 </li><li>
-Mixed Error and Help Tooltip controls with offscreen boundary text, aria-required, and aria-live=polite:<br />
+Mixed Error and Help Tooltip controls with a named region, aria-required, and aria-live=polite:<br />
 <a target="ca" href="Coding Arena/Inline Form Field Validation and Dynamic Help Tooltips/Inline Form Field Validation with Dynamic Help Tooltip (Simple)/demo.htm">
 Coding Arena/Inline Form Field Validation and Dynamic Help Tooltips/Inline Form Field Validation with Dynamic Help Tooltip (Simple)/demo.htm
 </a>
@@ -5699,14 +5699,8 @@ toggleClass: 'validateError',
 
 overrides: {
 
-// Change the beginning and ending boundary text for screen reader users
-role: 'Error',
-accStart: 'Start',
-accEnd: 'End',
-
-// Change the heading level for screen reader users
-// 3 is set by default if omitted
-ariaLevel: 4,
+// Change the beginning and ending boundary role text for screen reader users
+role: 'error',
 
 // Set a class for the tooltip container
 className: 'errorTooltip',
@@ -5752,14 +5746,8 @@ togglePassed: true,
 
 overrides: {
 
-// Change the beginning and ending boundary text for screen reader users
-role: 'Help',
-accStart: 'Start',
-accEnd: 'End',
-
-// Change the heading level for screen reader users
-// 3 is set by default if omitted
-ariaLevel: 4,
+// Change the beginning and ending boundary role text for screen reader users
+role: 'help',
 
 // Set a class for the tooltip container
 className: 'helpTooltip',
@@ -6838,7 +6826,7 @@ Expected behaviors: Ensure that the beginning and ending boundaries are conveyed
 The Tooltip Module automates these processes by instantiating the content as a Tooltip AccDC Object, which can be configured and controlled programmatically if desired to enhance functionality.
 </p>
 <ul><li>
-Simple Tooltip control with offscreen boundary text, and aria-live=polite:<br />
+Simple Tooltip control with a named region, role=tooltip, and aria-describedby:<br />
 <a target="ca" href="Coding Arena/Tooltips/Tooltip (Internal Content)/demo.htm">
 Coding Arena/Tooltips/Tooltip (Internal Content)/demo.htm
 </a>
@@ -6911,13 +6899,14 @@ Example:
 // Set a unique ID for the Tooltip AccDC Object, which can be referenced through $A.reg['uniqueId']
 id: 'uniqueId',
 
-// Set the screen reader accessible boundary text values
-role: 'Tooltip',
-accStart: 'Start',
-accEnd: 'End',
+// Set the role name for the container
+role: 'tooltip',
 
 // Set the triggering element using a DOM node or a CSS Selector
 trigger: '#tooltipTrigger1',
+
+// Set an optional time delay in milliseconds
+wait: 1500,
 
 // Specify that literal content is to be rendered
 // (Only if pulling content from within the same page, remove otherwise)
@@ -6939,10 +6928,7 @@ autoPosition: 3,
 offsetLeft: 10,
 
 // Set the class name for the top level container element
-className: 'tooltip',
-
-// Set the heading level that will be accessible for screen reader users
-ariaLevel: 2
+className: 'tooltip'
 
 // (Other AccDC API properties and methods can be declared here also to customize functionality and behavior)
 

@@ -154,18 +154,13 @@ Please edit this file however desired to customize functionality.
 									{
 									// Set the ID of the AccDC Object to match the ID of the triggering element.
 									id: o.id,
-									// Set screen reader accessible boundary text values
-									role: $A.getAttr(o, 'data-role') || 'Tooltip',
-									accStart: 'Start',
-									accEnd: 'End',
+									role: $A.getAttr(o, 'data-role') || 'tooltip',
 									source: cid && cid.nodeType === 1 ? cid.parentNode.removeChild(cid) : p.replace('#', ' #'),
 									mode: cid && cid.nodeType === 1 ? 0 : null,
 									trigger: o,
 									autoPosition: isNaN(autoPosition) ? 3 : autoPosition,
 									offsetLeft: isNaN(offsetLeft) ? 10 : offsetLeft,
-									offsetTop: isNaN(offsetTop) ? 0 : offsetTop,
-									// Set the heading level that will be accessible for screen reader users
-									ariaLevel: 2
+									offsetTop: isNaN(offsetTop) ? 0 : offsetTop
 									});
 			});
 

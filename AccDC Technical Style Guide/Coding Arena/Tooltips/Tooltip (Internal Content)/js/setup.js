@@ -7,21 +7,14 @@ $A.bind(window, 'load', function(){
 					// Set a unique ID for the tooltip AccDC Object, which can also be referenced through $A.reg['uniqueId']
 					id: 'myTooltip',
 
-// To override the default event trigger bindings, you can add a custom event binding like so if you wish to manually trigger the tooltip later
-// bind: 'custom',
-// Then you can manually open the tooltip programmatically like so
-// $A.reg.uniqueId.open();
-// Doing so requires that either 'targetObj' or 'isStatic' also be set as well, so that a valid insertion point is declared.
-// View the AccDC Core API documentation at WhatSock.com for more details about these properties,
-// or view the Web Chat implementation within this package to see an example of this in the code for the Tooltip declaration.
-
-// Set the screen reader accessible boundary text values
-					role: 'Tooltip',
-					accStart: 'Start',
-					accEnd: 'End',
+					// Set the role name for the container
+					role: 'tooltip',
 
 					// Set the triggering element using a DOM node or a CSS Selector
 					trigger: 'a#helpIcon',
+
+					// Set an optional time delay in milliseconds
+					wait: 1500,
 
 					// Specify that literal content is to be rendered
 					mode: 0,
@@ -37,10 +30,7 @@ $A.bind(window, 'load', function(){
 					offsetLeft: 10,
 
 					// Set the class name for the top level container element
-					className: 'tooltip',
-
-					// Set the heading level that will be accessible for screen reader users
-					ariaLevel: 2
+					className: 'tooltip'
 
 					// (Other AccDC API properties and methods can be declared here also to customize functionality and behavior)
 
@@ -51,14 +41,13 @@ $A.bind(window, 'load', function(){
 
 					// Set a unique ID for the tooltip AccDC Object, which can also be referenced through $A.reg['uniqueId']
 					id: 'myPasswordTooltip',
-
-					// Set the screen reader accessible boundary text values
-					role: 'Tooltip',
-					accStart: 'Start',
-					accEnd: 'End',
+					role: 'tooltip',
 
 					// Set the triggering element using a DOM node or a CSS Selector
 					trigger: 'input#pWord',
+
+					// Set an optional time delay in milliseconds
+					wait: 1500,
 
 					// Specify that literal content is to be rendered
 					mode: 0,
@@ -74,10 +63,7 @@ $A.bind(window, 'load', function(){
 					offsetLeft: 10,
 
 					// Set the class name for the top level container element
-					className: 'tooltip',
-
-					// Set the heading level that will be accessible for screen reader users
-					ariaLevel: 2
+					className: 'tooltip'
 
 					// (Other AccDC API properties and methods can be declared here also to customize functionality and behavior)
 					});
