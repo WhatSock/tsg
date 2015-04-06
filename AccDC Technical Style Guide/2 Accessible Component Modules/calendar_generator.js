@@ -1,6 +1,6 @@
 /*!
-ARIA Calendar Module R1.8
-Copyright 2010-2014 Bryan Garaventa (WhatSock.com)
+ARIA Calendar Module R1.9
+Copyright 2010-2015 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 
@@ -197,8 +197,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							$A.query('td.day.selected', this.containerDiv, function(i, p){
 								$A.setAttr(p,
 												{
-												tabindex: '-1',
-												'aria-selected': 'false'
+												tabindex: '-1'
 												});
 
 								$A.remClass(p, 'selected');
@@ -206,8 +205,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							$A.addClass(o, 'selected');
 							$A.setAttr(o,
 											{
-											tabindex: '0',
-											'aria-selected': 'true'
+											tabindex: '0'
 											});
 
 							if (!s)
@@ -318,7 +316,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 								if (comm)
 									dc.source += comm.replace(/<|>|\n/g, ' ').replace(/\"/g, '\"');
-								dc.source += '" role="link" tabindex="-1" aria-selected="false" class="day';
+								dc.source += '" role="link" tabindex="-1" class="day';
 
 								if (dis)
 									dc.source += ' disabled';
