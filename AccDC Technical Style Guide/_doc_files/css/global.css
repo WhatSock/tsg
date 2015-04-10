@@ -226,3 +226,24 @@ font-style: italic;
 color: red;
 font-weight: bold;
 }
+
+a.permalink {
+display: inline-block;
+text-decoration: none;
+font-weight: bold;
+padding: 6px;
+border: 1px solid #dedede;
+background: #a5b8c6;
+filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#becbd6', endColorstr='#88a1b4'); /*  IE */
+background: -webkit-gradient(linear, left top, left bottom, from(#becbd6), to(#88a1b4)); /*  WebKit */
+background: -moz-linear-gradient(top,  #becbd6, #88a1b4);
+border-color: #000;
+color: #000;
+text-shadow: 0 1px 0 #c4d0d9;
+-webkit-box-shadow: 0 1px 1px #d3d3d3, inset 0 1px 0 #ced8e0;
+-moz-box-shadow: 0 1px 1px #d3d3d3, inset 0 1px 0 #ced8e0;
+box-shadow: 0 1px 1px #d3d3d3, inset 0 1px 0 #ced8e0;
+position: absolute;
+top: 10px;
+margin-left: -35px;
+}

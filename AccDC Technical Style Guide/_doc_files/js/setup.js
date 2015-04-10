@@ -148,6 +148,21 @@
 		SyntaxHighlighter.defaults['gutter'] = false;
 		SyntaxHighlighter.all();
 
+		// Generate permalinks
+		var baseURL = 'http://whatsock.com/tsg/#';
+		$A.query('h2', function(i, o){
+			var d = o.parentNode, a = $A.createEl('a',
+							{
+							href: baseURL + d.id,
+							title: 'Permalink: ' + baseURL + d.id,
+							'aria-label': 'Permalink: ' + baseURL + d.id
+							}, null, 'permalink');
+
+			a.innerHTML = '<span aria-hidden="true">#</span>';
+			d.appendChild(a);
+			$A.css(a, 'left', -(a.offsetWidth));
+		});
+
 		var verNode = $A.getEl('AccDCCurrentVerS1');
 
 		if (verNode && $A.version){
