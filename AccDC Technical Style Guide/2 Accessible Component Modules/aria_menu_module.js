@@ -1,5 +1,5 @@
 /*!
-ARIA Menu Module R2.7
+ARIA Menu Module R2.8
 Copyright 2010-2015 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 	*/
@@ -110,7 +110,6 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 					tdc.returnFocus = true;
 				}
 
-				// if (o.parentNode != dc.mNode)
 				ids.push(o.id);
 			});
 			$A(dc, subMenuObjects, config.overrides);
@@ -140,6 +139,24 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 			if (ids.length)
 				$A.setAttr(dc.mNode, 'aria-owns', ids.join(' '));
+
+// Check if this is a submenu, then remove the parent menu from the tab order to preserve one tab stop for the menu construct
+			if (dc != dc.top && dc.parent && dc.parent.iNodes && dc.triggerObj)
+				$A.setAttr(dc.triggerObj, 'tabindex', '-1');
+
+			// Set bindings to handle when focus moves out of the menu
+			if (dc == dc.top){
+				$A.bind('body', 'focusin.accmenu', function(ev){
+					if (dc.tempFocus)
+						dc.tempFocus = null;
+
+					else
+						dc.top.close();
+				});
+				$A.bind(dc.accDCObj, 'focusin', function(ev){
+					dc.tempFocus = this;
+				});
+			}
 		},
 
 		// Declare a recursive function for unbinding events
@@ -151,6 +168,12 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 			if (dc.iNodes && dc.iNodes.length)
 				$A.unbind(dc.iNodes, 'click keypress keydown popupsubmenu menulink');
+
+			if (dc != dc.top && dc.parent && dc.parent.iNodes && dc.triggerObj)
+				$A.setAttr(dc.triggerObj, 'tabindex', '0');
+
+			if (dc == dc.top)
+				$A.unbind('body', 'focusin.accmenu');
 		},
 
 		// Parse menu constructs
@@ -262,7 +285,12 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 					if (trapC.currentMenu && trapC.currentMenu.id && trapC.currentMenu.loaded)
 						trapC.currentMenu.close();
 				}
-				trapC.pass = trapCM.pass = false;
+
+				if (trapC)
+					trapC.pass = false;
+
+				if (trapCM)
+					trapCM.pass = false;
 			};
 			trapC.menuOpen = trapC.pass = false;
 			$A.bind(document, 'click touchstart', trapC);
