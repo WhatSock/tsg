@@ -1,5 +1,5 @@
 /*!
-ARIA Menu Module R2.8
+ARIA Menu Module R2.8.1
 Copyright 2010-2015 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 	*/
@@ -150,7 +150,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 					if (dc.tempFocus)
 						dc.tempFocus = null;
 
-					else
+					else if (!('ontouchstart' in window))
 						dc.top.close();
 				});
 				$A.bind(dc.accDCObj, 'focusin', function(ev){
