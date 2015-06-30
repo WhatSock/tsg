@@ -1,6 +1,6 @@
 /*!
-ARIA Data Grid Module R1.2
-Copyright 2010-2014 Bryan Garaventa (WhatSock.com)
+ARIA Data Grid Module R1.3
+Copyright 2010-2015 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 
@@ -341,7 +341,8 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 																						if (this != config.page.row.focusedCell)
 																							config.page.row.move(config.page.row.resetPos(this));
 
-																						if (!('ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0)){
+																						if (!('ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0))
+																							{
 																							cellObject = getCellObject(this);
 																							trigger();
 																						}
@@ -891,8 +892,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 																		};
 
 													if (cellObject.readonly || config.page.row.selectEnabled){
-														// aria-readonly is disabled to prevent NVDA from aborting Applications Mode prematurely
-														// $A.setAttr(cellObject.cellNode, 'aria-readonly', 'true');
+														$A.setAttr(cellObject.cellNode, 'aria-readonly', 'true');
 														$A.addClass(cellObject.cellNode, config.cellReadOnlyClass);
 													}
 
@@ -1073,8 +1073,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 							else if (!config.edit && !config.page.row.selectEnabled){
 								$A.addClass(dc.table, config.gridReadOnlyClass);
-							// aria-readonly is disabled to prevent NVDA from aborting Applications Mode prematurely
-							// $A.setAttr(dc.table, 'aria-readonly', 'true');
+								$A.setAttr(dc.table, 'aria-readonly', 'true');
 							}
 
 							dc.thead = $A.createEl('thead',
