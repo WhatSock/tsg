@@ -35,7 +35,7 @@ outline: #b00020 2px inset;
 }
 
 #skipLnks, #pgContent {
-width: 90%;
+width: 80%;
 margin-left: 5%;
 }
 
@@ -50,6 +50,7 @@ text-align: center;
 
 div.hd1 {
 margin: 20px 20px 20px 20%;
+width: 60%;
 }
 
 h1 {
@@ -102,6 +103,7 @@ text-align: center;
 }
 
 div.heading {
+width: 80%;
 font-size: 1.1em;
 font-style: italic;
 color: #000099;
@@ -246,4 +248,13 @@ box-shadow: 0 1px 1px #d3d3d3, inset 0 1px 0 #ced8e0;
 position: absolute;
 top: 10px;
 margin-left: -35px;
+}
+
+.gAd {
+position: fixed;
+z-index: 100;
+width: 120px;
+height: 240px;
+top: 0px;
+right: 0px;
 }
