@@ -1,5 +1,5 @@
 /*!
-ARIA Menu Module R2.8.1
+ARIA Menu Module R2.9
 Copyright 2010-2015 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 	*/
@@ -167,7 +167,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 			}
 
 			if (dc.iNodes && dc.iNodes.length)
-				$A.unbind(dc.iNodes, 'click keypress keydown popupsubmenu menulink');
+				$A.unbind(dc.iNodes, 'click keydown popupsubmenu menulink');
 
 			if (dc != dc.top && dc.parent && dc.parent.iNodes && dc.triggerObj)
 				$A.setAttr(dc.triggerObj, 'tabindex', '0');
@@ -393,15 +393,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 								keydown: function(ev){
 									var k = ev.which || ev.keyCode;
 
-									if (k == 40){
-										$A.trigger(tgr, 'popupmenu');
-										ev.preventDefault();
-									}
-								},
-								keypress: function(ev){
-									var k = ev.which || ev.keyCode;
-
-									if (k == 13 || k == 32){
+									if (k == 40 || k == 13 || k == 32){
 										$A.trigger(tgr, 'popupmenu');
 										ev.preventDefault();
 									}
@@ -479,7 +471,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 			$A.bind(o,
 							{
-							keypress: function(ev){
+							keydown: function(ev){
 								var k = ev.which || ev.keyCode;
 
 								// 13 enter, 27 escape
@@ -501,12 +493,9 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 										$A.trigger(this, 'menulink');
 									ev.preventDefault();
 								}
-							},
-							keydown: function(ev){
-								var k = ev.which || ev.keyCode;
 
 								// 37 left, 38 up, 39 right, 40 down
-								if (k >= 37 && k <= 40){
+								else if (k >= 37 && k <= 40){
 									ev.preventDefault();
 
 									if (dc != dc.top && ((k == 37 && !dc.hor) || (k == 38 && dc.hor)))
