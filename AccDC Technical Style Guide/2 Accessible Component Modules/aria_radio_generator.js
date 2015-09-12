@@ -1,6 +1,6 @@
 /*!
-ARIA Radio Generator R2.1
-Copyright 2010-2014 Bryan Garaventa (WhatSock.com)
+ARIA Radio Generator R2.2
+Copyright 2010-2015 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 	*/
 
@@ -92,11 +92,8 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 								else
 									select(0, true);
 							}
-						},
-						keypress: function(ev){
-							var k = ev.which || ev.keyCode;
 
-							if (k == 13 || k == 32){
+							else if (k == 13 || k == 32){
 								ev.preventDefault();
 								$A.trigger(this, 'click');
 							}
