@@ -10,8 +10,10 @@ $A.bind(window, 'load', function(){
 					allowDelete: false, // The Delete key will remove the selected item when true
 
 					// Help messages that are announced to screen reader users
-					grabInstruct: 'Press Space to grab',
-					dropInstruct: 'Press Space to drop',
+					grabInstruct: ('ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0)
+						? 'Double tap to grab' : 'Press Space to grab',
+					dropInstruct: ('ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0)
+						? 'Double tap to drop' : 'Press Space to drop',
 					grabMsg: 'Grabbed',
 					dropMsg: 'Moved',
 					cancelDrop: 'Grab canceled',
