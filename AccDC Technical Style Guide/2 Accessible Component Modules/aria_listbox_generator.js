@@ -1,6 +1,6 @@
 /*!
-ARIA Listbox Generator Module R2.5
-Copyright 2010-2014 Bryan Garaventa (WhatSock.com)
+ARIA Listbox Generator Module R2.6
+Copyright 2010-2015 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 	*/
 
@@ -203,7 +203,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 								}
 								select(track[this.id]);
 							},
-							'keypress.arialistbox': function(ev){
+							'keydown.arialistbox': function(ev){
 								var k = ev.which || ev.keyCode;
 
 								if (k == 13)
@@ -218,11 +218,8 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 									activate.apply(this);
 									ev.preventDefault();
 								}
-							},
-							'keydown.arialistbox': function(ev){
-								var k = ev.which || ev.keyCode;
 
-								if (k == 38){
+								else if (k == 38){
 									ev.preventDefault();
 
 									if (that.index > 0)
