@@ -1,5 +1,5 @@
 /*!
-ARIA Tree From XML Module R2.2
+ARIA Tree From XML Module R2.3
 Copyright 2010-2015 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 	*/
@@ -152,19 +152,16 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 									ev.preventDefault();
 									$A.trigger(this, 'clicktreeitem');
 								},
-								keypress: function(ev){
+								keydown: function(ev){
 									var k = ev.which || ev.keyCode;
 
 									if (k == 13 || k == 32){
 										$A.trigger(this, 'click');
 										ev.preventDefault();
 									}
-								},
-								keydown: function(ev){
-									var k = ev.which || ev.keyCode;
 
 									// 35 end, 36 home, 37 left, 38 up, 39 right, 40 down
-									if (k >= 35 && k <= 40){
+									else if (k >= 35 && k <= 40){
 										if (k == 35){
 											var pdc = dc;
 
@@ -344,11 +341,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 			if (config.bind && config.callback && typeof config.callback === 'function')
 				$A.bind(dc.tree.childNodes, config.bind, function(ev){
-					config.callback.apply(this,
-									[
-									ev,
-									dc
-									]);
+					config.callback.apply(this, [ev, dc]);
 				});
 
 // Then register all newly formed AccDC Objects to set recursive functionality
