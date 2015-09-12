@@ -1,5 +1,5 @@
 /*!
-ARIA Calendar Module R1.9
+ARIA Calendar Module R1.10
 Copyright 2010-2015 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
@@ -227,11 +227,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 						runBefore: function(dc){
 							if (config.ajax && typeof config.ajax === 'function' && !dc.stopAjax && !dc.ajaxLoading){
 								dc.ajaxLoading = dc.cancel = true;
-								config.ajax.apply(dc,
-												[
-												dc,
-												false
-												]);
+								config.ajax.apply(dc, [dc, false]);
 							}
 
 							if (dc.range.current.month === 1)
@@ -421,12 +417,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 												if ($A.hasClass(this, 'selected') || (!commentsEnabled && !$A.hasClass(this, 'comment'))){
 													if ($A.inArray(dc.range.current.mDay, dc.range[dc.range.current.month].disabled[dc.range.current.year]
 														|| dc.range[dc.range.current.month].disabled['*'] || []) === -1){
-														handleClick.apply(this,
-																		[
-																		ev,
-																		dc,
-																		targ
-																		]);
+														handleClick.apply(this, [ev, dc, targ]);
 													}
 												}
 
@@ -434,7 +425,8 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 													dc.setFocus(this);
 												ev.preventDefault();
 											},
-											keypress: function(ev){
+											keydown: function(ev){
+												changePressed(ev);
 												var k = ev.which || ev.keyCode;
 
 												if (k == 13){
@@ -442,12 +434,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 													if ($A.inArray(dc.range.current.mDay, dc.range[dc.range.current.month].disabled[dc.range.current.year]
 														|| dc.range[dc.range.current.month].disabled['*'] || []) === -1){
-														handleClick.apply(this,
-																		[
-																		ev,
-																		dc,
-																		targ
-																		]);
+														handleClick.apply(this, [ev, dc, targ]);
 													}
 
 													ev.preventDefault();
@@ -458,10 +445,6 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 													dc.children[1].reset();
 													ev.preventDefault();
 												}
-											},
-											keydown: function(ev){
-												changePressed(ev);
-												var k = ev.which || ev.keyCode;
 
 												if ((k >= 37 && k <= 40) || k == 27 || (k >= 33 && k <= 36)){
 													var wd = dc.range.current.wDay;
@@ -593,12 +576,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 													if ($A.inArray(dc.range.current.mDay, dc.range[dc.range.current.month].disabled[dc.range.current.year]
 														|| dc.range[dc.range.current.month].disabled['*'] || []) === -1){
 														if (!dc.setFocus.firstOpen)
-															handleClick.apply(this,
-																			[
-																			ev,
-																			dc,
-																			targ
-																			]);
+															handleClick.apply(this, [ev, dc, targ]);
 													}
 
 													ev.preventDefault();
@@ -614,17 +592,14 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 												pMonth();
 												ev.preventDefault();
 											},
-											keypress: function(ev){
+											keydown: function(ev){
+												changePressed(ev);
 												var k = ev.which || ev.keyCode;
 
 												if (k == 13 || k == 32){
 													pMonth();
 													ev.preventDefault();
 												}
-											},
-											keydown: function(ev){
-												changePressed(ev);
-												var k = ev.which || ev.keyCode;
 
 												if (k == 27){
 													dc.close();
@@ -641,17 +616,14 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 												nMonth();
 												ev.preventDefault();
 											},
-											keypress: function(ev){
+											keydown: function(ev){
+												changePressed(ev);
 												var k = ev.which || ev.keyCode;
 
 												if (k == 13 || k == 32){
 													nMonth();
 													ev.preventDefault();
 												}
-											},
-											keydown: function(ev){
-												changePressed(ev);
-												var k = ev.which || ev.keyCode;
 
 												if (k == 27){
 													dc.close();
@@ -669,17 +641,14 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 												gYear();
 												ev.preventDefault();
 											},
-											keypress: function(ev){
+											keydown: function(ev){
+												changePressed(ev);
 												var k = ev.which || ev.keyCode;
 
 												if (k == 13 || k == 32){
 													gYear();
 													ev.preventDefault();
 												}
-											},
-											keydown: function(ev){
-												changePressed(ev);
-												var k = ev.which || ev.keyCode;
 
 												if (k == 27){
 													dc.close();
@@ -696,17 +665,14 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 												gYear(true);
 												ev.preventDefault();
 											},
-											keypress: function(ev){
+											keydown: function(ev){
+												changePressed(ev);
 												var k = ev.which || ev.keyCode;
 
 												if (k == 13 || k == 32){
 													gYear(true);
 													ev.preventDefault();
 												}
-											},
-											keydown: function(ev){
-												changePressed(ev);
-												var k = ev.which || ev.keyCode;
 
 												if (k == 27){
 													dc.close();
@@ -893,7 +859,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 															if (dc.parent.children[0].loaded)
 																dc.parent.children[0].close();
 														},
-														keypress: function(ev){
+														keydown: function(ev){
 															var k = ev.which || ev.keyCode;
 
 															if (this.value.length > 800)
@@ -982,7 +948,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 													}
 													ev.preventDefault();
 												},
-												keypress: function(ev){
+												keydown: function(ev){
 													var k = ev.which || ev.keyCode;
 
 													if (k == 27){
@@ -1017,11 +983,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							$A.unbind(window, 'resize.dateeditor');
 
 							if (config.ajax && typeof config.ajax === 'function')
-								config.ajax.apply(dc.parent,
-												[
-												dc.parent,
-												true
-												]);
+								config.ajax.apply(dc.parent, [dc.parent, true]);
 
 							dc.parent.setFocus.firstOpen = true;
 						},
