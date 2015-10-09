@@ -1,5 +1,5 @@
 /*!
-ARIA Combobox Module R1.2
+ARIA Combobox Module R1.3
 Copyright 2010-2015 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
@@ -318,7 +318,13 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 																option.so.selected = true;
 
 															if (!pass && dc.cb.fn.onSelect && typeof dc.cb.fn.onSelect === 'function'){
-																var nv = dc.cb.fn.onSelect.apply(dc.triggerObj, [option.no, option.v, dc.triggerObj, dc.cb.sel]);
+																var nv = dc.cb.fn.onSelect.apply(dc.triggerObj,
+																				[
+																				option.no,
+																				option.v,
+																				dc.triggerObj,
+																				dc.cb.sel
+																				]);
 
 																if (nv)
 																	dc.cb.value = nv;
@@ -396,7 +402,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 																					ev.preventDefault();
 																				}
 
-																				else if (k >= 37 && k <= 40){
+																				else if (k == 38 || k == 40){
 																					ev.preventDefault();
 																				}
 
@@ -691,7 +697,11 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 												});
 
 								if (dc.cb.fn.onTriggerChange && typeof dc.cb.fn.onTriggerChange === 'function')
-									dc.cb.fn.onTriggerChange.apply(dc.cb.altTrigger, [dc.cb.altTrigger, dc.loaded]);
+									dc.cb.fn.onTriggerChange.apply(dc.cb.altTrigger,
+													[
+													dc.cb.altTrigger,
+													dc.loaded
+													]);
 							}
 
 							if (dc.cb.fn.onOpen && typeof dc.cb.fn.onOpen === 'function')
@@ -707,7 +717,11 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 												});
 
 								if (dc.cb.fn.onTriggerChange && typeof dc.cb.fn.onTriggerChange === 'function')
-									dc.cb.fn.onTriggerChange.apply(dc.cb.altTrigger, [dc.cb.altTrigger, dc.loaded]);
+									dc.cb.fn.onTriggerChange.apply(dc.cb.altTrigger,
+													[
+													dc.cb.altTrigger,
+													dc.loaded
+													]);
 							}
 
 							if (dc.cb.fn.onClose && typeof dc.cb.fn.onClose === 'function')
