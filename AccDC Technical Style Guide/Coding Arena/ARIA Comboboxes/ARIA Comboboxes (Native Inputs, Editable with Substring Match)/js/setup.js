@@ -25,8 +25,8 @@ $A.bind(window, 'load', function(){
 	// Set a positive or negative top/left offset to be applied to the autoPosition property calculation
 	myAuthorCombobox.setOffset(
 					{
-					top: 5,
-					left: 10
+					top: 7,
+					left: 30
 					});
 
 	// Process every time a new value is saved
