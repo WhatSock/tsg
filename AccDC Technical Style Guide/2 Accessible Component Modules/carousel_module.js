@@ -1,5 +1,5 @@
 /*!
-Carousel From XML Module R2.4
+Carousel From XML Module R2.5
 Copyright 2010-2015 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
@@ -96,13 +96,6 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 			btnN.appendChild($A.createEl('span', null, $A.sraCSS, null,
 				document.createTextNode(vals.nextTitle + ' ' + vals.slideName)));
 
-			pDiv.appendChild(lDiv);
-			pDiv.appendChild(cDiv);
-			pDiv.appendChild(rDiv);
-			lDiv.appendChild(btnP);
-			rDiv.appendChild(btnN);
-			cDiv.appendChild(bDiv);
-
 			if (isGrouped){
 				$A.setAttr(btnPG,
 								{
@@ -121,16 +114,30 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 				btnNG.appendChild($A.createEl('span', null, $A.sraCSS, null,
 					document.createTextNode(vals.nextTitle + ' ' + vals.groupName)));
-				lDiv.appendChild(btnPG);
-				rDiv.appendChild(btnNG);
+
 			}
+
+			var renderFn = config.renderFn && typeof config.renderFn === 'function'
+				? config.renderFn : function(pDiv, lDiv, cDiv, bDiv, rDiv, btnP, btnN, isGrouped, btnPG, btnNG){
+				pDiv.appendChild(lDiv);
+				pDiv.appendChild(cDiv);
+				cDiv.appendChild(bDiv);
+				pDiv.appendChild(rDiv);
+				lDiv.appendChild(btnP);
+				rDiv.appendChild(btnN);
+				if (isGrouped){
+					lDiv.appendChild(btnPG);
+					rDiv.appendChild(btnNG);
+}
+			};
+			renderFn.apply(this, [pDiv, lDiv, cDiv, bDiv, rDiv, btnP, btnN, isGrouped, btnPG, btnNG]);
+
 			$A(
 							[
 							{
 							id: bId,
 							role: vals.role,
-							accStart: vals.accStart || 'Start',
-							accEnd: vals.accEnd || 'End',
+							showHiddenBounds: true,
 							ariaLevel: ariaLevel,
 							showHiddenClose: false,
 							isStatic: container,
@@ -177,6 +184,17 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 								else
 									dc.gdc.autoPosition = 5;
 							},
+							runDuring: function(dc){
+								$A.setAttr(dc.accDCObj,
+												{
+												role: 'region',
+												'aria-label': dc.role
+												});
+
+								if (dc.showHiddenBounds){
+									dc.fn.sraStart.innerHTML = dc.fn.sraEnd.innerHTML = '';
+								}
+							},
 							runAfter: function(dc){
 								if (!tmpd){
 									tmpd = $A.createEl('div', null, dc.sraCSS);
@@ -215,11 +233,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 											var aS = '';
 
 											if (!autoStart || typeof autoStart !== 'string')
-												aS =
-																[
-																0,
-																0
-																];
+												aS = [0, 0];
 
 											else
 												aS = autoStart.split(',');
@@ -362,11 +376,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 									var ret = null;
 
 									if (handlers.btnPrev && typeof handlers.btnPrev === 'function' && dc.accDCObj)
-										ret = handlers.btnPrev.apply(this,
-														[
-														ev,
-														dc
-														]);
+										ret = handlers.btnPrev.apply(this, [ev, dc]);
 
 									if (typeof ret === 'boolean' && !ret)
 										return false;
@@ -414,11 +424,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 									var ret = null;
 
 									if (handlers.btnNext && typeof handlers.btnNext === 'function' && dc.accDCObj)
-										ret = handlers.btnNext.apply(this,
-														[
-														ev,
-														dc
-														]);
+										ret = handlers.btnNext.apply(this, [ev, dc]);
 
 									if (typeof ret === 'boolean' && !ret)
 										return false;
@@ -466,11 +472,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 									var ret = null;
 
 									if (handlers.btnPrevG && typeof handlers.btnPrevG === 'function')
-										ret = handlers.btnPrevG.apply(this,
-														[
-														ev,
-														dc
-														]);
+										ret = handlers.btnPrevG.apply(this, [ev, dc]);
 
 									if (typeof ret === 'boolean' && !ret)
 										return false;
@@ -495,11 +497,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 									var ret = null;
 
 									if (handlers.btnNextG && typeof handlers.btnNextG === 'function')
-										ret = handlers.btnNextG.apply(this,
-														[
-														ev,
-														dc
-														]);
+										ret = handlers.btnNextG.apply(this, [ev, dc]);
 
 									if (typeof ret === 'boolean' && !ret)
 										return false;
@@ -521,22 +519,14 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 												{
 												click: function(ev){
 													ev.preventDefault();
-													dc.pSlide.apply(this,
-																	[
-																	ev,
-																	dc
-																	]);
+													dc.pSlide.apply(this, [ev, dc]);
 												},
 												keydown: function(ev){
 													var k = ev.which || ev.keyCode;
 
 													if (k == 13 || k == 32){
 														ev.preventDefault();
-														dc.pSlide.apply(this,
-																		[
-																		ev,
-																		dc
-																		]);
+														dc.pSlide.apply(this, [ev, dc]);
 													}
 												}
 												});
@@ -545,22 +535,14 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 												{
 												click: function(ev){
 													ev.preventDefault();
-													dc.nSlide.apply(this,
-																	[
-																	ev,
-																	dc
-																	]);
+													dc.nSlide.apply(this, [ev, dc]);
 												},
 												keydown: function(ev){
 													var k = ev.which || ev.keyCode;
 
 													if (k == 13 || k == 32){
 														ev.preventDefault();
-														dc.nSlide.apply(this,
-																		[
-																		ev,
-																		dc
-																		]);
+														dc.nSlide.apply(this, [ev, dc]);
 													}
 												}
 												});
@@ -570,22 +552,14 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 													{
 													click: function(ev){
 														ev.preventDefault();
-														dc.pGroup.apply(this,
-																		[
-																		ev,
-																		dc
-																		]);
+														dc.pGroup.apply(this, [ev, dc]);
 													},
 													keydown: function(ev){
 														var k = ev.which || ev.keyCode;
 
 														if (k == 13 || k == 32){
 															ev.preventDefault();
-															dc.pGroup.apply(this,
-																			[
-																			ev,
-																			dc
-																			]);
+															dc.pGroup.apply(this, [ev, dc]);
 														}
 													}
 													});
@@ -594,22 +568,14 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 													{
 													click: function(ev){
 														ev.preventDefault();
-														dc.nGroup.apply(this,
-																		[
-																		ev,
-																		dc
-																		]);
+														dc.nGroup.apply(this, [ev, dc]);
 													},
 													keydown: function(ev){
 														var k = ev.which || ev.keyCode;
 
 														if (k == 13 || k == 32){
 															ev.preventDefault();
-															dc.nGroup.apply(this,
-																			[
-																			ev,
-																			dc
-																			]);
+															dc.nGroup.apply(this, [ev, dc]);
 														}
 													}
 													});
@@ -741,11 +707,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 				}
 
 				if (config.step)
-					config.step.apply(ele,
-									[
-									nw,
-									nw2
-									]);
+					config.step.apply(ele, [nw, nw2]);
 			}
 
 			else{
@@ -758,11 +720,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 								$A.css(ele2, t, targ2[t]);
 
 				if (config.complete)
-					config.complete.apply(ele,
-									[
-									targ,
-									targ2
-									]);
+					config.complete.apply(ele, [targ, targ2]);
 			}
 		}, 10);
 	};

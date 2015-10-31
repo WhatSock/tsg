@@ -66,7 +66,23 @@ $A.bind(window, 'load', function(){
 										// 'this' is the button element DOM node
 										// 'dc' is the Carousel AccDC Object
 										}
-										}
+										},
+
+						// Customize the DOM rendering order or add additional controls to the DOM when rendered within the carousel
+						renderFn: function(parentDiv, leftDiv, centerDiv, bufferDiv, rightDiv, btnPrev, btnNext, isGrouped, btnPrevGroup,
+						btnNextGroup){
+							parentDiv.appendChild(leftDiv);
+							parentDiv.appendChild(centerDiv);
+							centerDiv.appendChild(bufferDiv);
+							parentDiv.appendChild(rightDiv);
+							leftDiv.appendChild(btnPrev);
+							rightDiv.appendChild(btnNext);
+
+							if (isGrouped){
+								leftDiv.appendChild(btnPrevGroup);
+								rightDiv.appendChild(btnNextGroup);
+							}
+						}
 						});
 	};
 

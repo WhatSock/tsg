@@ -279,6 +279,22 @@ btnNextG: function(ev, dc){
 // Return false to prevent the next group from rendering
 }
 
+},
+
+// Customize the DOM rendering order or add additional controls to the DOM when rendered within the carousel
+renderFn: function(parentDiv, leftDiv, centerDiv, bufferDiv, rightDiv, btnPrev, btnNext, isGrouped, btnPrevGroup, btnNextGroup){
+parentDiv.appendChild(leftDiv);
+parentDiv.appendChild(centerDiv);
+centerDiv.appendChild(bufferDiv);
+parentDiv.appendChild(rightDiv);
+leftDiv.appendChild(btnPrev);
+rightDiv.appendChild(btnNext);
+
+if (isGrouped){
+leftDiv.appendChild(btnPrevGroup);
+rightDiv.appendChild(btnNextGroup);
+}
+
 }
 
 }
