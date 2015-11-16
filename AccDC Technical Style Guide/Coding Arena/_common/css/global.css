@@ -107,3 +107,17 @@ z-index: -1000;
 *:focus {
 outline: 2px red inset;
 }
+
+pre {
+padding: 4px;
+border: 1px solid #dedede;
+word-break: keep-all;
+word-wrap: break-word;
+white-space: normal;
+white-space: -moz-pre-wrap;
+white-space: pre-wrap;
+white-space: pre\9;
+text-align: left;
+font-size: 10pt;
+max-width: 1100px;
+}

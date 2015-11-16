@@ -1,5 +1,5 @@
 /*!
-Carousel From XML Module R2.5
+Carousel From XML Module R2.6
 Copyright 2010-2015 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
@@ -16,11 +16,11 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 		// Internal variables
 		xml = null, track = {}, bId = container.id || 'l' + $A.genId(), announce = {}, tmp = $A.createEl('div'),
-			handlers = config.handlers || {}, paused = loading = false;
+			handlers = config.handlers || {}, paused = loading = false, stop = false;
 		$A.load(tmp, path, function(data){
 			xml = str2xml(data);
 			var attrs =
-				'role accStart accEnd height width className prevTitle nextTitle slideName groupName btnPText btnNText btnPGText btnNGText btnPAccesskey btnNAccesskey btnPGAccesskey btnNGAccesskey direction timer animDelay hiddenMsg'.split(
+				'role height width className prevTitle nextTitle slideName groupName btnPText btnNText btnPGText btnNGText btnPAccesskey btnNAccesskey btnPGAccesskey btnNGAccesskey direction timer animDelay hiddenMsg'.split(
 				' '),
 				vals = {}, d = xml.documentElement, forward = d.attributes.getNamedItem('forward').value == 'yes' ? true : false,
 				cycle = d.attributes.getNamedItem('cycle').value == 'yes' ? true : false,
@@ -81,6 +81,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 			$A.setAttr(btnP,
 							{
 							accesskey: vals.btnPAccesskey,
+							'aria-label': trim(vals.prevTitle + ' ' + vals.slideName),
 							title: trim(vals.prevTitle + ' ' + vals.slideName)
 							}).innerHTML = '<span aria-hidden="true">' + vals.btnPText + '</span>';
 
@@ -90,6 +91,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 			$A.setAttr(btnN,
 							{
 							accesskey: vals.btnNAccesskey,
+							'aria-label': trim(vals.nextTitle + ' ' + vals.slideName),
 							title: trim(vals.nextTitle + ' ' + vals.slideName)
 							}).innerHTML = '<span aria-hidden="true">' + vals.btnNText + '</span>';
 
@@ -100,6 +102,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 				$A.setAttr(btnPG,
 								{
 								accesskey: vals.btnPGAccesskey,
+								'aria-label': trim(vals.prevTitle + ' ' + vals.groupName),
 								title: trim(vals.prevTitle + ' ' + vals.groupName)
 								}).innerHTML = '<span aria-hidden="true">' + vals.btnPGText + '</span>';
 
@@ -109,12 +112,12 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 				$A.setAttr(btnNG,
 								{
 								accesskey: vals.btnNGAccesskey,
+								'aria-label': trim(vals.nextTitle + ' ' + vals.groupName),
 								title: trim(vals.nextTitle + ' ' + vals.groupName)
 								}).innerHTML = '<span aria-hidden="true">' + vals.btnNGText + '</span>';
 
 				btnNG.appendChild($A.createEl('span', null, $A.sraCSS, null,
 					document.createTextNode(vals.nextTitle + ' ' + vals.groupName)));
-
 			}
 
 			var renderFn = config.renderFn && typeof config.renderFn === 'function'
@@ -125,12 +128,25 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 				pDiv.appendChild(rDiv);
 				lDiv.appendChild(btnP);
 				rDiv.appendChild(btnN);
+
 				if (isGrouped){
 					lDiv.appendChild(btnPG);
 					rDiv.appendChild(btnNG);
-}
+				}
 			};
-			renderFn.apply(this, [pDiv, lDiv, cDiv, bDiv, rDiv, btnP, btnN, isGrouped, btnPG, btnNG]);
+			renderFn.apply(this,
+							[
+							pDiv,
+							lDiv,
+							cDiv,
+							bDiv,
+							rDiv,
+							btnP,
+							btnN,
+							isGrouped,
+							btnPG,
+							btnNG
+							]);
 
 			$A(
 							[
@@ -233,7 +249,11 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 											var aS = '';
 
 											if (!autoStart || typeof autoStart !== 'string')
-												aS = [0, 0];
+												aS =
+																[
+																0,
+																0
+																];
 
 											else
 												aS = autoStart.split(',');
@@ -376,7 +396,11 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 									var ret = null;
 
 									if (handlers.btnPrev && typeof handlers.btnPrev === 'function' && dc.accDCObj)
-										ret = handlers.btnPrev.apply(this, [ev, dc]);
+										ret = handlers.btnPrev.apply(this,
+														[
+														ev,
+														dc
+														]);
 
 									if (typeof ret === 'boolean' && !ret)
 										return false;
@@ -417,14 +441,55 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 									if (ndc && ndc.id)
 										ndc.open();
 								};
-								dc.nSlide = function(ev, auto){
+
+								dc.enableAuto = function(v){
+									stop = v ? false : true;
+
+									if (handlers.stopStateChange && typeof handlers.stopStateChange === 'function')
+										handlers.stopStateChange.apply(dc,
+														[
+														stop || paused || false,
+														dc
+														]);
+								};
+
+								dc.isStopped = function(){
+									return stop || paused || false;
+								};
+
+								dc.setSlide = function(slideNum, groupNum){
+									var isSN = (!isNaN(slideNum) && slideNum >= 0), isGN = (!isNaN(groupNum) && groupNum >= 0);
+
+									if (isGN && isSN)
+										dc.nGroup.apply(this,
+														[
+														null,
+														slideNum,
+														groupNum
+														]);
+
+									else if (isSN)
+										dc.nSlide.apply(this,
+														[
+														null,
+														null,
+														slideNum
+														]);
+								};
+
+								dc.nSlide = function(ev, auto, slideNum){
 									if (loading)
 										return;
 
 									var ret = null;
 
 									if (handlers.btnNext && typeof handlers.btnNext === 'function' && dc.accDCObj)
-										ret = handlers.btnNext.apply(this, [ev, dc]);
+										ret = handlers.btnNext.apply(this,
+														[
+														ev,
+														dc,
+														slideNum
+														]);
 
 									if (typeof ret === 'boolean' && !ret)
 										return false;
@@ -433,7 +498,10 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 									if (dc){
 										if (!isGrouped){
-											if (dc.cur.slideVal < (dc.cur.slideMax - 1))
+											if (!isNaN(slideNum) && slideNum >= 0)
+												id = bId + slideNum;
+
+											else if (dc.cur.slideVal < (dc.cur.slideMax - 1))
 												id = bId + (dc.cur.slideVal + 1);
 
 											else if (cycle)
@@ -459,12 +527,14 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 											id = bId + g + s;
 										}
 									}
+
 									var ndc = $A.reg[id];
 									dc.dirFlag = 1;
 
 									if (ndc && ndc.id)
 										ndc.open();
 								};
+
 								dc.pGroup = function(ev){
 									if (loading)
 										return;
@@ -472,7 +542,11 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 									var ret = null;
 
 									if (handlers.btnPrevG && typeof handlers.btnPrevG === 'function')
-										ret = handlers.btnPrevG.apply(this, [ev, dc]);
+										ret = handlers.btnPrevG.apply(this,
+														[
+														ev,
+														dc
+														]);
 
 									if (typeof ret === 'boolean' && !ret)
 										return false;
@@ -487,46 +561,72 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 										id = bId + g + 0;
 										var ndc = $A.reg[id];
 										dc.dirFlag = 0;
-										ndc.open();
+
+										if (ndc && ndc.id)
+											ndc.open();
 									}
 								};
-								dc.nGroup = function(ev){
+
+								dc.nGroup = function(ev, slideNum, groupNum){
 									if (loading)
 										return;
 
 									var ret = null;
 
 									if (handlers.btnNextG && typeof handlers.btnNextG === 'function')
-										ret = handlers.btnNextG.apply(this, [ev, dc]);
+										ret = handlers.btnNextG.apply(this,
+														[
+														ev,
+														dc,
+														slideNum,
+														groupNum
+														]);
 
 									if (typeof ret === 'boolean' && !ret)
 										return false;
 
-									var id = '', g = dc.cur.groupVal;
+									var id = '', g = dc.cur.groupVal,
+										sgSet = ((!isNaN(slideNum) && slideNum >= 0) && (!isNaN(groupNum) && groupNum >= 0));
 
-									if (g >= (dc.cur.groupMax - 1) && !cycle)
+									if (g >= (dc.cur.groupMax - 1) && !cycle && !sgSet)
 										return false;
 
 									else{
-										g = g < (dc.cur.groupMax - 1) ? g + 1 : 0;
-										id = bId + g + 0;
+										if (sgSet)
+											g = groupNum;
+
+										else
+											g = g < (dc.cur.groupMax - 1) ? g + 1 : 0;
+										id = bId + g + (sgSet ? slideNum : 0);
+
 										var ndc = $A.reg[id];
 										dc.dirFlag = 1;
-										ndc.open();
+
+										if (ndc && ndc.id)
+											ndc.open();
 									}
 								};
+
 								$A.bind(btnP,
 												{
 												click: function(ev){
 													ev.preventDefault();
-													dc.pSlide.apply(this, [ev, dc]);
+													dc.pSlide.apply(this,
+																	[
+																	ev,
+																	dc
+																	]);
 												},
 												keydown: function(ev){
 													var k = ev.which || ev.keyCode;
 
 													if (k == 13 || k == 32){
 														ev.preventDefault();
-														dc.pSlide.apply(this, [ev, dc]);
+														dc.pSlide.apply(this,
+																		[
+																		ev,
+																		dc
+																		]);
 													}
 												}
 												});
@@ -535,14 +635,22 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 												{
 												click: function(ev){
 													ev.preventDefault();
-													dc.nSlide.apply(this, [ev, dc]);
+													dc.nSlide.apply(this,
+																	[
+																	ev,
+																	dc
+																	]);
 												},
 												keydown: function(ev){
 													var k = ev.which || ev.keyCode;
 
 													if (k == 13 || k == 32){
 														ev.preventDefault();
-														dc.nSlide.apply(this, [ev, dc]);
+														dc.nSlide.apply(this,
+																		[
+																		ev,
+																		dc
+																		]);
 													}
 												}
 												});
@@ -552,14 +660,22 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 													{
 													click: function(ev){
 														ev.preventDefault();
-														dc.pGroup.apply(this, [ev, dc]);
+														dc.pGroup.apply(this,
+																		[
+																		ev,
+																		dc
+																		]);
 													},
 													keydown: function(ev){
 														var k = ev.which || ev.keyCode;
 
 														if (k == 13 || k == 32){
 															ev.preventDefault();
-															dc.pGroup.apply(this, [ev, dc]);
+															dc.pGroup.apply(this,
+																			[
+																			ev,
+																			dc
+																			]);
 														}
 													}
 													});
@@ -568,14 +684,22 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 													{
 													click: function(ev){
 														ev.preventDefault();
-														dc.nGroup.apply(this, [ev, dc]);
+														dc.nGroup.apply(this,
+																		[
+																		ev,
+																		dc
+																		]);
 													},
 													keydown: function(ev){
 														var k = ev.which || ev.keyCode;
 
 														if (k == 13 || k == 32){
 															ev.preventDefault();
-															dc.nGroup.apply(this, [ev, dc]);
+															dc.nGroup.apply(this,
+																			[
+																			ev,
+																			dc
+																			]);
 														}
 													}
 													});
@@ -585,31 +709,69 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 									$A.bind('body', 'keydown.' + bId, function(ev){
 										var k = ev.which || ev.keyCode;
 
-										if (k == 27 && !paused){
-											paused = true;
+										if (k == 27){
+											stop = true;
 											vals.timer = 0;
+
+											if (handlers.stopStateChange && typeof handlers.stopStateChange === 'function')
+												handlers.stopStateChange.apply(dc,
+																[
+																stop || paused || false,
+																dc
+																]);
+
 											ev.preventDefault();
 										}
 									});
-									firstChild(dc.accDCObj).appendChild($A.createEl('div', null, dc.sraCSS, null,
-										document.createTextNode(vals.hiddenMsg)));
+
+									if (!('ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0))
+										dc.fn.sraStart.appendChild($A.createEl('div', null, dc.sraCSS, null,
+											document.createTextNode(vals.hiddenMsg)));
 								}
 							},
 							focusIn: function(ev, dc){
 								paused = true;
 								clearTimeout(dc.inc);
+
+								if (handlers.stopStateChange && typeof handlers.stopStateChange === 'function')
+									handlers.stopStateChange.apply(dc,
+													[
+													stop || paused || false,
+													dc
+													]);
 							},
 							focusOut: function(ev, dc){
 								paused = false;
 								dc.setInc();
+
+								if (handlers.stopStateChange && typeof handlers.stopStateChange === 'function')
+									handlers.stopStateChange.apply(dc,
+													[
+													stop || paused || false,
+													dc
+													]);
 							},
 							mouseOver: function(ev, dc){
 								paused = true;
 								clearTimeout(dc.inc);
+
+								if (handlers.stopStateChange && typeof handlers.stopStateChange === 'function')
+									handlers.stopStateChange.apply(dc,
+													[
+													stop || paused || false,
+													dc
+													]);
 							},
-							mouseOut: function(ev, dc){
+							mouseLeave: function(ev, dc){
 								paused = false;
 								dc.setInc();
+
+								if (handlers.stopStateChange && typeof handlers.stopStateChange === 'function')
+									handlers.stopStateChange.apply(dc,
+													[
+													stop || paused || false,
+													dc
+													]);
 							},
 							setInc: function(){
 								var dc = this;
@@ -619,7 +781,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 									if (vals.timer > 0)
 										dc.inc = setTimeout(function(){
-											if (paused)
+											if (paused || stop)
 												return;
 
 											if (forward)
@@ -707,7 +869,11 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 				}
 
 				if (config.step)
-					config.step.apply(ele, [nw, nw2]);
+					config.step.apply(ele,
+									[
+									nw,
+									nw2
+									]);
 			}
 
 			else{
@@ -720,7 +886,11 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 								$A.css(ele2, t, targ2[t]);
 
 				if (config.complete)
-					config.complete.apply(ele, [targ, targ2]);
+					config.complete.apply(ele,
+									[
+									targ,
+									targ2
+									]);
 			}
 		}, 10);
 	};

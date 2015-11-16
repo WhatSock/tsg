@@ -18,7 +18,7 @@ Flat:
 
 <?xml version="1.0" encoding="UTF-8" ?>
 <carousel
-role="Slideshow" accStart="Start" accEnd="End"
+role="Slideshow"
 height="170" width="280"
 className="carouselCls"
 prevTitle="Previous" nextTitle="Next" slideName="Slide" groupName=""
@@ -40,7 +40,7 @@ Grouped:
 
 <?xml version="1.0" encoding="UTF-8" ?>
 <carousel
-role="Carousel" accStart="Start" accEnd="End"
+role="Carousel"
 height="170" width="280"
 className="carouselCls"
 prevTitle="Previous" nextTitle="Next" slideName="Slide" groupName="Group"
@@ -74,8 +74,6 @@ Attributes that are not required may be set to null. E.G. attributeName=""
 Carousel attribute definitions:
 
 role : Hidden text role for screen reader users
-accStart : Hidden text start keyword for screen reader users
-accEnd : Hidden text end keyword for screen reader users
 
 height : Total height of control (must be greater than the CSS height of the left/center/right content panels)
 width : Total width of control (must be greater than the combined CSS height of the left+center+right content panels)
@@ -193,6 +191,12 @@ complete: function(dc){
 // dc.slideVal : the current index value of the newly loaded slide (relative to siblings if contained within a Group)
 // dc.slideMax : the maximum number of Slides within the Group or carousel (if contained within a flat list)
 
+},
+
+// Runs every time the auto rotation of a carousel stops or resumes rotating
+
+stopStateChange: function(isStopped, dc){
+// isStopped = true or false
 },
 
 // Runs every time the Previous Slide button is clicked
@@ -322,6 +326,28 @@ var data = serialize(dc.form);
 dc.close();
 
 // All other AccDC API properties and methods are similarly available if desired.
+
+// Also, the following Carousel specific properties and methods are available here too
+
+// Set the carousel to a specific slide number, which must be equal to or greater than 0 to match the array index value
+
+dc.setSlide(slideNumber);
+
+// Or the same when using a grouped carousel
+
+dc.setSlide(slideNumber, groupNumber);
+
+// Programmatically stop auto cycling of a carousel
+
+dc.enableAuto(false);
+
+// Programmatically restart auto cycling of a carousel
+
+dc.enableAuto(true);
+
+// Return the current stopped state of an auto rotating carousel
+
+var isStopped = dc.isStopped();
 
 Important: The Carousel AccDC Object consists of many nested AccDC Objects which act as moving parts, similar to cogwheels within the construct.
 So when dc.close() is used to close the carousel, it, including all of its nested objects, are destroyed completely.

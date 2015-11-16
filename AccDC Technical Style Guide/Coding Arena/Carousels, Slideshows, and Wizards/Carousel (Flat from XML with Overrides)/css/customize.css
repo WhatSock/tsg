@@ -1,0 +1,129 @@
+
+/* The container element where the dynamically generated carousel will be inserted */
+#carouselId {
+width: 165px;
+margin: 25px;
+}
+
+/* The top level Div element that holds all carousel nodes */
+#carouselId div.carouselCls {
+text-align: center;
+}
+
+/* The center Div element where rotating slides are added */
+#carouselId div.centerContent {
+position: relative;
+width: 165px;
+height: 170px;
+overflow: hidden;
+border: solid thin black;
+}
+
+/* Point to all Nav buttons in the carousel */
+#carouselId .navButton {
+border: 0;
+padding: 0;
+margin: 0;
+}
+
+/* Point to all Nav buttons in the carousel */
+#carouselId .navButton {
+cursor: pointer;
+display: inline-block;
+text-decoration: none;
+font: bold 12px/12px HelveticaNeue, Arial;
+padding: 6px 6px;
+border: 1px solid #dedede;
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
+background: #a5b8c6;
+filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#becbd6', endColorstr='#88a1b4'); /*  IE */
+background: -webkit-gradient(linear, left top, left bottom, from(#becbd6), to(#88a1b4)); /*  WebKit */
+background: -moz-linear-gradient(top,  #becbd6, #88a1b4);
+border-color: #000;
+color: #000;
+text-shadow: 0 1px 0 #c4d0d9;
+-webkit-box-shadow: 0 1px 1px #d3d3d3, inset 0 1px 0 #ced8e0;
+-moz-box-shadow: 0 1px 1px #d3d3d3, inset 0 1px 0 #ced8e0;
+box-shadow: 0 1px 1px #d3d3d3, inset 0 1px 0 #ced8e0;
+}
+
+ul.dotNavClass {
+list-style: none;
+padding: 0;
+margin: 0;
+display: inline-block;
+width: 100%;
+}
+
+div.navDivClass > *, div.navDivClass li {
+float: left;
+}
+
+div.leftCol, div.rightCol {
+width: 40px;
+text-align: center;
+}
+
+div.midCol {
+width: 84px;
+}
+
+ul.dotNavClass li {
+width: 16%;
+text-align: center;
+cursor: pointer;
+font: bold 12px/12px HelveticaNeue, Arial;
+padding: 4px 0;
+border: 1px solid #dedede;
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
+background: #525252;
+filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#5e5e5e', endColorstr='#434343'); /*  IE */
+background: -webkit-gradient(linear, left top, left bottom, from(#5e5e5e), to(#434343)); /*  WebKit */
+background: -moz-linear-gradient(top,  #5e5e5e, #434343);
+border-color: #4c4c4c #313131 #1f1f1f;
+color: #fff;
+text-shadow: 0 1px 0 #2e2e2e;
+-webkit-box-shadow: 0 1px 1px #afafaf, inset 0 1px 0 #868686;
+-moz-box-shadow: 0 1px 1px #afafaf, inset 0 1px 0 #868686;
+box-shadow: 0 1px 1px #afafaf, inset 0 1px 0 #868686;
+}
+
+ul.dotNavClass li[aria-current="true"] {
+font-weight: bold;
+color: #000;
+background: #f4f4f4;
+filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#efefef', endColorstr='#f8f8f8'); /*  IE */
+background: -webkit-gradient(linear, left top, left bottom, from(#efefef), to(#f8f8f8)); /*  WebKit */
+background: -moz-linear-gradient(top,  #efefef, #f8f8f8);
+border-color: #c7c7c7 #c3c3c3 #bebebe;
+text-shadow: 0 1px 0 #fdfdfd;
+-webkit-box-shadow: 0 1px 1px #ebebeb, inset 0 1px 0 #f3f3f3;
+-moz-box-shadow: 0 1px 1px #ebebeb, inset 0 1px 0 #f3f3f3;
+box-shadow: 0 1px 1px #ebebeb, inset 0 1px 0 #f3f3f3;
+}
+
+ul.dotNavClass li:focus:before {
+height: auto; width: auto;
+position: absolute;
+z-index: 1;
+margin-top: 20px;
+background-color: white;
+color: blue;
+font-size: 10px;
+content: ' ' attr(title) ' ';
+}
+
+#carouselId div.centerContent:focus + div.navDivClass:before {
+height: auto; width: auto;
+position: absolute;
+z-index: 1;
+margin-top: 35px;
+background-color: white;
+color: blue;
+font-size: 10px;
+content: ' Press Left or Right to scroll ';
+}

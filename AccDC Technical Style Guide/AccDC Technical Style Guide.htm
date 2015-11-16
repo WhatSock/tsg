@@ -4663,32 +4663,37 @@ Expected behaviors: The beginning and ending boundaries should be conveyed to sc
 The Carousel Module automates these processes by adding all related event handlers and managing all related rendering procedures using an external XML file for configuration.
 </p>
 <ul><li>
-Basic Carousel control with offscreen boundary text, and aria-live=polite:<br />
+Customized Carousel control with named region text, and aria-live=polite:<br />
+<a target="ca" href="Coding Arena/Carousels, Slideshows, and Wizards/Carousel (Flat from XML with Overrides)/demo.htm">
+Coding Arena/Carousels, Slideshows, and Wizards/Carousel (Flat from XML with Overrides)/demo.htm
+</a>
+</li><li>
+Basic Carousel control with named region text, and aria-live=polite:<br />
 <a target="ca" href="Coding Arena/Carousels, Slideshows, and Wizards/Carousel (Flat from XML)/demo.htm">
 Coding Arena/Carousels, Slideshows, and Wizards/Carousel (Flat from XML)/demo.htm
 </a>
 </li><li>
-Bottom grouped Carousel control with offscreen boundary text, and aria-live=polite:<br />
+Bottom grouped Carousel control with named region text, and aria-live=polite:<br />
 <a target="ca" href="Coding Arena/Carousels, Slideshows, and Wizards/Carousel (Grouped from XML, with Group Name on Bottom)/demo.htm">
 Coding Arena/Carousels, Slideshows, and Wizards/Carousel (Grouped from XML, with Group Name on Bottom)/demo.htm
 </a>
 </li><li>
-Top grouped Carousel control with offscreen boundary text, and aria-live=polite:<br />
+Top grouped Carousel control with named region text, and aria-live=polite:<br />
 <a target="ca" href="Coding Arena/Carousels, Slideshows, and Wizards/Carousel (Grouped from XML, with Group Name on Top)/demo.htm">
 Coding Arena/Carousels, Slideshows, and Wizards/Carousel (Grouped from XML, with Group Name on Top)/demo.htm
 </a>
 </li><li>
-Bottom captioned Carousel control with offscreen boundary text, and aria-live=polite:<br />
+Bottom captioned Carousel control with named region text, and aria-live=polite:<br />
 <a target="ca" href="Coding Arena/Carousels, Slideshows, and Wizards/Carousel (Grouped from XML, with Group Names as Captions)/demo.htm">
 Coding Arena/Carousels, Slideshows, and Wizards/Carousel (Grouped from XML, with Group Names as Captions)/demo.htm
 </a>
 </li><li>
-Basic Slideshow control with offscreen boundary text, and aria-live=polite:<br />
+Basic Slideshow control with named region text, and aria-live=polite:<br />
 <a target="ca" href="Coding Arena/Carousels, Slideshows, and Wizards/Slideshow (Flat from XML)/demo.htm">
 Coding Arena/Carousels, Slideshows, and Wizards/Slideshow (Flat from XML)/demo.htm
 </a>
 </li><li>
-Wizard Slideshow control with offscreen boundary text, and aria-live=polite:<br />
+Wizard Slideshow control with named region text, and aria-live=polite:<br />
 <a target="ca" href="Coding Arena/Carousels, Slideshows, and Wizards/Wizard (Grouped from XML)/demo.htm">
 Coding Arena/Carousels, Slideshows, and Wizards/Wizard (Grouped from XML)/demo.htm
 </a>
@@ -4719,7 +4724,7 @@ Flat:
 <pre class="brush: xml;">
 &lt;?xml version="1.0" encoding="UTF-8" ?>
 &lt;carousel
-role="Slideshow" accStart="Start" accEnd="End"
+role="Slideshow"
 height="170" width="280"
 className="carouselCls"
 prevTitle="Previous" nextTitle="Next" slideName="Slide" groupName=""
@@ -4743,7 +4748,7 @@ Grouped:
 <pre class="brush: xml;">
 &lt;?xml version="1.0" encoding="UTF-8" ?>
 &lt;carousel
-role="Carousel" accStart="Start" accEnd="End"
+role="Carousel"
 height="170" width="280"
 className="carouselCls"
 prevTitle="Previous" nextTitle="Next" slideName="Slide" groupName="Group"
@@ -4780,10 +4785,6 @@ Carousel attribute definitions:
 </p>
 <ul><li>
 role : Hidden text role for screen reader users
-</li><li>
-accStart : Hidden text start keyword for screen reader users
-</li><li>
-accEnd : Hidden text end keyword for screen reader users
 </li><li>
 height : Total height of control (must be greater than the CSS height of the left/center/right content panels)
 </li><li>
@@ -4944,6 +4945,12 @@ complete: function(dc){
 
 },
 
+// Runs every time the auto rotation of a carousel stops or resumes rotating
+
+stopStateChange: function(isStopped, dc){
+// isStopped = true or false
+},
+
 // Runs every time the Previous Slide button is clicked
 btnPrev: function(ev, dc){
 
@@ -5073,6 +5080,28 @@ var data = serialize(dc.form);
 dc.close();
 
 // All other AccDC API properties and methods are similarly available if desired.
+
+// Also, the following Carousel specific properties and methods are available here too
+
+// Set the carousel to a specific slide number, which must be equal to or greater than 0 to match the array index value
+
+dc.setSlide(slideNumber);
+
+// Or the same when using a grouped carousel
+
+dc.setSlide(slideNumber, groupNumber);
+
+// Programmatically stop auto cycling of a carousel
+
+dc.enableAuto(false);
+
+// Programmatically restart auto cycling of a carousel
+
+dc.enableAuto(true);
+
+// Return the current stopped state of an auto rotating carousel
+
+var isStopped = dc.isStopped();
 </pre>
 <p>
 Important: The Carousel AccDC Object consists of many nested AccDC Objects which act as moving parts, similar to cogwheels within the construct.<br />
