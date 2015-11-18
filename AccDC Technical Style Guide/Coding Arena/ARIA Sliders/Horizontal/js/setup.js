@@ -31,7 +31,7 @@ $A.bind(window, 'load', function(){
 					// Return the string that will act as the textual notification for screen reader users when the slider is moved
 					valueText: function(dc, val){
 						// Calculate the current percentage and append the "%" character to make the purpose clear textually
-						return ((val / dc.config.max) * 100) + '%';
+						return Math.round(((val / dc.config.max) * 100)) + '%';
 					},
 
 					// Set the action to occur whenever the value changes
