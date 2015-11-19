@@ -7,7 +7,7 @@ $A.bind(window, 'load', function(){
 	window.renderCarousel = function(){
 
 		// Declare a dotList variable for use later, as well as a UL DOM node variable and index value
-		var dotList = [], dotIndex = 0, dotNavUl = null;
+		var dotList = [], dotIndex = 0, dotNavUl = null, stopBtn = null;
 
 		$A.setCarousel($A.getEl('carouselId'), 'files/carousel.xml', '0',
 						{
@@ -34,7 +34,11 @@ $A.bind(window, 'load', function(){
 
 						// Customize the DOM rendering order or add additional controls to the DOM when rendered within the carousel
 						renderFn: function(parentDiv, leftDiv, centerDiv, bufferDiv, rightDiv, btnPrev, btnNext, isGrouped, btnPrevGroup,
-						btnNextGroup){
+							btnNextGroup){
+
+							// Create a topDiv node for the Stop/Play button to be appended within
+							var topDiv = $A.createEl('div', null, null, 'topDiv clearfix');
+							parentDiv.appendChild(topDiv);
 
 							// Add container element DOM node where slides will dynamically rotate
 							parentDiv.appendChild(centerDiv);
@@ -142,7 +146,30 @@ $A.bind(window, 'load', function(){
 											{
 											tabindex: '0',
 											role: 'region',
-											'aria-label': 'Slide'
+											'aria-label': 'Slide',
+											'data-keyboard': 'Press Left or Right to scroll'
+											});
+
+							// Create a Stop/Play button to be appended within topDiv
+
+							stopBtn = $A.createEl('a',
+											{
+											role: 'button',
+											href: '#',
+											'aria-label': 'Stop rotation',
+											title: 'Stop rotation'
+											}, null, 'stopBtn');
+
+							stopBtn.innerHTML = '<span aria-hidden="true">X</span>';
+							topDiv.appendChild(stopBtn);
+
+							$A.bind(stopBtn,
+											{
+											click: function(ev){
+												var dc = $A.reg['carouselId'];
+												dc.enableAuto(dc.isStopped ? true : false);
+												ev.preventDefault();
+											}
 											});
 						},
 
@@ -167,6 +194,16 @@ $A.bind(window, 'load', function(){
 															}), 'active-slide');
 
 											dotIndex = dc.slideVal;
+										},
+										stopStateChange: function(isStopped, dc){
+											$A.setAttr(stopBtn,
+															{
+															'aria-label': dc.isStopped ? 'Resume rotation' : 'Stop rotation',
+															title: dc.isStopped ? 'Resume rotation' : 'Stop rotation'
+															});
+
+											$A[dc.isStopped ? 'addClass' : 'remClass'](stopBtn, 'stopped').innerHTML = dc.isStopped
+												? '<span aria-hidden="true">O</span>' : '<span aria-hidden="true">X</span>';
 										}
 										}
 						});

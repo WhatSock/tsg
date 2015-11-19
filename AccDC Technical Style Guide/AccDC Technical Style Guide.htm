@@ -4725,7 +4725,7 @@ Flat:
 &lt;?xml version="1.0" encoding="UTF-8" ?>
 &lt;carousel
 role="Slideshow"
-height="170" width="280"
+height="auto" width="auto"
 className="carouselCls"
 prevTitle="Previous" nextTitle="Next" slideName="Slide" groupName=""
 showGroup="" groupPosTop=""
@@ -4749,7 +4749,7 @@ Grouped:
 &lt;?xml version="1.0" encoding="UTF-8" ?>
 &lt;carousel
 role="Carousel"
-height="170" width="280"
+height="auto" width="auto"
 className="carouselCls"
 prevTitle="Previous" nextTitle="Next" slideName="Slide" groupName="Group"
 showGroup="yes" groupPosTop="yes"
@@ -4785,10 +4785,6 @@ Carousel attribute definitions:
 </p>
 <ul><li>
 role : Hidden text role for screen reader users
-</li><li>
-height : Total height of control (must be greater than the CSS height of the left/center/right content panels)
-</li><li>
-width : Total width of control (must be greater than the combined CSS height of the left+center+right content panels)
 </li><li>
 className : The class name for styling the top level AccDC Object container
 </li><li>
@@ -4948,7 +4944,10 @@ complete: function(dc){
 // Runs every time the auto rotation of a carousel stops or resumes rotating
 
 stopStateChange: function(isStopped, dc){
-// isStopped = true or false
+// isStopped or paused = true or false
+// Or for granular detection
+// dc.isStopped = true or false
+// dc.isPaused = true or false
 },
 
 // Runs every time the Previous Slide button is clicked

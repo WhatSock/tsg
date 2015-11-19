@@ -1,18 +1,28 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<carousel role="Carousel" accStart="Start" accEnd="End" height="170" width="280" className="carouselCls" prevTitle="Previous" nextTitle="Next" slideName="Slide" groupName="" showGroup="" groupPosTop="" btnPText="&#8592;" btnNText="&#8594;" btnPGText="" btnNGText="" isGrouped="no" btnPAccesskey="1" btnNAccesskey="2" btnPGAccesskey="" btnNGAccesskey="" direction="lr" cycle="yes" timer="5000" animDelay="2000" forward="yes" hiddenMsg="Press Escape to stop automatic cycling" >
+<carousel role="Carousel" height="auto" width="auto" className="carouselCls" prevTitle="Previous" nextTitle="Next" slideName="Slide" groupName="" showGroup="" groupPosTop="" btnPText="&#8592;" btnNText="&#8594;" btnPGText="" btnNGText="" isGrouped="no" btnPAccesskey="1" btnNAccesskey="2" btnPGAccesskey="" btnNGAccesskey="" direction="lr" cycle="yes" timer="5000" animDelay="2000" forward="yes" hiddenMsg="Press Escape to stop automatic cycling" >
 <slide announce="Emiliana Torrini - Love in the Time of Science" ><![CDATA[
+<div class="slide slide1">
 <img src="img/music/ar_et_lts.jpg" alt="Emiliana Torrini - Love in the Time of Science" title="Emiliana Torrini - Love in the Time of Science" />
+</div>
 ]]></slide>
 <slide announce="Frente - Labour of Love" ><![CDATA[
+<div class="slide slide2">
 <img src="img/music/ar_f_ll.jpg" alt="Frente - Labour of Love" title="Frente - Labour of Love" />
+</div>
 ]]></slide>
 <slide announce="Hooverphonic - Blue Wonder Power Milk" ><![CDATA[
+<div class="slide slide3">
 <img src="img/music/ar_h_bwpm.jpg" alt="Hooverphonic - Blue Wonder Power Milk" title="Hooverphonic - Blue Wonder Power Milk" />
+</div>
 ]]></slide>
 <slide announce="New Order - Substance" ><![CDATA[
+<div class="slide slide4">
 <img src="img/music/ar_no_s.jpg" alt="New Order - Substance" title="New Order - Substance" />
+</div>
 ]]></slide>
 <slide announce="U2 - The Unforgettable Fire" ><![CDATA[
+<div class="slide slide5">
 <img src="img/music/ar_u_uf.jpg" alt="U2 - The Unforgettable Fire" title="U2 - The Unforgettable Fire" />
+</div>
 ]]></slide>
 </carousel>
