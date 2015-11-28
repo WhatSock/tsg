@@ -1,5 +1,5 @@
 /*!
-ARIA Calendar Module R1.10
+ARIA Calendar Module R1.11
 Copyright 2010-2015 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
@@ -227,7 +227,11 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 						runBefore: function(dc){
 							if (config.ajax && typeof config.ajax === 'function' && !dc.stopAjax && !dc.ajaxLoading){
 								dc.ajaxLoading = dc.cancel = true;
-								config.ajax.apply(dc, [dc, false]);
+								config.ajax.apply(dc,
+												[
+												dc,
+												false
+												]);
 							}
 
 							if (dc.range.current.month === 1)
@@ -352,6 +356,17 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 											role: 'dialog',
 											'aria-label': dc.role
 											});
+
+							dc.fn.sraStart.innerHTML = dc.fn.sraEnd.innerHTML = '';
+							$A.setAttr(dc.fn.sraStart,
+											{
+											'aria-hidden': 'true'
+											});
+
+							$A.setAttr(dc.fn.sraEnd,
+											{
+											'aria-hidden': 'true'
+											});
 						},
 						runAfter: function(dc){
 							var nMonth = function(){
@@ -417,7 +432,12 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 												if ($A.hasClass(this, 'selected') || (!commentsEnabled && !$A.hasClass(this, 'comment'))){
 													if ($A.inArray(dc.range.current.mDay, dc.range[dc.range.current.month].disabled[dc.range.current.year]
 														|| dc.range[dc.range.current.month].disabled['*'] || []) === -1){
-														handleClick.apply(this, [ev, dc, targ]);
+														handleClick.apply(this,
+																		[
+																		ev,
+																		dc,
+																		targ
+																		]);
 													}
 												}
 
@@ -434,7 +454,12 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 													if ($A.inArray(dc.range.current.mDay, dc.range[dc.range.current.month].disabled[dc.range.current.year]
 														|| dc.range[dc.range.current.month].disabled['*'] || []) === -1){
-														handleClick.apply(this, [ev, dc, targ]);
+														handleClick.apply(this,
+																		[
+																		ev,
+																		dc,
+																		targ
+																		]);
 													}
 
 													ev.preventDefault();
@@ -576,7 +601,12 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 													if ($A.inArray(dc.range.current.mDay, dc.range[dc.range.current.month].disabled[dc.range.current.year]
 														|| dc.range[dc.range.current.month].disabled['*'] || []) === -1){
 														if (!dc.setFocus.firstOpen)
-															handleClick.apply(this, [ev, dc, targ]);
+															handleClick.apply(this,
+																			[
+																			ev,
+																			dc,
+																			targ
+																			]);
 													}
 
 													ev.preventDefault();
@@ -807,6 +837,17 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 											});
 
 							$A.setAttr(dc.containerDiv, 'role', 'application');
+
+							dc.fn.sraStart.innerHTML = dc.fn.sraEnd.innerHTML = '';
+							$A.setAttr(dc.fn.sraStart,
+											{
+											'aria-hidden': 'true'
+											});
+
+							$A.setAttr(dc.fn.sraEnd,
+											{
+											'aria-hidden': 'true'
+											});
 						},
 						add: function(dc){
 							var comm = trim(dc.textarea.value.replace(/<|>|\n/g, ' '));
@@ -983,7 +1024,11 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							$A.unbind(window, 'resize.dateeditor');
 
 							if (config.ajax && typeof config.ajax === 'function')
-								config.ajax.apply(dc.parent, [dc.parent, true]);
+								config.ajax.apply(dc.parent,
+												[
+												dc.parent,
+												true
+												]);
 
 							dc.parent.setFocus.firstOpen = true;
 						},
