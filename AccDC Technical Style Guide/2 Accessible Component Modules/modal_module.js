@@ -1,6 +1,6 @@
 /*!
-Modal Module R1.4
-Copyright 2010-2014 Bryan Garaventa (WhatSock.com)
+Modal Module R1.5
+Copyright 2010-2015 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 
@@ -55,6 +55,23 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 											'aria-hidden': 'true',
 											role: 'presentation'
 											}).innerHTML = '';
+
+							$A.setAttr(dc.accDCObj,
+											{
+											role: 'region',
+											'aria-label': dc.role
+											});
+
+							dc.fn.sraStart.innerHTML = dc.fn.sraEnd.innerHTML = '';
+							$A.setAttr(dc.fn.sraStart,
+											{
+											'aria-hidden': 'true'
+											});
+
+							$A.setAttr(dc.fn.sraEnd,
+											{
+											'aria-hidden': 'true'
+											});
 						},
 
 						// Run script after the AccDC Object finishes loading
