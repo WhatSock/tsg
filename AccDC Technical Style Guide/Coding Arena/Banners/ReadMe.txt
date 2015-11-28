@@ -33,8 +33,6 @@ id: 'myBannerId',
 
 // Set the boundary text for screen reader users
 role: 'Banner',
-accStart: 'Start',
-accEnd: 'End',
 
 // Set the Banner AccDC Object to render literal content
 // (Only if pulling content from within the same page, remove otherwise)

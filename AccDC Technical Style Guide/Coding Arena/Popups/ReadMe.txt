@@ -41,8 +41,6 @@ id: 'uniqueId',
 
 // Set the screen reader accessible boundary text values
 role: 'Popup',
-accStart: 'Start',
-accEnd: 'End',
 
 // Set a triggering element using either the DOM node or a CSS Selector
 trigger: '#popupTrigger',

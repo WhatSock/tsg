@@ -56,10 +56,6 @@ Example:
 // Set role name text for screen reader users
 role: 'Calendar',
 
-// Set boundary text wording for screen reader users
-accStart: 'Start',
-accEnd: 'End',
-
 // Set tooltip text
 tooltipTxt: 'Press Escape to cancel',
 disabledTxt: 'Disabled',

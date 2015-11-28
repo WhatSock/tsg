@@ -38,8 +38,6 @@ id: 'progressbar1',
 
 // Set the boundary text for screen reader users
 role: 'Download',
-accStart: 'Start',
-accEnd: 'End',
 
 // Set initial values for the progress bar, values may be of type Int or Float
 config: {

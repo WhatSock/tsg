@@ -52,8 +52,6 @@ id: 'uniqueId',
 
 // Set the screen reader accessible boundary text values
 role: 'Modal',
-accStart: 'Start',
-accEnd: 'End',
 
 // Set a triggering element using either the DOM node or a CSS Selector
 // (Only if a triggering element is present, remove otherwise)
