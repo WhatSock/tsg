@@ -1,6 +1,6 @@
 /*!
-ARIA Menu Module R2.9
-Copyright 2010-2015 Bryan Garaventa (WhatSock.com)
+ARIA Menu Module R2.10
+Copyright 2010-2016 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 	*/
 
@@ -125,11 +125,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 						dc.top.close();
 
 						if (dc.handler && typeof dc.handler === 'function')
-							return dc.handler.apply(this,
-											[
-											ev,
-											dc
-											]);
+							return dc.handler.apply(this, [ev, dc]);
 					});
 
 					// if (o.parentNode != dc.mNode)
@@ -281,7 +277,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 		if (typeof trapC !== 'function'){
 			trapC = function(ev){
-				if (!trapC.pass && !trapCM.pass && trapC.menuOpen){
+				if (!trapC.pass && (!trapCM || !trapCM.pass) && trapC.menuOpen){
 					if (trapC.currentMenu && trapC.currentMenu.id && trapC.currentMenu.loaded)
 						trapC.currentMenu.close();
 				}
@@ -320,7 +316,9 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 								{
 								contextmenu: function(ev){
 									ev.preventDefault();
-									trapCM.pass = true;
+
+									if (trapCM)
+										trapCM.pass = true;
 								},
 								mouseup: function(ev){
 									var btn = -1;
@@ -334,7 +332,8 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 										btn = (ev.which < 2) ? 1 : ((ev.which == 2) ? 3 : 2);
 
 									if (btn == 2){
-										trapCM.pass = true;
+										if (trapCM)
+											trapCM.pass = true;
 
 										if ($A.reg[topLvlId].loaded)
 											$A.reg[topLvlId].close();
@@ -348,7 +347,8 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 									var k = ev.which || ev.keyCode;
 
 									if (k == 93 || (ev.shiftKey && k == 121)){
-										trapCM.pass = true;
+										if (trapCM)
+											trapCM.pass = true;
 										$A.trigger(tgr, 'popupmenu');
 										ev.preventDefault();
 									}
