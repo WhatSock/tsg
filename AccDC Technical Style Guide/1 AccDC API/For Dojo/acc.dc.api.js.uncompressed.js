@@ -1,12 +1,12 @@
 /*!
-AccDC API - 3.1 for Dojo (03/16/2014)
-Copyright 2010-2014 Bryan Garaventa (WhatSock.com)
+AccDC API - 3.2 for Dojo (01/25/2016)
+Copyright 2010-2016 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 define("dojo/acc.dc.api", ["./query!css3", "./on", "./ready", "./request", "./html", "./dom-construct", "./request/script"],
 function(dojoQuery, dojoOn, dojoReady, dojoRequest, dojoHtml, dojoConst, dojoScript, undefined){
 
-var accDCVersion = '3.1 (03/16/2014)',
+var accDCVersion = '3.2 (01/25/2016)',
 document = window.document,
 accDC = {},
 
@@ -2367,7 +2367,7 @@ return now(id || 'AccDC');
 announce: function(str, noRepeat, aggr){
 if (typeof str !== 'string')
 str = getText(str);
-return window.String.prototype.announce.apply(str, [str, null, noRepeat, aggr]);
+return String.prototype.announce.apply(str, [str, null, noRepeat, aggr]);
 },
 
 query: function(sel, con, call){
@@ -2677,7 +2677,17 @@ pos.left += dc.offsetLeft;
 css(dc.accDCObj, pos);
 };
 
-window.String.prototype.announce = function announce(strm, loop, noRep, aggr){
+String.prototype.announce = function announce(strm, loop, noRep, aggr){
+if (String.announce.loaded){
+if (!String.announce.liveRendered && !aggr && String.announce.placeHolder){
+String.announce.liveRendered = true;
+document.body.appendChild(String.announce.placeHolder);
+}
+if (!String.announce.alertRendered && aggr && String.announce.placeHolder2){
+String.announce.alertRendered = true;
+document.body.appendChild(String.announce.placeHolder2);
+}
+}
 if (strm && strm.nodeName && strm.nodeType === 1) strm = getText(strm);
 var obj = strm || this,
 str = strm ? strm : this.toString();
@@ -2696,13 +2706,13 @@ String.announce.alertTO = setTimeout(function(){
 String.announce.placeHolder.innerHTML = String.announce.placeHolder2.innerHTML = '';
 String.announce.alertMsgs.shift();
 if (String.announce.alertMsgs.length >= 1)
-announce(String.announce.alertMsgs[0], true, noRep, aggr);
+String.prototype.announce(String.announce.alertMsgs[0], true, noRep, aggr);
 }, timeLength);
 }
 return obj;
 };
 
-window.String.announce = {
+String.announce = {
 alertMsgs: [],
 clear: function(){
 if (this.alertTO) clearTimeout(this.alertTO);
@@ -2717,20 +2727,22 @@ str.replace(regExp, function(){
 iCount++;
 });
 return iCount;
-}
+},
+loaded: false,
+liveRendered: false,
+alertRendered: false
 };
 
 $A.bind(window, 'load', function(){
 if (!String.announce.placeHolder){
-String.announce.placeHolder = createEl('span', {
+String.announce.placeHolder = createEl('div', {
 'aria-live': 'polite'
 }, sraCSS);
-dojo.body().appendChild(String.announce.placeHolder);
-String.announce.placeHolder2 = createEl('span', {
+String.announce.placeHolder2 = createEl('div', {
 role: 'alert'
 }, sraCSS);
-dojo.body().appendChild(String.announce.placeHolder2);
 }
+String.announce.loaded = true;
 });
 
 pL.accDC = function(accDCObjects, gImport, parentDC){

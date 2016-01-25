@@ -1,11 +1,11 @@
 /*!
-AccDC API - 3.1 for MooTools (03/16/2014)
-Copyright 2010-2014 Bryan Garaventa (WhatSock.com)
+AccDC API - 3.2 for MooTools (01/25/2016)
+Copyright 2010-2016 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 (function($, undefined){
 
-var accDCVersion = '3.1 (03/16/2014)',
+var accDCVersion = '3.2 (01/25/2016)',
 document = window.document,
 accDC = {},
 
@@ -2264,8 +2264,16 @@ script.onload = script.onreadystatechange = function() {
 if ( !done && (!this.readyState ||
 this.readyState === "loaded" || this.readyState === "complete") ) {
 done = true;
-pL.handleSuccess( s, xhr, null, '');
-pL.handleComplete( s, xhr, null, '');
+pL.handleSuccess(s.dataType == 'xml' ?
+(xhr && xhr.xhr ? xhr.xhr.responseXML : null) :
+(xhr && xhr.xhr ? xhr.xhr.responseText : null),
+xhr, 
+(xhr && xhr.xhr ? xhr.xhr.status : null), s);
+pL.handleComplete(s.dataType == 'xml' ?
+(xhr && xhr.xhr ? xhr.xhr.responseXML : null) :
+(xhr && xhr.xhr ? xhr.xhr.responseText : null),
+xhr, 
+(xhr && xhr.xhr ? xhr.xhr.status : null), s);
 // Handle memory leak in IE
 script.onload = script.onreadystatechange = null;
 if ( head && script.parentNode ) {
@@ -2293,7 +2301,7 @@ timeout: s.timeout || 0,
 headers: s.headers || {},
 urlEncoded: typeof s.urlEncoded === 'boolean' ? s.urlEncoded : true,
 encoding: s.encoding || 'utf-8',
-noCache: typeof s.noCache === 'boolean' ? s.noCache : false,
+// noCache: typeof s.noCache === 'boolean' ? s.noCache : false,
 isSuccess: typeof s.isSuccess === 'function' ? s.isSuccess : undefined,
 evalScripts: typeof s.evalScripts === 'boolean' ? s.evalScripts : false,
 evalResponse: typeof s.evalResponse === 'boolean' ? s.evalResponse : false,
@@ -2306,15 +2314,15 @@ onException: typeof s.onException === 'function' ? s.onException : undefined,
 onTimeout: typeof s.onTimeout === 'function' ? s.onTimeout : undefined,
 onSuccess: function(responseText, responseXML){
 // success/load
-pL.handleSuccess(s, xhr, xhr.xhr.status, s.dataType == 'xml' ? responseXML : responseText);
+pL.handleSuccess(s.dataType == 'xml' ? xhr.xhr.responseXML : xhr.xhr.responseText, xhr, xhr.xhr.status, s);
 },
 onComplete: function(){
 // complete
-pL.handleComplete(s, xhr, xhr.xhr.status, s.dataType == 'xml' ? xhr.xhr.responseXML : xhr.xhr.responseText);
+pL.handleComplete(s.dataType == 'xml' ? xhr.xhr.responseXML : xhr.xhr.responseText, xhr, xhr.xhr.status, s);
 },
 onFailure: function(xhr){
 // error/fail
-pL.handleError(s, xhr, xhr.xhr.status, xhr.xhr.responseText);
+pL.handleError(s.dataType == 'xml' ? xhr.xhr.responseXML : xhr.xhr.responseText, xhr, xhr.xhr.status, s);
 }
 });
 xhr.send();
@@ -2326,27 +2334,27 @@ return xhr;
 
 });
 
-pL.handleError = function( s, xhr, status, e ) {
+pL.handleError = function(data, xhr, status, s){
 if ( s.error ) {
-s.error.call( s.context, xhr, status, e );
+s.error.call(s.context, xhr, status);
 }
 };
 
-pL.handleProgress = function( s, xhr, status, progEvent){
+pL.handleProgress = function(s, xhr, status, progEvent){
 if ( s.progress){
 s.progress.call( s.context, xhr, status, progEvent);
 }
 };
 
-pL.handleSuccess = function( s, xhr, status, data ) {
+pL.handleSuccess = function(data, xhr, status, s){
 if ( s.success ) {
-s.success.call( s.context, data, status, xhr );
+s.success.call(s.context, data, status, xhr);
 }
 };
 
-pL.handleComplete = function( s, xhr, status ) {
+pL.handleComplete = function(data, xhr, status, s){
 if ( s.complete ) {
-s.complete.call( s.context, xhr, status );
+s.complete.call( s.context, xhr, status, data);
 }
 };
 
@@ -2417,7 +2425,7 @@ return now(id || 'AccDC');
 announce: function(str, noRepeat, aggr){
 if (typeof str !== 'string')
 str = getText(str);
-return window.String.prototype.announce.apply(str, [str, null, noRepeat, aggr]);
+return String.prototype.announce.apply(str, [str, null, noRepeat, aggr]);
 },
 
 query: function(sel, con, call){
@@ -2428,8 +2436,22 @@ con = null;
 var r = [];
 if (isArray(sel)) r = sel;
 else if (typeof sel !== 'string') r.push(sel);
-else
+else{
+try {
 pL.find(sel, con, r);
+} catch (e){
+var ar = con.querySelectorAll(sel);
+if (ar.length){
+r = [];
+for (var i = 0; i < ar.length; i++){
+var o = ar[i];
+if (!(o.querySelectorAll('a#slick_uniqueid').length)){
+if (o.nodeType === 1) r.push(o);
+}
+}
+}
+}
+}
 if (call && typeof call === 'function') pL.each(r, call);
 return r;
 },
@@ -2733,7 +2755,17 @@ pos.left += dc.offsetLeft;
 css(dc.accDCObj, pos);
 };
 
-window.String.prototype.announce = function announce(strm, loop, noRep, aggr){
+String.prototype.announce = function announce(strm, loop, noRep, aggr){
+if (String.announce.loaded){
+if (!String.announce.liveRendered && !aggr && String.announce.placeHolder){
+String.announce.liveRendered = true;
+document.body.appendChild(String.announce.placeHolder);
+}
+if (!String.announce.alertRendered && aggr && String.announce.placeHolder2){
+String.announce.alertRendered = true;
+document.body.appendChild(String.announce.placeHolder2);
+}
+}
 if (strm && strm.nodeName && strm.nodeType === 1) strm = getText(strm);
 var obj = strm || this,
 str = strm ? strm : this.toString();
@@ -2752,13 +2784,13 @@ String.announce.alertTO = setTimeout(function(){
 String.announce.placeHolder.innerHTML = String.announce.placeHolder2.innerHTML = '';
 String.announce.alertMsgs.shift();
 if (String.announce.alertMsgs.length >= 1)
-announce(String.announce.alertMsgs[0], true, noRep, aggr);
+String.prototype.announce(String.announce.alertMsgs[0], true, noRep, aggr);
 }, timeLength);
 }
 return obj;
 };
 
-window.String.announce = {
+String.announce = {
 alertMsgs: [],
 clear: function(){
 if (this.alertTO) clearTimeout(this.alertTO);
@@ -2773,20 +2805,22 @@ str.replace(regExp, function(){
 iCount++;
 });
 return iCount;
-}
+},
+loaded: false,
+liveRendered: false,
+alertRendered: false
 };
 
 $A.bind(window, 'load', function(){
 if (!String.announce.placeHolder){
-String.announce.placeHolder = createEl('span', {
+String.announce.placeHolder = createEl('div', {
 'aria-live': 'polite'
 }, sraCSS);
-document.body.appendChild(String.announce.placeHolder);
-String.announce.placeHolder2 = createEl('span', {
+String.announce.placeHolder2 = createEl('div', {
 role: 'alert'
 }, sraCSS);
-document.body.appendChild(String.announce.placeHolder2);
 }
+String.announce.loaded = true;
 });
 
 pL.accDC = function(accDCObjects, gImport, parentDC){

@@ -1,6 +1,6 @@
 /*!
-AccDC Bootstrap R1.6
-Copyright 2010-2014 Bryan Garaventa (WhatSock.com)
+AccDC Bootstrap R1.7
+Copyright 2010-2016 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 
 Please edit this file however desired to customize functionality.
@@ -463,6 +463,7 @@ dividerTag: 'li',
 					toggleClass = $A.getAttr(o, 'data-toggleclass') || 'togglePressed';
 
 				if ((cid || p) && isStatic){
+
 					$A.setAttr(o,
 									{
 									tabindex: '0',
@@ -490,16 +491,22 @@ dividerTag: 'li',
 									source: cid && cid.nodeType === 1 ? cid.parentNode.removeChild(cid) : p.replace('#', ' #'),
 									mode: cid && cid.nodeType === 1 ? 0 : null,
 									isStatic: isStatic,
-									autoStart: $A.getAttr(o, 'data-defaultopen') ? true : false,
+									autoStart: false,
 									// Manually override defaults
 									autoPosition: 0,
 									cssObj:
 													{
 													position: ''
 													},
-									runDuring: function(dc){},
+									runDuring: function(dc){
+										$A.setAttr(dc.accDCObj,
+														{
+														'aria-labelledby': o.id
+														});
+									},
 									runBeforeClose: function(dc){},
 									runAfter: function(dc){
+										$A.remAttr(dc.accDCObj, 'aria-label');
 										$A.addClass(o, toggleClass);
 										$A.setAttr(dc.triggerObj, 'aria-pressed', 'true');
 									},
@@ -514,6 +521,9 @@ dividerTag: 'li',
 									className: 'toggle-section',
 									showHiddenBounds: false
 									});
+
+					if (state)
+						$A.trigger(o, 'click');
 				}
 			});
 
