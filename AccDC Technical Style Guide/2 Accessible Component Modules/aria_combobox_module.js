@@ -1,5 +1,5 @@
 /*!
-ARIA Combobox Module R1.4
+ARIA Combobox Module R1.5
 Copyright 2010-2016 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
@@ -249,16 +249,21 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 															if ('ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0){
 																$A.setAttr(o,
 																				{
-																				'aria-label': calcNames.name,
 																				role: 'button',
 																				'aria-expanded': 'false'
 																				});
+
+																if (!$A.getAttr(o, 'aria-labelledby') && !$A.getAttr(o, 'aria-label'))
+																	$A.setAttr(o,
+																					{
+																					'aria-label': calcNames(o).name
+																					});
 															}
 
 															else{
 																$A.setAttr(o,
 																				{
-																				'aria-hidden': 'true',
+																				// 'aria-hidden': 'true',
 																				tabindex: '-1'
 																				});
 															}
@@ -294,13 +299,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 																option.so.selected = true;
 
 															if (!pass && dc.cb.fn.onSelect && typeof dc.cb.fn.onSelect === 'function'){
-																var nv = dc.cb.fn.onSelect.apply(dc.triggerObj,
-																				[
-																				option.no,
-																				option.v,
-																				dc.triggerObj,
-																				dc.cb.sel
-																				]);
+																var nv = dc.cb.fn.onSelect.apply(dc.triggerObj, [option.no, option.v, dc.triggerObj, dc.cb.sel]);
 
 																if (nv)
 																	dc.cb.value = nv;
@@ -642,11 +641,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 												});
 
 								if (dc.cb.fn.onTriggerChange && typeof dc.cb.fn.onTriggerChange === 'function')
-									dc.cb.fn.onTriggerChange.apply(dc.cb.altTrigger,
-													[
-													dc.cb.altTrigger,
-													dc.loaded
-													]);
+									dc.cb.fn.onTriggerChange.apply(dc.cb.altTrigger, [dc.cb.altTrigger, dc.loaded]);
 							}
 
 							if (dc.cb.fn.onOpen && typeof dc.cb.fn.onOpen === 'function')
@@ -662,11 +657,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 												});
 
 								if (dc.cb.fn.onTriggerChange && typeof dc.cb.fn.onTriggerChange === 'function')
-									dc.cb.fn.onTriggerChange.apply(dc.cb.altTrigger,
-													[
-													dc.cb.altTrigger,
-													dc.loaded
-													]);
+									dc.cb.fn.onTriggerChange.apply(dc.cb.altTrigger, [dc.cb.altTrigger, dc.loaded]);
 							}
 
 							if (dc.cb.fn.onClose && typeof dc.cb.fn.onClose === 'function')
