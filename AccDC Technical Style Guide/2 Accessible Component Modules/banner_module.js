@@ -1,6 +1,6 @@
 /*!
-Banner Module R1.2
-Copyright 2010-2015 Bryan Garaventa (WhatSock.com)
+Banner Module R1.3
+Copyright 2010-2016 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 
@@ -36,7 +36,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							});
 							$A.setAttr(dc.accDCObj,
 											{
-											role: 'banner'
+											role: 'complementary'
 											});
 
 							dc.fn.sraStart.innerHTML = dc.fn.sraEnd.innerHTML = '';
