@@ -1,6 +1,6 @@
 /*!
-ARIA Tree From XML Module R2.3
-Copyright 2010-2015 Bryan Garaventa (WhatSock.com)
+ARIA Tree From XML Module R2.4
+Copyright 2010-2016 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 	*/
 
@@ -26,7 +26,10 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 				var n = dc.xmlNodes[i];
 
 				if (!(n.nodeType !== 1 || n.nodeName == '#text')){
-					var c = $A.createEl(dividerTag), d = $A.createEl(treeitem);
+					var c = $A.createEl(dividerTag,
+									{
+									role: 'presentation'
+									}), d = $A.createEl(treeitem);
 
 					if (d.nodeName.toLowerCase() == 'a')
 						$A.setAttr(d, 'href', '#');
