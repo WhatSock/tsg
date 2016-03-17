@@ -22,7 +22,8 @@ $A.bind(window, 'load', function(){
 													{
 
 													// Position the error tooltip above the Input field
-													autoPosition: 1
+													autoPosition: 1,
+													offsetLeft: -3,
 													// (The autoPosition property is documented on the Core API tab at WhatSock.com)
 
 													}
@@ -43,7 +44,8 @@ $A.bind(window, 'load', function(){
 													{
 
 													// Position the error tooltip above the Input field
-													autoPosition: 1
+													autoPosition: 1,
+													offsetLeft: -3,
 													// (The autoPosition property is documented on the Core API tab at WhatSock.com)
 
 													}

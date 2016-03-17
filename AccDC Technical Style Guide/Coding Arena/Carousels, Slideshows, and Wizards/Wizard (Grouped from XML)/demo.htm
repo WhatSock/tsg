@@ -1,54 +1,49 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Practice Template Page</title>
-
-<link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
-<link rel="stylesheet" type="text/css" href="css/customize.css" />
-
-<script type="text/javascript" src="../../_common/js/jQuery.js">
-// Load jQuery.
-// This is not necessary if using the Standalone AccDC API version.
-</script>
-
-<script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
-// Load the AccDC API, which all modules are plugged into as the common interface.
-</script>
-
-<!-- Now load all desired modules, which plugs them into AccDC. -->
-<script type="text/javascript" src="../../../2 Accessible Component Modules/carousel_module.min.js"></script>
-
-<script type="text/javascript" src="js/setup.js">
-// Run the setup script where module invocation statements are contained.
-</script>
-
-</head>
-<body>
-<div>
-
-<div class="intro tac">
-
-<div id="carouselId"></div>
-
-<div class="tal">
-<button id="toggleBtn">
-Toggle Wizard
-</button>
-</div>
-
-<div class="desc">
-<p>
-The wizard controls are keyboard accessible.
-</p>
-<p><pre>
-Press Tab and Shift+Tab to navigate between buttons, and press Enter to activate.
-Mouse users can click the desired buttons as usual.
-</pre></p>
-</div>
-
-</div>
-
-</div>
-</body>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>Practice Template Page</title>
+        <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+        <link rel="stylesheet" type="text/css" href="css/customize.css" />
+        <script type="text/javascript" src="../../_common/js/jQuery.js">
+            // Load jQuery.
+            // This is not necessary if using the Standalone AccDC API version.
+        </script>
+        <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+            // Load the AccDC API, which all modules are plugged into as the common interface.
+        </script>
+        <!-- Now load all desired modules, which plugs them into AccDC. --><script type="text/javascript" src="../../../2 Accessible Component Modules/carousel_module.min.js"></script>
+        <script type="text/javascript" src="js/setup.js">
+            // Run the setup script where module invocation statements are contained.
+        </script>
+    </head>
+    <body>
+    	<div id="coding-arena">
+		   <header>
+		      <h1 tabindex="-1">
+		            	<a href="whatsock.com"><img alt="WhatSock : Changing the world one step at a time" src="../../_common/img/whatsock.svg" />
+						<strong>AccDC</strong> Technical Style Guide</a></h1>
+		    </header>
+			
+			<main>
+				<h2>Wizard <small>Grouped from XML</small></h2>
+	            <div class="demo-block">
+	                <div id="carouselId">
+	                </div>
+	                <div class="buttons-bar">
+	                    <button id="toggleBtn">Toggle wizard</button>
+	                </div>
+				</div>
+                
+	            <div class="keyboard">
+	                <p>The wizard controls are keyboard accessible:</p>
+					<ul>
+						<li>Press <kbd>Tab</kbd> and <kbd><kbd>Shift</kbd>+<kbd>Tab</kbd></kbd> to navigate between buttons, and press <kbd>Enter</kbd> to activate.</li>
+						<li>Mouse users can click the desired buttons as usual.</li>
+					</ul>
+	            </div>
+            </main>
+        </div>
+    </body>
 </html>

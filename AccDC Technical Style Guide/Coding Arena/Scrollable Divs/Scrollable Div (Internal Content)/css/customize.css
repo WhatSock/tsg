@@ -1,29 +1,26 @@
-
-div.viewport > p {
-margin: 50px 0;
-}
+/* WHATSOCK, 2016 */
+/* Specific styles for ARIA Scrollable Div */
 
 #scrollPane {
-height: 340px;
-width: 390px;
-padding: 5px;
-font-family: Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif;
-text-align: left;
-font-size: 1.2em;
-background: url("../img/scroll/backdrop.jpg") #000 no-repeat;
-color: #fff;
-margin-left: 26%;
-overflow-x: hidden;
-overflow-y: auto;
--webkit-box-shadow: 0 10px 6px -6px #777;
--moz-box-shadow: 0 10px 6px -6px #777;
-box-shadow: 0 10px 6px -6px #777;
+	overflow: auto;
+	width: 70%;
+	max-width: 24em;
+	height: 10em;
+	font: 1.2em Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif;
+	background: url(../img/scroll/backdrop.jpg) #000 no-repeat;
+	color: #FFF;
+	padding: 1.5rem 2rem;
+	margin: 2rem 0;
+	box-shadow: 0 10px 6px -6px #777;
 }
+	
+	#scrollPane h3 {color: #fff; text-shadow: 0 0 5px rgba(0,0,0,1);}
 
-#scrollPane > * {
-width: 390px;
-}
-
-*:focus {
-outline: blue 1px inset;
+.standardWrapper {
+	overflow-x: hidden;
+	overflow-y: auto;
+	border: solid thin black;
+	position: relative;
+	height: 6em;
+	padding: 0 10px;
 }

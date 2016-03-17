@@ -13,13 +13,13 @@ $A.bind(window, 'load', function(){
 					accEnd: 'End',
 
 					// Set the triggering element using a DOM node or a CSS Selector
-					trigger: 'a#myPopup',
+					trigger: '#myPopup',
 
 					// Set the file path and container ID for the popup content
 					source: 'files/popup.html #scrollContentId',
 
 					// Position the popup on the right of the triggering element
-					autoPosition: 3,
+					autoPosition: 0,
 
 					// Move the Popup AccDC Object 10px to the right when opened
 					offsetLeft: 10,
@@ -62,8 +62,8 @@ $A.bind(window, 'load', function(){
 						// Set aria-pressed on the triggering element
 						$A.setAttr(dc.triggerObj, 'aria-pressed', 'true');
 
-// Syntax: $A.makeScrollable( scrollableDivDOM_Node , msgForScreenReaderUsers );
-						$A.makeScrollable(dc.accDCObj, 'Scrollable Region');
+// Syntax: $A.makeScrollable( scrollableDivDOM_Node , isHorizontal? , arrowKeyIncrementValue , pageUpDownKeyIncrementValue , optionalInnerChildDOM-NodeOverride );
+						$A.makeScrollable(dc.accDCObj, false, 0.3, 0.9, dc.containerDiv);
 
 						// Now, set focus to the top level container that is scrollable
 						dc.accDCObj.focus();

@@ -1,91 +1,101 @@
+/* WHATSOCK, 2016 */
+/* Specific styles for Drag and drop */
 
-div.title {
-text-align: center;
+.demo-block p > em {display: block;}
+
+
+div.booksWrapper {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	-webkit-flex-flow: column wrap;
+	-ms-flex-flow: column wrap;
+	flex-flow: column wrap;
+	margin: 1rem 0;
 }
-
-div.booksWrapper > * {
-float: left;
-width: 49%;
-}
-
-div.booksWrapper div[role="heading"] {
-text-align: center;
-font-size: 1.4em;
-font-style: italic;
-color: orange;
-text-shadow: 0px 1px 1px rgba(112,128,144,0.8);
+div.booksWrapper > div {
+	width: 94%;
+	max-width: 40em;
+    height: 310px;
+	padding: 1rem 3%;
+	border: 1px solid #EEE;
 }
 
 div.booksWrapper img {
-height: 75px;
-border: 0;
+    height: 75px;
+    border: 0;
+	box-shadow: 0 1px 3px rgba(0,0,0,.5);
+    padding: 0.3rem;
+	cursor: move;
 }
 
-div.availableBooks {
-background-color: blue;
-height: 240px;
-}
+div.availableBooks {background: url(../img/shelf.jpg); margin-bottom: 1rem;}
 
-ul, ol {
-list-style: none;
-padding: 0;
-margin: 0;
-border: 0;
-}
+.demo-block ul, .demo-block ol {list-style: none; margin-left: -2rem;}
 
-ul > li, ol > li {
-text-align: center;
-float: left;
-width: 19%;
-padding: 5px 0;
-height: 85px;
-}
-
-ul#options {
+.demo-block ul li, .demo-block ol li {
+    float: left;
+    width: 19%;
+    text-align: center;
+    padding: 0.2rem 0.5rem;
+    height: 85px;
 }
 
 div.chosenBooks {
-background-color: green;
-height: 240px;
-}
-
-ol#selections {
+	background-image: linear-gradient(90deg, transparent 80%, #E0E0E0 20%), linear-gradient(transparent 80%, #E0E0E0 20%);
+	background-size: 15px 15px, 15px 15px;
 }
 
 div.totals {
-margin: 10px 0;
+	position: relative;
+	background: #E0E0E0;
+	padding: 1rem;
+	margin-top: 1rem;
 }
 
-div.totals > * {
-float: left;
+#subtotals p:last-child {
+	font-weight: bold;
+	text-transform: uppercase;
+	margin-top: 0.3rem;
 }
 
-span#quantity {
-margin-right: 20px;
-padding: 0 5px;
-}
+span#quantity {}
 
-span#subtotal {
-padding: 0 5px;
-}
+span#subtotal {}
 
 button#checkout {
-margin-left: 30px;
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+	width: 7.5em;
+	text-transform: uppercase;
+	color: #FFF;
+	background: #286278;
+	padding: 0.3em 0.5em;
+	border: none;
+	border-radius: 3px;
+	box-shadow: 0 1px 2px rgba(0,0,0,.7);
+	transition: border-radius;
+	-webkit-transition: border-radius;
 }
 
-ddLink {
-text-decoration: none;
-font: bold 12px/12px HelveticaNeue, Arial;
-padding: 3px 3px;
-border: 1px solid #dedede;
-background: #a5b8c6;
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#becbd6', endColorstr='#88a1b4'); /* IE */
-background: -webkit-gradient(linear, left top, left bottom, from(#becbd6), to(#88a1b4)); /* WebKit */
-background: -moz-linear-gradient(top, #becbd6, #88a1b4);
-border-color: #a2afb8 #8696a1 #6f818f;
-color: #515f6a;
-text-shadow: 0 1px 0 #c4d0d9;
--webkit-box-shadow: 0 1px 1px #d3d3d3, inset 0 1px 0 #ced8e0;
--moz-box-shadow: 0 1px 1px #d3d3d3, inset 0 1px 0 #ced8e0;
-box-shadow: 0 1px 1px #d3d3d3, inset 0 1px 0 #ced8e0;  
+button#checkout:hover, button#checkout:focus {
+	text-decoration: none; border-radius: 0; box-shadow: none;
 }
+
+ddLink {}
+
+@media screen and (min-width: 750px) {
+	div.chosenBooks {margin-left: 2.5%;}
+	div.availableBooks {margin-bottom: 0;}
+	div.booksWrapper {
+		-webkit-flex-flow: row nowrap;
+		-ms-flex-flow: row nowrap;
+		flex-flow: row nowrap;
+	}
+	button#checkout {width: 15em;}
+	
+	#subtotals p:last-child {font-size: 1.1em;}
+}
+
+

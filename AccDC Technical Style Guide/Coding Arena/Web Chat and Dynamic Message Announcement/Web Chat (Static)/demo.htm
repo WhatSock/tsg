@@ -1,60 +1,60 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Practice Template Page</title>
-
-<link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
-<link rel="stylesheet" type="text/css" href="css/customize.css" />
-
-<script type="text/javascript" src="../../_common/js/jQuery.js">
-// Load jQuery.
-// This is not necessary if using the Standalone AccDC API version.
-</script>
-
-<script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
-// Load the AccDC API
-</script>
-
-<!-- Now load all desired modules, which plugs them into AccDC. 
-The Popup module will be used to load the chat dialog, since we don't want it to be a modal.
-The Tooltip module will be used for the 'currently typing' messages.
-The Scrollable Div module will be used to make the chat window keyboard accessible.
--->
-<script type="text/javascript" src="../../../2 Accessible Component Modules/popup_module.min.js"></script>
-<script type="text/javascript" src="../../../2 Accessible Component Modules/tooltip_module.min.js"></script>
-<script type="text/javascript" src="../../../2 Accessible Component Modules/scrollable_div_generator.min.js"></script>
-
-<script type="text/javascript" src="js/setup.js">
-// Run the setup script where configuration occurs.
-</script>
-
-</head>
-<body>
-<div>
-
-<div class="button">
-
-<button id="startChatBtn">
-Start Chat
-</button>
-
-</div>
-
-<div class="desc">
-<p>
-The purpose of this implementation is not to reference a particular module, since there is none specific to chat, but rather, to demonstrate how easy it is to make web chat functionality accessible for screen reader users.
-</p>
-<p><pre>
-Activate the Chat button to open the chat dialog.
-Focus will be set on the chat message field after it opens.
-Type a message and press Enter to send.
-Incoming messages will be announced to screen reader users automatically. (Supported in all modern screen readers that correctly support the use of ARIA, foremost of these are: JAWS, NVDA, and Voiceover)
-Keyboard only users can press Shift+Tab from the message field to set focus on the chat window, then use the arrow keys to scroll through the content.
-Activate the Close icon to close the chat dialog.
-</pre></p>
-</div>
-
-</div>
-</body>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>Practice Template Page</title>
+        <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+        <link rel="stylesheet" type="text/css" href="css/customize.css" />
+        <script type="text/javascript" src="../../_common/js/jQuery.js">
+            // Load jQuery.
+            // This is not necessary if using the Standalone AccDC API version.
+        </script>
+        <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+            // Load the AccDC API
+        </script>
+        <!-- Now load all desired modules, which plugs them into AccDC.
+        The Popup module will be used to load the chat dialog, since we don't want it to be a modal.
+        The Tooltip module will be used for the 'currently typing' messages.
+        The Scrollable Div module will be used to make the chat window keyboard accessible.
+        --><script type="text/javascript" src="../../../2 Accessible Component Modules/popup_module.min.js"></script>
+        <script type="text/javascript" src="../../../2 Accessible Component Modules/tooltip_module.min.js"></script>
+        <script type="text/javascript" src="../../../2 Accessible Component Modules/scrollable_div_generator.min.js"></script>
+        <script type="text/javascript" src="js/setup.js">
+            // Run the setup script where configuration occurs.
+        </script>
+    </head>
+    <body>
+    	<div id="coding-arena">
+			<header>
+				<h1 tabindex="-1">
+					<a href="http://whatsock.com"><img alt="WhatSock : Changing the world one step at a time" src="../../_common/img/whatsock.svg" /> 
+					<strong>AccDC</strong> Technical Style Guide</a></h1>
+			</header>
+			
+			<main>
+				<h2>Web Chat <small>Static</small></h2>
+			        <div class="demo-block">
+			            <p class="buttons-bar"><button id="startChatBtn">Start Chat</button></p>
+					</div>
+				
+		           <div class="keyboard">
+		                <p>The purpose of this implementation is not to reference a particular module, 
+						since there is none specific to chat, but rather, to demonstrate how easy it is to make 
+						web chat functionality accessible for screen reader users:</p>
+		                <ul>
+							<li>Activate the Chat button to open the chat dialog.</li>
+							<li>Focus will be set on the chat message field after it opens.</li>
+							<li>Type a message and press <kbd>Enter</kbd> to send.</li>
+							<li>Incoming messages will be announced to screen reader users automatically. 
+								(<em>Supported in all modern screen readers that correctly support the use of 
+								ARIA, foremost of these are: JAWS, NVDA, and Voiceover</em>)</li>
+							<li>Keyboard only users can press <kbd><kbd>Shift</kbd>+<kbd>Tab</kbd></kbd> from the message field to set 
+								focus on the chat window, then use the arrow keys to scroll through the content.</li>
+							<li>Activate the Close icon to close the chat dialog.</li>
+						</ul>
+		            </div>
+				</main>
+        </div>
+    </body>
 </html>

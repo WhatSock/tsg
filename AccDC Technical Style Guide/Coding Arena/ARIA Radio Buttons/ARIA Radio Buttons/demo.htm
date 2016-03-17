@@ -1,141 +1,87 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Practice Template Page</title>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>Practice Template Page</title>
+        <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+        <link rel="stylesheet" type="text/css" href="css/customize.css" />
+        <script type="text/javascript" src="../../_common/js/jQuery.js">
+            // Load jQuery.
+            // This is not necessary if using the Standalone AccDC API version.
+        </script>
+        <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+            // Load the AccDC API, which all modules are plugged into as the common interface.
+        </script>
+        <!-- Now load all desired modules, which plugs them into AccDC. --><script type="text/javascript" src="../../../2 Accessible Component Modules/aria_radio_generator.min.js"></script>
+        <script type="text/javascript" src="js/setup.js">
+            // Run the setup script where module invocation statements are contained.
+        </script>
+    </head>
+    <body>
+        <div id="coding-arena">
+			<header>
+				<h1 tabindex="-1">
+					<a href="http://whatsock.com"><img alt="WhatSock : Changing the world one step at a time" src="../../_common/img/whatsock.svg" /> 
+					<strong>AccDC</strong> Technical Style Guide</a></h1>
+			</header>
+		
+        	<main>
+        		<h2>ARIA Radio Buttons</h2>
+            	<div class="demo-block">
+                <!-- ARIA Radio Button Rules:
+                1. The Radio container element must include the attribute role="radiogroup", and all radio option nodes must include the attribute role="radio" to ensure accessibility for screen reader users.
+                (There are other associated ARIA attributes that will automatically be added later, but roles cannot be added dynamically without rerendering the object in the browser. This is why they must be declared within the markup.)
+                2. Both the Radio container element and all radio option nodes must include unique ID values.
+                This is used by the module script to differentiate individual radios, and to set a value for the control as a whole.
+                The current value for a Radio Control is the ID attribute of the currently selected radio button.
+                3. The innerHTML for each radio option node must contain a textual label, which may be positioned offscreen to hide it visually if desired.
+                This textual label is critical so that screen reader users will be able to identify the purpose of the radio button.
+                If the textual label is included within another tag (such as a Span tag) for formatting purposes, aria-labelledby must be used to explicitly associate the label text with the element that includes role="radio" by referencing its ID.
+                This will ensure the highest level of accessibility for the highest percentage of people.
+                Additionally, the textual label must be included within the opening and closing tags of the element with role="radio".
+                If this is not done, the radio buttons will not be accessible in iOS devices using Voiceover, because iOS does not support aria-label, aria-labelledby, nor aria-describedby at this time.
+                However, including the textual label within the opening and closing tags of the element with role="radio", will cause Voiceover to announce the radio button label regardless.
+                4. If using an A tag, an href attribute is required to ensure keyboard accessibility.
+                5. Images may also be used within radio option nodes if desired.
+                If an image is present however, it should include the attribute alt="" to hide it from screen reader users.
+                An image with a textual Alt value won't be reliably announced as the radio button label in all browsers, which is why alt="" is used to hide it from screen reader users.
+                A textual label must be used instead to ensure the highest level of accessibility for the highest percentage of people.
+                To add a tooltip for sighted mouse users, use the Title attribute on the IMG tag instead.
+                The value within the Title attribute must match the text contained within the textual label however, especially when the textual label is positioned off screen to hide it visually. (This will ensure equal accessibility for all user types)
+                -->
+	                <div class="rGroup clearfix" id="radiogroupId" role="radiogroup" aria-labelledby="radiogroupIdLegend">
+	                    <h3 id="radiogroupIdLegend">How would you rate this page?</h3>
+						<ul>
+		                    <li><a href="#" role="radio" class="accRadio" id="rOpt1" aria-labelledby="rOpt1Lbl"><span id="rOpt1Lbl" class="lbl">Tubular</span></a></li>
+		                    <li><a href="#" role="radio" class="accRadio" id="rOpt2" aria-labelledby="rOpt2Lbl"><span id="rOpt2Lbl" class="lbl">Squidgy</span></a></li>
+		                    <li><a href="#" role="radio" class="accRadio" id="rOpt3" aria-labelledby="rOpt3Lbl"><span id="rOpt3Lbl" class="lbl">Floopy</span></a></li>
+		                    <li><a href="#" role="radio" class="accRadio" id="rOpt4" aria-labelledby="rOpt4Lbl"><span id="rOpt4Lbl" class="lbl">Radical</span></a></li>
+		                    <li><a href="#" role="radio" class="accRadio" id="rOpt5" aria-labelledby="rOpt5Lbl"><span id="rOpt5Lbl" class="lbl">Gnarly!</span></a></li>
+						</ul>
+	                </div>
+	                <form id="formId">
+	                    <fieldset class="radiogroup clearfix">
+	                        <legend>Mirrored radio button elements:</legend>
+	                        <p><label for="rBtn1"><input type="radio" name="rating" id="rBtn1" value="rOpt1" /><span class="lbl">Tubular</span></label></p>
+	                        <p><label for="rBtn2"><input type="radio" name="rating" id="rBtn2" value="rOpt2" /><span class="lbl">Squidgy</span></label></p>
+	                        <p><label for="rBtn3"><input type="radio" name="rating" id="rBtn3" value="rOpt3" /><span class="lbl">Floopy</span></label></p>
+	                        <p><label for="rBtn4"><input type="radio" name="rating" id="rBtn4" value="rOpt4" /><span class="lbl">Radical</span></label></p>
+	                        <p><label for="rBtn5"><input type="radio" name="rating" id="rBtn5" value="rOpt5" /><span class="lbl">Gnarly!</span></label></p>
+	                    </fieldset>
+	                </form>
+				</div>
+				
+                <div class="keyboard">
+                    <p>The ARIA Radio buttons are keyboard accessible:</p>
+                    <ul>
+						<li>Set focus on an ARIA Radio Button.</li>
+						<li>Press the Arrow keys to change options.</li>
+						<li>Mouse users can click the desired ARIA Radio Button as usual.</li>
+					</ul>
+                </div>
 
-<link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
-<link rel="stylesheet" type="text/css" href="css/customize.css" />
-
-<script type="text/javascript" src="../../_common/js/jQuery.js">
-// Load jQuery.
-// This is not necessary if using the Standalone AccDC API version.
-</script>
-
-<script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
-// Load the AccDC API, which all modules are plugged into as the common interface.
-</script>
-
-<!-- Now load all desired modules, which plugs them into AccDC. -->
-<script type="text/javascript" src="../../../2 Accessible Component Modules/aria_radio_generator.min.js"></script>
-
-<script type="text/javascript" src="js/setup.js">
-// Run the setup script where module invocation statements are contained.
-</script>
-
-</head>
-<body>
-<div>
-
-<div>
-
-<!-- ARIA Radio Button Rules:
-
-1. The Radio container element must include the attribute role="radiogroup", and all radio option nodes must include the attribute role="radio" to ensure accessibility for screen reader users.
-
-(There are other associated ARIA attributes that will automatically be added later, but roles cannot be added dynamically without rerendering the object in the browser. This is why they must be declared within the markup.)
-
-2. Both the Radio container element and all radio option nodes must include unique ID values.
-
-This is used by the module script to differentiate individual radios, and to set a value for the control as a whole.
-The current value for a Radio Control is the ID attribute of the currently selected radio button.
-
-3. The innerHTML for each radio option node must contain a textual label, which may be positioned offscreen to hide it visually if desired.
-
-This textual label is critical so that screen reader users will be able to identify the purpose of the radio button.
-
-If the textual label is included within another tag (such as a Span tag) for formatting purposes, aria-labelledby must be used to explicitly associate the label text with the element that includes role="radio" by referencing its ID.
-This will ensure the highest level of accessibility for the highest percentage of people.
-
-Additionally, the textual label must be included within the opening and closing tags of the element with role="radio".
-If this is not done, the radio buttons will not be accessible in iOS devices using Voiceover, because iOS does not support aria-label, aria-labelledby, nor aria-describedby at this time.
-However, including the textual label within the opening and closing tags of the element with role="radio", will cause Voiceover to announce the radio button label regardless.
-
-4. If using an A tag, an href attribute is required to ensure keyboard accessibility.
-5. Images may also be used within radio option nodes if desired.
-If an image is present however, it should include the attribute alt="" to hide it from screen reader users.
-An image with a textual Alt value won't be reliably announced as the radio button label in all browsers, which is why alt="" is used to hide it from screen reader users.
-A textual label must be used instead to ensure the highest level of accessibility for the highest percentage of people.
-To add a tooltip for sighted mouse users, use the Title attribute on the IMG tag instead.
-The value within the Title attribute must match the text contained within the textual label however, especially when the textual label is positioned off screen to hide it visually. (This will ensure equal accessibility for all user types)
--->
-
-<div class="rGroup clearfix" id="radiogroupId" role="radiogroup" aria-labelledby="radiogroupIdLegend">
-
-<span class="rLabel" id="radiogroupIdLegend">
-How would you rate this page?
-</span>
-
-<a href="#" role="radio" class="accRadio" id="rOpt1" aria-labelledby="rOpt1Lbl">
-<span id="rOpt1Lbl" class="lbl">Tubular</span>
-</a>
-
-<a href="#" role="radio" class="accRadio" id="rOpt2" aria-labelledby="rOpt2Lbl">
-<span id="rOpt2Lbl" class="lbl">Squidgy</span>
-</a>
-
-<a href="#" role="radio" class="accRadio" id="rOpt3" aria-labelledby="rOpt3Lbl">
-<span id="rOpt3Lbl" class="lbl">Floopy</span>
-</a>
-
-<a href="#" role="radio" class="accRadio" id="rOpt4" aria-labelledby="rOpt4Lbl">
-<span id="rOpt4Lbl" class="lbl">Radical</span>
-</a>
-
-<a href="#" role="radio" class="accRadio" id="rOpt5" aria-labelledby="rOpt5Lbl">
-<span id="rOpt5Lbl" class="lbl">Gnarly!</span>
-</a>
-
-</div>
-
-<form id="formId">
-<fieldset class="radiogroup clearfix">
-
-<legend class="rLabel">
-Mirrored radio button elements:
-</legend>
-
-<label for="rBtn1">
-<input type="radio" name="rating" id="rBtn1" value="rOpt1">
-<span class="lbl">Tubular</span>
-</label>
-
-<label for="rBtn2">
-<input type="radio" name="rating" id="rBtn2" value="rOpt2">
-<span class="lbl">Squidgy</span>
-</label>
-
-<label for="rBtn3">
-<input type="radio" name="rating" id="rBtn3" value="rOpt3">
-<span class="lbl">Floopy</span>
-</label>
-
-<label for="rBtn4">
-<input type="radio" name="rating" id="rBtn4" value="rOpt4">
-<span class="lbl">Radical</span>
-</label>
-
-<label for="rBtn5">
-<input type="radio" name="rating" id="rBtn5" value="rOpt5">
-<span class="lbl">Gnarly!</span>
-</label>
-
-</fieldset>
-</form>
-
-<div class="desc">
-<p>
-The ARIA Radio buttons are keyboard accessible.
-</p>
-<p><pre>
-Set focus on an ARIA Radio Button.
-Press the Arrow keys to change options.
-Mouse users can click the desired ARIA Radio Button as usual.
-</pre></p>
-</div>
-
-</div>
-
-</div>
-</body>
+        	</main>
+    	</div>
+    </body>
 </html>

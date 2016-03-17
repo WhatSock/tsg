@@ -1,65 +1,49 @@
+/* WHATSOCK, 2016 */
+/* Specific styles for ARIA Listboxes */
 
-div.sample > * {
-float: left;
+div.sample {
+	-webkit-display: flex;
+	-ms-display: flex;
+	display: flex;
 }
 
 .multiselectWrapper {
-overflow-x: hidden;
-overflow-y: auto;
-border: solid thin black;
-position: relative;
-padding: 0 10px;
-margin: 0 10px;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+	text-align: center;
+}
+
+#multiSelectField {
+	max-width: 200px;
+	-webkit-flex: 0 1 70%;
+	-ms-flex: 0 1 70%;
+	flex: 0 1 70%;
+	margin-left: 5%;
 }
 
 #multiselectLB {
-padding: 0;
-margin: 0;
-list-style: none;
+    padding: 0;
+    margin: 0;
+    list-style: none;
 }
 
 #multiselectLB > li {
-padding: 3px;
+    padding: 3px;
 }
 
 #multiselectLB > li > a {
-cursor: pointer;
-display: inline-block;
-text-decoration: none;
-font: bold 15px/15px HelveticaNeue, Arial;
-padding: 3px 5px;
-border: 1px solid #dedede;
-background: #9cedef;
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#b7f2f4', endColorstr='#7ce7ea'); /* IE */
-background: -webkit-gradient(linear, left top, left bottom, from(#b7f2f4), to(#7ce7ea)); /* WebKit */
-background: -moz-linear-gradient(top, #b7f2f4, #7ce7ea);
-border-color: #90c6c8 #78bdc0 #65b6ba;
-color: #000;
-text-shadow: 0 1px 0 #bef3f5;
--webkit-box-shadow: 0 1px 1px #d5d5d5, inset 0 1px 0 #c9f5f7;
--moz-box-shadow: 0 1px 1px #d5d5d5, inset 0 1px 0 #c9f5f7;
-box-shadow: 0 1px 1px #d5d5d5, inset 0 1px 0 #c9f5f7;  
+    display: block;
+    text-decoration: none;
+	padding: 0.3em 0.5em;
 }
 
-#multiselectLB > li > a.selected {
-background: #9fedf0;
-border-color: #7db9bb #6bb2b5 #5dacaf;
-text-shadow: 0 1px 0 #c5f4f6;
--webkit-box-shadow: 0 1px 1px #d5d5d5, inset 0 1px 0 #b7f2f4;
--moz-box-shadow: 0 1px 1px #d5d5d5, inset 0 1px 0 #b7f2f4;
-box-shadow: 0 1px 1px #d5d5d5, inset 0 1px 0 #b7f2f4;  
+form.addFrm {	
+	background: #E1E1E1;
+	padding: 0.3rem 0.5rem 0.5rem;
+	margin-top: 2rem;
 }
 
-#multiselectLB > li > a > span {
-display: block;
-width: 80px;
-text-align: left;
-}
+form.addFrm p + p {margin: 0.5rem 2rem 0 0;}
 
-#standardSelect {
-margin-left: 50px;
-}
-
-form, .desc {
-clear: both;
-}
+form.addFrm p:last-child {margin-bottom: 0.5rem;}

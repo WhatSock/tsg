@@ -1,58 +1,58 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Practice Template Page</title>
-
-<link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
-<link rel="stylesheet" type="text/css" href="css/customize.css" />
-
-<script type="text/javascript" src="../../_common/js/jQuery.js">
-// Load jQuery.
-// This is not necessary if using the Standalone AccDC API version.
-</script>
-
-<script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
-// Load the AccDC API, which all modules are plugged into as the common interface.
-</script>
-
-<!-- Now load all desired modules, which plugs them into AccDC. -->
-<script type="text/javascript" src="../../../2 Accessible Component Modules/popup_module.min.js"></script>
-<script type="text/javascript" src="../../../2 Accessible Component Modules/scrollable_div_generator.min.js"></script>
-
-<script type="text/javascript" src="js/setup.js">
-// Run the setup script where module invocation statements are contained.
-</script>
-
-</head>
-<body>
-<div>
-
-<p>
-
-<a id="myPopup" href="#" class="accPopup" role="button" aria-pressed="false" aria-labelledby="labelText">
-<span id="labelText">Show Popup</span> 
-</a>
-
-</p>
-
-<div class="desc">
-<p>
-The popup scrollable div is optomized for screen reader and keyboard only users.
-</p>
-<p><pre>
-Activate the Show button to open the popup.
-The content will be inserted inline with the triggering element,
-and focus will automatically move to the scrollable div.
-Press Up/Down/Left/Right to navigate in 30% increments.
-Press PageUp/PageDown to navigate by 90% increments.
-Press Home/End to navigate to the beginning or end of the scrollable content.
-Press Tab to set focus to the Close link and press Enter to close the popup,
-or press Escape to close the popup directly.
-When closed, focus will move back to the triggering element.
-</pre></p>
-</div>
-
-</div>
-</body>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>Practice Template Page</title>
+        <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+        <link rel="stylesheet" type="text/css" href="css/customize.css" />
+        <script type="text/javascript" src="../../_common/js/jQuery.js">
+            // Load jQuery.
+            // This is not necessary if using the Standalone AccDC API version.
+        </script>
+        <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+            // Load the AccDC API, which all modules are plugged into as the common interface.
+        </script>
+        <!-- Now load all desired modules, which plugs them into AccDC. --><script type="text/javascript" src="../../../2 Accessible Component Modules/popup_module.min.js"></script>
+        <script type="text/javascript" src="../../../2 Accessible Component Modules/scrollable_div_generator.min.js"></script>
+        <script type="text/javascript" src="js/setup.js">
+            // Run the setup script where module invocation statements are contained.
+        </script>
+    </head>
+    <body>
+    	<div id="coding-arena">
+			<header>
+				<h1 tabindex="-1">
+					<a href="http://whatsock.com"><img alt="WhatSock : Changing the world one step at a time" src="../../_common/img/whatsock.svg" /> 
+					<strong>AccDC</strong> Technical Style Guide</a></h1>
+			</header>
+			
+			<main>
+				<h2>Scrollable Div Popup <small>External Content</small></h2>
+		        
+				<div class="demo-block">
+	            	<p><button id="myPopup" href="#" class="accPopup" aria-pressed="false" aria-labelledby="labelText">
+	            			<span id="labelText">Show Popup</span></button></p>
+	            </div>
+				<div class="keyboard">
+					<p>The popup scrollable div is optimized for screen reader and keyboard only users:</p>
+	                <ul>
+	                	<li>Activate the Show button to open the popup. 
+							The content will be inserted inline with the triggering element, and 
+							focus will automatically move to the scrollable div.</li>
+	                	<li>Press <kbd class="up">Up</kbd>/
+							<kbd class="down">Down</kbd>/
+							<kbd class="left">Left</kbd>/
+							<kbd class="right">Right</kbd> to navigate in 30% increments.</li>
+	                	<li>Press <kbd>PageUp</kbd>/<kbd>PageDown</kbd> to navigate by 90% increments.</li>
+	                	<li>Press <kbd class="home">Home</kbd>/<kbd class="end">End</kbd> to navigate to the 
+							beginning or end of the scrollable content.</li>
+	                	<li><kbd>Tab</kbd> to set focus to the Close link and press <kbd>Enter</kbd> to close the popup, 
+							or press <kbd>Escape</kbd> to close the popup directly.</li>
+						<li>When closed, focus will move back to the triggering element.</li>
+	                </ul>
+	            </div>
+			</main>
+        </div>
+    </body>
 </html>

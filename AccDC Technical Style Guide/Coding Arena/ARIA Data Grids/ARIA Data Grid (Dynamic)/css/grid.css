@@ -1,98 +1,124 @@
+/* WHATSOCK, 2016 */
+/* Specific styles for ARIA Data Grid */
+
 
 #dataGridId {
-border: solid thin black;
-font-size: 0.9em;
-min-height: 600px;
+    min-height: 500px;
+    border: 1px solid #2E3135;
+}
+div.mode {position: relative; color: #FFF; background: #2E3135; padding: 0.5rem; margin-bottom: 0.5rem;}
+
+	div.mode label {display: inline-block; padding-right: 2rem;}
+	
+	#mro {position: absolute; top: 0.4rem; right: 0.3rem;}
+	#buv {border-radius: 0.3em;}
+	
+div.configure {padding: 0.5rem 1rem;}
+	div.configure p {margin-bottom: 0.3em;}
+	
+div.modify ul {list-style-type: none; margin: 1rem;}
+div.modify li {display: inline-block;}
+
+div.paginate {
+	text-align: right;
+	padding: 0.3rem 0.5rem;
+	margin: 0.5rem;
+}
+
+div.modify button {
+    text-transform: uppercase;
+    color: #000;
+    background: #E0E0E0;
+    padding: 0.3em 0.5em;
+    border-radius: 0.3em;
+}
+button.paginate {
+	overflow: hidden;
+	width: 35px;
+	height: 35px;
+	text-indent: -50em;
+	background: url(../img/sprite.svg) 0 0 no-repeat;
+	padding: 0;
+}
+#btnFirst {background-position: 2px -1015px;}
+#btnPrev {background-position: 2px -655px;}
+#btnNext {background-position: 2px -475px;}
+#btnLast {background-position: 2px -835px;}
+
+
+button.paginate[disabled] {opacity: .3; cursor: default;}
+
+#btnGo {
+	text-transform: uppercase;
+	color: #000;
+	background: #E0E0E0;
+	padding: 0.3em 0.5em;
+	margin: 0.3rem 0 0.3rem 0.5rem;
+	border: 1px solid #E0E0E0;
+	border-radius: 0.3em;
 }
 
 table.data-grid {
-table-layout: fixed;
-border-collapse: separate;
-border-spacing: 1px 6px;
+	width: 100%;
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 0;
 }
 
 table.data-grid .data-grid-cell {
-vertical-align: middle;
-text-align: center;
-width: 200px;
-padding: 5px 0;
+	font-size: 0.9em;
+    text-align: center;
+	border: 1px solid #CCC;
+    vertical-align: middle;
+}
+table.data-grid th.data-grid-cell {
+	color: #FFF;
+	background: #C1384D;
 }
 
 table.data-grid .gridcell-col1 {
-width: 100px;
+	width: 3em;
+	background: #EDE4E6;
 }
 
 table.data-grid-editable td {
-cursor: pointer;
+    cursor: pointer;
 }
 
 table.data-grid-readonly td, table.data-grid-editable td.data-grid-cell-readonly {
-cursor: auto;
+    cursor: auto;
 }
 
 table.data-grid .data-grid-cell strong > span {
-display: block;
-width: 180px;
+    display: block;
+	padding: 0.5em;
 }
 
 table.data-grid .gridcell-col1 strong > span, table.data-grid td.gridcell-col6 strong > span {
-display: block;
-width: 50px;
-text-align: center;
+    display: block;
 }
 
+
 table.data-grid th strong, table.data-grid td strong.data-grid-cell-link {
-display: inline-block;
-text-decoration: none;
-padding: 4px 5px;
-border: 1px solid #dedede;
 }
 
 table.data-grid td strong.data-grid-cell-link {
-background: #92dbf6;
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#abe4f8', endColorstr='#6fcef3'); /* IE */
-background: -webkit-gradient(linear, left top, left bottom, from(#abe4f8), to(#6fcef3)); /* WebKit */
-background: -moz-linear-gradient(top, #abe4f8, #6fcef3);
-border-color: #000;
-color: #000;
-text-shadow: 0 1px 0 #b6e6f9;
-text-align: left;
 }
 
 table.data-grid td strong.data-grid-cell-toggle {
-display: inline-block;
-text-decoration: none;
-padding: 8px 10px;
-border: 1px solid #dedede;
--webkit-border-radius: 3px;
--moz-border-radius: 3px;
-border-radius: 3px;
-}
-
-table.data-grid td strong.data-grid-cell-toggle {
-background: #92dbf6;
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#abe4f8', endColorstr='#6fcef3'); /* IE */
-background: -webkit-gradient(linear, left top, left bottom, from(#abe4f8), to(#6fcef3)); /* WebKit */
-background: -moz-linear-gradient(top, #abe4f8, #6fcef3);
-border-color: #000;
-color: #000;
-text-shadow: 0 1px 0 #b6e6f9;
--webkit-box-shadow: 0 1px 1px #d6d6d6, inset 0 1px 0 #c0ebfa;
--moz-box-shadow: 0 1px 1px #d6d6d6, inset 0 1px 0 #c0ebfa;
-box-shadow: 0 1px 1px #d6d6d6, inset 0 1px 0 #c0ebfa;
+	display: inline-block;
+	text-decoration: none;
+	color: #000;
+	background: #E0E0E0;
+	padding: 0.3em 0.5em;
+	margin: 0.3rem 0;
+	border: 1px solid #E0E0E0;
+	border-radius: 0.3em;
 }
 
 table.data-grid td strong.data-grid-cell-toggle-pressed {
-background: #a5b8c6;
-filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#becbd6', endColorstr='#88a1b4'); /*  IE */
-background: -webkit-gradient(linear, left top, left bottom, from(#becbd6), to(#88a1b4)); /*  WebKit */
-background: -moz-linear-gradient(top,  #becbd6, #88a1b4);
-border-color: #000;
-color: #000;
-text-shadow: 0 1px 0 #c4d0d9;
--webkit-box-shadow: 0 1px 1px #d3d3d3, inset 0 1px 0 #ced8e0;
--moz-box-shadow: 0 1px 1px #d3d3d3, inset 0 1px 0 #ced8e0;
-box-shadow: 0 1px 1px #d3d3d3, inset 0 1px 0 #ced8e0;
+	color: #FFF;
+	background: #2E3135;
 }
 
 table.data-grid-selectable td strong.data-grid-cell-link, table.data-grid-readonly td strong.data-grid-cell-link, table.data-grid td.data-grid-cell-readonly strong.data-grid-cell-link {
@@ -105,77 +131,45 @@ table.data-grid-selectable td strong.data-grid-cell-toggle-pressed, table.data-g
 }
 
 table.data-grid-selectable td, table.data-grid-readonly td, table.data-grid td.data-grid-cell-readonly {
-border: 1px solid #dedede;
-background: #d3d3d3;
-filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#cacaca', endColorstr='#aeaeae'); /*  IE */
-background: -webkit-gradient(linear, left top, left bottom, from(#cacaca), to(#aeaeae)); /*  WebKit */
-background: -moz-linear-gradient(top,  #cacaca, #aeaeae);
-border-color: #000;
+
 }
 
 table.data-grid-selectable tr {
-cursor: pointer;
-border: 1px solid #dedede;
-background: #f4f4f4;
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#efefef', endColorstr='#f8f8f8'); /* IE */
-background: -webkit-gradient(linear, left top, left bottom, from(#efefef), to(#f8f8f8)); /* WebKit */
-background: -moz-linear-gradient(top, #efefef, #f8f8f8);
-border-color: #c7c7c7 #c3c3c3 #bebebe;
+	cursor: pointer;
 }
 
 table.data-grid-selectable tr.selected, table.data-grid-selectable tr.selected td {
-border: 1px solid #dedede;
-background: #fecb5e;
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fec354', endColorstr='#fecd61'); /* IE */
-background: -webkit-gradient(linear, left top, left bottom, from(#fec354), to(#fecd61)); /* WebKit */
-background: -moz-linear-gradient(top, #fec354, #fecd61);
-border-color: #d29a3a #cc9436 #c89133;
+	color: #000;
+	background: #FC0;
 }
 
 table.data-grid th strong, table.data-grid td.gridcell-col1 strong {
-background: #525252;
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5e5e5e', endColorstr='#434343'); /* IE */
-background: -webkit-gradient(linear, left top, left bottom, from(#5e5e5e), to(#434343)); /* WebKit */
-background: -moz-linear-gradient(top, #5e5e5e, #434343);
-border-color: #4c4c4c #313131 #1f1f1f;
-color: #fff;
-text-shadow: 0 1px 0 #2e2e2e;
-text-align: center;
+
 }
 
 table.data-grid td.data-grid-cell-focused {
-outline: 2px purple inset;
+	outline: 2px solid #2E3135;
 }
 
 table.data-grid-selectable tr.data-grid-row-focused {
-outline: 3px purple inset;
+	outline: 2px solid #2E3135;	
 }
 
 table.data-grid-selectable td.data-grid-cell-focused {
-outline: none;
+	outline: none;
 }
 
 div.data-grid-cell-link-edit {
-text-decoration: none;
-font: bold 10px/10px HelveticaNeue, Arial;
-border: 1px solid #dedede;
-background: #f5f5f5;
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#f0f0f0'); /* IE */
-background: -webkit-gradient(linear, left top, left bottom, from(#f9f9f9), to(#f0f0f0)); /* WebKit */
-background: -moz-linear-gradient(top, #f9f9f9, #f0f0f0);
-border-color: #000;
-color: #000;
-text-shadow: 0 1px 0 #fff;
--webkit-box-shadow: 0 1px 1px #eaeaea, inset 0 1px 0 #fbfbfb;
--moz-box-shadow: 0 1px 1px #eaeaea, inset 0 1px 0 #fbfbfb;
-box-shadow: 0 1px 1px #eaeaea, inset 0 1px 0 #fbfbfb;
-position: absolute;
-z-index: 1;
-text-align: left;
-padding: 1px;
+	position: absolute;
+	color: #000;
+	background: #FFF;
+	text-align: left;
+	margin: 13px 0px 0px -115px;
+	z-index: 1;
 }
 
 input.data-grid-cell-link-edit {
-width: 100%;
-height: 100%;
+	width: 100%;
+	height: 100%;
+	box-shadow: 0px 1px 1px rgba(0,0,0,.5);
 }

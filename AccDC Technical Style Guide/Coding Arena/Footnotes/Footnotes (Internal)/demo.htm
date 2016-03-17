@@ -1,126 +1,112 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Practice Template Page</title>
-
-<link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
-<link rel="stylesheet" type="text/css" href="css/customize.css" />
-
-<script type="text/javascript" src="../../_common/js/jQuery.js">
-// Load jQuery.
-// This is not necessary if using the Standalone AccDC API version.
-</script>
-
-<script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
-// Load the AccDC API, which all modules are plugged into as the common interface.
-</script>
-
-<!-- Now load all desired modules, which plugs them into AccDC. -->
-<script type="text/javascript" src="../../../2 Accessible Component Modules/footnote_generator.min.js"></script>
-
-<script type="text/javascript" src="js/setup.js">
-// Run the setup script where module invocation statements are contained.
-</script>
-
-</head>
-<body>
-<div>
-
-<div>
-
-<!-- Instructions
-1. All of the footnotes are simple Span tags, which should surround the word or phrase that you want to be a footnote.
-2. The Span tag must have a class name, which is specified in the invokation script during the setup as the CSS Selector. (This is "accFootnote" in this case, though it can vary). All footnote tags should share the same class name.
-3. The second required attribute is "data-footnote", which must contain the ID value that points to the specified footnote at the bottom of the page. (More than one footnote may point to the same footnote text by using the same ID value if multiple footnotes reference the same text)
-
-When the footnotes are parsed using the class name, a numerical index link is generated and appended to the footnote Span tag.
-
-View the footnotes at the bottom of the page to see the syntax for bound footnote links.
--->
-
-<div class="intro tal content">
-<p>
-Some say that the Azores are the legendary peaks of <span class="accFootnote" data-footnote="f1">Atlantis</span> after it was swallowed by the sea, which is easy to believe, especially after visiting Furnas; bells ringing from church steeples, storm driven thunder clouds over head,  old manor homes with their windows sparkling in the sunlight, wind-swept mountain ridges over crystalline lakes, its haunting beauty is unparalleled.
-</p>
-<p>
-"Going home" is a concept with entirely different significance for those who have been uprooted from their home and now live elsewhere. TO me going home is returning to the paradisiacal island of <span class="accFootnote" data-footnote="f2">Sao Miguel</span>, where at every corner is a discovery and a memory. The valley of Furnas, with the exception of a few road upgrades and Wi-Fi, has remained the same as I always remembered. Furnas is a magical village where volcanic fumaroles, effervescent springs, and geysers are part of the natural landscape. Everywhere the scents of baking bread and fresh fruit mingle with the scent of the ever breathing volcano.
-</p>
-<p>
-The valley of <span class="accFootnote" data-footnote="f3">Furnas</span> nestles within Sao Miguel's volcanic crater, venting hot mineral springs where fresh corn is cooked in burlap sacks immersed in boiling fumaroles; where botanical gardens are home to black and white swans, and exotic plants and fauna from around the world. The botanical gardens of the Hotel Terra Nostra are world renowned for its age and the variety of species there, but to me it is what I imagined the Garden of Eden to be.
-</p>
-<p>
-The sounds are as magical as the sights. Countless little birds call the tree tops home, and delight visitors with their constant singing; various creeks murmur in tune with the rustling foliage. The main feature of the gardens is the swimming pool fed by a natural hot ferrous spring; it is large enough to often be confused by tourists as a small lake. Swimming in the pool is a mystical experience; the water is warm and constantly pouring into the pool. Due to the minerals, one becomes noticeably more buoyant and time ceases to have its normal meaning. On cold days, the mist hovers and iridescent dragon flies are easily mistaken for fairies.
-</p>
-<p>
-AS a child, this park was my playground. I played in its caves, climbed its trees, swam for daily eternities and could not conceive that anyone could ever be alive and not have such a garden to visit. As an adult returning as often as I can, this park gives the constant assurance that, although I live elsewhere, I still belong to the <span class="accFootnote" data-footnote="f4">Azores</span>. Furnas is a paradise where the soft clopping of hooves on cobbled streets, the babbling of the brook beneath the mill at twilight, and the smell of fresh baked bread and wild blackberries filling the crisp morning air, call to my heart with a ceaseless whisper to come home.         
-</p>
-<p>
-<i>
-(From the travel log of Ana Cristina Wallenstein-Garaventa)
-</i>
-</p>
-</div>
-
-<div class="desc">
-<p>
-The footnotes are keyboard accessible.
-</p>
-<p><pre>
-Press the Tab and Shift+Tab keys to jump between footnotes.
-Press the Enter key to jump to and from each footnote.
-Mouse users can click the desired footnote as usual.
-</pre></p>
-</div>
-
-<div id="footnotesDil" class="intro">&nbsp;</div>
-
-<div id="footnotes" class="intro tal">
-
-<!-- Syntax for link binding
-The footnote anchor tag below is the footnote binding element, which has the ID attribute that matches the data-footnote value within the page above.
-E.G id="f1", which matches the data-footnote="f1" attribute within the article text.
-The footnote anchor tags below also have the class "footnote", but this is simply used for formatting purposes and isn't required.
-The footnote anchor tag must be placed just before the footnote text in the source code order, since this is where the Footnote Back Link will be inserted. This is also where focus is moved to when a footnote link is activated within the document text.
-The footnote anchor tag must be empty, and must not surround the footnote text. Doing so will cause the inserted Back Link to appear after the footnote text, instead of it appearing before it.
--->
-
-<div>
-
-<span class="footnote" id="f1"></span>
-
-Atlantis (in Greek, "island of Atlas") is a legendary island first mentioned in Plato's dialogues Timaeus and Critias, written about 360 BC. According to Plato, Atlantis was a naval power lying "in front of the Pillars of Hercules" that conquered many parts of Western Europe and Africa 9,000 years before the time of Solon, or approximately 9600 BC. After a failed attempt to invade Athens, Atlantis sank into the ocean "in a single day and night of misfortune".
-<a href="http://en.wikipedia.org/wiki/Atlantis" target="_blank">Atlantis - Wikipedia, the free encyclopedia</a>
-</div>
-
-<div>
-
-<span class="footnote" id="f2"></span>
-
-S&#227;o Miguel Island (Portuguese for Saint Michael), nicknamed "The Green Island", is the largest and most populous island in the Portuguese Azores archipelago. The island covers 759 km2 (293 sq mi) and has around 140,000 inhabitants, 45,000 of these people located in the largest city in the archipelago: Ponta Delgada.
-<a href="http://en.wikipedia.org/wiki/S%C3%A3o_Miguel_Island" target="_blank">S&#227;o Miguel Island - Wikipedia, the free encyclopedia</a>
-</div>
-
-<div>
-
-<span class="footnote" id="f3"></span>
-
-Furnas is a civil parish in the municipality of Povoa&#231;&#227;o on the island of S&#227;o Miguel in the Azores. The population in 2001 was 1,541, its density is 44.76/km&#178; and the area is 34.43 km&#178;. The parish is one of the largest in the island and in the Azores. It is located east of Lagoa and Ponta Delgada, west of Povoa&#231;&#227;o and southeast of Ribeira Grande.
-<a href="http://en.wikipedia.org/wiki/Furnas" target="_blank">Furnas - Wikipedia, the free encyclopedia</a>
-</div>
-
-<div>
-
-<span class="footnote" id="f4"></span>
-
-The Archipelago of the Azores is composed of nine volcanic islands situated in the middle of the North Atlantic Ocean, and is located about 1,500 km (930 mi) west from Lisbon and about 3,900 km (2,400 mi) east from the east coast of North America. The islands, and their economic exclusion zone, form the Autonomous Region of the Azores, one of the two autonomous regions of Portugal. Its main industries are: agriculture, dairy farming (for cheese and butter products primarily), minor livestock ranching, fishing and tourism, which is becoming the major service activity in the region; added to which, the government of the Azores employs a large percentage of the population directly or indirectly in many aspects of the service and tertiary sectors.
-<a href="http://en.wikipedia.org/wiki/Azores" target="_blank">Azores - Wikipedia, the free encyclopedia</a>
-</div>
-
-</div>
-
-</div>
-
-</div>
-</body>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>Practice Template Page</title>
+        <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+        <link rel="stylesheet" type="text/css" href="css/customize.css" />
+        <script type="text/javascript" src="../../_common/js/jQuery.js">
+            // Load jQuery.
+            // This is not necessary if using the Standalone AccDC API version.
+        </script>
+        <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+            // Load the AccDC API, which all modules are plugged into as the common interface.
+        </script>
+        <!-- Now load all desired modules, which plugs them into AccDC. --><script type="text/javascript" src="../../../2 Accessible Component Modules/footnote_generator.min.js"></script>
+        <script type="text/javascript" src="js/setup.js">
+            // Run the setup script where module invocation statements are contained.
+        </script>
+    </head>
+    <body>
+    	<div id="coding-arena">
+			<header>
+				<h1 tabindex="-1">
+					<a href="http://whatsock.com"><img alt="WhatSock : Changing the world one step at a time" src="../../_common/img/whatsock.svg" /> 
+					<strong>AccDC</strong> Technical Style Guide</a></h1>
+			</header>
+			
+			<main>
+				<h2>Footnotes</h2>
+            	<div class="demo-block">
+                <!-- Instructions
+                1. All of the footnotes are simple Span tags, which should surround the word or phrase that you want to be a footnote.
+                2. The Span tag must have a class name, which is specified in the invokation script during the setup as the CSS Selector. (This is "accFootnote" in this case, though it can vary). All footnote tags should share the same class name.
+                3. The second required attribute is "data-footnote", which must contain the ID value that points to the specified footnote at the bottom of the page. (More than one footnote may point to the same footnote text by using the same ID value if multiple footnotes reference the same text)
+                When the footnotes are parsed using the class name, a numerical index link is generated and appended to the footnote Span tag.
+                View the footnotes at the bottom of the page to see the syntax for bound footnote links.
+                -->
+                    <p> Some say that the Azores are the legendary peaks of <span class="accFootnote" data-footnote="f1">Atlantis</span> after it was swallowed by the sea, which is easy to believe, especially after visiting Furnas; bells ringing from church steeples, storm driven thunder clouds over head,  old manor homes with their windows sparkling in the sunlight, wind-swept mountain ridges over crystalline lakes, its haunting beauty is unparalleled.</p>
+                    <p> "Going home" is a concept with entirely different significance for those who have been uprooted from their home and now live elsewhere. TO me going home is returning to the paradisiacal island of <span class="accFootnote" data-footnote="f2">Sao Miguel</span>, where at every corner is a discovery and a memory. The valley of Furnas, with the exception of a few road upgrades and Wi-Fi, has remained the same as I always remembered. Furnas is a magical village where volcanic fumaroles, effervescent springs, and geysers are part of the natural landscape. Everywhere the scents of baking bread and fresh fruit mingle with the scent of the ever breathing volcano.</p>
+                    <p> The valley of <span class="accFootnote" data-footnote="f3">Furnas</span> nestles within Sao Miguel's volcanic crater, venting hot mineral springs where fresh corn is cooked in burlap sacks immersed in boiling fumaroles; where botanical gardens are home to black and white swans, and exotic plants and fauna from around the world. The botanical gardens of the Hotel Terra Nostra are world renowned for its age and the variety of species there, but to me it is what I imagined the Garden of Eden to be.</p>
+                    <p> The sounds are as magical as the sights. Countless little birds call the tree tops home, and delight visitors with their constant singing; various creeks murmur in tune with the rustling foliage. The main feature of the gardens is the swimming pool fed by a natural hot ferrous spring; it is large enough to often be confused by tourists as a small lake. Swimming in the pool is a mystical experience; the water is warm and constantly pouring into the pool. Due to the minerals, one becomes noticeably more buoyant and time ceases to have its normal meaning. On cold days, the mist hovers and iridescent dragon flies are easily mistaken for fairies.</p>
+                    <p> AS a child, this park was my playground. I played in its caves, climbed its trees, swam for daily eternities and could not conceive that anyone could ever be alive and not have such a garden to visit. As an adult returning as often as I can, this park gives the constant assurance that, although I live elsewhere, I still belong to the <span class="accFootnote" data-footnote="f4">Azores</span>. Furnas is a paradise where the soft clopping of hooves on cobbled streets, the babbling of the brook beneath the mill at twilight, and the smell of fresh baked bread and wild blackberries filling the crisp morning air, call to my heart with a ceaseless whisper to come home. </p>
+                    <p><i> (From the travel log of Ana Cristina Wallenstein-Garaventa)</i></p>
+					
+	                <div id="footnotesDil" class="intro">
+	                    &nbsp;
+	                </div>
+	                <div id="footnotes" class="intro tal">
+	                    <!-- Syntax for link binding
+	                    The footnote anchor tag below is the footnote binding element, which has the ID attribute that matches the data-footnote value within the page above.
+	                    E.G id="f1", which matches the data-footnote="f1" attribute within the article text.
+	                    The footnote anchor tags below also have the class "footnote", but this is simply used for formatting purposes and isn't required.
+	                    The footnote anchor tag must be placed just before the footnote text in the source code order, since this is where the Footnote Back Link will be inserted. This is also where focus is moved to when a footnote link is activated within the document text.
+	                    The footnote anchor tag must be empty, and must not surround the footnote text. Doing so will cause the inserted Back Link to appear after the footnote text, instead of it appearing before it.
+	                    -->
+	                    <p>
+	                        <span class="footnote" id="f1"></span>
+	                        Atlantis (in Greek, "island of Atlas") is a legendary island first mentioned in Plato's 
+							dialogues Timaeus and Critias, written about 360 BC. According to Plato, Atlantis was a 
+							naval power lying "in front of the Pillars of Hercules" that conquered many parts of 
+							Western Europe and Africa 9,000 years before the time of Solon, or approximately 9600 
+							BC. After a failed attempt to invade Athens, Atlantis sank into the ocean "in a single 
+							day and night of misfortune". 
+							<a href="http://en.wikipedia.org/wiki/Atlantis" target="_blank">Atlantis - Wikipedia, the free encyclopedia</a>
+	                    </p>
+	                    <p>
+	                        <span class="footnote" id="f2"></span>
+	                        S&#227;o Miguel Island (Portuguese for Saint Michael), nicknamed "The Green Island", 
+							is the largest and most populous island in the Portuguese Azores archipelago. The island 
+							covers 759 km2 (293 sq mi) and has around 140,000 inhabitants, 45,000 of these people 
+							located in the largest city in the archipelago: Ponta Delgada. 
+							<a href="http://en.wikipedia.org/wiki/S%C3%A3o_Miguel_Island" target="_blank">S&#227;o Miguel Island - Wikipedia, the free encyclopedia</a>
+	                    </p>
+	                    <p>
+	                        <span class="footnote" id="f3"></span>
+	                        Furnas is a civil parish in the municipality of Povoa&#231;&#227;o on the island of 
+							S&#227;o Miguel in the Azores. The population in 2001 was 1,541, its density 
+							is 44.76/km&#178; and the area is 34.43 km&#178;. The parish is one of the largest 
+							in the island and in the Azores. It is located east of Lagoa and Ponta Delgada, west 
+							of Povoa&#231;&#227;o and southeast of Ribeira Grande. 
+							<a href="http://en.wikipedia.org/wiki/Furnas" target="_blank">Furnas - Wikipedia, the free encyclopedia</a>
+	                    </p>
+	                    <p>
+	                        <span class="footnote" id="f4"></span>
+	                        The Archipelago of the Azores is composed of nine volcanic islands situated in 
+							the middle of the North Atlantic Ocean, and is located about 1,500 km (930 mi) 
+							west from Lisbon and about 3,900 km (2,400 mi) east from the east coast of North 
+							America. The islands, and their economic exclusion zone, form the Autonomous Region 
+							of the Azores, one of the two autonomous regions of Portugal. Its main industries 
+							are: agriculture, dairy farming (for cheese and butter products primarily), minor 
+							livestock ranching, fishing and tourism, which is becoming the major service 
+							activity in the region; added to which, the government of the Azores employs a 
+							large percentage of the population directly or indirectly in many aspects of the 
+							service and tertiary sectors. 
+							<a href="http://en.wikipedia.org/wiki/Azores" target="_blank">Azores - Wikipedia, the free encyclopedia</a>
+	                    </p>
+	                </div>
+                </div>
+				
+                <div class="keyboard">
+                    <p>The footnotes are keyboard accessible:</p>
+                    <ul>
+						<li>Press the <kbd>Tab</kbd> and <kbd><kbd>Shift</kbd>+<kbd>Tab</kbd></kbd> keys to jump between footnotes.</li>
+						<li>Press the <kbd>Enter</kbd> key to jump to and from each footnote.</li>
+						<li>Mouse users can click the desired footnote as usual.</li>
+					</ul>
+                </div>
+            </main>
+        </div>
+    </body>
 </html>

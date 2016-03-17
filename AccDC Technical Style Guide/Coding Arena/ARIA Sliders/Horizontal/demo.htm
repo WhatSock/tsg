@@ -1,96 +1,81 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Practice Template Page</title>
-
-<link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
-<link rel="stylesheet" type="text/css" href="css/customize.css" />
-
-<script type="text/javascript" src="../../_common/js/jQuery.js">
-// Load jQuery.
-// This is not necessary if using the Standalone AccDC API version.
-</script>
-
-<script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
-// Load the AccDC API, which all modules are plugged into as the common interface.
-</script>
-
-<!-- Now load all desired modules, which plugs them into AccDC. -->
-<script type="text/javascript" src="../../../2 Accessible Component Modules/css_drag_drop_module_for_jquery.min.js"></script>
-<script type="text/javascript" src="../../../2 Accessible Component Modules/aria_slider.min.js"></script>
-
-<script type="text/javascript" src="js/setup.js">
-// Run the setup script where module invocation statements are contained.
-</script>
-
-</head>
-<body>
-<div>
-
-<div class="intro tac">
-
-<table class="sample"><tr>
-
-<!-- Simply use CSS to set the size of the slider, and the height and width of the container element, and then the slider will configure itself using these offsets.
-Since repetitive labels are used, and the textual slider icon has no value for screen reader users, aria-hidden="true" is used to hide them from screen reader users.
-Don't include any other ARIA attributes however, the Slider module handles this automatically.  
-The slide icon can be changed to anything, or an image or CSS background image can be used instead, and the styling can be configured for any layout, and it will still be accessible for screen reader and keyboard only users. -->
-
-<td>
-<div class="slider2">
-
-<div class="min2" aria-hidden="true">
-<span>0%</span>
-</div>
-
-<div class="slideWrapper">
-
-<div class="slide2 clearfix">
-
-<div class="nub2" id="handle2"><!--
-Style the slider thumb and all else however you wish.
---></div>
-
-</div>
-
-</div>
-
-<div class="max2" aria-hidden="true">
-<span>100%</span>
-</div>
-
-</div>
-</td>
-
-</tr><tr>
-
-<td class="imageTD">
-
-<img id="earthImg"
-alt="Earth"
-src="img/earth.jpg"
-/>
-
-</td>
-
-</tr></table>
-
-<div class="desc">
-<p>
-The Slider Control is keyboard accessible.
-</p>
-<p><pre>
-Set focus on the slider.
-Press the Arrow keys to move the slider.
-Press Home or End to jump to the beginning or end.
-Press PageUp or PageDown to jump by increments of 10%.
-Mouse users can drag the slider as usual.
-</pre></p>
-</div>
-
-</div>
-
-</div>
-</body>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>Practice Template Page</title>
+        <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+        <link rel="stylesheet" type="text/css" href="css/customize.css" />
+        <script type="text/javascript" src="../../_common/js/jQuery.js">
+            // Load jQuery.
+            // This is not necessary if using the Standalone AccDC API version.
+        </script>
+        <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+            // Load the AccDC API, which all modules are plugged into as the common interface.
+        </script>
+        <!-- Now load all desired modules, which plugs them into AccDC. --><script type="text/javascript" src="../../../2 Accessible Component Modules/css_drag_drop_module_for_jquery.min.js"></script>
+        <script type="text/javascript" src="../../../2 Accessible Component Modules/aria_slider.min.js"></script>
+        <script type="text/javascript" src="js/setup.js">
+            // Run the setup script where module invocation statements are contained.
+        </script>
+    </head>
+    <body>
+        <div id="coding-arena">
+			<header>
+				<h1 tabindex="-1">
+					<a href="http://whatsock.com"><img alt="WhatSock : Changing the world one step at a time" src="../../_common/img/whatsock.svg" /> 
+					<strong>AccDC</strong> Technical Style Guide</a></h1>
+			</header>
+		
+        	<main>
+        		<h2>ARIA Horizontal Slider</h2>
+            	<div class="demo-block">
+	                <table class="sample">
+	                    <tr>
+	                        <!-- Simply use CSS to set the size of the slider, and the height and width of the container element, and then the slider will configure itself using these offsets.
+	                        Since repetitive labels are used, and the textual slider icon has no value for screen reader users, aria-hidden="true" is used to hide them from screen reader users.
+	                        Don't include any other ARIA attributes however, the Slider module handles this automatically.
+	                        The slide icon can be changed to anything, or an image or CSS background image can be used instead, and the styling can be configured for any layout, and it will still be accessible for screen reader and keyboard only users. -->
+	                        <td>
+	                            <div class="slider2">
+	                                <div class="min2" aria-hidden="true">
+	                                    <span>0%</span>
+	                                </div>
+	                                <div class="slideWrapper">
+	                                    <div class="slide2 clearfix">
+	                                        <div class="nub2" id="handle2">
+	                                            <!--
+	                                            Style the slider thumb and all else however you wish.
+	                                            -->
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                                <div class="max2" aria-hidden="true">
+	                                    <span>100%</span>
+	                                </div>
+	                            </div>
+	                        </td>
+	                    </tr>
+	                    <tr>
+	                        <td class="imageTD">
+	                           <p> <img id="earthImg" alt="Earth" src="img/earth.jpg" /></p>
+	                        </td>
+	                    </tr>
+	                </table>
+				</div>
+				
+                <div class="keyboard">
+                    <p>The Slider Control is keyboard accessible:</p>
+                    <ul>
+						<li>Set focus on the slider.
+						<li>Press the Arrow keys to move the slider.
+						<li>Press <kbd class="home">Home</kbd> or <kbd class="end">End</kbd> to jump to the beginning or end.
+						<li>Press <kbd>PageUp</kbd> or <kbd>PageDown</kbd> to jump by increments of 10%.
+						<li>Mouse users can drag the slider as usual.
+					</ul>
+                </div>
+				
+            </main>
+        </div>
+    </body>
 </html>

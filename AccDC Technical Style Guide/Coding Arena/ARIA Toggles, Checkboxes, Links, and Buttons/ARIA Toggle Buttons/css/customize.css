@@ -1,36 +1,45 @@
+/* WHATSOCK, 2016 */
+/* Specific styles for ARIA Toggle Buttons */
 
-#a1, #div1, #span1, #helpIcon {
-cursor: pointer;
+dl {max-width: 40em;}
+
+dt {font-weight: bold; margin-bottom: 0.5rem;}
+
+dd {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	padding-bottom: 1rem;
+	margin-bottom: 1rem;
+	border-bottom: 1px dotted #CCC;
+}
+dd:last-child {border: none;}
+
+dd *:nth-child(1) {
+	display: inline-block;
+	width: 10em;
+	text-align: center;
 }
 
-*:focus {
-outline: blue 2px inset;
-}
+dd *:nth-child(2) {position: relative; left: 10%;}
 
-.button > *:focus {
-outline-style: none;
+*[role=button]:not(#helpIcon), a:link[role=button], a:visited[role=button] {
+	width: auto;
+	text-transform: uppercase;
+	color: #FFF;
+	background: #286278;
+	padding: 0.3em 0.5em;
+	border: none;
+	border-radius: 3px;
+	box-shadow: 0 1px 2px rgba(0,0,0,.7);
+	transition: border-radius;
+	-webkit-transition: border-radius;
+	cursor: pointer;
 }
-
-dd > * {
-float: left;
-margin: 2px 10px 5px 0;
-}
-
-dd > input[type="checkbox"] {
-margin-left: 200px;
-}
-
-#a1 > span, #div1 > span, #span1 > span {
-display: block;
-width: 70px;
-}
-
-#helpIcon.pressed {
-float: left;
-}
-
-#helpSect1 {
-width: 80%;
-float: left;
-margin-left: 10px;
+*:focus[role=button], *:hover[role=button], a:focus[role=button], a:hover[role=button] {
+	text-decoration: none;
+	color: #FFF;
+	background: #49182E;
+	box-shadow: none;
+	border-radius: 0;	
 }

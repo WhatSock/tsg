@@ -25,7 +25,7 @@ $A.bind(window, 'load', function(){
 					autoPosition: 9,
 
 					// Move the Popup AccDC Object 80px up when opened
-					offsetTop: -80,
+					offsetTop: 0,
 
 					// Set the class name for the top level container element
 					className: 'popup',
@@ -153,7 +153,6 @@ $A.bind(window, 'load', function(){
 	// Set up a tooltip object that we can control later
 	tooltipId = $A.setTooltip(
 					{
-
 					// Set a unique ID for the tooltip AccDC Object, which can also be referenced through $A.reg['uniqueId']
 					id: 'typingTooltip',
 
@@ -168,8 +167,8 @@ $A.bind(window, 'load', function(){
 					source: 'Blurt is typing a message...',
 
 					// Position the tooltip on the right of the triggering element
-					autoPosition: 3,
-					offsetLeft: 10,
+					autoPosition: 1,
+					offsetTop: -20,
 
 					// Set the class name for the top level container element
 					className: 'tooltip',
@@ -178,6 +177,9 @@ $A.bind(window, 'load', function(){
 						dc.close();
 					},
 
+						runAfter: function(dc){
+// Invoke setPosition using preconfigured values
+dc.setPosition('#coding-arena'); },
 					// Run script before the tooltip AccDC Object opens
 					runBefore: function(dc){
 						// Manually set a triggering object node so that positioning can be calculated accurately.

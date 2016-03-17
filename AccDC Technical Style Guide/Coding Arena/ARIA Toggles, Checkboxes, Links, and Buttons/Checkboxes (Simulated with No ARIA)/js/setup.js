@@ -19,7 +19,7 @@ $A.bind(window, 'load', function(){
 					callback: function(state){
 						// 'this' is the triggering element
 
-						document.getElementById('a1img').src = state ? 'img/checkiconred.png' : 'img/checkiconblue.png';
+						document.getElementById('a1img').src = state ? 'img/horse_checked.svg' : 'img/horse.svg';
 
 						$A.getEl('a1mirror').checked = state ? 'checked' : false;
 

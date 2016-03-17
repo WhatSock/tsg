@@ -49,18 +49,11 @@ $A.bind(window, 'load', function(){
 													// Set a node where the toggleClass property value will be toggled when validation fails
 													// The triggering Input field or targetObj element is used by default if omitted
 													classObj: $A.getEl('b-add1').parentNode.parentNode.parentNode,
-													// Manually set the element where visual positioning calculations will be bound to
-													// If posAnchor is not set, triggerObj or targetObj is used for this purpose instead.
-													posAnchor: $A.getEl('b-add1').parentNode.parentNode.parentNode,
-													// Set the tooltip to appear on the left of the posAnchor element
-													// 3 is set by default if omitted
-													autoPosition: 8,
-													// Add an additional offset for spacing
-													// 10 is set by default if omitted
-													offsetLeft: -10,
+													// Disable default autoPositioning to rely on classes instead
+													autoPosition: 0,
 													// Set a class for the tooltip container
 													// 'errorTooltip' is set by default if omitted
-													className: 'errorTooltip'
+													className: 'errorTooltip streetAddress'
 													}
 									},
 
@@ -77,8 +70,8 @@ $A.bind(window, 'load', function(){
 													targetObj: $A.getEl('b-city').parentNode,
 													classObj: $A.getEl('b-city').parentNode.parentNode.parentNode,
 													posAnchor: $A.getEl('b-city').parentNode.parentNode.parentNode,
-													autoPosition: 8,
-													offsetLeft: -10
+													autoPosition: 0,
+													className: 'errorTooltip city'
 													}
 									},
 
@@ -94,8 +87,8 @@ $A.bind(window, 'load', function(){
 													targetObj: $A.getEl('b-state').parentNode,
 													classObj: $A.getEl('b-state').parentNode.parentNode.parentNode,
 													posAnchor: $A.getEl('b-state').parentNode.parentNode.parentNode,
-													autoPosition: 8,
-													offsetLeft: -10
+													autoPosition: 0,
+													className: 'errorTooltip state'
 													}
 									},
 
@@ -111,8 +104,8 @@ $A.bind(window, 'load', function(){
 													targetObj: $A.getEl('b-zip').parentNode,
 													classObj: $A.getEl('b-zip').parentNode.parentNode.parentNode,
 													posAnchor: $A.getEl('b-zip').parentNode.parentNode.parentNode,
-													autoPosition: 8,
-													offsetLeft: -10
+													autoPosition: 0,
+													className: 'errorTooltip zipcode'
 													}
 									},
 
@@ -128,9 +121,8 @@ $A.bind(window, 'load', function(){
 													targetObj: $A.getEl('m-add1').parentNode,
 													classObj: $A.getEl('m-add1').parentNode.parentNode.parentNode,
 													posAnchor: $A.getEl('m-add1').parentNode.parentNode.parentNode,
-													// Set the tooltip to appear on the right of the targetObj element
-													autoPosition: 3,
-													offsetLeft: 10
+													autoPosition: 0,
+													className: 'errorTooltip streetAddress2'
 													}
 									},
 
@@ -146,8 +138,8 @@ $A.bind(window, 'load', function(){
 													targetObj: $A.getEl('m-city').parentNode,
 													classObj: $A.getEl('m-city').parentNode.parentNode.parentNode,
 													posAnchor: $A.getEl('m-city').parentNode.parentNode.parentNode,
-													autoPosition: 3,
-													offsetLeft: 10
+													autoPosition: 0,
+													className: 'errorTooltip city2'
 													}
 									},
 
@@ -163,8 +155,8 @@ $A.bind(window, 'load', function(){
 													targetObj: $A.getEl('m-state').parentNode,
 													classObj: $A.getEl('m-state').parentNode.parentNode.parentNode,
 													posAnchor: $A.getEl('m-state').parentNode.parentNode.parentNode,
-													autoPosition: 3,
-													offsetLeft: 10
+													autoPosition: 0,
+													className: 'errorTooltip state2'
 													}
 									},
 
@@ -180,11 +172,8 @@ $A.bind(window, 'load', function(){
 													targetObj: $A.getEl('m-zip').parentNode,
 													classObj: $A.getEl('m-zip').parentNode.parentNode.parentNode,
 													posAnchor: $A.getEl('m-zip').parentNode.parentNode.parentNode,
-													autoPosition: 3,
-													offsetLeft: 10,
-													runAfter: function(dc){
-													//alert('test');
-													}
+													autoPosition: 0,
+													className: 'errorTooltip zipcode'
 													}
 									}
 					}, function(ev){

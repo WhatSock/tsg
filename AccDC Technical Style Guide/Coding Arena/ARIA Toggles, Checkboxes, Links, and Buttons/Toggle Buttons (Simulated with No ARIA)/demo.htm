@@ -1,125 +1,80 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Practice Template Page</title>
-
-<link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
-<link rel="stylesheet" type="text/css" href="css/customize.css" />
-<link rel="stylesheet" type="text/css" href="css/simple_web_buttons.css" />
-
-<script type="text/javascript" src="../../_common/js/jQuery.js">
-// Load jQuery.
-// This is not necessary if using the Standalone AccDC API version.
-</script>
-
-<script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
-// Load the AccDC API, which all modules are plugged into as the common interface.
-</script>
-
-<!-- Now load all desired modules, which plugs them into AccDC. -->
-<script type="text/javascript" src="../../../2 Accessible Component Modules/aria_toggler.min.js"></script>
-
-<script type="text/javascript" src="js/setup.js">
-// Run the setup script where module invocation statements are contained.
-</script>
-
-</head>
-<body>
-<div>
-
-<div class="intro tal">
-
-<div class="title">
-Toggle Buttons: What do you want to be when you grow up?
-</div>
-
-<dl>
-
-<dt>
-Standard Link (A tag with an href attribute) as a toggle:
-</dt>
-
-<dd class="clearfix">
-
-<!-- For container elements that support innerHTML, the following attributes and rules are required to ensure accessibility for the widest range of screen readers:
-1. Inner Text : Specifies a textual label for screen reader users. This may be visible or positioned using offscreenText. (Must not be hidden using display:none or visibility:hidden) offscreenText is required to ensure the same level of accessibility for iOS devices using Voiceover.
-2. No Embedded Active Elements : Don't embed any other active elements, including mouse clickable images, links, or anything else that needs to be activated separately.
-3. The A tag must include an href attribute (even if it only includes a # symbol), which is needed to ensure keyboard accessibility in all browsers.
-
-To add a tooltip for sighted mouse users, use the Title attribute on the A tag only. This must match the text contained within the innerText label.
--->
-
-<a href="#" id="a1"
-class="button blue"
-><span class="lbl">
-A Horse!
-</span></a>
-
-<input type="checkbox" id="a1mirror" title="Checkbox mirror of A Horse" />
-</dd>
-
-<dt>
-Standard Link (A tag with an href attribute) as a toggle:
-</dt>
-
-<dd class="clearfix">
-
-<!-- For container elements that support innerHTML, the following attributes and rules are required to ensure accessibility for the widest range of screen readers:
-1. Inner Text : Specifies a textual label for screen reader users. This may be visible or positioned using offscreenText. (Must not be hidden using display:none or visibility:hidden) offscreenText is required to ensure the same level of accessibility for iOS devices using Voiceover.
-2. No Embedded Active Elements : Don't embed any other active elements, including mouse clickable images, links, or anything else that needs to be activated separately.
-3. The A tag must include an href attribute (even if it only includes a # symbol), which is needed to ensure keyboard accessibility in all browsers.
-
-To add a tooltip for sighted mouse users, use the Title attribute on the A tag only. This must match the text contained within the innerText label.
--->
-
-<a href="#" id="a2"
-class="button green"
-><span class="lbl">
-A Donkey!
-</span></a>
-
-<input type="checkbox" id="a2mirror" title="Checkbox mirror of A Donkey" />
-</dd>
-
-</dl>
-
-<div class="clearfix">
-
-<!-- For container elements that support innerHTML, the following attributes and rules are required to ensure accessibility for the widest range of screen readers:
-1. Inner Text : Specifies a textual label for screen reader users. This may be visible or positioned using offscreenText. (Must not be hidden using display:none or visibility:hidden) offscreenText is required to ensure the same level of accessibility for iOS devices using Voiceover.
-2. No Embedded Active Elements : Don't embed any other active elements, including mouse clickable images, links, or anything else that needs to be activated separately.
-3. The A tag must include an href attribute (even if it only includes a # symbol), which is needed to ensure keyboard accessibility in all browsers.
-4. alt="" : Must be used on the IMG tag to hide it from screen reader users to prevent redundant text from being announced with the innerText.
-
-To add a tooltip for sighted mouse users, use the Title attribute on the A tag only. This must match the text contained within the innerText label.
--->
-
-<a href="#" id="a3"
-><img id="helpIcon"
-alt=""
-src="img/help.png"
-/><span class="offscreenText">
-Learn more about this page
-</span></a>
-
-<div id="helpSect1" class="hidden">
-<div class="desc">
-<p>
-The toggle button controls are keyboard accessible.
-</p>
-<p><pre>
-Press the Tab key to navigate between the toggle buttons. 
-Press the Spacebar to toggle the state of the selected toggle button.
-Mouse users can click a toggle button to toggle the state as usual.
-</pre></p>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-</body>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>Practice Template Page</title>
+        <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+        <link rel="stylesheet" type="text/css" href="css/customize.css" />
+        <link rel="stylesheet" type="text/css" href="css/simple_web_buttons.css" />
+        <script type="text/javascript" src="../../_common/js/jQuery.js">
+            // Load jQuery.
+            // This is not necessary if using the Standalone AccDC API version.
+        </script>
+        <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+            // Load the AccDC API, which all modules are plugged into as the common interface.
+        </script>
+        <!-- Now load all desired modules, which plugs them into AccDC. --><script type="text/javascript" src="../../../2 Accessible Component Modules/aria_toggler.min.js"></script>
+        <script type="text/javascript" src="js/setup.js">
+            // Run the setup script where module invocation statements are contained.
+        </script>
+    </head>
+    <body>
+        <div id="coding-arena">
+			<header>
+				<h1 tabindex="-1">
+					<a href="http://whatsock.com"><img alt="WhatSock : Changing the world one step at a time" src="../../_common/img/whatsock.svg" /> 
+					<strong>AccDC</strong> Technical Style Guide</a></h1>
+			</header>
+            <main>
+                <h2>Toggle Buttons</h2>
+                <div class="demo-block">
+                    <h3>What do you want to be when you grow up?</h3>
+                    <dl>
+                        <dt>
+                            Standard Link (A tag with an href attribute) as a toggle:
+                        </dt>
+                        <dd>
+                            <!-- For container elements that support innerHTML, the following attributes and rules are required to ensure accessibility for the widest range of screen readers:
+                            1. Inner Text : Specifies a textual label for screen reader users. This may be visible or positioned using offscreenText. (Must not be hidden using display:none or visibility:hidden) offscreenText is required to ensure the same level of accessibility for iOS devices using Voiceover.
+                            2. No Embedded Active Elements : Don't embed any other active elements, including mouse clickable images, links, or anything else that needs to be activated separately.
+                            3. The A tag must include an href attribute (even if it only includes a # symbol), which is needed to ensure keyboard accessibility in all browsers.
+                            To add a tooltip for sighted mouse users, use the Title attribute on the A tag only. This must match the text contained within the innerText label.
+                            --><a href="#" id="a1" class="button blue"><span class="lbl">A Horse!</span></a>
+                            <input type="checkbox" id="a1mirror" title="Checkbox mirror of A Horse" />
+                        </dd>
+                        <dt>
+                            Standard Link (A tag with an href attribute) as a toggle:
+                        </dt>
+                        <dd>
+                            <!-- For container elements that support innerHTML, the following attributes and rules are required to ensure accessibility for the widest range of screen readers:
+                            1. Inner Text : Specifies a textual label for screen reader users. This may be visible or positioned using offscreenText. (Must not be hidden using display:none or visibility:hidden) offscreenText is required to ensure the same level of accessibility for iOS devices using Voiceover.
+                            2. No Embedded Active Elements : Don't embed any other active elements, including mouse clickable images, links, or anything else that needs to be activated separately.
+                            3. The A tag must include an href attribute (even if it only includes a # symbol), which is needed to ensure keyboard accessibility in all browsers.
+                            To add a tooltip for sighted mouse users, use the Title attribute on the A tag only. This must match the text contained within the innerText label.
+                            --><a href="#" id="a2" class="button green"><span class="lbl">A Donkey!</span></a>
+                            <input type="checkbox" id="a2mirror" title="Checkbox mirror of A Donkey" />
+                        </dd>
+                    </dl>
+                    <div>
+                        <!-- For container elements that support innerHTML, the following attributes and rules are required to ensure accessibility for the widest range of screen readers:
+                        1. Inner Text : Specifies a textual label for screen reader users. This may be visible or positioned using offscreenText. (Must not be hidden using display:none or visibility:hidden) offscreenText is required to ensure the same level of accessibility for iOS devices using Voiceover.
+                        2. No Embedded Active Elements : Don't embed any other active elements, including mouse clickable images, links, or anything else that needs to be activated separately.
+                        3. The A tag must include an href attribute (even if it only includes a # symbol), which is needed to ensure keyboard accessibility in all browsers.
+                        4. alt="" : Must be used on the IMG tag to hide it from screen reader users to prevent redundant text from being announced with the innerText.
+                        To add a tooltip for sighted mouse users, use the Title attribute on the A tag only. This must match the text contained within the innerText label.
+                        --><a href="#" id="a3"><img id="helpIcon" alt="" src="img/ic_help.svg" /><span class="offscreenText">Learn more about this page</span></a>
+                    </div>
+                </div>
+                <div id="helpSect1" class="keyboard hidden">
+                	<p>The toggle button controls are keyboard accessible.</p>
+                    <ul>
+						<li>Press the <kbd>Tab</kbd> key to navigate between the ARIA Checkboxes. 
+						<li>Press the <kbd>Spacebar</kbd> to toggle the state of the selected checkbox.
+						<li>Mouse users can click a checkbox to toggle the state as usual.
+					</ul>
+                </div>
+            </main>
+        </div>
+    </body>
 </html>

@@ -13,7 +13,7 @@ $A.bind(window, 'load', function(){
 
 						// 'this' is the triggering element
 
-						this.src = state ? 'img/checkiconred.png' : 'img/checkiconblue.png';
+						this.src = state ? 'img/horse_checked.svg' : 'img/horse.svg';
 
 						$A.getEl('img1mirror').checked = state ? 'checked' : false;
 
@@ -33,7 +33,7 @@ $A.bind(window, 'load', function(){
 					{
 					state: false,
 					callback: function(state){
-						this.src = state ? 'img/checkiconred.png' : 'img/checkiconblue.png';
+						this.src = state ? 'img/donkey_checked.svg' : 'img/donkey.svg';
 
 						$A.getEl('input1mirror').checked = state ? 'checked' : false;
 

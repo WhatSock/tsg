@@ -13,7 +13,7 @@ $A.bind(window, 'load', function(){
 					accEnd: 'End',
 
 					// Set the triggering element using a DOM node or a CSS Selector
-					trigger: 'a#myPopup',
+					trigger: '#myPopup',
 
 					// Specify that literal content is to be rendered
 					mode: 0,

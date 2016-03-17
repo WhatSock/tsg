@@ -3,51 +3,54 @@
 <group name="Step 1 of 3: Personal Details" >
 <slide announce="All fields are required" ><![CDATA[
 <form role="application">
-<label for="s1-1">Your name:</label>
+<p><label for="s1-1">Your name:</label>
 <input data-first="true" data-error="Surely you have a name?" id="s1-1" type="text" name="your_name" aria-required="true" />
-<br />
-<label for="s1-2">Your email:</label>
+</p>
+<p><label for="s1-2">Your email:</label>
 <input data-error="If you don't give us your email address, how are we supposed to spam you?" id="s1-2" type="text" name="your_email" aria-required="true" />
-<br />
-<label for="s1-3">Your favorite color:</label>
+</p>
+<p><label for="s1-3">Your favorite color:</label>
 <input data-error="Yes I know, we need the color for market research..." id="s1-3" type="text" name="your_favorite_color" aria-required="true" />
-<br />
-<label for="s1-4">Your favorite person:</label>
+</p>
+<p><label for="s1-4">Your favorite person:</label>
 <input data-error="We need to know your favorite person, you know, in case we ever want to say hi, or something..." id="s1-4" type="text" name="your_favorite_person" aria-required="true" />
+</p>
 </form>
 ]]></slide>
 </group>
 <group name="Step 2 of 3: Personal Address" >
 <slide announce="All fields are required" ><![CDATA[
 <form role="application">
-<label for="s2-1">Your street address:</label>
+<p><label for="s2-1">Your street address:</label>
 <input data-first="true" data-error="We need your street address so we know where to put the spray paint." id="s2-1" type="text" name="your_street_address" aria-required="true" />
-<br />
-<label for="s2-2">Your city:</label>
+</p>
+<p><label for="s2-2">Your city:</label>
 <input data-error="Ah, you forgot your city!" id="s2-2" type="text" name="your_city" aria-required="true" />
-<br />
-<label for="s2-3">Your state:</label>
+</p>
+<p><label for="s2-3">Your state:</label>
 <input data-error="Not your state of being, but where you live please..." id="s2-3" type="text" name="your_state" aria-required="true" />
-<br />
-<label for="s2-4">Your zip code:</label>
+</p>
+<p><label for="s2-4">Your zip code:</label>
 <input data-error="Nodody remembers this anyway, so just make a zip code up, everyone else does..." id="s2-4" type="text" name="your_zip_code" aria-required="true" />
+</p>
 </form>
 ]]></slide>
 </group>
 <group name="Step 3 of 3: The Important Stuff" >
 <slide announce="All fields are required" ><![CDATA[
 <form role="application">
-<label for="s3-1">The winning lottery numbers:</label>
+<p><label for="s3-1">The winning lottery numbers:</label>
 <input data-first="true" data-error="Really, I need to know what these numbers are, preferably in advance..." id="s3-1" type="text" name="winning_lottery_numbers" aria-required="true" />
-<br />
-<label for="s3-2">The name of your foot:</label>
+</p>
+<p><label for="s3-2">The name of your foot:</label>
 <input data-error="The name of your left foot, actually. Don't ask me why... Blame our business department..." id="s3-2" type="text" name="name_of_your_left_foot" aria-required="true" />
-<br />
-<label for="s3-3">The meaning of life:</label>
+</p>
+<p><label for="s3-3">The meaning of life:</label>
 <input data-error="You don't know the meaning of life, really? Go ahead and take a stab! I think it has something to do with 42." id="s3-3" type="text" name="the_meaning_of_life" aria-required="true" />
-<br />
-<label for="s3-4">The question:</label>
+</p>
+<p><label for="s3-4">The question:</label>
 <input data-error="You've got to know the question, it comes before the answer of course..." id="s3-4" type="text" name="the_question" aria-required="true" />
+</p>
 </form>
 ]]></slide>
 </group>

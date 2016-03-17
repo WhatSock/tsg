@@ -1,4 +1,5 @@
-As an ARIA widget implementation, the Tablist container element must include the attribute role="tablist", and all Tab item links must include the attribute role="tab" to ensure accessibility for screen reader users.  
+As an ARIA widget implementation, the Tablist container element must include the attribute role="tablist", and all Tab item links must include 
+the attribute role="tab" to ensure accessibility for screen reader users.  
 
 Both the Tablist container element and all Tab item links must include unique ID attribute values.
 

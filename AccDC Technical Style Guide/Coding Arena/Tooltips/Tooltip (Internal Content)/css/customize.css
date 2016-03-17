@@ -1,31 +1,34 @@
-
-p {
-text-align: left;
-}
-
-a#helpIcon {
-float: left;
-margin: 100px;
-}
+/* WHATSOCK, 2016 */
+/* Specific styles for Accessible Tooltip */
 
 div.tooltip {
-position: absolute;
-z-index: 1;
-font: bold 12px/12px HelveticaNeue, Arial;
-padding: 3px 4px;
-border: 1px solid #dedede;
-background: #525252;
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5e5e5e', endColorstr='#434343'); /* IE */
-background: -webkit-gradient(linear, left top, left bottom, from(#5e5e5e), to(#434343)); /* WebKit */
-background: -moz-linear-gradient(top, #5e5e5e, #434343);
-border-color: #4c4c4c #313131 #1f1f1f;
-color: #fff;
-text-shadow: 0 1px 0 #2e2e2e;
--webkit-box-shadow: 0 1px 1px #afafaf, inset 0 1px 0 #868686;
--moz-box-shadow: 0 1px 1px #afafaf, inset 0 1px 0 #868686;
-box-shadow: 0 1px 1px #afafaf, inset 0 1px 0 #868686;  
+	position: absolute;
+	width: auto;
+	color: #FFF;
+	background: #2E3135;
+	padding: 0.3em 0.5em;
+	-webkit-box-shadow: 0 1px 1px #afafaf, inset 0 1px 0 #868686;
+	-moz-box-shadow: 0 1px 1px #afafaf, inset 0 1px 0 #868686;
+	box-shadow: 0 1px 1px #afafaf, inset 0 1px 0 #868686;
+	z-index: 100;
 }
 
-#tooltip-password {
-text-align: left;
+.accTooltip {
+	font-size: 100%;
+	text-align: center;
+	background: transparent;
+	border: none;
+}
+
+	.accTooltip img {display: block; vertical-align: middle; margin: 0.5rem auto 0;}
+	
+
+#helpIcon {
+	display: block;
+	background-color: transparent;
+	margin: 1rem 0;
+}
+
+@media screen and (min-width: 750px) {
+	.accTooltip img {display: inline; margin: 0 0 0 0.5rem;}
 }

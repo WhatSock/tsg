@@ -1,96 +1,78 @@
+/* WHATSOCK, 2016 */
+/* Specific styles for Web Chat */
 
-#startChatBtn {
-float: left;
-margin: 100px;
-}
+#startChatBtn {}
 
 div.popup {
-position: absolute;
-z-index: 1;
-color: #191970;
-background-color: #f5f5f5;
-font-size: 0.9em;
-text-align: left;
-padding: 5px;
-font-family: Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif;
--webkit-box-shadow: 0 10px 6px -6px #777;
--moz-box-shadow: 0 10px 6px -6px #777;
-box-shadow: 0 10px 6px -6px #777;
-width: 400px;
+    position: absolute;
+    width: 300px;
+	bottom: 0;
+	left: 15%;
+	background: #FFF;
+    padding: 0.5rem;
+	box-shadow: 0 0 5px rgba(0,0,0,.7);
+	border-radius: 0.3rem;
+    z-index: 1;
 }
 
 #popup-chat > div.title, #popup-chat > div.close {
-float: left;
 }
 
-#popup-chat div.title {
-width: 70%;
-text-align: center;
-font-weight: bold;
-color: #483d8b;
-text-shadow: 0px 1px 1px rgba(112,128,144,0.8);
-font-size: 1.2em;
+#popup-chat h3 {
+    font-weight: bold;
+    font-size: 1em;
+	text-transform: uppercase;
+	margin: 0;
 }
 
 #popup-chat div.close {
-width: 28%;
-text-align: right;
 }
 
-#popup-chat div.close img {
-height: 15px;
-width: 15px;
+#popup-chat p.close a {
+	display: block;
+	float: right;
+	width: 24px;
+	height: 24px;
+	background: transparent;
+	margin: -1.2em 0 1em;
 }
 
 #popup-chat div.chatPane {
-clear: both;
-width: 390px;
-padding: 5px;
-height: 90px;
-overflow-x: hidden;
-overflow-y: auto;
-border: solid 1px black;
+    clear: both;
+    padding: 0.5rem;
+    height: 5em;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border: solid 1px #CCC;
 }
 
 #popup-chat div.chatPane > * {
-width: 390px;
-color: #228b22;
+	font-size: 0.8em;
+	line-height: 1.3;
+    color: #286278;
+	margin-bottom: 0.5em;
 }
 
-div.msg, div.hisBtn {
-clear: both;
-float: left;
+#chatPaneInsert div {
+	margin-bottom: 0.5em;
 }
 
-div.msg {
-width: 100%;
-}
+div.msg, div.hisBtn {}
+
+div.msg {width: 100%;}
 
 #msgField {
-width: 100%;
-height: 40px;
-overflow: auto;
-word-wrap: break-word;
+    width: 98%;
+    height: 4rem;
+    overflow: auto;
+    word-wrap: break-word;
 }
 
 div.tooltip {
-position: absolute;
-z-index: 2;
-font: bold 12px/12px HelveticaNeue, Arial;
-padding: 3px 4px;
-border: 1px solid #dedede;
-background: #a5b8c6;
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#becbd6', endColorstr='#88a1b4'); /* IE */
-background: -webkit-gradient(linear, left top, left bottom, from(#becbd6), to(#88a1b4)); /* WebKit */
-background: -moz-linear-gradient(top, #becbd6, #88a1b4);
-border-color: #a2afb8 #8696a1 #6f818f;
-color: #515f6a;
-text-shadow: 0 1px 0 #c4d0d9;
--webkit-box-shadow: 0 1px 1px #d3d3d3, inset 0 1px 0 #ced8e0;
--moz-box-shadow: 0 1px 1px #d3d3d3, inset 0 1px 0 #ced8e0;
-box-shadow: 0 1px 1px #d3d3d3, inset 0 1px 0 #ced8e0;  
+	width: 25em;
+	top: -1em;
+	left: 0;
+	font-size: 0.8em;
+    z-index: 2; 
 }
 
-*:focus {
-outline: blue 1px inset;
-}

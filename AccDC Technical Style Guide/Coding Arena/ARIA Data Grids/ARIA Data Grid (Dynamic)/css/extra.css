@@ -1,30 +1,38 @@
 
-div.paginate > *, div.modify > *, div.configure > *, div.mode > * {
-float: left;
-margin-left: 10px;
-}
-
 div.paginate input {
-width: 50px;
+	width: 50px;
 }
 
 #popupId {
-border: 1px solid #dedede;
-background: #f5f5f5;
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#f0f0f0'); /* IE */
-background: -webkit-gradient(linear, left top, left bottom, from(#f9f9f9), to(#f0f0f0)); /* WebKit */
-background: -moz-linear-gradient(top, #f9f9f9, #f0f0f0);
-border-color: #000;
-color: #000;
-text-shadow: 0 1px 0 #fff;
--webkit-box-shadow: 0 1px 1px #eaeaea, inset 0 1px 0 #fbfbfb;
--moz-box-shadow: 0 1px 1px #eaeaea, inset 0 1px 0 #fbfbfb;
-box-shadow: 0 1px 1px #eaeaea, inset 0 1px 0 #fbfbfb;
-text-align: left;
-position: fixed;
-z-index: 1;
-width: 300px;
-padding: 5px;
-top: 45%;
-left: 45%;
+	position: absolute;
+	top: 0;
+	right: 5%;
+	width: 300px;
+	font-size: 1rem;
+	color: #FFF;
+	background: #C1384D;
+	padding: 0.3em 0.5em;
+	box-shadow: 0 1px 3px rgba(0,0,0,.4);
+	-webkit-animation: appearance 1s;
+	-ms-animation: appearance 1s;
+	animation: appearance 1s;
+	z-index: 1;
+}
+
+@-webkit-keyframes appearance {
+	0% {top: -50em; opacity: 0;}
+	50% {top: -20em;}
+	100% {top: 0; opacity: 1;}
+}
+
+@-ms-keyframes appearance {
+	0% {top: -50em; opacity: 0;}
+	50% {top: -20em;}
+	100% {top: 0; opacity: 1;}
+}
+
+@keyframes appearance {
+	0% {top: -50em; opacity: 0;}
+	50% {top: -20em;}
+	100% {top: 0; opacity: 1;}
 }

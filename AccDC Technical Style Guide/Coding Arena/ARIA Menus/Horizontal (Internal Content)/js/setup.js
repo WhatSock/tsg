@@ -2,7 +2,7 @@ $A.bind(window, 'load', function(){
 
 	// Configure menu functionality
 
-	$A.setMenu('a.menu2', 'hiddenDivId', 'menu-options2', function(ev, dc){
+	$A.setMenu('.menu2', 'hiddenDivId', 'menu-options2', function(ev, dc){
 		alert('Do something with this.href or id="' + this.id + '"');
 	}, true, document,
 					{

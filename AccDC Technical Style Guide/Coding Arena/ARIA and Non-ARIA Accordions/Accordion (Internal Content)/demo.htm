@@ -1,113 +1,87 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Practice Template Page</title>
-
-<link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
-<link rel="stylesheet" type="text/css" href="css/customize.css" />
-
-<script type="text/javascript" src="../../_common/js/jQuery.js">
-// Load jQuery.
-// This is not necessary if using the Standalone AccDC API version.
-</script>
-
-<script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
-// Load the AccDC API, which all modules are plugged into as the common interface.
-</script>
-
-<!-- Now load all desired modules, which plugs them into AccDC. -->
-<script type="text/javascript" src="../../../2 Accessible Component Modules/acordion_generator.min.js"></script>
-
-<script type="text/javascript" src="js/setup.js">
-// Run the setup script where module invocation statements are contained.
-</script>
-
-</head>
-<body>
-<div>
-
-<!-- Attributes explained:
-• data-src : The resource path and pointer to the ID attribute of the accordion content container element.
-If set, data-internal should be blank or not included. 
-• data-internal : The ID attribute of the accordion content container element within the same document.
-If data-internal is set, data-src should be blank or not included. 
-• data-insert : The ID attribute of the container element where the accordion content will be inserted when rendered. (This must not be inside the triggering element)
-• data-defaultopen="true" : Specifies that the referenced accordion node will open automatically. Only one accordion node per group should include this
-attribute. 
-• id : The unique ID of the element. This value is also registered as the ID of the individual accordion node AccDC Object, making it possible to invoke
-the object programmatically.
-E.G $A.reg.uniqueID.open();
-// All other AccDC API properties and methods are similarly available.  
--->
-
-<dl id="accordionGroup">
-
-<dt role="heading" aria-level="2" class="clearfix">
-<a href="#" class="accAccordion" data-internal="accordion-sect1" data-insert="sect1" data-defaultopen="true"  id="accordion1id">
-<span class="icon"></span>
-<span class="lbl">Section One</span>
-</a>
-</dt>
-
-<dd id="sect1"></dd>
-
-<dt role="heading" aria-level="2" class="clearfix">
-<a href="#" class="accAccordion" data-internal="accordion-sect2" data-insert="sect2"  id="accordion2id">
-<span class="icon"></span>
-<span class="lbl">Section Two</span>
-</a>
-</dt>
-
-<dd id="sect2"></dd>
-
-<dt role="heading" aria-level="2" class="clearfix">
-<a href="#" class="accAccordion" data-internal="accordion-sect3" data-insert="sect3"  id="accordion3id">
-<span class="icon"></span>
-<span class="lbl">Section Three</span>
-</a>
-</dt>
-
-<dd id="sect3"></dd>
-
-</dl>
-
-<div class="desc">
-<p>
-The accordion controls are keyboard accessible.
-</p>
-<p><pre>
-Press Tab to navigate between accordion controls.
-Press Enter to expand an accordion section.
-Mouse users can click the desired accordion as usual to activate.
-</pre></p>
-</div>
-
-</div>
-
-<div class="hidden">
-
-<!-- Accordion sections to dynamically display -->
-
-<div id="accordion-sect1">
-<div>
-Section One Content
-</div>
-</div>
-
-<div id="accordion-sect2">
-<div>
-Section Two Content
-</div>
-</div>
-
-<div id="accordion-sect3">
-<div>
-Section Three Content
-</div>
-</div>
-
-</div>
-
-</body>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>Practice Template Page</title>
+        <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+        <link rel="stylesheet" type="text/css" href="css/customize.css" />
+        <script type="text/javascript" src="../../_common/js/jQuery.js">
+            // Load jQuery.
+            // This is not necessary if using the Standalone AccDC API version.
+        </script>
+        <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+            // Load the AccDC API, which all modules are plugged into as the common interface.
+        </script>
+        <!-- Now load all desired modules, which plugs them into AccDC. --><script type="text/javascript" src="../../../2 Accessible Component Modules/acordion_generator.min.js"></script>
+        <script type="text/javascript" src="js/setup.js">
+            // Run the setup script where module invocation statements are contained.
+        </script>
+    </head>
+    <body>
+        <div id="coding-arena">
+        	
+			<header>
+				<h1 tabindex="-1">
+					<a href="http://whatsock.com"><img alt="WhatSock : Changing the world one step at a time" src="../../_common/img/whatsock.svg" /> 
+					<strong>AccDC</strong> Technical Style Guide</a></h1>
+			</header>
+        	
+			<main>
+				
+				<h2>Accordion <small>(Internal Content)</small></h2>
+            <!-- Attributes explained:
+            • data-src : The resource path and pointer to the ID attribute of the accordion content container element.
+            If set, data-internal should be blank or not included.
+            • data-internal : The ID attribute of the accordion content container element within the same document.
+            If data-internal is set, data-src should be blank or not included.
+            • data-insert : The ID attribute of the container element where the accordion content will be inserted when rendered. (This must not be inside the triggering element)
+            • data-defaultopen="true" : Specifies that the referenced accordion node will open automatically. Only one accordion node per group should include this
+            attribute.
+            • id : The unique ID of the element. This value is also registered as the ID of the individual accordion node AccDC Object, making it possible to invoke
+            the object programmatically.
+            E.G $A.reg.uniqueID.open();
+            // All other AccDC API properties and methods are similarly available.
+            -->
+				<div class="demo-block">
+		            <dl id="accordionGroup">
+		                <dt role="heading" aria-level="2" class="clearfix">
+		                    <button class="accAccordion" data-internal="accordion-sect1" data-insert="sect1" data-defaultopen="true" id="accordion1id">Section One</button>
+		                </dt>
+		                <dd id="sect1">
+		                </dd>
+		                <dt role="heading" aria-level="2" class="clearfix">
+		                    <button class="accAccordion" data-internal="accordion-sect2" data-insert="sect2" id="accordion2id">Section Two</button>
+		                </dt>
+		                <dd id="sect2">
+		                </dd>
+		                <dt role="heading" aria-level="2" class="clearfix">
+		                    <button class="accAccordion" data-internal="accordion-sect3" data-insert="sect3" id="accordion3id">Section Three</button>
+		                </dt>
+		                <dd id="sect3">
+		                </dd>
+		            </dl>
+				</div>
+	            <div class="desc keyboard">
+	                <p>The accordion controls are keyboard accessible:</p>
+	                <ul>
+						<li>Press <kbd>Tab</kbd> to navigate between accordion controls.</li>
+						<li>Press <kbd>Enter</kbd> to expand an accordion section.</li>
+						<li>Mouse users can click the desired accordion as usual to activate.</li>
+					</ul>
+            	</div>
+        </div>
+        <div class="hidden">
+            <!-- Accordion sections to dynamically display -->
+            <div class="content" id="accordion-sect1">
+                <p>Section One Content</p>
+            </div>
+            <div class="content" id="accordion-sect2">
+                <p>Section Two Content</p>
+            </div>
+            <div class="content" id="accordion-sect3">
+                <p>Section Three Content </p>
+            </div>
+        </div>
+    </body>
 </html>

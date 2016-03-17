@@ -3,83 +3,83 @@
 	$A.bind(window, 'load', function(){
 		var apiToggles = [], moduleToggles = [], ariaToggles = [], eventToggles = [];
 
-		$A.query('div.AccDC > dl > dt > a', function(i, o){
+		$A.query('div.AccDC .panel > .control > button', function(i, o){
 			apiToggles.push(new $A.Toggle(o,
 							{
 							state: false,
 							callback: function(state){
 								if (state){
 									$A.addClass(this, 'pressed');
-									$A.remClass(this.parentNode.parentNode, 'hdn');
+									$A.remClass(this.parentNode.nextElementSibling, 'hdn');
 								}
 
 								else{
 									$A.remClass(this, 'pressed');
-									$A.addClass(this.parentNode.parentNode, 'hdn');
+									$A.addClass(this.parentNode.nextElementSibling, 'hdn');
 								}
 								return true;
 							}
 							}));
 		});
 
-		$A.query('div.Modules > dl > dt > a', function(i, o){
+		$A.query('div.Modules .panel > .control > button', function(i, o){
 			moduleToggles.push(new $A.Toggle(o,
 							{
 							state: false,
 							callback: function(state){
 								if (state){
 									$A.addClass(this, 'pressed');
-									$A.remClass(this.parentNode.parentNode, 'hdn');
+									$A.remClass(this.parentNode.nextElementSibling, 'hdn');
 								}
 
 								else{
 									$A.remClass(this, 'pressed');
-									$A.addClass(this.parentNode.parentNode, 'hdn');
+									$A.addClass(this.parentNode.nextElementSibling, 'hdn');
 								}
 								return true;
 							}
 							}));
 		});
 
-		$A.query('div.ARIA > dl > dt > a', function(i, o){
+		$A.query('div.ARIA .panel > .control > button', function(i, o){
 			ariaToggles.push(new $A.Toggle(o,
 							{
 							state: false,
 							callback: function(state){
 								if (state){
 									$A.addClass(this, 'pressed');
-									$A.remClass(this.parentNode.parentNode, 'hdn');
+									$A.remClass(this.parentNode.nextElementSibling, 'hdn');
 								}
 
 								else{
 									$A.remClass(this, 'pressed');
-									$A.addClass(this.parentNode.parentNode, 'hdn');
+									$A.addClass(this.parentNode.nextElementSibling, 'hdn');
 								}
 								return true;
 							}
 							}));
 		});
 
-		$A.query('div.Events > dl > dt > a', function(i, o){
+		$A.query('div.Events .panel > .control > button', function(i, o){
 			eventToggles.push(new $A.Toggle(o,
 							{
 							state: false,
 							callback: function(state){
 								if (state){
 									$A.addClass(this, 'pressed');
-									$A.remClass(this.parentNode.parentNode, 'hdn');
+									$A.remClass(this.parentNode.nextElementSibling, 'hdn');
 								}
 
 								else{
 									$A.remClass(this, 'pressed');
-									$A.addClass(this.parentNode.parentNode, 'hdn');
+									$A.addClass(this.parentNode.nextElementSibling, 'hdn');
 								}
 								return true;
 							}
 							}));
 		});
 
-		$A.bind('div.expand-collapse > a', 'click', function(ev){
+		$A.bind('div.expand-collapse > p > button', 'click', function(ev){
 			var o = this, a = null, c = false;
 
 			if (o.id == 'col-1'){
@@ -128,8 +128,14 @@
 			ev.preventDefault();
 		});
 
-		$A.bind('div.topLink > a', 'click', function(ev){
+		$A.bind('p.topLink a', 'click', function(ev){
 			$A.setFocus($A.query('h1')[0]);
+			ev.preventDefault();
+		});
+
+		// Setup skip link functionality
+		$A.bind('#skipLink', 'click', function(ev){
+			$A.setFocus($A.getEl('wrapper'));
 			ev.preventDefault();
 		});
 
@@ -149,7 +155,7 @@
 		SyntaxHighlighter.all();
 
 		// Generate permalinks
-		var baseURL = 'http://whatsock.com/tsg/#';
+		/*var baseURL = 'http://whatsock.com/tsg/#';
 		$A.query('h2', function(i, o){
 			var d = o.parentNode, a = $A.createEl('a',
 							{
@@ -161,7 +167,7 @@
 			a.innerHTML = '<span aria-hidden="true">#</span>';
 			d.appendChild(a);
 			$A.css(a, 'left', -(a.offsetWidth));
-		});
+		});*/
 
 		var verNode = $A.getEl('AccDCCurrentVerS1');
 
@@ -183,12 +189,14 @@
 
 			if (ph && h.className !== 'skip'){
 				h.id = 'H' + $A.genId();
+				var leli = $A.createEl('li');
 				var a = $A.createEl('a',
 								{
 								href: '#'
 								}, null, h.id, document.createTextNode($A.getText(h)));
 
-				ph.appendChild(a);
+				ph.appendChild(leli);
+				leli.appendChild(a);
 				$A.setAttr(h, 'tabindex', -1);
 				hds[h.id] = h;
 				$A.bind(a, 'click', function(ev){
@@ -196,8 +204,8 @@
 					ev.preventDefault();
 				});
 
-				if (i < (hs.length - 1))
-					ph.appendChild($A.createEl('span', null, null, null, document.createTextNode(' | ')));
+			//if (i < (hs.length - 1))
+			//ph.appendChild($A.createEl('span', null, null, null, document.createTextNode(' | ')));
 			}
 		}
 	};

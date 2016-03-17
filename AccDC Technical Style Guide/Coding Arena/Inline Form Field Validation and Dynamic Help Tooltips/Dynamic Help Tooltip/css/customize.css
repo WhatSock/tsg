@@ -1,35 +1,14 @@
-
-div.hd {
-margin-left: 0;
-font-size: 2em;
-}
-
-form {
-margin: 100px 0;
-text-align: left;
-}
-
-.clrRed {
-color: red;
-}
-
-#questionForm span.passedValidation {
-border: solid medium green;
-}
+/* WHATSOCK, 2016 */
+/* Specific styles for Accessible Tooltip */
 
 div.helpTooltip {
-z-index: 1;
-font: bold 12px/12px HelveticaNeue, Arial;
-padding: 3px 4px;
-border: 1px solid #dedede;
-background: #f5f5f5;
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#f0f0f0'); /* IE */
-background: -webkit-gradient(linear, left top, left bottom, from(#f9f9f9), to(#f0f0f0)); /* WebKit */
-background: -moz-linear-gradient(top, #f9f9f9, #f0f0f0);
-border-color: #dedede #d8d8d8 #d3d3d3;
-color: #555;
-text-shadow: 0 1px 0 #fff;
--webkit-box-shadow: 0 1px 1px #eaeaea, inset 0 1px 0 #fbfbfb;
--moz-box-shadow: 0 1px 1px #eaeaea, inset 0 1px 0 #fbfbfb;
-box-shadow: 0 1px 1px #eaeaea, inset 0 1px 0 #fbfbfb;
+	position: absolute;
+	width: auto;
+	color: #FFF;
+	background: #2E3135;
+	padding: 0.3em 0.5em;
+	-webkit-box-shadow: 0 1px 1px #afafaf, inset 0 1px 0 #868686;
+	-moz-box-shadow: 0 1px 1px #afafaf, inset 0 1px 0 #868686;
+	box-shadow: 0 1px 1px #afafaf, inset 0 1px 0 #868686;
+	z-index: 100;
 }

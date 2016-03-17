@@ -1,77 +1,55 @@
+/* WHATSOCK, 2016 */
+/* Specific styles for ARIA Menus */
 
 button.menu {
-float: left;
-margin: 100px;
+	font-size: 100%;
+	text-transform: uppercase;
+	color: #FFF;
+	background: #286278 url(../img/sprite.svg) right -290px no-repeat;
+	padding: 0.3em 36px 0.3em 0.5em;
+	border: none;
+	box-shadow: 0 1px 2px rgba(0,0,0,.7);
+	border-radius: 2px;
+	cursor: pointer;
+}
+button.menu:hover, button.menu:focus {
+	color: #FFF;
+	background-color: #C13836;
+	box-shadow: none;
+	border-radius: 0;
 }
 
-div.menu {
-text-align: left;
-padding: 6px;
-width: 122px;
-left: 120px;
-top: 3px;
+#menu-options {
+	width: 10em;
+	list-style: none;
+	background: #2E3135;
+	margin: 2em 0 0;
 }
-
-div.menu ol.menu {
-list-style: none;
-padding: 0;
-margin: 0;
-background-color: #f5f5f5;
-border: solid thin black;
-float: left;
-width: 110px;
--webkit-box-shadow: 0 5px 3px -3px #777;
--moz-box-shadow: 0 5px 3px -3px #777;
-box-shadow: 0 5px 3px -3px #777;
+#menu-options  > li {
+	text-transform: uppercase;
 }
-
-div.menu ol.menu > li {
-margin: 2px 0px;
-padding: 3px 6px;
-position: relative;
+	#menu-options  > li li {font-size: 100%;}
+	
+ol.menu {width: 10em; list-style: none; margin-left: 11em;}
+	
+#menu-options  a {
+	display: block;
+	text-align: center;
+	text-decoration: none;
+	color: #FFF;
+	background: #2E3135;
+	padding: 0.3em 0.8em;
 }
-
-div.menu ol.menu a {
-display: block;
-padding: 3px 6px;
-text-align: left;
-cursor: pointer;
-text-decoration: none;
-font: bold 12px/12px HelveticaNeue, Arial;
-border: 1px solid #dedede;
-background: #525252;
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5e5e5e', endColorstr='#434343'); /* IE */
-background: -webkit-gradient(linear, left top, left bottom, from(#5e5e5e), to(#434343)); /* WebKit */
-background: -moz-linear-gradient(top, #5e5e5e, #434343);
-border-color: #4c4c4c #313131 #1f1f1f;
-color: #fff;
-text-shadow: 0 1px 0 #2e2e2e;
--webkit-box-shadow: 0 1px 1px #afafaf, inset 0 1px 0 #868686;
--moz-box-shadow: 0 1px 1px #afafaf, inset 0 1px 0 #868686;
-box-shadow: 0 1px 1px #afafaf, inset 0 1px 0 #868686;        
+#menu-options a.submenu {
+	color: #FFF;
+	background: #2E3135 url(../img/sprite.svg) right -288px no-repeat;
+	padding: 0.3em 36px 0.3em 0.8em;
 }
-
-div.menu ol.menu a:focus {
-outline: 2px red inset;
-background: #5a5a5a;
-border-color: #2c2c2c #1c1c1c #101010;
-text-shadow: 0 1px 0 #363636;
--webkit-box-shadow: 0 1px 1px #b1b1b1, inset 0 1px 0 #838383;
--moz-box-shadow: 0 1px 1px #b1b1b1, inset 0 1px 0 #838383;
-box-shadow: 0 1px 1px #b1b1b1, inset 0 1px 0 #838383;
+#menu-options a:focus, #menu-options a:hover, #menu-options a.submenu:hover, #menu-options a.submenu:focus {
+	color: #FFF;
+	background-color: #C13836;
 }
-
-div.menu ol.menu a.submenu:after {
-content: ' \25BC';
-color: blue;
-}
-
-*.menu[role="button"]:after {
-content: ' \25BC';
-color: black;
-}
-
-*.menu2[role="button"]:after {
-content: ' \25BC';
-color: black;
+#menu-options a.submenu {
+	background: #2E3135 url(../img/sprite.svg) right -288px no-repeat;
+	padding: 0.3em 36px 0.3em 0.8em;
 }

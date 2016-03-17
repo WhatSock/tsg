@@ -1,136 +1,84 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Practice Template Page</title>
-
-<link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
-<link rel="stylesheet" type="text/css" href="css/customize.css" />
-
-<script type="text/javascript" src="../../_common/js/jQuery.js">
-// Load jQuery.
-// This is not necessary if using the Standalone AccDC API version.
-</script>
-
-<script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
-// Load the AccDC API, which all modules are plugged into as the common interface.
-</script>
-
-<!-- Now load all desired modules, which plugs them into AccDC. -->
-<script type="text/javascript" src="../../../2 Accessible Component Modules/aria_listbox_generator.min.js"></script>
-
-<script type="text/javascript" src="js/setup.js">
-// Run the setup script where module invocation statements are contained.
-</script>
-
-</head>
-<body>
-<div>
-
-<div class="intro tal">
-
-<div class="clearfix sample">
-
-<span id="moveLbl1">
-Cart ARIA Listbox
-</span>
-
-<div class="move1Wrapper">
-
-<!-- The Listbox container element must include the attribute role="listbox", and all list item nodes (A tags) must include the attribute role="option" to ensure accessibility for screen reader users. 
-Additionally, the Listbox container element and all list item nodes must include unique ID values.
-The innerHTML for each list item node must contain a textual label, which may be positioned offscreen to hide it visually if desired.
-This textual label is necessary so that screen reader users will be able to identify the purpose of the node.
-Images may also be used within list item nodes if desired, and if an Alt attribute is present and contains informative text, this too is added to the list item label for screen reader users.
-If an image is present but is not informative, it should include the attribute alt="" to hide it from screen reader users.
-All list item nodes (with role="option") must consist of A tags with href attributes to ensure keyboard accessibility, and the A tag must be a first level childNode of the parent LI tag.
- -->
-
-<ul role="listbox" id="move1LB" >
-<li>
-<a href="#" role="option" id="move1Opt1" >
-<span class="lbl">White</span>
-</a>
-</li>
-<li>
-<a href="#" role="option" id="move1Opt2" >
-<span class="lbl">Grey</span>
-</a>
-</li>
-<li>
-<a href="#" role="option" id="move1Opt3" >
-<span class="lbl">Pink</span>
-</a>
-</li>
-<li>
-<a href="#" role="option" id="move1Opt4" >
-<span class="lbl">Orange</span>
-</a>
-</li>
-<li>
-<a href="#" role="option" id="move1Opt5" >
-<span class="lbl">Green</span>
-</a>
-</li>
-<li>
-<a href="#" role="option" id="move1Opt6" >
-<span class="lbl">Blue</span>
-</a>
-</li>
-<li>
-<a href="#" role="option" id="move1Opt7" >
-<span class="lbl">Purple</span>
-</a>
-</li>
-<li>
-<a href="#" role="option" id="move1Opt8" >
-<span class="lbl">Teal</span>
-</a>
-</li>
-<li>
-<a href="#" role="option" id="move1Opt9" >
-<span class="lbl">Black</span>
-</a>
-</li>
-</ul>
-
-</div>
-
-<button id="addBtn">Add to Basket</button>
-
-<button id="remBtn">Remove from Basket</button>
-
-<span id="moveLbl2">
-Basket ARIA Listbox
-</span>
-
-<div class="move2Wrapper">
-
-<ol role="listbox" id="move2LB" ></ol>
-
-</div>
-
-</div>
-
-<div class="desc">
-<p>
-The two ARIA Listboxes are programmatically controled in order to move listbox items from one list to the other.
-</p>
-<p><pre>
-Set focus on either of the Listboxes.
-Press the Arrow keys to change options,
-or press Home or End to jump to the beginning or end of the list.
-Press PageUp or PageDown to jump backward or forward incrementally.
-Press any letter or number to jump to an item starting with that character or digit.
-Press the Spacebar to toggle selection.
-Activate the Add button to move items from the Cart to the Basket.
-Activate the Remove button to move items from the Basket to the Cart.
-Mouse users can click non-contiguous listbox items to toggle selection as usual.
-</pre></p>
-</div>
-
-</div>
-
-</div>
-</body>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>Practice Template Page</title>
+        <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+        <link rel="stylesheet" type="text/css" href="css/customize.css" />
+        <script type="text/javascript" src="../../_common/js/jQuery.js">
+            // Load jQuery.
+            // This is not necessary if using the Standalone AccDC API version.
+        </script>
+        <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+            // Load the AccDC API, which all modules are plugged into as the common interface.
+        </script>
+        <!-- Now load all desired modules, which plugs them into AccDC. --><script type="text/javascript" src="../../../2 Accessible Component Modules/aria_listbox_generator.min.js"></script>
+        <script type="text/javascript" src="js/setup.js">
+            // Run the setup script where module invocation statements are contained.
+        </script>
+    </head>
+    <body>
+        <div id="coding-arena">
+			<header>
+				<h1 tabindex="-1">
+					<a href="http://whatsock.com"><img alt="WhatSock : Changing the world one step at a time" src="../../_common/img/whatsock.svg" /> 
+					<strong>AccDC</strong> Technical Style Guide</a></h1>
+			</header>
+		
+        <main>
+        	<h2>ARIA Listbox <small> (Redistributable)</small></h2>
+	            <div class="demo-block">
+	                <div class="sample">
+	                    <div class="move1Wrapper">
+	                   	<h3 id="moveLbl1"> Cart ARIA Listbox</h3>
+	                        <!-- The Listbox container element must include the attribute role="listbox", and all list item nodes (A tags) must include the attribute role="option" to ensure accessibility for screen reader users.
+	                        Additionally, the Listbox container element and all list item nodes must include unique ID values.
+	                        The innerHTML for each list item node must contain a textual label, which may be positioned offscreen to hide it visually if desired.
+	                        This textual label is necessary so that screen reader users will be able to identify the purpose of the node.
+	                        Images may also be used within list item nodes if desired, and if an Alt attribute is present and contains informative text, this too is added to the list item label for screen reader users.
+	                        If an image is present but is not informative, it should include the attribute alt="" to hide it from screen reader users.
+	                        All list item nodes (with role="option") must consist of A tags with href attributes to ensure keyboard accessibility, and the A tag must be a first level childNode of the parent LI tag.
+	                        -->
+	                        <ul role="listbox" id="move1LB">
+	                            <li><a href="#" role="option" id="move1Opt1"><span class="lbl">Red</span></a></li>
+	                            <li><a href="#" role="option" id="move1Opt2"><span class="lbl">Grey</span></a></li>
+	                            <li><a href="#" role="option" id="move1Opt3"><span class="lbl">Pink</span></a></li>
+	                            <li><a href="#" role="option" id="move1Opt4"><span class="lbl">Orange</span></a></li>
+	                            <li><a href="#" role="option" id="move1Opt5"><span class="lbl">Green</span></a></li>
+	                            <li><a href="#" role="option" id="move1Opt6"><span class="lbl">Blue</span></a></li>
+	                            <li><a href="#" role="option" id="move1Opt7"><span class="lbl">Purple</span></a></li>
+	                            <li><a href="#" role="option" id="move1Opt8"><span class="lbl">Teal</span></a></li>
+	                            <li><a href="#" role="option" id="move1Opt9"><span class="lbl">Black</span></a></li>
+	                        </ul>
+	                    </div>
+	                    <p><button id="addBtn">Add to Basket</button> <button id="remBtn">Remove from Basket</button></p>
+	                    <div class="move2Wrapper">
+	                    	<h3 id="moveLbl2"> Basket ARIA Listbox</h3>
+	                        <ol role="listbox" id="move2LB">
+	                        </ol>
+	                    </div>
+	                </div>
+					<div class="note">
+						<p>The two ARIA Listboxes are programmatically controled in order to move listbox items from one list to the other.</p>
+					</div>
+				</div>
+				
+                <div class="keyboard">
+                    <p>The Listbox is keyboard accessible:</p>
+                    <ul>
+						<li>Set focus on either of the Listboxes.</li>
+						<li>Press the Arrow keys to change options,
+							or press <kbd class="home">Home</kbd> and <kbd class="end">End</kbd> to jump to the beginning or end of the list.</li>
+						<li>Press <kbd>PageDown</kbd> and <kbd>PageUp</kbd> to jump backward or forward incrementally.</li>
+						<li>Press any letter or number to jump to an item starting with that character or digit.</li>
+						<li>Press the <kbd>Spacebar</kbd> to toggle selection.</li>
+						<li>Activate the "Add" button to move items from the Cart to the Basket.</li>
+						<li>Activate the "Remove" button to move items from the Basket to the Cart.</li>
+						<li>Mouse users can click non-contiguous listbox items to toggle selection as usual.</li>
+					</ul>
+                </div>
+        	</main>
+    	</div>
+    </body>
 </html>

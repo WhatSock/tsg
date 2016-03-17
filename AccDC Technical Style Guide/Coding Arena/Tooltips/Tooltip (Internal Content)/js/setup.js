@@ -24,7 +24,7 @@ $A.bind(window, 'load', function(){
 					source: $A.getEl('tooltip-help').parentNode.removeChild($A.getEl('tooltip-help')),
 
 					// Position the tooltip on the right of the triggering element
-					autoPosition: 3,
+					autoPosition: 0,
 
 					// Move the Tooltip AccDC Object 10px to the right when opened
 					offsetLeft: 10,

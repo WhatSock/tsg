@@ -1,80 +1,68 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Practice Template Page</title>
-
-<link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
-<link rel="stylesheet" type="text/css" href="css/customize.css" />
-
-<script type="text/javascript" src="../../_common/js/jQuery.js">
-// Load jQuery.
-// This is not necessary if using the Standalone AccDC API version.
-</script>
-
-<script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
-// Load the AccDC API, which all modules are plugged into as the common interface.
-</script>
-
-<!-- Now load all desired modules, which plugs them into AccDC. -->
-<script type="text/javascript" src="../../../2 Accessible Component Modules/popup_module.min.js"></script>
-
-<script type="text/javascript" src="js/setup.js">
-// Run the setup script where module invocation statements are contained.
-</script>
-
-</head>
-<body>
-<div>
-
-<p>
-<a id="myPopup" href="#" class="accPopup">
-Open Popup
-</a>
-</p>
-
-<div class="desc">
-<p>
-The popup is optomized for screen reader and keyboard only users.
-</p>
-<p><pre>
-Activate the Quote link to open the popup.
-The content will be inserted inline with the triggering element,
-and focus will automatically move to the beginning of the new content.
-Press Tab to set focus to the Close link and press Enter to close the popup,
-or press Escape to close the popup directly.
-When closed, focus will move back to the triggering element.
-</pre></p>
-</div>
-
-</div>
-
-<div class="hidden">
-
-<!-- Important
-
-When Implementing a Close link or button, the className must match the "closeClassName" property within the script declaration.
-(If not explicitly set, the default value "popupClose" is configured within the module script file, and should be used for all Close links or buttons)
-Doing so will automatically bind the close methods with this element, and set keyboard focus properly when the AccDC Object is closed.
--->
-
-<div id="popupContainerId">
-<div class="title">
-Popup Name
-</div>
-<div>
-<a href="#" class="popupClose"><img
-src="img/close.png"
-alt="Close Popup"
-title="Close Popup"
-/></a>
-</div>
-<div>
-Content goes here
-</div>
-</div>
-
-</div>
-
-</body>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>Practice Template Page</title>
+        <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+        <link rel="stylesheet" type="text/css" href="css/customize.css" />
+        <script type="text/javascript" src="../../_common/js/jQuery.js">
+            // Load jQuery.
+            // This is not necessary if using the Standalone AccDC API version.
+        </script>
+        <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+            // Load the AccDC API, which all modules are plugged into as the common interface.
+        </script>
+        <!-- Now load all desired modules, which plugs them into AccDC. --><script type="text/javascript" src="../../../2 Accessible Component Modules/popup_module.min.js"></script>
+        <script type="text/javascript" src="js/setup.js">
+            // Run the setup script where module invocation statements are contained.
+        </script>
+    </head>
+    <body>
+    	<div id="coding-arena">
+			<header>
+				<h1 tabindex="-1">
+					<a href="http://whatsock.com"><img alt="WhatSock : Changing the world one step at a time" src="../../_common/img/whatsock.svg" /> 
+					<strong>AccDC</strong> Technical Style Guide</a></h1>
+			</header>
+			
+			<main>
+				<h2>Popup <small>Internal Content Shell</small></h2>
+		        <div class="demo-block">
+		            <p><a id="myPopup" href="#" class="accPopup">Open Popup</a></p>
+				</div>
+				
+	            <div class="intro tal keyboard">
+	                <p>The popup is optimized for screen reader and keyboard only users:</p>
+	               	<ul>
+	               		<li>Activate the Quote link to open the popup.</li>
+						<li>The content will be inserted inline with the triggering element,
+	and focus will automatically move to the beginning of the new content.</li>
+						<li>Press <kbd>Tab</kbd> to set focus to the Close link and press <kbd>Enter</kbd> to close the popup,
+	or press <kbd>Escape</kbd> to close the popup directly.</li>
+						<li>When closed, focus will move back to the triggering element.</li>
+	               	</ul>
+				</div>
+	        </main>
+		</div>
+		
+        <div class="hidden">
+            <!-- Important
+            When Implementing a Close link or button, the className must match the "closeClassName" property within the script declaration.
+            (If not explicitly set, the default value "popupClose" is configured within the module script file, and should be used for all Close links or buttons)
+            Doing so will automatically bind the close methods with this element, and set keyboard focus properly when the AccDC Object is closed.
+            -->
+            <div id="popupContainerId">
+                <div class="title">
+                    Popup Name
+                </div>
+                <div>
+                    <a href="#" class="popupClose"><img src="img/ic_close.svg" alt="Close Popup" title="Close Popup" /></a>
+                </div>
+                <div>
+                    Content goes here
+                </div>
+            </div>
+        </div>
+    </body>
 </html>

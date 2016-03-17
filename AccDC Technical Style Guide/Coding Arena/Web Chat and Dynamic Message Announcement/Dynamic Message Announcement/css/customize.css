@@ -1,9 +1,16 @@
+/* WHATSOCK, 2016 */
+/* Specific styles for Dynamic message anouncement */
 
-div.options > label {
-float: left;
-margin: 50px;
+div.options, #totals {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	justify-content: space-around;
+	margin-top: 2rem;
 }
 
-div.options > label > * {
-float: left;
+#totals {
+	background: #DDD;
+	padding: 0.8rem 1rem;
 }
+#totals p:last-child {font-weight: bold;}

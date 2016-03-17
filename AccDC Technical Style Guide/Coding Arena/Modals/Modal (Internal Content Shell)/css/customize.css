@@ -1,34 +1,52 @@
+/* WHATSOCK, 2016 */
+/* Specific styles for ACCESSIBLE MODAL */
 
 /* This is just the triggering element */
 #modalTrigger {
-float: left;
-margin: 150px 100px;
+    text-transform: uppercase;
+    color: #FFF;
+    background: #286278;
+    padding: 0.3em 0.5em;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .7);
+    transition: border-radius;
+    -webkit-transition: border-radius;
+}
+#modalTrigger:hover, #modalTrigger:focus {
+	text-decoration: none;
+	background: #9F3433;
+	box-shadow: none;
+	border-radius: 0;
 }
 
 /* This is the top level container for the modal,
 which matches the className property declared in the setup script. */
 div.modal {
-position: fixed;
-top: 35%;
-left: 37%;
-z-index: 1000;
-background-color: #fff;
-overflow: auto;
-padding: 30px 10px;
+	position: fixed;
+	overflow: auto;
+	width: 305px;
+	top: 35%;
+	left: 37%;
+	background-color: #fff;
+	padding: 1rem;
+	box-shadow: 1px 1px 3px rgba(0,0,0,.8);
+	border-radius: 2px;
+	z-index: 1000;
 }
 
 /* Now shade out the backdrop Div */
 div.modalBackdrop {
-background-color: #000;
--moz-opacity: 0.7;
-opacity: .70;
-filter: alpha(opacity=70);
-position: fixed;
-z-index: 999;
-left: 0;
-top: 0;
-height: 100%;
-width: 100%;
+	background-color: #000;
+	-moz-opacity: 0.7;
+	opacity: .70;
+	filter: alpha(opacity=70);
+	position: fixed;
+	z-index: 999;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
 }
 
 /* Set other modal styles here */
