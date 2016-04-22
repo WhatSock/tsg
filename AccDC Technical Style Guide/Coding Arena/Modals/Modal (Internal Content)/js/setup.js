@@ -35,10 +35,9 @@ $A.bind(window, 'load', function(){
 // Set the class name for the screen reader accessible close link
 // This must match the class name for any close links or buttons within the modal content, which will cause Close Method Binding to automatically occur when the content is rendered.
 					closeClassName: 'lbClose',
-
-					// Set the heading level that will be accessible for screen reader users
-					// This is set to 1, since a modal constitutes an independent content section equal to a standalone page
-					ariaLevel: 1,
+					click: function(ev, dc){
+						ev.stopPropagation();
+					},
 
 					// Run configuration script after the Modal AccDC Object finishes loading
 					runAfter: function(dc){
@@ -46,6 +45,11 @@ $A.bind(window, 'load', function(){
 						// Set a background Div for the modal, so it will appear as a lightbox
 						dc.backdrop = $A.createEl('div', null, null, 'modalBackdrop', document.createTextNode(' '));
 						dc.accDCObj.parentNode.insertBefore(dc.backdrop, dc.accDCObj);
+
+						// Enable outer click to close
+						$A.bind(dc.backdrop, 'click', function(ev){
+							dc.close();
+						});
 
 						// Now configure the form functionality within the modal
 

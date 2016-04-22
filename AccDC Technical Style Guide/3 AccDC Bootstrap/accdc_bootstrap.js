@@ -1,5 +1,5 @@
 /*!
-AccDC Bootstrap R1.7
+AccDC Bootstrap R1.8
 Copyright 2010-2016 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 
@@ -54,13 +54,12 @@ Please edit this file however desired to customize functionality.
 									id: o.id,
 									// Set screen reader accessible boundary text values
 									role: $A.getAttr(o, 'data-role') || 'Modal',
-									accStart: 'Start',
-									accEnd: 'End',
 									source: cid && cid.nodeType === 1 ? cid.parentNode.removeChild(cid) : p.replace('#', ' #'),
 									mode: cid && cid.nodeType === 1 ? 0 : null,
 									trigger: o,
-									// Set the heading level that will be accessible for screen reader users
-									ariaLevel: 1,
+									click: function(ev, dc){
+										ev.stopPropagation();
+									},
 									runAfter: function(dc){
 										// Run script every time after the content completes rendering
 
@@ -70,6 +69,11 @@ Please edit this file however desired to customize functionality.
 										// Add a background div for the filtered opasity, with class='modalBackdrop'
 										dc.backdrop = $A.createEl('div', null, null, 'modalBackdrop', document.createTextNode(' '));
 										dc.accDCObj.parentNode.insertBefore(dc.backdrop, dc.accDCObj);
+
+										// Enable outer click to close
+										$A.bind(dc.backdrop, 'click', function(ev){
+											dc.close();
+										});
 									},
 									runAfterClose: function(dc){
 										// Remove the backdrop div after the modal closes
