@@ -1,6 +1,6 @@
 /*!
-Popup Module R1.3
-Copyright 2010-2015 Bryan Garaventa (WhatSock.com)
+Popup Module R1.4
+Copyright 2010-2016 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 
@@ -36,7 +36,16 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 										position: 'absolute'
 										},
 						allowCascade: true,
+						click: function(ev, dc){
+							ev.stopPropagation();
+						},
 						runDuring: function(dc){
+							dc.popupLoaded = false;
+							$A.bind('body', 'click.popup', function(ev){
+								if (dc.popupLoaded)
+									dc.close();
+							});
+
 							// Set a resize event so that auto positioning will be recalculated automatically
 							$A.bind(window, 'resize.popup', function(){
 								dc.setPosition();
@@ -62,12 +71,17 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 						announce: true,
 						runAfter: function(dc){
 							$A.setAttr(dc.triggerObj, 'aria-expanded', 'true');
+
+							setTimeout(function(){
+								dc.popupLoaded = true;
+							}, 750);
 						},
 						runAfterClose: function(dc){
 							$A.setAttr(dc.triggerObj, 'aria-expanded', 'false');
 
 							// Remove dynamically added resize event
 							$A.unbind(window, '.popup');
+							$A.unbind('body', '.popup');
 						},
 						// Add a keyDown handler to the AccDC Object
 						keyDown: function(ev, dc){
