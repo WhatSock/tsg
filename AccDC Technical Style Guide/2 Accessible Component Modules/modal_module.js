@@ -1,10 +1,12 @@
 /*!
-Modal Module R1.5
-Copyright 2010-2015 Bryan Garaventa (WhatSock.com)
+Modal Module R1.6
+Copyright 2010-2016 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 
 (function(){
+
+	var openModals = [];
 
 	$A.setModal = function(overrides){
 		if (overrides && !overrides.id)
@@ -56,11 +58,23 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 											role: 'presentation'
 											}).innerHTML = '';
 
-							$A.setAttr(dc.accDCObj,
-											{
-											role: 'region',
-											'aria-label': dc.role
-											});
+							if (overrides.ariaDialog){
+								$A.setAttr(dc.accDCObj,
+												{
+												role: 'dialog',
+												'aria-label': dc.role,
+												'aria-describedby': dc.containerDivId,
+												'aria-modal': 'true'
+												});
+							}
+
+							else{
+								$A.setAttr(dc.accDCObj,
+												{
+												role: 'region',
+												'aria-label': dc.role
+												});
+							}
 
 							dc.fn.sraStart.innerHTML = dc.fn.sraEnd.innerHTML = '';
 							$A.setAttr(dc.fn.sraStart,
@@ -76,30 +90,47 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 						// Run script after the AccDC Object finishes loading
 						runAfter: function(dc){
-							$A.bind(window, 'resize.accmodal', function(ev){
-								if (dc.autoFix)
-									dc.applyFix();
+							if (!openModals.length){
+								$A.bind(window, 'resize.accmodal', function(ev){
+									if (openModals[openModals.length - 1].autoFix)
+										openModals[openModals.length - 1].applyFix();
 
-								else if (dc.autoPosition)
-									dc.setPosition();
-							});
-							$A.bind('body', 'focusin.accmodal', function(ev){
-								if (dc.tempFocus)
-									dc.tempFocus = null;
+									else if (openModals[openModals.length - 1].autoPosition)
+										openModals[openModals.length - 1].setPosition();
+								});
+								$A.bind('body', 'focusin.accmodal', function(ev){
+									if (openModals[openModals.length - 1].tempFocus)
+										openModals[openModals.length - 1].tempFocus = null;
 
-								else if (dc.lastField)
-									dc.lastField.focus();
-							});
+									else if (openModals[openModals.length - 1].lastField)
+										openModals[openModals.length - 1].lastField.focus();
+								});
+							}
+
+							openModals.push(dc);
 						},
 
 						// Run script before the AccDC Object closes
 						runBeforeClose: function(dc){
-							$A.unbind(window, '.accmodal');
-							$A.unbind('body', '.accmodal');
-							$A.query('body > *', function(){
-								$A.setAttr(this, 'aria-hidden', 'false');
-								$A.remAttr(this, 'aria-hidden');
-							});
+							openModals.pop();
+
+							if (!openModals.length){
+								$A.unbind(window, '.accmodal');
+								$A.unbind('body', '.accmodal');
+							}
+
+							if (openModals.length){
+								$A.setAttr(openModals[openModals.length - 1].accDCObj, 'aria-hidden', 'false');
+								$A.remAttr(openModals[openModals.length - 1].accDCObj, 'aria-hidden');
+							}
+
+							else{
+								$A.query('body > *', function(){
+									$A.setAttr(this, 'aria-hidden', 'false');
+									$A.remAttr(this, 'aria-hidden');
+								});
+							}
+
 							// To prevent memory leaks in Dojo/MooTools, unbind all other event handlers within the modal
 							$A.query('*', dc.containerDiv, function(i, o){
 								$A.unbind(o, '*');

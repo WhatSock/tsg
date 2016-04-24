@@ -4407,13 +4407,13 @@ posAnchor: DOM-Node
                             <p> The Modal Module automates these processes by instantiating the content as a Modal AccDC Object, which can be configured 
 							and controlled programmatically if desired to enhance functionality.</p>
                             <ul>
-                                <li> Basic Modal control with offscreen boundary text, and <code>aria-hidden</code>:
+                                <li> Basic Modal control with <code>role=region</code> plus <code>aria-label</code>, and <code>aria-hidden</code>:
                                     <br/>
                                     <a target="ca" href="Coding Arena/Modals/Modal (Internal Content)/demo.htm"> Coding Arena/Modals/Modal (Internal Content)/demo.htm</a>
                                 </li>
-                                <li> Shell Modal control with no CSS, offscreen boundary text, and <code>aria-hidden</code>:
+                                <li> Basic Modal control with <code>role=dialog</code> plus <code>aria-label</code> plus <code>aria-describedby</code> plus <code>aria-modal</code>, and <code>aria-hidden</code>:
                                     <br/>
-                                    <a target="ca" href="Coding Arena/Modals/Modal (Internal Content Shell)/demo.htm"> Coding Arena/Modals/Modal (Internal Content Shell)/demo.htm</a>
+                                    <a target="ca" href="Coding Arena/Modals/Modal (Internal Content With role=dialog)/demo.htm"> Coding Arena/Modals/Modal (Internal Content With role=dialog)/demo.htm</a>
                                 </li>
                             </ul>
                             <div class="hd">
@@ -4494,9 +4494,9 @@ className: 'modal',
 // This must match the class name for any close links or buttons within the modal content, which will cause Close Method Binding to automatically occur when the content is rendered.
 closeClassName: 'lbClose',
 
-// Set the heading level that will be accessible for screen reader users
-// This is set to 1, since a modal constitutes an independent content section equal to a standalone page
-ariaLevel: 1,
+// Enable the ARIA modal dialog design pattern as documented at
+// http://whatsock.com/training/matrices/#dialog
+ariaDialog: false,
 
 // Run script after the Modal AccDC Object finishes loading
 runAfter: function(dc){
