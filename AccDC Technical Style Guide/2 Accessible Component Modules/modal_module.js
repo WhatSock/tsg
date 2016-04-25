@@ -1,5 +1,5 @@
 /*!
-Modal Module R1.6
+Modal Module R1.7
 Copyright 2010-2016 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
@@ -86,6 +86,9 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 											{
 											'aria-hidden': 'true'
 											});
+
+							if (overrides.alertDialog)
+								dc.announce = false;
 						},
 
 						// Run script after the AccDC Object finishes loading
@@ -108,6 +111,9 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							}
 
 							openModals.push(dc);
+
+							if (overrides.alertDialog)
+								$A.announce(dc.containerDiv, false, true);
 						},
 
 						// Run script before the AccDC Object closes
