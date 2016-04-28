@@ -91,7 +91,7 @@ $A.bind(window, 'load', function(){
 
 											ev.preventDefault();
 										},
-										keypress: function(ev){
+										keydown: function(ev){
 											var k = ev.which || ev.keyCode;
 
 											// Check if Enter is pressed

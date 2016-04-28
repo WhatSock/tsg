@@ -211,7 +211,7 @@ $A.bind(window, 'load', function(){
 		}
 		ev.preventDefault();
 	});
-	$A.bind(pageEdit, 'keypress', function(ev){
+	$A.bind(pageEdit, 'keydown', function(ev){
 		var k = ev.which || ev.keyCode;
 
 		if (k == 13){

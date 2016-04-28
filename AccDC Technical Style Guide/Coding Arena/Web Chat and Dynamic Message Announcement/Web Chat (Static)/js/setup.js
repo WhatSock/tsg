@@ -56,7 +56,7 @@ $A.bind(window, 'load', function(){
 						dc.msgField = $A.query('textarea', dc.containerDiv)[0];
 
 						// Set bindings for the message field
-						$A.bind(dc.msgField, 'keypress', function(ev){
+						$A.bind(dc.msgField, 'keydown', function(ev){
 							var k = ev.which || ev.keyCode;
 
 							if (k == 13){
@@ -91,7 +91,7 @@ $A.bind(window, 'load', function(){
 						$A.remAttr(dc.triggerObj, 'disabled');
 						dc.chatDiv.innerHTML = '';
 						$A.unbind(dc.chatDiv, '.scrollable');
-						$A.unbind(dc.msgField, 'keypress');
+						$A.unbind(dc.msgField, 'keydown');
 						$A.unbind(window, '.scrollable');
 					},
 
