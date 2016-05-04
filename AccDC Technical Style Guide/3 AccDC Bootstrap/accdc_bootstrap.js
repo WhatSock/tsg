@@ -1,5 +1,5 @@
 /*!
-AccDC Bootstrap R1.8
+AccDC Bootstrap R1.9
 Copyright 2010-2016 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 
@@ -54,7 +54,7 @@ Please edit this file however desired to customize functionality.
 									id: o.id,
 									// Set screen reader accessible boundary text values
 									role: $A.getAttr(o, 'data-role') || 'Modal',
-									source: cid && cid.nodeType === 1 ? cid.parentNode.removeChild(cid) : p.replace('#', ' #'),
+									source: cid && cid.nodeType === 1 ? cid : p.replace('#', ' #'),
 									mode: cid && cid.nodeType === 1 ? 0 : null,
 									trigger: o,
 									click: function(ev, dc){
@@ -73,6 +73,7 @@ Please edit this file however desired to customize functionality.
 										// Enable outer click to close
 										$A.bind(dc.backdrop, 'click', function(ev){
 											dc.close();
+											ev.stopPropagation();
 										});
 									},
 									runAfterClose: function(dc){
@@ -119,7 +120,7 @@ Please edit this file however desired to customize functionality.
 									role: $A.getAttr(o, 'data-role') || 'Popup',
 									accStart: 'Start',
 									accEnd: 'End',
-									source: cid && cid.nodeType === 1 ? cid.parentNode.removeChild(cid) : p.replace('#', ' #'),
+									source: cid && cid.nodeType === 1 ? cid : p.replace('#', ' #'),
 									mode: cid && cid.nodeType === 1 ? 0 : null,
 									trigger: o,
 									autoPosition: isNaN(autoPosition) ? 3 : autoPosition,
@@ -159,7 +160,7 @@ Please edit this file however desired to customize functionality.
 									// Set the ID of the AccDC Object to match the ID of the triggering element.
 									id: o.id,
 									role: $A.getAttr(o, 'data-role') || 'tooltip',
-									source: cid && cid.nodeType === 1 ? cid.parentNode.removeChild(cid) : p.replace('#', ' #'),
+									source: cid && cid.nodeType === 1 ? cid : p.replace('#', ' #'),
 									mode: cid && cid.nodeType === 1 ? 0 : null,
 									trigger: o,
 									autoPosition: isNaN(autoPosition) ? 3 : autoPosition,
@@ -492,7 +493,7 @@ dividerTag: 'li',
 									bind: 'click',
 									trigger: o,
 									isToggle: true,
-									source: cid && cid.nodeType === 1 ? cid.parentNode.removeChild(cid) : p.replace('#', ' #'),
+									source: cid && cid.nodeType === 1 ? cid : p.replace('#', ' #'),
 									mode: cid && cid.nodeType === 1 ? 0 : null,
 									isStatic: isStatic,
 									autoStart: false,
