@@ -1,6 +1,6 @@
 /*!
-ARIA Data Grid Module R1.3
-Copyright 2010-2015 Bryan Garaventa (WhatSock.com)
+ARIA Data Grid Module R1.4
+Copyright 2010-2016 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 
@@ -1068,8 +1068,12 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							if (config.edit)
 								$A.addClass(dc.table, config.gridEditableClass);
 
-							else if (config.page.row.selectEnabled)
+							else if (config.page.row.selectEnabled){
 								$A.addClass(dc.table, config.gridSelectableClass);
+
+								if (config.page.row.multiSelect)
+									$A.setAttr(dc.table, 'aria-multiselectable', 'true');
+							}
 
 							else if (!config.edit && !config.page.row.selectEnabled){
 								$A.addClass(dc.table, config.gridReadOnlyClass);
