@@ -1,6 +1,6 @@
 /*!
-ARIA Tabs Module R1.8
-Copyright 2010-2014 Bryan Garaventa (WhatSock.com)
+ARIA Tabs Module R1.9
+Copyright 2010-2016 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 
@@ -85,6 +85,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 					$A.setAttr(dc.accDCObj,
 									{
 									role: 'tabpanel',
+									tabindex: '0',
 									'aria-labelledby': $A.getAttr(dc.triggerObj, 'id')
 									});
 				}
