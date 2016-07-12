@@ -119,12 +119,19 @@ l: 'Saturday'
 wdOffset: 0,
 
 // Set CSS positioning calculation for the calendar
+// Set to 0 to disable auto positioning
 autoPosition: 9,
 // Customize with positive or negative offsets
 offsetTop: 0,
 offsetLeft: 0,
 // Set class for the calendar container
 className: 'calendar',
+
+// Set custom CSS styling for the calendar container when rendered
+cssObj: {
+position: 'absolute',
+zIndex: 1
+},
 
 // Choose a different insertion point in the DOM; must be a DOM node; defaults to the triggering element if not specified.
 targetObj: null,
@@ -250,5 +257,5 @@ dc.range[dc.range.current.month].name = 'November'
 dc.range.current.mDay = '30'
 
 dc.range.current.year = '2012'
- 
+ 
 The returned values will reflect the date selected.

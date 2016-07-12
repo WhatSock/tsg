@@ -1,5 +1,5 @@
 /*!
-AccDC Bootstrap R1.9
+AccDC Bootstrap R1.10
 Copyright 2010-2016 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 
@@ -26,10 +26,107 @@ Please edit this file however desired to customize functionality.
 
 				var targ = $A.query('input[name="' + $A.getAttr(o, 'data-name') + '"]', context)[0];
 				$A.setCalendar(o.id, o, targ, false, function(ev, dc){
-					targ.value = dc.range.wDays[dc.range.current.wDay].lng + ' ' + dc.range[dc.range.current.month].name + ' '
-						+ dc.range.current.mDay + ', ' + dc.range.current.year;
+
+					targ.value = ('0' + (dc.range.current.month + 1)).slice(-2) + '/' + ('0' + dc.range.current.mDay).slice(-2) + '/'
+						+ dc.range.current.year;
+
 					dc.close();
-				});
+				},
+								{
+								// Uncomment to disable auto positioning
+								// autoPosition: 0,
+								cssObj:
+												{
+												position: 'absolute',
+												zIndex: 1
+												},
+								// Uncomment the following to enable disabled date ranges
+								/*
+																disabledTxt: 'Disabled',
+																ajax: function(dc, save){
+				
+										// Run before the datepicker renders
+				
+										// Set current date variables
+										var date = new Date(), current =
+														{
+														day: date.getDate(),
+														month: date.getMonth(),
+														year: date.getFullYear(),
+														weekDay: date.getDay()
+														};
+				
+										// Disable all dates prior to the current day
+										if (current.year > dc.range.current.year
+											|| (current.year === dc.range.current.year && current.month > dc.range.current.month)){
+											dc.range[dc.range.current.month].disabled[dc.range.current.year] =
+															[
+															1,
+															2,
+															3,
+															4,
+															5,
+															6,
+															7,
+															8,
+															9,
+															10,
+															11,
+															12,
+															13,
+															14,
+															15,
+															16,
+															17,
+															18,
+															19,
+															20,
+															21,
+															22,
+															23,
+															24,
+															25,
+															26,
+															27,
+															28,
+															29,
+															30,
+															31
+															];
+										}
+				
+										if (current.year === dc.range.current.year && current.month === dc.range.current.month){
+											dc.range[dc.range.current.month].disabled[dc.range.current.year] = [];
+				
+											for (var day = 1; day < current.day; day++){
+												dc.range[dc.range.current.month].disabled[dc.range.current.year].push(day);
+											}
+										}
+				
+										// Disable all dates that fall on Saturday or Sunday
+										if (!dc.range[dc.range.current.month].disabled[dc.range.current.year])
+											dc.range[dc.range.current.month].disabled[dc.range.current.year] = [];
+										date.setFullYear(dc.range.current.year);
+										date.setMonth(dc.range.current.month);
+										var max = dc.range[dc.range.current.month].max;
+				
+										if (dc.range.current.month === 1)
+											max = (new Date(dc.range.current.year, 1, 29).getMonth() == 1) ? 29 : 28;
+				
+										for (var day = 1; day <= max; day++){
+											date.setDate(day);
+											var weekDay = date.getDay();
+				
+											// 0 = Sunday, 6 = Saturday
+											if (weekDay === 0 || weekDay === 6)
+												dc.range[dc.range.current.month].disabled[dc.range.current.year].push(day);
+										}
+				
+										// Now render the datepicker after configuring the disabled date ranges
+																	dc.open();
+																}
+								*/
+								});
 			});
 
 		// Accessible Modals
