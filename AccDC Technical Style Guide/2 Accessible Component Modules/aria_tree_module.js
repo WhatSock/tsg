@@ -1,5 +1,5 @@
 /*!
-ARIA Tree From XML Module R2.4
+ARIA Tree From XML Module R2.5
 Copyright 2010-2016 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 	*/
@@ -160,6 +160,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 									if (k == 13 || k == 32){
 										$A.trigger(this, 'click');
+										ev.stopPropagation();
 										ev.preventDefault();
 									}
 
@@ -284,6 +285,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 												}
 											}
 										}
+										ev.stopPropagation();
 										ev.preventDefault();
 									}
 
@@ -309,6 +311,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 											}
 										}, ix = $A.inArray(this, dc.tree.childNodes);
 										move(String.fromCharCode(k));
+										ev.stopPropagation();
 										ev.preventDefault();
 									}
 								}

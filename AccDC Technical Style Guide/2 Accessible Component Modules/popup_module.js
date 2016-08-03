@@ -1,5 +1,5 @@
 /*!
-Popup Module R1.4
+Popup Module R1.5
 Copyright 2010-2016 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
@@ -88,8 +88,10 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							var k = ev.which || ev.keyCode;
 
 							// If Escape is pressed, close the object
-							if (k == 27)
+							if (k == 27){
 								dc.close();
+								ev.stopPropagation();
+							}
 						},
 						className: 'popup',
 						closeClassName: 'popupClose'

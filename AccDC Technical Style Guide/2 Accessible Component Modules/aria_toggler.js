@@ -1,6 +1,6 @@
 /*!
-Toggle Generator R2.1
-Copyright 2010-2015 Bryan Garaventa (WhatSock.com)
+Toggle Generator R2.2
+Copyright 2010-2016 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 
 ARIA Toggle and ARIA Checkbox Rules :
@@ -44,9 +44,12 @@ Image links (A tag with embedded IMG): Use innerText and add alt="" to the IMG t
 		};
 		var nn = t.nodeName.toLowerCase();
 
-		if (!((nn == 'input' && (t.getAttribute('type') == 'button' || t.getAttribute('type') == 'image'))
-			|| (nn == 'a' && t.hasAttribute('href')) || (nn == 'button')))
+		if (!((nn == 'input' && ($A.getAttr(t, 'type') == 'button' || $A.getAttr(t, 'type') == 'image'))
+			|| (nn == 'a' && $A.getAttr(t, 'href')) || (nn == 'button')))
 			$A.setAttr(t, 'tabindex', '0');
+
+		$A.unbind(t, 'click keydown');
+
 		$A.bind(t,
 						{
 						keydown: function(ev){
@@ -54,6 +57,7 @@ Image links (A tag with embedded IMG): Use innerText and add alt="" to the IMG t
 
 							if (k == 13 || k == 32){
 								ev.preventDefault();
+								ev.stopPropagation();
 
 								if (!(t.nodeName.toLowerCase() == 'input' && t.type == 'image' && k == 32))
 									$A.trigger(t, 'click');

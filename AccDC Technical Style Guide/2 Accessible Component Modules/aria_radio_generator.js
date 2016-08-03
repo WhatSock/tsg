@@ -1,6 +1,6 @@
 /*!
-ARIA Radio Generator R2.2
-Copyright 2010-2015 Bryan Garaventa (WhatSock.com)
+ARIA Radio Generator R2.3
+Copyright 2010-2016 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 	*/
 
@@ -58,6 +58,8 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 		for (var i = 0; i < that.radios.length; i++)
 						$A.setAttr(that.radios[i], 'aria-setsize', track.max);
 
+		$A.unbind(that.radios, 'click keydown');
+
 		$A.bind(that.radios,
 						{
 						click: function(ev){
@@ -69,6 +71,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 							if (k == 37 || k == 38){
 								ev.preventDefault();
+								ev.stopPropagation();
 
 								if (isNaN(that.index))
 									that.index = 0;
@@ -82,6 +85,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 							else if (k == 39 || k == 40){
 								ev.preventDefault();
+								ev.stopPropagation();
 
 								if (isNaN(that.index))
 									that.index = 0;
@@ -95,6 +99,8 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 							else if (k == 13 || k == 32){
 								ev.preventDefault();
+								ev.stopPropagation();
+
 								$A.trigger(this, 'click');
 							}
 						}

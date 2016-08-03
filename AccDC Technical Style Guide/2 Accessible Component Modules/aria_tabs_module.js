@@ -1,5 +1,5 @@
 /*!
-ARIA Tabs Module R1.9
+ARIA Tabs Module R1.10
 Copyright 2010-2016 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
@@ -187,6 +187,8 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							'aria-label': $A.getText(this)
 							});
 
+			$A.unbind(this, 'click keydown');
+
 			$A.bind(this,
 							{
 							click: function(ev){
@@ -211,16 +213,19 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 										index = 0;
 
 									setFocus.apply(tabs[index]);
+									ev.stopPropagation();
 									ev.preventDefault();
 								}
 
 								else if (k == 13 || k == 32){
 									$A.trigger(tabs[index], 'click');
+									ev.stopPropagation();
 									ev.preventDefault();
 								}
 
 								else if ((k >= 48 && k <= 57) || (k >= 65 && k <= 90)){
 									move(String.fromCharCode(k));
+									ev.stopPropagation();
 									ev.preventDefault();
 								}
 							}
@@ -246,11 +251,14 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 								tabindex: '0'
 								});
 
+				$A.unbind(o, 'keydown');
+
 				$A.bind(o, 'keydown', function(ev){
 					var k = ev.which || ev.keyCode;
 
 					if (k == 13){
 						$A.trigger(o, 'click');
+						ev.stopPropagation();
 						ev.preventDefault();
 					}
 				});

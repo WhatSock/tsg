@@ -1,5 +1,5 @@
 /*!
-ARIA Listbox Generator Module R2.7
+ARIA Listbox Generator Module R2.8
 Copyright 2010-2016 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 	*/
@@ -57,11 +57,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 				if (config.callback && typeof config.callback === 'function')
 					setTimeout(function(){
-						config.callback.apply(that,
-										[
-										that.options[i],
-										that.options
-										]);
+						config.callback.apply(that, [that.options[i], that.options]);
 					}, 1);
 			}
 		}, updateChecked = function(){
@@ -124,11 +120,11 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 									'aria-selected': 'false'
 									});
 
-																if (!$A.getAttr(o, 'aria-labelledby') && !$A.getAttr(o, 'aria-label'))
-																	$A.setAttr(o,
-																					{
-																					'aria-label': calcNames(o).name
-																					});
+					if (!$A.getAttr(o, 'aria-labelledby') && !$A.getAttr(o, 'aria-label'))
+						$A.setAttr(o,
+										{
+										'aria-label': calcNames(o).name
+										});
 
 					if (config.isSortable || config.isMultiselect)
 						$A.setAttr(o, config.isSortable ? 'aria-grabbed' : 'aria-selected', 'false');
@@ -186,11 +182,16 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 				select(that.index);
 			}
 		}, setBindings = function(o){
-			if (!o)
+			if (!o){
+				$A.unbind(list, 'focusin.arialistbox');
 				$A.bind(list, 'focusin.arialistbox', function(){
 					if (config.isSortable)
 						$A.announce(grabbed ? dropInstruct : grabInstruct, true);
 				});
+			}
+
+			$A.unbind(o || '#' + list.id + ' > li > a', 'click keydown');
+
 			$A.bind(o || '#' + list.id + ' > li > a',
 							{
 							'click.arialistbox': function(ev){
@@ -211,21 +212,27 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							'keydown.arialistbox': function(ev){
 								var k = ev.which || ev.keyCode;
 
-								if (k == 13)
+								if (k == 13){
 									$A.trigger(this, 'click');
+									ev.stopPropagation();
+									ev.preventDefault();
+								}
 
 								else if (k == 27 && grabbed){
 									drop.apply(this, [true]);
+									ev.stopPropagation();
 									ev.preventDefault();
 								}
 
 								else if (k == 32){
 									activate.apply(this);
+									ev.stopPropagation();
 									ev.preventDefault();
 								}
 
 								else if (k == 38){
 									ev.preventDefault();
+									ev.stopPropagation();
 
 									if (that.index > 0)
 										select(that.index - 1, true);
@@ -233,6 +240,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 								else if (k == 40){
 									ev.preventDefault();
+									ev.stopPropagation();
 
 									if (that.index < max)
 										select(that.index + 1, true);
@@ -240,16 +248,22 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 								else if (k == 35){
 									ev.preventDefault();
+									ev.stopPropagation();
+
 									select(max, true);
 								}
 
 								else if (k == 36){
 									ev.preventDefault();
+									ev.stopPropagation();
+
 									select(0, true);
 								}
 
 								else if (k == 33){
 									ev.preventDefault();
+									ev.stopPropagation();
+
 									var g = that.index - parseInt((max * (max >= 20 ? 0.1 : 0.5)));
 
 									if (that.index != g)
@@ -258,6 +272,8 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 								else if (k == 34){
 									ev.preventDefault();
+									ev.stopPropagation();
+
 									var g = that.index + parseInt((max * (max >= 20 ? 0.1 : 0.5)));
 
 									if (that.index != g)
@@ -266,175 +282,177 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 								else if (k == 46 && config.allowDelete){
 									ev.preventDefault();
+									ev.stopPropagation();
+
 									rem(track[this.id]);
 								}
 
 								else if ((k >= 48 && k <= 57) || (k >= 65 && k <= 90)){
 									move(String.fromCharCode(k));
+									ev.stopPropagation();
 									ev.preventDefault();
 								}
 							}
 							});
-		},
-calcNames = function(node){
-		if (!node || node.nodeType !== 1)
-			return;
-
-		var trim = function(str){
-			if (typeof str !== 'string')
-				return '';
-
-			return str.replace(/^\s+|\s+$/g, '');
-		}, walkDOM = function(node, fn, refObj){
-			if (!node)
+		}, calcNames = function(node){
+			if (!node || node.nodeType !== 1)
 				return;
-			fn(node, refObj);
-			node = node.firstChild;
 
-			while (node){
-				walkDOM(node, fn, refObj);
-				node = node.nextSibling;
-			}
-		}, isHidden = function(o, refObj){
-			if (o.nodeType !== 1 || o == refObj)
-				return false;
+			var trim = function(str){
+				if (typeof str !== 'string')
+					return '';
 
-			if (o != refObj && ((o.getAttribute && o.getAttribute('aria-hidden') == 'true')
-				|| (o.currentStyle && (o.currentStyle['display'] == 'none' || o.currentStyle['visibility'] == 'hidden'))
-					|| (document.defaultView && document.defaultView.getComputedStyle && (document.defaultView.getComputedStyle(o,
-						'')['display'] == 'none' || document.defaultView.getComputedStyle(o, '')['visibility'] == 'hidden'))
-					|| (o.style && (o.style['display'] == 'none' || o.style['visibility'] == 'hidden'))))
-				return true;
-			return false;
-		}, hasParentLabel = function(start, targ, noLabel, refObj){
-			if (!start || !targ || start == targ)
-				return false;
-
-			while (start){
-				start = start.parentNode;
-
-				var rP = start.getAttribute ? start.getAttribute('role') : '';
-				rP = (rP != 'presentation' && rP != 'none') ? false : true;
-
-				if (!rP && start.getAttribute && ((!noLabel && trim(start.getAttribute('aria-label'))) || isHidden(start, refObj))){
-					return true;
-				}
-
-				else if (start == targ)
-					return false;
-			}
-
-			return false;
-		};
-
-		if (isHidden(node, document.body) || hasParentLabel(node, document.body, true, document.body))
-			return;
-
-		var accName = '', accDesc = '', desc = '', aDescribedby = node.getAttribute('aria-describedby') || '',
-			title = node.getAttribute('title') || '', skip = false, rPresentation = node.getAttribute('role');
-		rPresentation = (rPresentation != 'presentation' && rPresentation != 'none') ? false : true;
-
-		var walk = function(obj, stop, refObj){
-			var nm = '';
-
-			walkDOM(obj, function(o, refObj){
-				if (skip || !o || (o.nodeType === 1 && isHidden(o, refObj)))
+				return str.replace(/^\s+|\s+$/g, '');
+			}, walkDOM = function(node, fn, refObj){
+				if (!node)
 					return;
+				fn(node, refObj);
+				node = node.firstChild;
 
-				var name = '';
+				while (node){
+					walkDOM(node, fn, refObj);
+					node = node.nextSibling;
+				}
+			}, isHidden = function(o, refObj){
+				if (o.nodeType !== 1 || o == refObj)
+					return false;
 
-				if (o.nodeType === 1){
-					var aLabelledby = o.getAttribute('aria-labelledby') || '', aLabel = o.getAttribute('aria-label') || '',
-						nTitle = o.getAttribute('title') || '', rolePresentation = o.getAttribute('role');
-					rolePresentation = (rolePresentation != 'presentation' && rolePresentation != 'none') ? false : true;
+				if (o != refObj && ((o.getAttribute && o.getAttribute('aria-hidden') == 'true')
+					|| (o.currentStyle && (o.currentStyle['display'] == 'none' || o.currentStyle['visibility'] == 'hidden'))
+						|| (document.defaultView && document.defaultView.getComputedStyle && (document.defaultView.getComputedStyle(o,
+							'')['display'] == 'none' || document.defaultView.getComputedStyle(o, '')['visibility'] == 'hidden'))
+						|| (o.style && (o.style['display'] == 'none' || o.style['visibility'] == 'hidden'))))
+					return true;
+				return false;
+			}, hasParentLabel = function(start, targ, noLabel, refObj){
+				if (!start || !targ || start == targ)
+					return false;
+
+				while (start){
+					start = start.parentNode;
+
+					var rP = start.getAttribute ? start.getAttribute('role') : '';
+					rP = (rP != 'presentation' && rP != 'none') ? false : true;
+
+					if (!rP && start.getAttribute && ((!noLabel && trim(start.getAttribute('aria-label'))) || isHidden(start, refObj)))
+						{
+						return true;
+					}
+
+					else if (start == targ)
+						return false;
 				}
 
-				if (o.nodeType === 1
-					&& ((!o.firstChild || (o == refObj && (aLabelledby || aLabel))) || (o.firstChild && o != refObj && aLabel))){
-					if (!stop && o == refObj && aLabelledby){
-						if (!rolePresentation){
-							var a = aLabelledby.split(' ');
+				return false;
+			};
 
-							for (var i = 0; i < a.length; i++){
-								var rO = document.getElementById(a[i]);
-								name += ' ' + walk(rO, true, rO) + ' ';
+			if (isHidden(node, document.body) || hasParentLabel(node, document.body, true, document.body))
+				return;
+
+			var accName = '', accDesc = '', desc = '', aDescribedby = node.getAttribute('aria-describedby') || '',
+				title = node.getAttribute('title') || '', skip = false, rPresentation = node.getAttribute('role');
+			rPresentation = (rPresentation != 'presentation' && rPresentation != 'none') ? false : true;
+
+			var walk = function(obj, stop, refObj){
+				var nm = '';
+
+				walkDOM(obj, function(o, refObj){
+					if (skip || !o || (o.nodeType === 1 && isHidden(o, refObj)))
+						return;
+
+					var name = '';
+
+					if (o.nodeType === 1){
+						var aLabelledby = o.getAttribute('aria-labelledby') || '', aLabel = o.getAttribute('aria-label') || '',
+							nTitle = o.getAttribute('title') || '', rolePresentation = o.getAttribute('role');
+						rolePresentation = (rolePresentation != 'presentation' && rolePresentation != 'none') ? false : true;
+					}
+
+					if (o.nodeType === 1
+						&& ((!o.firstChild || (o == refObj && (aLabelledby || aLabel))) || (o.firstChild && o != refObj && aLabel))){
+						if (!stop && o == refObj && aLabelledby){
+							if (!rolePresentation){
+								var a = aLabelledby.split(' ');
+
+								for (var i = 0; i < a.length; i++){
+									var rO = document.getElementById(a[i]);
+									name += ' ' + walk(rO, true, rO) + ' ';
+								}
 							}
+
+							if (trim(name) || rolePresentation)
+								skip = true;
 						}
 
-						if (trim(name) || rolePresentation)
-							skip = true;
+						if (!trim(name) && aLabel && !rolePresentation){
+							name = ' ' + trim(aLabel) + ' ';
+
+							if (trim(name) && o == refObj)
+								skip = true;
+						}
+
+						if (!trim(name)
+							&& !rolePresentation && (o.nodeName.toLowerCase() == 'input' || o.nodeName.toLowerCase() == 'select'
+								|| o.nodeName.toLowerCase() == 'textarea')
+								&& o.id && document.querySelectorAll('label[for="' + o.id + '"]').length){
+							var rO = document.querySelectorAll('label[for="' + o.id + '"]')[0];
+							name = ' ' + trim(walk(rO, true, rO)) + ' ';
+						}
+
+						if (!trim(name) && !rolePresentation && (o.nodeName.toLowerCase() == 'img') && (trim(o.getAttribute('alt')))){
+							name = ' ' + trim(o.getAttribute('alt')) + ' ';
+						}
+
+						if (!trim(name) && !rolePresentation && nTitle){
+							name = ' ' + trim(nTitle) + ' ';
+						}
 					}
 
-					if (!trim(name) && aLabel && !rolePresentation){
-						name = ' ' + trim(aLabel) + ' ';
-
-						if (trim(name) && o == refObj)
-							skip = true;
+					else if (o.nodeType === 3){
+						name = o.data;
 					}
 
-					if (!trim(name)
-						&& !rolePresentation && (o.nodeName.toLowerCase() == 'input' || o.nodeName.toLowerCase() == 'select'
-							|| o.nodeName.toLowerCase() == 'textarea')
-							&& o.id && document.querySelectorAll('label[for="' + o.id + '"]').length){
-						var rO = document.querySelectorAll('label[for="' + o.id + '"]')[0];
-						name = ' ' + trim(walk(rO, true, rO)) + ' ';
+					if (name && !hasParentLabel(o, refObj, false, refObj)){
+						nm += name;
 					}
+				}, refObj);
 
-					if (!trim(name) && !rolePresentation && (o.nodeName.toLowerCase() == 'img') && (trim(o.getAttribute('alt')))){
-						name = ' ' + trim(o.getAttribute('alt')) + ' ';
-					}
+				return nm;
+			};
 
-					if (!trim(name) && !rolePresentation && nTitle){
-						name = ' ' + trim(nTitle) + ' ';
-					}
-				}
+			accName = walk(node, false, node);
+			skip = false;
 
-				else if (o.nodeType === 3){
-					name = o.data;
-				}
-
-				if (name && !hasParentLabel(o, refObj, false, refObj)){
-					nm += name;
-				}
-			}, refObj);
-
-			return nm;
-		};
-
-		accName = walk(node, false, node);
-		skip = false;
-
-		if (title && !rPresentation){
-			desc = trim(title);
-		}
-
-		if (aDescribedby && !rPresentation){
-			var s = '', d = aDescribedby.split(' ');
-
-			for (var j = 0; j < d.length; j++){
-				var rO = document.getElementById(d[j]);
-				s += ' ' + walk(rO, true, rO) + ' ';
+			if (title && !rPresentation){
+				desc = trim(title);
 			}
 
-			if (trim(s))
-				desc = s;
-		}
+			if (aDescribedby && !rPresentation){
+				var s = '', d = aDescribedby.split(' ');
 
-		if (trim(desc) && !rPresentation)
-			accDesc = desc;
+				for (var j = 0; j < d.length; j++){
+					var rO = document.getElementById(d[j]);
+					s += ' ' + walk(rO, true, rO) + ' ';
+				}
 
-		accName = trim(accName.replace(/\s/g, ' ').replace(/\s\s+/g, ' '));
-		accDesc = trim(accDesc.replace(/\s/g, ' ').replace(/\s\s+/g, ' '));
+				if (trim(s))
+					desc = s;
+			}
 
-		if (accName == accDesc)
-			accDesc = '';
+			if (trim(desc) && !rPresentation)
+				accDesc = desc;
 
-		return {
-		name: accName,
-		desc: accDesc
-		};
-	},
-items = [], move = function(l){
+			accName = trim(accName.replace(/\s/g, ' ').replace(/\s\s+/g, ' '));
+			accDesc = trim(accDesc.replace(/\s/g, ' ').replace(/\s\s+/g, ' '));
+
+			if (accName == accDesc)
+				accDesc = '';
+
+			return {
+			name: accName,
+			desc: accDesc
+			};
+		}, items = [], move = function(l){
 			for (var i = that.index + 1; i <= max; i++){
 				if (l.toLowerCase() == items[i].replace(/^\s+|\s+$/g, '').substring(0, 1).toLowerCase()){
 					select(i, true);
@@ -468,12 +486,13 @@ items = [], move = function(l){
 									tabindex: '-1',
 									'aria-selected': 'false'
 									});
-																if (!$A.getAttr(o, 'aria-labelledby') && !$A.getAttr(o, 'aria-label'))
-																	$A.setAttr(o,
-																					{
-																					'aria-label': calcNames(o).name
-																					});
-}
+
+					if (!$A.getAttr(o, 'aria-labelledby') && !$A.getAttr(o, 'aria-label'))
+						$A.setAttr(o,
+										{
+										'aria-label': calcNames(o).name
+										});
+				}
 
 				$A.setAttr(o, 'aria-posinset', i + 1);
 

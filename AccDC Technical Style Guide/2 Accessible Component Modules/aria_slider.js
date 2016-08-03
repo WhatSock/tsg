@@ -1,6 +1,6 @@
 /*!
-ARIA Slider Module R1.5
-Copyright 2010-2013 Bryan Garaventa (WhatSock.com)
+ARIA Slider Module R1.6
+Copyright 2010-2016 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 	*/
 
@@ -117,6 +117,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 									dc.onDrag.apply(this, [ev, null, dc, dc.config.now]);
 								}, 1);
 
+								ev.stopPropagation();
 								ev.preventDefault();
 							}
 						},
@@ -141,6 +142,11 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							}
 
 							dc.config.inc = parseInt(dc.config.max * 0.1);
+
+							if (dc.config.degrade && dc.config.degrade.nodeType === 1 && dc.config.degrade.parentNode
+								&& dc.config.degrade.parentNode.nodeType === 1)
+								dc.config.degrade.parentNode.removeChild(dc.config.degrade);
+
 							dc.config.degrade = $A.createEl('a',
 											{
 											href: '#',

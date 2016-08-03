@@ -1,5 +1,5 @@
 /*!
-Accordion Generator Module R2.6
+Accordion Generator Module R2.9
 Copyright 2010-2016 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
@@ -130,11 +130,13 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							});
 
 			// Ensure keyboard accessibility for non-active elements such as Divs, Spans, and A tags with no href attribute
+			$A.unbind(o, 'keydown');
 			$A.bind(o, 'keydown', function(ev){
 				var k = ev.which || ev.keyCode;
 
 				if (k == 13 || k == 32){
 					$A.trigger(o, 'click');
+					ev.stopPropagation();
 					ev.preventDefault();
 				}
 			});
@@ -149,8 +151,10 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 								'aria-expanded': 'false'
 								} : {}));
 
-			wheel.push(ovrs);
-			accordionIds.push(id);
+			if ($A.inArray(id, accordionIds) === -1){
+				wheel.push(ovrs);
+				accordionIds.push(id);
+			}
 		});
 
 		$A(wheel, overrides);

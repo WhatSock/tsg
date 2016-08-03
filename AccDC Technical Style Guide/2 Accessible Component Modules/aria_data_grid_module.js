@@ -1,5 +1,5 @@
 /*!
-ARIA Data Grid Module R1.4
+ARIA Data Grid Module R1.5
 Copyright 2010-2016 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
@@ -147,6 +147,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 																							if (k == 13 || k == 27 || k == 9){
 																								ev.preventDefault();
+																								ev.stopPropagation();
 
 																								if (k == 13)
 																									config.page.row.changed(cellNode, config.page.row.editFieldActive, this.value);
@@ -386,6 +387,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 																						config.page.row.selectAll();
 																						$A.announce(config.page.row.selectState);
 																					}
+																					ev.stopPropagation();
 																					ev.preventDefault();
 																				}
 																			},
