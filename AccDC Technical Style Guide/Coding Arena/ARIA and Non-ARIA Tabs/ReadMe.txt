@@ -121,10 +121,7 @@ Example:
 
 {
 
-// Set the Tab panel boundary text that will be conveyed to screen reader users
 role: 'Tab',
-accStart: 'Start',
-accEnd: 'End',
 
 // Set the Tab AccDC Object to render literal content
 // (only when pulling content from within the same page, remove otherwise)
@@ -142,7 +139,10 @@ preloadImages: true,
 toggleClass: 'active',
 
 // Choose whether or not to make Tab expand/collapse links toggles as well
-isToggle: false
+isToggle: false,
+
+// Optionally disable focusability of the tabpanel container
+disableTabPanelFocus: false
 
 // Additional AccDC API properties and methods may be applied here as well if desired.
 
