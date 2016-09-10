@@ -149,6 +149,12 @@ rNavCls: 'rNav',
 // ('button' is recommended so that the action is automatically triggered when accesskeys are pressed, which doesn't happen for other element types
 btnTag: 'button',
 
+// Override the default inner span tag inserted within the nav button element, which is inserted using innerHTML
+prevBtnInsertedTag: '<i class="icon prev"></i>',
+nextBtnInsertedTag: '<i class="icon next"></i>',
+prevGroupBtnInsertedTag: '<i class="icon prev group"></i>',
+nextGroupBtnInsertedTag: '<i class="icon next group"></i>',
+
 // Set the shared class name for all nav buttons
 btnCls: 'navButton',
 
