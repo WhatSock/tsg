@@ -1,5 +1,5 @@
 /*!
-ARIA Tabs Module R1.11
+ARIA Tabs Module R1.12
 Copyright 2010-2016 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
@@ -199,7 +199,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 								var k = ev.which || ev.keyCode;
 
 								// 37 left, 38 up, 39 right, 40 down, 35 end, 36 home
-								if (k >= 35 && k <= 40){
+								if (k >= 35 && k <= 40 && !ev.altKey){
 									if (k == 37 || k == 38)
 										index = index === 0 ? tabs.length - 1 : index - 1;
 
@@ -217,13 +217,13 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 									ev.preventDefault();
 								}
 
-								else if (k == 13 || k == 32){
+								else if ((k == 13 || k == 32) && !ev.altKey){
 									$A.trigger(tabs[index], 'click');
 									ev.stopPropagation();
 									ev.preventDefault();
 								}
 
-								else if ((k >= 48 && k <= 57) || (k >= 65 && k <= 90)){
+								else if (((k >= 48 && k <= 57) || (k >= 65 && k <= 90)) && !ev.altKey){
 									move(String.fromCharCode(k));
 									ev.stopPropagation();
 									ev.preventDefault();
