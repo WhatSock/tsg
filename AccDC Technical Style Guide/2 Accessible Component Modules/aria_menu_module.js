@@ -1,5 +1,5 @@
 /*!
-ARIA Menu Module R2.11
+ARIA Menu Module R2.12
 Copyright 2010-2016 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 	*/
@@ -12,6 +12,9 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 		// Declare a recursive function for setting up submenus
 		runAfter = function(dc){
+			if (dc.triggerObj && dc != dc.top)
+				$A.setAttr(dc.triggerObj, 'aria-expanded', 'true');
+
 			trapC.menuOpen = true;
 			trapC.currentMenu = dc.top;
 
@@ -61,7 +64,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 								bind: 'popupsubmenu',
 								isTab: true,
 								tabRole: '',
-								tabState: config.openState || '',
+								tabState: '',
 								trigger: o,
 								handler: handler,
 								topLvlId: dc.topLvlId + o.id,
@@ -98,7 +101,11 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 								tabOut: dc.tabOut,
 								allowCascade: true
 								});
-				$A.setAttr(o, 'aria-haspopup', 'true');
+				$A.setAttr(o,
+								{
+								'aria-haspopup': 'true',
+								'aria-expanded': 'false'
+								});
 
 				if ($A.reg[dc.id + o.id]){
 					var tdc = $A.reg[dc.id + o.id];
@@ -125,7 +132,11 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 						dc.top.close();
 
 						if (dc.handler && typeof dc.handler === 'function')
-							return dc.handler.apply(this, [ev, dc]);
+							return dc.handler.apply(this,
+											[
+											ev,
+											dc
+											]);
 					});
 
 					// if (o.parentNode != dc.mNode)
@@ -157,6 +168,9 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 		// Declare a recursive function for unbinding events
 		runBeforeClose = function(dc){
+			if (dc.triggerObj && dc != dc.top)
+				$A.setAttr(dc.triggerObj, 'aria-expanded', 'false');
+
 			if (dc.children.length){
 				for (var i = 0; i < dc.children.length; i++)
 								dc.children[i].close();
