@@ -12,12 +12,12 @@ Included with the AccDC Technical Style Guide, is the fully interactive Coding A
 All of the AccDC Technical Style Guide design patterns have been fully tested for maximum accessibility using all of the following combinations:
 
 * Strictly from the keyboard with no mouse and no screen reader running.
-* Using NVDA and JAWS 11 through 14 in IE8 with Win XP.
-* Using NVDA and JAWS 12 through 14 in IE 9 and 10 with Win7.
-* Using NVDA and JAWS 14 in IE 10 with Win8.
-* Using NVDA and JAWS 12 through 14 in FF with Win XP, Win7, and Win8.
+* Using NVDA and JAWS 11+> in IE8 with Win XP.
+* Using NVDA and JAWS 12+> in IE 11 with Win7.
+* Using NVDA and JAWS 14+> in IE 11 with Win8+>.
+* Using NVDA and JAWS 12+> in FF with Win XP, Win7, Win8, and Win10.
 * Using Voiceover in Safari with iOS on the iPhone/iPad.
-* Using Dragon Naturally Speaking in IE and FF with Win7 and Win8 via standard keyboard interaction commands.
+* Using Dragon Naturally Speaking in IE11 and FF with Win7, Win8, and Win10 via standard keyboard interaction commands.
 
 The Coding Arena includes all of the following top level categories and implementation types:
 
