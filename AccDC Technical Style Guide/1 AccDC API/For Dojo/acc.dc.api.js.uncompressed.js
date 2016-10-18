@@ -1,12 +1,12 @@
 /*!
-AccDC API - 3.2 for Dojo (01/25/2016)
+AccDC API - 3.2 for Dojo (10/17/2016)
 Copyright 2010-2016 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 define("dojo/acc.dc.api", ["./query!css3", "./on", "./ready", "./request", "./html", "./dom-construct", "./request/script"],
 function(dojoQuery, dojoOn, dojoReady, dojoRequest, dojoHtml, dojoConst, dojoScript, undefined){
 
-var accDCVersion = '3.2 (01/25/2016)',
+var accDCVersion = '3.2 (10/17/2016)',
 document = window.document,
 accDC = {},
 
@@ -226,23 +226,25 @@ sraCSS = {
 position: 'absolute',
 clip: 'rect(1px 1px 1px 1px)',
 clip: 'rect(1px, 1px, 1px, 1px)',
+clipPath: 'inset(50%)',
 padding: 0,
 border: 0,
 height: '1px',
 width: '1px',
 overflow: 'hidden',
-zIndex: -1000
+whiteSpace: 'nowrap'
 },
 
 sraCSSClear = function(o){
 css(o, {
 position: '',
 clip: 'auto',
+clipPath: 'none',
 padding: '',
 height: '',
 width: '',
 overflow: '',
-zIndex: ''
+whiteSpace: 'normal'
 });
 return o;
 },

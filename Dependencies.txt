@@ -48,12 +48,13 @@ To hide all contained elements and text from sighted users, while at the same ti
 position: absolute;
 clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
 clip: rect(1px, 1px, 1px, 1px);
+clip-path: inset(50%);
 padding: 0;
 border: 0;
 height: 1px; 
 width: 1px; 
 overflow: hidden;
-z-index: -1000;
+white-space: nowrap;
 }
 
 This is referred to as Screen Reader Accessible Hidden Text or Off Screen Text, and will ensure that the element and all content within is invisible for sighted users, while at the same time keeping it visible to screen readers.

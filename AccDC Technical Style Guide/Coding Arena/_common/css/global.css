@@ -311,13 +311,13 @@ nav h2, aside h2 {
 	position: absolute;
 	clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
 	clip: rect(1px, 1px, 1px, 1px);
-	clip-path: polygon(0px 0px, 0px 0px,0px 0px, 0px 0px);
+	clip-path: inset(50%);
 	padding: 0;
 	border: 0;
 	height: 1px; 
 	width: 1px; 
 	overflow: hidden;
-	z-index: -1000;
+	white-space: nowrap;
 }
 
 nav li {list-style-type: none;}
