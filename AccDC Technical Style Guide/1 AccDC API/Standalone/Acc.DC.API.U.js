@@ -1,11 +1,11 @@
 /*!
-AccDC API - 3.2 Standalone (10/17/2016)
+AccDC API - 3.3 Standalone (12/14/2016)
 Copyright 2010-2016 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 (function( window, undefined ) {
 
-var accDCVersion = '3.2 (10/17/2016)',
+var accDCVersion = '3.3 (12/14/2016)',
 document = window.document,
 accDC = {},
 
@@ -4491,6 +4491,7 @@ getEl: getEl,
 createEl: createEl,
 getAttr: getAttr,
 remAttr: remAttr,
+createText: createText,
 getText: getText,
 css: css,
 setAttr: setAttr,
@@ -5366,211 +5367,13 @@ return wheel[dc.indexVal] = dc;
 },
 
 setDrag = function(dc){
-var dc = wheel[dc.indexVal];
-if ((!dc.loading && !dc.loaded) || dc.fn.isDragSet) return dc;
-dc.fn.isDragSet = true;
-var opts = {},
-save = {};
-if (dc.drag.handle) opts.handle = pL(dc.drag.handle).get(0);
-if (css(dc.accDCObj, 'position') == 'relative') opts.relative = true;
-if (dc.drag.minDistance && dc.drag.minDistance > 0)
-opts.distance = dc.drag.minDistance;
-dc.drag.confineToN = null;
-
-pL(dc.accDCObj)
-
-.drag('init', function(ev, dd){
-dc.fn.isDragging = true;
-var cssPos = css(this, 'position'),
-objos = xOffset(this);
-if (cssPos == 'fixed'){
-objos.top = this.offsetTop;
-} else if (cssPos == 'relative'){
-objos = xOffset(this, null, true);
-}
-objos.right = '';
-objos.bottom = '';
-css(this, objos);
-if (typeof dc.drag.confineTo === 'string')
-dc.drag.confineToN = $A.query(dc.drag.confineTo)[0];
-else if (dc.drag.confineTo && dc.drag.confineTo.nodeName)
-dc.drag.confineToN = dc.drag.confineTo;
-if (dc.drag.confineToN && dc.drag.confineToN.nodeName){
-save.nFixed = false;
-var cssNPos = css(dc.drag.confineToN, 'position'),
-objNos = xOffset(dc.drag.confineToN);
-if (cssPos == 'relative' && this.offsetParent == dc.drag.confineToN){
-objNos = dd.limit = { top: 0, left: 0 };
-} else if (cssPos == 'fixed' && cssNPos == 'fixed'){
-objNos.top = dc.drag.confineToN.offsetTop;
-save.nFixed = true;
-dd.limit = objNos;
-} else {
-dd.limit = objNos;
-}
-dd.limit.bottom = dd.limit.top + xHeight(dc.drag.confineToN);
-dd.limit.right = dd.limit.left + xWidth(dc.drag.confineToN);
-}
-setAttr(dc.accDCObj, 'aria-grabbed', 'true');
-if (dc.drag.init && typeof dc.drag.init === 'function')
-dc.drag.init.apply(this, [ev, dd, dc]);
-})
-
-.drag('start', function(ev, dd){
-dc.onDragStart.apply(this, [ev, dd, dc]);
-})
-
-.drag(function(ev, dd){
-if (save.y != dd.offsetY || save.x != dd.offsetX){
-var position = css(this, 'position');
-if (dc.drag.override && typeof dc.drag.override === 'function')
-dc.drag.override.apply(this, [ev, dd, dc]);
-
-else if (dc.drag.confineToN && dc.drag.confineToN.nodeName){
-var n = {
-top: dd.offsetY,
-left: dd.offsetX
-},
-height = xHeight(this),
-width = xWidth(this);
-// Correct for flush edges
-if (n.top < dd.limit.top)
-n.top = dd.limit.top;
-if ((n.top + height) > dd.limit.bottom)
-n.top = dd.limit.bottom;
-if (n.left < dd.limit.left)
-n.left = dd.limit.left;
-if ((n.left + width) > dd.limit.right)
-n.left = dd.limit.right;
-// Set positioning
-if (n.top >= dd.limit.top && (n.top + height) <= dd.limit.bottom)
-xTop(this, n.top);
-if (n.left >= dd.limit.left && (n.left + width) <= dd.limit.right)
-xLeft(this, n.left);
-
-} else if (typeof dc.drag.maxX === 'number' || typeof dc.drag.maxY === 'number'){
-if (typeof dc.drag.maxX === 'number' && ((dd.originalX < dd.offsetX && (dd.offsetX - dd.originalX) <= dc.drag.maxX) || (dd.originalX > dd.offsetX && (dd.originalX - dd.offsetX) <= dc.drag.maxX)))
-xLeft(this, dd.offsetX);
-if (typeof dc.drag.maxY === 'number' && ((dd.originalY < dd.offsetY && (dd.offsetY - dd.originalY) <= dc.drag.maxY) || (dd.originalY > dd.offsetY && (dd.originalY - dd.offsetY) <= dc.drag.maxY)))
-xTop(this, dd.offsetY);
-
-}else{
-xTop(this, dd.offsetY);
-xLeft(this, dd.offsetX);
-}
-
-dc.onDrag.apply(this, [ev, dd, dc]);
-save.y = dd.offsetY;
-save.x = dd.offsetX;
-}
-})
-
-.drag('end', function(ev, dd){
-dc.fn.isDragging = false;
-dc.drag.y = dd.offsetY;
-dc.drag.x = dd.offsetX;
-setAttr(dc.accDCObj, 'aria-grabbed', 'false');
-dc.onDragEnd.apply(this, [ev, dd, dc]);
-}, opts);
-
-if (dc.dropTarget){
-
-pL(dc.dropTarget)
-
-.drop('init', function(ev, dd){
-if (dc.fn.isDragging){
-if (dc.dropInit && typeof dc.dropInit === 'function')
-dc.dropInit.apply(this, [ev, dd, dc]);
-}
-})
-
-.drop('start', function(ev, dd){
-if (dc.fn.isDragging)
-dc.onDropStart.apply(this, [ev, dd, dc]);
-})
-
-.drop(function(ev, dd){
-if (dc.fn.isDragging)
-dc.onDrop.apply(this, [ev, dd, dc]);
-})
-
-.drop('end', function(ev, dd){
-if (dc.fn.isDragging)
-dc.onDropEnd.apply(this, [ev, dd, dc]);
-});
-
-pL.drop(dc.drop);
-
-if (dc.accDD.on){
-
-dc.accDD.dropTargets = [];
-dc.accDD.dropAnchors = [];
-dc.accDD.dropLinks = [];
-
-$A.query(dc.dropTarget, function(i, v){
-dc.accDD.dropAnchors[i] = v;
-dc.accDD.dropTargets[i] = v;
-setAttr(v, 'aria-dropeffect', dc.accDD.dropEffect);
-dc.accDD.dropLinks[i] = createEl('a', {
-href: '#'
-}, dc.sraCSS, dc.accDD.dragClassName, createText(dc.accDD.dragText + ' ' + dc.role + ' ' + dc.accDD.toText + ' ' + getAttr(v, 'data-label')));
-dc.containerDiv.appendChild(dc.accDD.dropLinks[i]);
-$A.bind(dc.accDD.dropLinks[i], {
-focus: function(ev){
-css(sraCSSClear(this), {
-position: 'relative',
-zIndex: 1000
-}, dc.accDD.dragLinkStyle);
-},
-blur: function(ev){
-css(this, dc.sraCSS);
-},
-click: function(ev){
-if (!dc.accDD.isDragging){
-dc.accDD.isDragging = true;
-css(this, dc.sraCSS);
-setAttr(dc.accDCObj, 'aria-grabbed', 'true');
-
-$A.announce(dc.accDD.actionText);
-
-dc.accDD.fireDrag.apply(dc.accDCObj, [ev, dc]);
-dc.accDD.fireDrop.apply(dc.accDD.dropTargets[i], [ev, dc]);
-
-}
-ev.preventDefault();
-}
-});
-});
-
-setAttr(dc.accDCObj, 'aria-grabbed', 'false');
-
-}
-}
-
-return wheel[dc.indexVal] = dc;
+if ($A.setDragAndDrop && typeof $A.setDragAndDrop == 'function' && $A.setDragAndDrop.setDrag && typeof $A.setDragAndDrop.setDrag == 'function')
+$A.setDragAndDrop.setDrag.apply(this, [dc, wheel, pL]);
 },
 
 unsetDrag = function(dc, uDrop){
-var dc = wheel[dc.indexVal];
-if (!dc.closing && !dc.loaded) return dc;
-$A.unbind(dc.drag.handle ? dc.drag.handle : dc.accDCObj, 'draginit dragstart dragend drag');
-remAttr(dc.accDCObj, 'aria-grabbed');
-if (dc.dropTarget){
-if (uDrop){
-$A.unbind(dc.dropTarget, 'dropinit dropstart dropend drop');
-$A.query(dc.dropTarget, function(i, v){
-remAttr(v, 'aria-dropeffect');
-});
-}
-if (dc.accDD.on){
-pL.each(dc.accDD.dropLinks, function(i, v){
-if (v.parentNode)
-v.parentNode.removeChild(v);
-});
-}
-}
-dc.fn.isDragSet = false;
-return wheel[dc.indexVal] = dc;
+if ($A.setDragAndDrop && typeof $A.setDragAndDrop == 'function' && $A.setDragAndDrop.unsetDrag && typeof $A.setDragAndDrop.unsetDrag == 'function')
+$A.setDragAndDrop.unsetDrag.apply(this, [dc, uDrop, wheel, pL]);
 },
 
 autoStart = [],

@@ -1,8 +1,9 @@
 /*!
-CSS Drag and Drop Module R2.3 for AccDC Standalone, Dojo, and MooTools
-Copyright 2010-2014 Bryan Garaventa (WhatSock.com)
+CSS Drag and Drop Module R2.4 for AccDC Standalone, Dojo, and MooTools
+(Requires AccDC API version 3.3+> )
+Copyright 2010-2016 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
-	*/
+*/
 
 (function(){
 
@@ -937,84 +938,294 @@ return elems.length ? $( elems ) : false;
 
 })($A.internal);
 
-	$A.setDragAndDrop = function(config){
-		// Create a unique ID
-		var id = 'tmp' + $A.genId(),
-		// Set CSS properties for the hidden drag and drop links
-		ddCSS = config.ddCSS || {},
-		// Set CSS properties for each AccDC Object
-		cssObj = config.cssObj || {},
-		// Set group of drag and drop event handlers
-		on = config.on || {},
-		// Set the root node
-		root = config.root || document;
-		// Loop through all nodes matching the setDrag CSS Selector
-		$A.query(config.setDrag, root, function(i, obj){
-			// Morph each node into a draggable AccDC Object and pass an object literal to configure functionality
-			$A.morph(obj,
-							{
-							// Increment each ID to make unique
-							id: id + i,
-							// Return a string value to use as the hidden drag and drop link text
-							role: config.setName(obj),
-							// Prevent hidden boundary text from being displayed
-							showHiddenBounds: false,
-							// Prevent the AccDC Object from being closed by screen reader users
-							showHiddenClose: false,
+$A.setDragAndDrop = function(config){
+// Create a unique ID
+var id = 'tmp' + $A.genId(),
+// Set CSS properties for the hidden drag and drop links
+ddCSS = config.ddCSS || {},
+// Set CSS properties for each AccDC Object
+cssObj = config.cssObj || {},
+// Set group of drag and drop event handlers
+on = config.on || {},
+// Set the root node
+root = config.root || document;
+// Loop through all nodes matching the setDrag CSS Selector
+$A.query(config.setDrag, root, function(i, obj){
+// Morph each node into a draggable AccDC Object and pass an object literal to configure functionality
+$A.morph(obj,
+{
+// Increment each ID to make unique
+id: id + i,
+// Return a string value to use as the hidden drag and drop link text
+role: config.setName(obj),
+// Prevent hidden boundary text from being displayed
+showHiddenBounds: false,
+// Prevent the AccDC Object from being closed by screen reader users
+showHiddenClose: false,
 // Save a reference to the original object
 original: obj,
-							// Enable draggability
-							isDraggable: true,
-							// Configure additional drag options
-							drag:
-											{
-											confineTo: config.confineTo
-											},
-							// Configure accessible drag and drop
-							accDD:
-											{
-											// Enable automatic accessibility
-											on: true,
-											// Set drag and drop keywords
-											dragText: config.dragText || 'Drag',
-											dropText: config.dropText || 'Drop',
-											actionText: config.actionText || 'Dragging',
-											// Apply hidden drag and drop link styles
-											dragLinkStyle: ddCSS,
-											dropLinkStyle: ddCSS,
+// Enable draggability
+isDraggable: true,
+// Configure additional drag options
+drag:
+{
+confineTo: config.confineTo
+},
+// Configure accessible drag and drop
+accDD:
+{
+// Enable automatic accessibility
+on: true,
+// Set drag and drop keywords
+dragText: config.dragText || 'Drag',
+dropText: config.dropText || 'Drop',
+actionText: config.actionText || 'Dragging',
+// Apply hidden drag and drop link styles
+dragLinkStyle: ddCSS,
+dropLinkStyle: ddCSS,
 
 dragClassName: config.dragClassName || '',
 dropClassName: config.dropClassName || '',
 
-											// Optionally set a custom insertion point where drop links will be inserted into the DOM
-											dropAnchor: config.dropAnchor || '',
-											// Set the drop animation time length
-											duration: config.duration || 1000
+// Optionally set a custom insertion point where drop links will be inserted into the DOM
+dropAnchor: config.dropAnchor || '',
+// Set the drop animation time length
+duration: config.duration || 1000
 
-											},
-							// Set drag and drop event handlers
-							onDragStart: config.on.dragStart,
-							onDrag: config.on.drag,
-							onDropStart: config.on.dropStart,
-							onDrop: config.on.drop,
-							onDropEnd: config.on.dropEnd,
-							onDragEnd: config.on.dragEnd,
-							// Set the initial drop zone
-							dropTarget: config.setDrop,
-							// Apply styles for the AccDC Object
-							cssObj: cssObj,
-							displayInline: config.displayInline || false,
-							// Run script before the AccDC Object opens (before morphing the DOM node)
-							runBefore: function(dc){
-								if (config.runBefore)
-									config.runBefore.apply(dc, [dc]);
-							},
-							// Run script after the AccDC Object opens (after morphing the DOM node)
-							runAfter: function(dc){
-								if (config.runAfter)
-									config.runAfter.apply(dc, [dc]);
-							}
-							});
-		});
-	};
+},
+// Set drag and drop event handlers
+onDragStart: config.on.dragStart,
+onDrag: config.on.drag,
+onDropStart: config.on.dropStart,
+onDrop: config.on.drop,
+onDropEnd: config.on.dropEnd,
+onDragEnd: config.on.dragEnd,
+// Set the initial drop zone
+dropTarget: config.setDrop,
+// Apply styles for the AccDC Object
+cssObj: cssObj,
+displayInline: config.displayInline || false,
+// Run script before the AccDC Object opens (before morphing the DOM node)
+runBefore: function(dc){
+if (config.runBefore)
+config.runBefore.apply(dc, [dc]);
+},
+// Run script after the AccDC Object opens (after morphing the DOM node)
+runAfter: function(dc){
+if (config.runAfter)
+config.runAfter.apply(dc, [dc]);
+}
+});
+});
+};
+
+$A.setDragAndDrop.setDrag = function(dc, wheel, pL){
+var dc = wheel[dc.indexVal];
+if ((!dc.loading && !dc.loaded) || dc.fn.isDragSet) return dc;
+dc.fn.isDragSet = true;
+var opts = {},
+save = {};
+if (dc.drag.handle) opts.handle = pL(dc.drag.handle).get(0);
+if ($A.css(dc.accDCObj, 'position') == 'relative') opts.relative = true;
+if (dc.drag.minDistance && dc.drag.minDistance > 0)
+opts.distance = dc.drag.minDistance;
+dc.drag.confineToN = null;
+
+pL(dc.accDCObj)
+
+.drag('init', function(ev, dd){
+dc.fn.isDragging = true;
+var cssPos = $A.css(this, 'position'),
+objos = $A.xOffset(this);
+if (cssPos == 'fixed'){
+objos.top = this.offsetTop;
+} else if (cssPos == 'relative'){
+objos = $A.xOffset(this, null, true);
+}
+objos.right = '';
+objos.bottom = '';
+$A.css(this, objos);
+if (typeof dc.drag.confineTo === 'string')
+dc.drag.confineToN = $A.query(dc.drag.confineTo)[0];
+else if (dc.drag.confineTo && dc.drag.confineTo.nodeName)
+dc.drag.confineToN = dc.drag.confineTo;
+if (dc.drag.confineToN && dc.drag.confineToN.nodeName){
+save.nFixed = false;
+var cssNPos = $A.css(dc.drag.confineToN, 'position'),
+objNos = $A.xOffset(dc.drag.confineToN);
+if (cssPos == 'relative' && this.offsetParent == dc.drag.confineToN){
+objNos = dd.limit = { top: 0, left: 0 };
+} else if (cssPos == 'fixed' && cssNPos == 'fixed'){
+objNos.top = dc.drag.confineToN.offsetTop;
+save.nFixed = true;
+dd.limit = objNos;
+} else {
+dd.limit = objNos;
+}
+dd.limit.bottom = dd.limit.top + $A.xHeight(dc.drag.confineToN);
+dd.limit.right = dd.limit.left + $A.xWidth(dc.drag.confineToN);
+}
+$A.setAttr(dc.accDCObj, 'aria-grabbed', 'true');
+if (dc.drag.init && typeof dc.drag.init === 'function')
+dc.drag.init.apply(this, [ev, dd, dc]);
+})
+
+.drag('start', function(ev, dd){
+dc.onDragStart.apply(this, [ev, dd, dc]);
+})
+
+.drag(function(ev, dd){
+// $A.announce(dd.offsetX ? dd.offsetX+'px' : 'null', false, true);
+if (save.y != dd.offsetY || save.x != dd.offsetX){
+var position = $A.css(this, 'position');
+if (dc.drag.override && typeof dc.drag.override === 'function')
+dc.drag.override.apply(this, [ev, dd, dc]);
+
+else if (dc.drag.confineToN && dc.drag.confineToN.nodeName){
+var n = {
+top: dd.offsetY,
+left: dd.offsetX
+},
+height = $A.xHeight(this),
+width = $A.xWidth(this);
+// Correct for flush edges
+if (n.top < dd.limit.top)
+n.top = dd.limit.top;
+if ((n.top + height) > dd.limit.bottom)
+n.top = dd.limit.bottom;
+if (n.left < dd.limit.left)
+n.left = dd.limit.left;
+if ((n.left + width) > dd.limit.right)
+n.left = dd.limit.right;
+// Set positioning
+if (n.top >= dd.limit.top && (n.top + height) <= dd.limit.bottom)
+$A.xTop(this, n.top);
+if (n.left >= dd.limit.left && (n.left + width) <= dd.limit.right)
+$A.xLeft(this, n.left);
+
+} else if (typeof dc.drag.maxX === 'number' || typeof dc.drag.maxY === 'number'){
+if (typeof dc.drag.maxX === 'number' && ((dd.originalX < dd.offsetX && (dd.offsetX - dd.originalX) <= dc.drag.maxX) || (dd.originalX > dd.offsetX && (dd.originalX - dd.offsetX) <= dc.drag.maxX)))
+$A.xLeft(this, dd.offsetX);
+if (typeof dc.drag.maxY === 'number' && ((dd.originalY < dd.offsetY && (dd.offsetY - dd.originalY) <= dc.drag.maxY) || (dd.originalY > dd.offsetY && (dd.originalY - dd.offsetY) <= dc.drag.maxY)))
+$A.xTop(this, dd.offsetY);
+
+}else{
+$A.xTop(this, dd.offsetY);
+$A.xLeft(this, dd.offsetX);
+}
+
+dc.onDrag.apply(this, [ev, dd, dc]);
+save.y = dd.offsetY;
+save.x = dd.offsetX;
+}
+})
+
+.drag('end', function(ev, dd){
+dc.fn.isDragging = false;
+dc.drag.y = dd.offsetY;
+dc.drag.x = dd.offsetX;
+$A.setAttr(dc.accDCObj, 'aria-grabbed', 'false');
+dc.onDragEnd.apply(this, [ev, dd, dc]);
+}, opts);
+
+if (dc.dropTarget){
+
+pL(dc.dropTarget)
+
+.drop('init', function(ev, dd){
+if (dc.fn.isDragging){
+if (dc.dropInit && typeof dc.dropInit === 'function')
+dc.dropInit.apply(this, [ev, dd, dc]);
+}
+})
+
+.drop('start', function(ev, dd){
+if (dc.fn.isDragging)
+dc.onDropStart.apply(this, [ev, dd, dc]);
+})
+
+.drop(function(ev, dd){
+if (dc.fn.isDragging)
+dc.onDrop.apply(this, [ev, dd, dc]);
+})
+
+.drop('end', function(ev, dd){
+if (dc.fn.isDragging)
+dc.onDropEnd.apply(this, [ev, dd, dc]);
+});
+
+pL.drop(dc.drop);
+
+if (dc.accDD.on){
+
+dc.accDD.dropTargets = [];
+dc.accDD.dropAnchors = [];
+dc.accDD.dropLinks = [];
+
+$A.query(dc.dropTarget, function(i, v){
+dc.accDD.dropAnchors[i] = v;
+dc.accDD.dropTargets[i] = v;
+$A.setAttr(v, 'aria-dropeffect', dc.accDD.dropEffect);
+dc.accDD.dropLinks[i] = $A.createEl('a', {
+href: '#'
+}, dc.sraCSS, dc.accDD.dragClassName, $A.createText(dc.accDD.dragText + ' ' + dc.role + ' ' + dc.accDD.toText + ' ' + $A.getAttr(v, 'data-label')));
+dc.containerDiv.appendChild(dc.accDD.dropLinks[i]);
+$A.bind(dc.accDD.dropLinks[i], {
+focus: function(ev){
+$A.css($A.sraCSSClear(this), {
+position: 'relative',
+zIndex: 1000
+}, dc.accDD.dragLinkStyle);
+},
+blur: function(ev){
+$A.css(this, dc.sraCSS);
+},
+click: function(ev){
+if (!dc.accDD.isDragging){
+dc.accDD.isDragging = true;
+$A.css(this, dc.sraCSS);
+$A.setAttr(dc.accDCObj, 'aria-grabbed', 'true');
+
+$A.announce(dc.accDD.actionText);
+
+dc.accDD.fireDrag.apply(dc.accDCObj, [ev, dc]);
+dc.accDD.fireDrop.apply(dc.accDD.dropTargets[i], [ev, dc]);
+
+}
+ev.preventDefault();
+}
+});
+});
+
+$A.setAttr(dc.accDCObj, 'aria-grabbed', 'false');
+
+}
+}
+
+return wheel[dc.indexVal] = dc;
+};
+
+$A.setDragAndDrop.unsetDrag = function(dc, uDrop, wheel, pL){
+var dc = wheel[dc.indexVal];
+if (!dc.closing && !dc.loaded) return dc;
+$A.unbind(dc.drag.handle ? dc.drag.handle : dc.accDCObj, 'draginit dragstart dragend drag');
+$A.remAttr(dc.accDCObj, 'aria-grabbed');
+if (dc.dropTarget){
+if (uDrop){
+$A.unbind(dc.dropTarget, 'dropinit dropstart dropend drop');
+$A.query(dc.dropTarget, function(i, v){
+$A.remAttr(v, 'aria-dropeffect');
+});
+}
+if (dc.accDD.on){
+pL.each(dc.accDD.dropLinks, function(i, v){
+if (v.parentNode)
+v.parentNode.removeChild(v);
+});
+}
+}
+dc.fn.isDragSet = false;
+return wheel[dc.indexVal] = dc;
+};
+
 })();
