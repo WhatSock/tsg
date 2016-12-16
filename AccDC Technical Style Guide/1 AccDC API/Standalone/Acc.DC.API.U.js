@@ -1,11 +1,11 @@
 /*!
-AccDC API - 3.3 Standalone (12/14/2016)
+AccDC API - 3.3 Standalone (12/15/2016)
 Copyright 2010-2016 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 (function( window, undefined ) {
 
-var accDCVersion = '3.3 (12/14/2016)',
+var accDCVersion = '3.3 (12/15/2016)',
 document = window.document,
 accDC = {},
 
@@ -4481,6 +4481,8 @@ xHeight: xHeight,
 xWidth: xWidth,
 xTop: xTop,
 xLeft: xLeft,
+xDef: xDef,
+xNum: xNum,
 transition: transition,
 isArray: isArray,
 internal: pL,

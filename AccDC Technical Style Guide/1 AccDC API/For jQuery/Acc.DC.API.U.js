@@ -1,11 +1,11 @@
 /*!
-AccDC API - 3.3 for jQuery (12/14/2016)
+AccDC API - 3.3 for jQuery (12/15/2016)
 Copyright 2010-2016 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 (function(pL){
 
-var accDCVersion = '3.3 (12/14/2016)',
+var accDCVersion = '3.3 (12/15/2016)',
 
 getEl = function(e){
 if (document.getElementById) return document.getElementById(e);
@@ -462,6 +462,8 @@ xHeight: xHeight,
 xWidth: xWidth,
 xTop: xTop,
 xLeft: xLeft,
+xDef: xDef,
+xNum: xNum,
 transition: transition,
 isArray: isArray,
 internal: pL,
