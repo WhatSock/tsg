@@ -1,7 +1,20 @@
 $A.bind(window, 'load', function(){
 
+	// Create an override function to normalize the scrollIntoView animation functionality
+	var scrollIntoViewOverride = function(optionNode, cbInstance){
+		// cbInstance.listboxNode is the parent role="listbox" container element
+		if (cbInstance.listboxNode != cbInstance.listboxNodeLast){
+			cbInstance.listboxNodeLast = cbInstance.listboxNode;
+			cbInstance.myScroller = zenscroll.createScroller(cbInstance.listboxNode, 200, 0);
+		}
+
+		if (cbInstance.myScroller)
+			cbInstance.myScroller.center(optionNode);
+	};
+
 	// Create a new ARIA Combobox instance
 	var myStateCombobox = new $A.Combobox($A.getEl('states'), $A.getEl('stt'));
+	myStateCombobox.scrollIntoView = scrollIntoViewOverride;
 
 	// Disable auto population of default value
 	myStateCombobox.setDefault(false);
@@ -58,6 +71,7 @@ $A.bind(window, 'load', function(){
 	myStateCombobox.start();
 
 	var myCountryCombobox = new $A.Combobox($A.getEl('countries'), $A.getEl('ctry'));
+	myCountryCombobox.scrollIntoView = scrollIntoViewOverride;
 
 	myCountryCombobox.setAutoPosition(5);
 

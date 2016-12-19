@@ -20,6 +20,7 @@ div.middle-div {
 }
 
 ul.listbox {
+	position: relative;
 	overflow: scroll;
 	height: 10em;
 }
