@@ -1,5 +1,5 @@
 /*!
-ARIA Menu Module R2.12
+ARIA Menu Module R2.13
 Copyright 2010-2016 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 	*/
@@ -352,8 +352,10 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 										if ($A.reg[topLvlId].loaded)
 											$A.reg[topLvlId].close();
 
-										else
+										else{
+											$A.reg[topLvlId].event = ev;
 											$A.trigger(tgr, 'popupmenu');
+										}
 										ev.preventDefault();
 									}
 								},

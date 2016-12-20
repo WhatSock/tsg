@@ -44,14 +44,35 @@ $A.bind(window, 'load', function(){
 
 									// Run script while each menu is rendering, occurs before DOM insertion
 									runDuring: function(dc){
+
+										var page = function(e){
+											var posx = 0, posy = 0;
+
+											if (e.pageX || e.pageY){
+												posx = e.pageX;
+												posy = e.pageY;
+											}
+
+											else if (e.clientX || e.clientY){
+												posx = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+												posy = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+											}
+											return {
+											x: posx,
+											y: posy
+											};
+										};
+
 										// Set specific styling for the parent Div if this is the top level menu instance
 										// Set initial positioning before DOM insertion to prevent screen flicker from occuring
 										if (dc.top == dc){
+											var pos = page(dc.event);
+
 											dc.top.css(
 															{
 															position: 'fixed',
-															top: '30%',
-															left: '30%'
+															top: pos.y,
+															left: pos.x
 															});
 										}
 
