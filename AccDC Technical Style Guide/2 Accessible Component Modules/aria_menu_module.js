@@ -1,6 +1,6 @@
 /*!
-ARIA Menu Module R2.13
-Copyright 2010-2016 Bryan Garaventa (WhatSock.com)
+ARIA Menu Module R2.14
+Copyright 2010-2017 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 	*/
 
@@ -245,6 +245,11 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 								}
 							},
 							runAfter: runAfter,
+							mouseLeave: function(ev, dc){
+								if (!('ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0)){
+									dc.close();
+								}
+							},
 							runBeforeClose: runBeforeClose,
 							runAfterClose: function(dc){
 								trapC.menuOpen = false;
