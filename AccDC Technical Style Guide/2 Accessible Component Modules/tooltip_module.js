@@ -1,6 +1,6 @@
 /*!
-Tooltip Module R1.3
-Copyright 2010-2015 Bryan Garaventa (WhatSock.com)
+Tooltip Module R1.4
+Copyright 2010-2017 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 
@@ -81,7 +81,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 									}, dc.wait);
 								}
 							},
-							'mouseout blur': function(ev){
+							'mouseleave blur': function(ev){
 								if (waiting){
 									clearTimeout(wTo);
 									waiting = false;
