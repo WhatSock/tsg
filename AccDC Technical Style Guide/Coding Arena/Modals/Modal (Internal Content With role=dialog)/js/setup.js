@@ -45,6 +45,12 @@ $A.bind(window, 'load', function(){
 						ev.stopPropagation();
 					},
 
+					// Run configuration script while the Modal AccDC Object is in the process of loading
+					runDuring: function(dc){
+						// Optionally disable auto focusing to the beginning of the dialog content
+						dc.forceFocus = false;
+					},
+
 					// Run configuration script after the Modal AccDC Object finishes loading
 					runAfter: function(dc){
 
@@ -76,6 +82,9 @@ $A.bind(window, 'load', function(){
 							}
 							ev.preventDefault();
 						});
+
+						// Optionally set focus to the first form field in the dialog
+						$A.getEl('uname').focus();
 					},
 					runAfterClose: function(dc){
 						if (dc.backdrop)
