@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>Standard Listbox With Checkable Options - AccDC Technical Style Guide</title>
+        <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+        <link rel="stylesheet" type="text/css" href="css/customize.css" />
+        <script type="text/javascript" src="../../_common/js/jQuery.js">
+            // Load jQuery.
+            // This is not necessary if using the Standalone AccDC API version.
+        </script>
+        <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+            // Load the AccDC API, which all modules are plugged into as the common interface.
+        </script>
+        <!-- Now load all desired modules, which plugs them into AccDC. --><script type="text/javascript" src="../../../2 Accessible Component Modules/aria_listbox_generator.min.js"></script>
+        <script type="text/javascript" src="js/setup.js">
+            // Run the setup script where module invocation statements are contained.
+        </script>
+    </head>
+    <body>
+    	
+    <div id="coding-arena">
+        <header>
+            <h1 tabindex="-1"><a href="http://whatsock.com/"><img alt="WhatSock : Changing the world one step at a time" src="../../_common/img/whatsock.svg" /><strong>AccDC</strong> Technical Style Guide</a></h1>
+        </header>
+        <main>
+        <h2>ARIA Listboxes <small>(Standard With Checkable Options)</small></h2>
+        <div class="demo-block">
+            <div class="sample">
+                <div class="standardWrapper">
+                    <!-- The Listbox container element must include the attribute role="listbox", and all list item nodes must include the attribute role="option" to ensure accessibility for screen reader users.
+                    Additionally, the Listbox container element and all list item nodes must include unique ID values.
+                    The innerHTML for each list item node must contain a textual label, which may be positioned offscreen to hide it visually if desired.
+                    This textual label is necessary so that screen reader users will be able to identify the purpose of the node.
+                    Images may also be used within list item nodes if desired, and if an Alt attribute is present and contains informative text, this too is added to the list item label for screen reader users.
+                    If an image is present but is not informative, it should include the attribute alt="" to hide it from screen reader users.
+                    All list item nodes (with role="option") must consist of A tags with href attributes to ensure keyboard accessibility, and the A tag must be a first level childNode of the parent LI tag.
+                    -->
+                    <ul role="listbox" id="standardLB">
+                        <li><a href="#" role="option" id="standardOpt1"><span class="lbl">One</span></a></li>
+                        <li><a href="#" role="option" id="standardOpt2"><span class="lbl">Two</span></a></li>
+                        <li><a href="#" role="option" id="standardOpt3"><span class="lbl">Three</span></a></li>
+                        <li><a href="#" role="option" id="standardOpt4"><span class="lbl">Four</span></a></li>
+                        <li><a href="#" role="option" id="standardOpt5"><span class="lbl">Five</span></a></li>
+                    </ul>
+                </div>
+                <select size="3" title="Standard Select field" id="standardSelect">
+                    <option value="standardOpt1">One</option>
+                    <option value="standardOpt2">Two</option>
+                    <option value="standardOpt3">Three</option>
+                    <option value="standardOpt4">Four</option>
+                    <option value="standardOpt5">Five</option>
+                </select>
+            </div>
+			<div class="note">
+           	 <p>The ARIA Listbox and standard Select element mirror each other.</p>
+			</div>
+        </div>
+        <div class="keyboard">
+        	<p>The Listbox is keyboard accessible:</p>
+            <ul>
+			    <li>Set focus on the Listbox or the Select field.</li>
+			    <li>Press the Arrow keys to change options, or press <kbd class="home">Home</kbd> or <kbd class="end">End</kbd> to jump to the beginning or end of the list.</li>
+			    <li>Press <kbd>PageUp</kbd> or <kbd>PageDown</kbd> to jump backward or forward incrementally.</li>
+			    <li>Press any letter or number to jump to an item starting with that character or digit.</li>
+			    <li>Press the <kbd>Spacebar</kbd> to toggle the independant checked state of the focused option.</li>
+    		</ul>
+        </div>
+    </div>
+    </main>
+    </div>
+				
+    </body>
+</html>
