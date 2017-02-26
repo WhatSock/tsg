@@ -21,4 +21,11 @@ $A.bind(window, 'load', function(){
 		var s = $A.getEl('totals');
 		$A.announce(s);
 	});
+
+	$A.query('input[type="checkbox"]', function(i, o){
+		$A.setAttr(o,
+						{
+						'aria-controls': 'totals'
+						});
+	});
 });
