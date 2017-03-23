@@ -225,7 +225,11 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 						runBefore: function(dc){
 							if (config.ajax && typeof config.ajax === 'function' && !dc.stopAjax && !dc.ajaxLoading){
 								dc.ajaxLoading = dc.cancel = true;
-								config.ajax.apply(dc, [dc, false]);
+								config.ajax.apply(dc,
+												[
+												dc,
+												false
+												]);
 							}
 
 							if (dc.range.current.month === 1)
@@ -263,7 +267,8 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 									dc.iter = dc.iterE = (di + 6) > 6 ? -1 + di : di + 6;
 									dc.iterS = di;
 								}
-								dc.source += '<th class="week" title="' + d.lng + '" role="presentation"><span>' + d.shrt + '</span></th>';
+								dc.source += '<th scope="col" class="week" title="' + d.lng + '" role="presentation"><span>' + d.shrt
+									+ '</span></th>';
 							}
 							dc.source += '</tr><tr role="presentation">';
 							var m = new Date();
@@ -435,7 +440,12 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 												if ($A.hasClass(this, 'selected') || (!commentsEnabled && !$A.hasClass(this, 'comment'))){
 													if ($A.inArray(dc.range.current.mDay, dc.range[dc.range.current.month].disabled[dc.range.current.year]
 														|| dc.range[dc.range.current.month].disabled['*'] || []) === -1){
-														handleClick.apply(this, [ev, dc, targ]);
+														handleClick.apply(this,
+																		[
+																		ev,
+																		dc,
+																		targ
+																		]);
 													}
 
 													else{
@@ -457,7 +467,12 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 													if ($A.inArray(dc.range.current.mDay, dc.range[dc.range.current.month].disabled[dc.range.current.year]
 														|| dc.range[dc.range.current.month].disabled['*'] || []) === -1){
-														handleClick.apply(this, [ev, dc, targ]);
+														handleClick.apply(this,
+																		[
+																		ev,
+																		dc,
+																		targ
+																		]);
 													}
 
 													ev.preventDefault();
@@ -599,7 +614,12 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 													if ($A.inArray(dc.range.current.mDay, dc.range[dc.range.current.month].disabled[dc.range.current.year]
 														|| dc.range[dc.range.current.month].disabled['*'] || []) === -1){
 														if (!dc.setFocus.firstOpen)
-															handleClick.apply(this, [ev, dc, targ]);
+															handleClick.apply(this,
+																			[
+																			ev,
+																			dc,
+																			targ
+																			]);
 													}
 
 													ev.preventDefault();
@@ -1025,7 +1045,11 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							$A.unbind(window, 'resize.dateeditor');
 
 							if (config.ajax && typeof config.ajax === 'function')
-								config.ajax.apply(dc.parent, [dc.parent, true]);
+								config.ajax.apply(dc.parent,
+												[
+												dc.parent,
+												true
+												]);
 
 							dc.parent.setFocus.firstOpen = true;
 						},
