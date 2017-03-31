@@ -1,6 +1,6 @@
 /*!
-ARIA Calendar Module R1.14
-Copyright 2010-2016 Bryan Garaventa (WhatSock.com)
+ARIA Calendar Module R1.15
+Copyright 2010-2017 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 
@@ -484,7 +484,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 													ev.preventDefault();
 												}
 
-												if ((k >= 37 && k <= 40) || k == 27 || (k >= 33 && k <= 36)){
+												else if ((k >= 37 && k <= 40) || k == 27 || (k >= 33 && k <= 36)){
 													var wd = dc.range.current.wDay;
 
 													if (k == 37){
@@ -605,6 +605,11 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 													}
 													ev.preventDefault();
 												}
+
+												else if (k == 9 && !pressed.alt && !pressed.ctrl && !pressed.shift){
+													$A.getEl(dc.prevBtnId + 'Y').focus();
+													ev.preventDefault();
+												}
 											},
 											keyup: function(ev){
 												changePressed(ev);
@@ -644,7 +649,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 													ev.preventDefault();
 												}
 
-												if (k == 27){
+												else if (k == 27){
 													dc.close();
 													ev.preventDefault();
 												}
@@ -668,7 +673,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 													ev.preventDefault();
 												}
 
-												if (k == 27){
+												else if (k == 27){
 													dc.close();
 													ev.preventDefault();
 												}
@@ -693,8 +698,13 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 													ev.preventDefault();
 												}
 
-												if (k == 27){
+												else if (k == 27){
 													dc.close();
+													ev.preventDefault();
+												}
+
+												else if (k == 9 && !pressed.alt && !pressed.ctrl && pressed.shift){
+													$A.query('td.day[tabindex="0"]', dc.containerDiv)[0].focus();
 													ev.preventDefault();
 												}
 											},
@@ -717,7 +727,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 													ev.preventDefault();
 												}
 
-												if (k == 27){
+												else if (k == 27){
 													dc.close();
 													ev.preventDefault();
 												}
