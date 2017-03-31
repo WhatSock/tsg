@@ -27,14 +27,54 @@ $A.bind(window, 'load', function(){
 
 						// Run before the datepicker renders
 
-						// Set current date variables
-						var date = new Date(), current =
-										{
-										day: date.getDate(),
-										month: date.getMonth(),
-										year: date.getFullYear(),
-										weekDay: date.getDay()
-										};
+						if (!dc.firstResetDate){
+// Store a variable in the dc object to ensure this only runs when the date picker first opens, and not every time such as when switching between months or years
+							dc.firstResetDate = true;
+
+							// Set current date variables
+							var cur = new Date();
+
+							/*
+														// (Optional) Set a custom date to start the calendar on, such as 03/01/2017
+														cur.setDate(1);
+														cur.setMonth(2);
+														cur.setFullYear(2017);
+							*/
+
+							// Now configure a 'current' object that uses the date syntax within the datepicker JS instance
+							// This will be used to merge into the datepicker before it opens
+							var current =
+											{
+											day: cur.getDate(),
+											month: cur.getMonth(),
+											year: cur.getFullYear(),
+											weekDay: cur.getDay()
+											};
+
+							// Now adjust the default date that the date picker first opens with using the previously set date object
+							// Uses the 'current' object variables to set the dates within the calendar before it opens
+							dc.range.current.month = current.month;
+							dc.range.current.mDay = current.day;
+							dc.range.current.wDay = current.weekDay;
+							dc.range.current.year = current.year;
+
+							/*
+														// (Optional) Adjust the start date accordingly using an offset for the disabled date range if desired
+														cur.setDate(cur.getDate() - 1);
+							*/
+
+							// Now set a custom variable to store the disabled date range starting point
+							dc.startDate =
+											{
+											day: cur.getDate(),
+											month: cur.getMonth(),
+											year: cur.getFullYear(),
+											weekDay: cur.getDay()
+											};
+						}
+
+						// Now dynamically adjust the disabled date range always starting with dc.startDate
+						var current = dc.startDate;
 
 						// Disable all dates prior to the current day
 						if (current.year > dc.range.current.year
@@ -52,31 +92,35 @@ $A.bind(window, 'load', function(){
 							}
 						}
 
-						// Disable all dates that fall on Saturday or Sunday
-						if (!dc.range[dc.range.current.month].disabled[dc.range.current.year])
-							dc.range[dc.range.current.month].disabled[dc.range.current.year] = [];
-						date.setFullYear(dc.range.current.year);
-						date.setMonth(dc.range.current.month);
-						var max = dc.range[dc.range.current.month].max;
-
-						if (dc.range.current.month === 1)
-							max = (new Date(dc.range.current.year, 1, 29).getMonth() == 1) ? 29 : 28;
-
-						for (var day = 1; day <= max; day++){
-							date.setDate(day);
-							var weekDay = date.getDay();
-
-							// 0 = Sunday, 6 = Saturday
-							if (weekDay === 0 || weekDay === 6)
-								dc.range[dc.range.current.month].disabled[dc.range.current.year].push(day);
-						}
-
-						// Disable Halloween for every year
-						if (dc.range.current.month == 9){
-							if (!dc.range[dc.range.current.month].disabled[dc.range.current.year])
-								dc.range[dc.range.current.month].disabled[dc.range.current.year] = [];
-							dc.range[dc.range.current.month].disabled[dc.range.current.year].push(31);
-						}
+						/*
+												// Disable all dates that fall on Saturday or Sunday
+												var date = new Date();
+						
+												if (!dc.range[dc.range.current.month].disabled[dc.range.current.year])
+													dc.range[dc.range.current.month].disabled[dc.range.current.year] = [];
+												date.setFullYear(dc.range.current.year);
+												date.setMonth(dc.range.current.month);
+												var max = dc.range[dc.range.current.month].max;
+						
+												if (dc.range.current.month === 1)
+													max = (new Date(dc.range.current.year, 1, 29).getMonth() == 1) ? 29 : 28;
+						
+												for (var day = 1; day <= max; day++){
+													date.setDate(day);
+													var weekDay = date.getDay();
+						
+													// 0 = Sunday, 6 = Saturday
+													if (weekDay === 0 || weekDay === 6)
+														dc.range[dc.range.current.month].disabled[dc.range.current.year].push(day);
+												}
+						
+												// Disable Halloween for every year
+												if (dc.range.current.month == 9){
+													if (!dc.range[dc.range.current.month].disabled[dc.range.current.year])
+														dc.range[dc.range.current.month].disabled[dc.range.current.year] = [];
+													dc.range[dc.range.current.month].disabled[dc.range.current.year].push(31);
+												}
+						*/
 
 						// Now render the datepicker after configuring the disabled date ranges
 						dc.open();
