@@ -1,5 +1,5 @@
 /*!
-ARIA Calendar Module R1.15
+ARIA Calendar Module R1.16
 Copyright 2010-2017 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
@@ -9,6 +9,10 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 	$A.setCalendar = function(pId, trigger, targ, commentsEnabled, callback, config){
 
 		var config = config || {},
+			helpText =
+				config.helpText
+					? config.helpText
+					: 'Press the arrow keys to navigate by day, PageUp and PageDown to navigate by month, Alt+PageUp and Alt+PageDown to navigate by year, or Escape to cancel.',
 
 		// Control the behavior of date selection clicks
 		handleClick = callback && typeof callback === 'function' ? callback : function(ev, dc){
@@ -225,11 +229,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 						runBefore: function(dc){
 							if (config.ajax && typeof config.ajax === 'function' && !dc.stopAjax && !dc.ajaxLoading){
 								dc.ajaxLoading = dc.cancel = true;
-								config.ajax.apply(dc,
-												[
-												dc,
-												false
-												]);
+								config.ajax.apply(dc, [dc, false]);
 							}
 
 							if (dc.range.current.month === 1)
@@ -362,6 +362,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							$A.setAttr(dc.accDCObj,
 											{
 											role: 'dialog',
+											'data-helptext': dc.helpText,
 											'aria-label': dc.role
 											});
 
@@ -440,12 +441,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 												if ($A.hasClass(this, 'selected') || (!commentsEnabled && !$A.hasClass(this, 'comment'))){
 													if ($A.inArray(dc.range.current.mDay, dc.range[dc.range.current.month].disabled[dc.range.current.year]
 														|| dc.range[dc.range.current.month].disabled['*'] || []) === -1){
-														handleClick.apply(this,
-																		[
-																		ev,
-																		dc,
-																		targ
-																		]);
+														handleClick.apply(this, [ev, dc, targ]);
 													}
 
 													else{
@@ -467,12 +463,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 													if ($A.inArray(dc.range.current.mDay, dc.range[dc.range.current.month].disabled[dc.range.current.year]
 														|| dc.range[dc.range.current.month].disabled['*'] || []) === -1){
-														handleClick.apply(this,
-																		[
-																		ev,
-																		dc,
-																		targ
-																		]);
+														handleClick.apply(this, [ev, dc, targ]);
 													}
 
 													ev.preventDefault();
@@ -619,12 +610,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 													if ($A.inArray(dc.range.current.mDay, dc.range[dc.range.current.month].disabled[dc.range.current.year]
 														|| dc.range[dc.range.current.month].disabled['*'] || []) === -1){
 														if (!dc.setFocus.firstOpen)
-															handleClick.apply(this,
-																			[
-																			ev,
-																			dc,
-																			targ
-																			]);
+															handleClick.apply(this, [ev, dc, targ]);
 													}
 
 													ev.preventDefault();
@@ -653,6 +639,16 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 													dc.close();
 													ev.preventDefault();
 												}
+
+												else if (k == 38){
+													$A.getEl(dc.prevBtnId + 'Y').focus();
+													ev.preventDefault();
+												}
+
+												else if (k == 39){
+													$A.getEl(dc.nextBtnId).focus();
+													ev.preventDefault();
+												}
 											},
 											keyup: function(ev){
 												changePressed(ev);
@@ -675,6 +671,16 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 												else if (k == 27){
 													dc.close();
+													ev.preventDefault();
+												}
+
+												else if (k == 38){
+													$A.getEl(dc.nextBtnId + 'Y').focus();
+													ev.preventDefault();
+												}
+
+												else if (k == 37){
+													$A.getEl(dc.prevBtnId).focus();
 													ev.preventDefault();
 												}
 											},
@@ -707,6 +713,16 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 													$A.query('td.day[tabindex="0"]', dc.containerDiv)[0].focus();
 													ev.preventDefault();
 												}
+
+												else if (k == 39){
+													$A.getEl(dc.nextBtnId + 'Y').focus();
+													ev.preventDefault();
+												}
+
+												else if (k == 40){
+													$A.getEl(dc.prevBtnId).focus();
+													ev.preventDefault();
+												}
 											},
 											keyup: function(ev){
 												changePressed(ev);
@@ -731,6 +747,16 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 													dc.close();
 													ev.preventDefault();
 												}
+
+												else if (k == 37){
+													$A.getEl(dc.prevBtnId + 'Y').focus();
+													ev.preventDefault();
+												}
+
+												else if (k == 40){
+													$A.getEl(dc.nextBtnId).focus();
+													ev.preventDefault();
+												}
 											},
 											keyup: function(ev){
 												changePressed(ev);
@@ -752,9 +778,12 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							setTimeout(function(){
 								dc.datepickerLoaded = true;
 							}, 750);
+
+							$A.announce(dc.helpText);
 						},
+						helpText: helpText,
 						tabOut: function(ev, dc){
-							dc.close();
+						// dc.close();
 						},
 						runAfterClose: function(dc){
 							if (!dc.reopen){
@@ -1055,11 +1084,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							$A.unbind(window, 'resize.dateeditor');
 
 							if (config.ajax && typeof config.ajax === 'function')
-								config.ajax.apply(dc.parent,
-												[
-												dc.parent,
-												true
-												]);
+								config.ajax.apply(dc.parent, [dc.parent, true]);
 
 							dc.parent.setFocus.firstOpen = true;
 						},
