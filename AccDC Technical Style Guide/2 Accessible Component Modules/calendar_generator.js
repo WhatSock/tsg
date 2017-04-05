@@ -1,5 +1,5 @@
 /*!
-ARIA Calendar Module R1.16
+ARIA Calendar Module R1.17
 Copyright 2010-2017 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
@@ -649,6 +649,10 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 													$A.getEl(dc.nextBtnId).focus();
 													ev.preventDefault();
 												}
+
+												else if (k == 37 || k == 40){
+													ev.preventDefault();
+												}
 											},
 											keyup: function(ev){
 												changePressed(ev);
@@ -681,6 +685,10 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 												else if (k == 37){
 													$A.getEl(dc.prevBtnId).focus();
+													ev.preventDefault();
+												}
+
+												else if (k == 39 || k == 40){
 													ev.preventDefault();
 												}
 											},
@@ -723,6 +731,10 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 													$A.getEl(dc.prevBtnId).focus();
 													ev.preventDefault();
 												}
+
+												else if (k == 37 || k == 38){
+													ev.preventDefault();
+												}
 											},
 											keyup: function(ev){
 												changePressed(ev);
@@ -757,6 +769,10 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 													$A.getEl(dc.nextBtnId).focus();
 													ev.preventDefault();
 												}
+
+												else if (k == 38 || k == 39){
+													ev.preventDefault();
+												}
 											},
 											keyup: function(ev){
 												changePressed(ev);
@@ -779,7 +795,8 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 								dc.datepickerLoaded = true;
 							}, 750);
 
-							$A.announce(dc.helpText);
+							if (!('ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0))
+								$A.announce(dc.helpText);
 						},
 						helpText: helpText,
 						tabOut: function(ev, dc){
