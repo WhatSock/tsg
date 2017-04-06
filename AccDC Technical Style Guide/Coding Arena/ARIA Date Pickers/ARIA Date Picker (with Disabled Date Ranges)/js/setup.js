@@ -80,8 +80,39 @@ $A.bind(window, 'load', function(){
 						if (current.year > dc.range.current.year
 							|| (current.year === dc.range.current.year && current.month > dc.range.current.month)){
 							dc.range[dc.range.current.month].disabled[dc.range.current.year] =
-								[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
-									31];
+											[
+											1,
+											2,
+											3,
+											4,
+											5,
+											6,
+											7,
+											8,
+											9,
+											10,
+											11,
+											12,
+											13,
+											14,
+											15,
+											16,
+											17,
+											18,
+											19,
+											20,
+											21,
+											22,
+											23,
+											24,
+											25,
+											26,
+											27,
+											28,
+											29,
+											30,
+											31
+											];
 						}
 
 						if (current.year === dc.range.current.year && current.month === dc.range.current.month){
@@ -92,35 +123,28 @@ $A.bind(window, 'load', function(){
 							}
 						}
 
-						/*
-												// Disable all dates that fall on Saturday or Sunday
-												var date = new Date();
-						
-												if (!dc.range[dc.range.current.month].disabled[dc.range.current.year])
-													dc.range[dc.range.current.month].disabled[dc.range.current.year] = [];
-												date.setFullYear(dc.range.current.year);
-												date.setMonth(dc.range.current.month);
-												var max = dc.range[dc.range.current.month].max;
-						
-												if (dc.range.current.month === 1)
-													max = (new Date(dc.range.current.year, 1, 29).getMonth() == 1) ? 29 : 28;
-						
-												for (var day = 1; day <= max; day++){
-													date.setDate(day);
-													var weekDay = date.getDay();
-						
-													// 0 = Sunday, 6 = Saturday
-													if (weekDay === 0 || weekDay === 6)
-														dc.range[dc.range.current.month].disabled[dc.range.current.year].push(day);
-												}
-						
-												// Disable Halloween for every year
-												if (dc.range.current.month == 9){
-													if (!dc.range[dc.range.current.month].disabled[dc.range.current.year])
-														dc.range[dc.range.current.month].disabled[dc.range.current.year] = [];
-													dc.range[dc.range.current.month].disabled[dc.range.current.year].push(31);
-												}
-						*/
+						// Disable all dates that fall on Saturday or Sunday
+						// 0 = Sunday, 6 = Saturday
+						dc.range.disabledWDays =
+										[
+										0,
+										6
+										];
+
+						// Disable Halloween for every year
+						if (dc.range.current.month == 9){
+							if (!dc.range[dc.range.current.month].disabled[dc.range.current.year])
+								dc.range[dc.range.current.month].disabled[dc.range.current.year] = [];
+							dc.range[dc.range.current.month].disabled[dc.range.current.year].push(31);
+						}
+
+						// Clean up the disabled array by filtering duplicates.
+						if (dc.range[dc.range.current.month].disabled[dc.range.current.year]
+							&& dc.range[dc.range.current.month].disabled[dc.range.current.year].length)
+							dc.range[dc.range.current.month].disabled[dc.range.current.year]
+								= dc.range[dc.range.current.month].disabled[dc.range.current.year].filter(function(o, i, a){
+								return a.indexOf(o) == i;
+							});
 
 						// Now render the datepicker after configuring the disabled date ranges
 						dc.open();

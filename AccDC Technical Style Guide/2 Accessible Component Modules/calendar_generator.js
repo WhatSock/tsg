@@ -1,5 +1,5 @@
 /*!
-ARIA Calendar Module R1.17
+ARIA Calendar Module R1.18
 Copyright 2010-2017 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
@@ -61,11 +61,13 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 						className: config.className || 'calendar',
 						range:
 										{
+										disabledWDays: [],
 										0:
 														{
 														name: config.months && config.months[0] ? config.months[0] : 'January',
 														max: 31,
 														disabled: {},
+														disabledWDays: [],
 														comments: {}
 														},
 										1:
@@ -73,6 +75,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 														name: config.months && config.months[1] ? config.months[1] : 'February',
 														max: 28,
 														disabled: {},
+														disabledWDays: [],
 														comments: {}
 														},
 										2:
@@ -80,6 +83,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 														name: config.months && config.months[2] ? config.months[2] : 'March',
 														max: 31,
 														disabled: {},
+														disabledWDays: [],
 														comments: {}
 														},
 										3:
@@ -87,6 +91,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 														name: config.months && config.months[3] ? config.months[3] : 'April',
 														max: 30,
 														disabled: {},
+														disabledWDays: [],
 														comments: {}
 														},
 										4:
@@ -94,6 +99,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 														name: config.months && config.months[4] ? config.months[4] : 'May',
 														max: 31,
 														disabled: {},
+														disabledWDays: [],
 														comments: {}
 														},
 										5:
@@ -101,6 +107,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 														name: config.months && config.months[5] ? config.months[5] : 'June',
 														max: 30,
 														disabled: {},
+														disabledWDays: [],
 														comments: {}
 														},
 										6:
@@ -108,6 +115,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 														name: config.months && config.months[6] ? config.months[6] : 'July',
 														max: 31,
 														disabled: {},
+														disabledWDays: [],
 														comments: {}
 														},
 										7:
@@ -115,6 +123,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 														name: config.months && config.months[7] ? config.months[7] : 'August',
 														max: 31,
 														disabled: {},
+														disabledWDays: [],
 														comments: {}
 														},
 										8:
@@ -122,6 +131,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 														name: config.months && config.months[8] ? config.months[8] : 'September',
 														max: 30,
 														disabled: {},
+														disabledWDays: [],
 														comments: {}
 														},
 										9:
@@ -129,6 +139,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 														name: config.months && config.months[9] ? config.months[9] : 'October',
 														max: 31,
 														disabled: {},
+														disabledWDays: [],
 														comments: {}
 														},
 										10:
@@ -136,6 +147,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 														name: config.months && config.months[10] ? config.months[10] : 'November',
 														max: 30,
 														disabled: {},
+														disabledWDays: [],
 														comments: {}
 														},
 										11:
@@ -143,6 +155,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 														name: config.months && config.months[11] ? config.months[11] : 'December',
 														max: 31,
 														disabled: {},
+														disabledWDays: [],
 														comments: {}
 														},
 										wDays:
@@ -286,14 +299,17 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							dc.range.track = {};
 							var disabled = dc.range[dc.range.current.month].disabled[dc.range.current.year],
 								disabledAll = dc.range[dc.range.current.month].disabled['*'],
+								disabledWDays = dc.range[dc.range.current.month].disabledWDays, disabledAllWDays = dc.range.disabledWDays,
 								comments = dc.range[dc.range.current.month].comments[dc.range.current.year],
 								commentsAll = dc.range[dc.range.current.month].comments['*'];
 
 							for (var i = 1; i <= dc.range[dc.range.current.month].max; i++){
 								dc.range.track[dc.baseId + i] = i;
 								m.setDate(i);
-								var dis = (disabled && $A.inArray(i, disabled) !== -1)
-									|| (disabledAll && $A.inArray(i, disabledAll) !== -1) ? true : false, comm = '';
+								var wkd = m.getDay();
+								var dis = ((disabled && $A.inArray(i, disabled) !== -1) || (disabledAll && $A.inArray(i, disabledAll) !== -1)
+									|| (disabledWDays.length && $A.inArray(wkd, disabledWDays) !== -1)
+									|| (disabledAllWDays.length && $A.inArray(wkd, disabledAllWDays) !== -1)) ? true : false, comm = '';
 
 								if (comments && comments[i])
 									comm = comments[i];
@@ -439,8 +455,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 												dc.setCurrent(dc);
 
 												if ($A.hasClass(this, 'selected') || (!commentsEnabled && !$A.hasClass(this, 'comment'))){
-													if ($A.inArray(dc.range.current.mDay, dc.range[dc.range.current.month].disabled[dc.range.current.year]
-														|| dc.range[dc.range.current.month].disabled['*'] || []) === -1){
+													if ($A.getAttr(this, 'aria-disabled') != 'true'){
 														handleClick.apply(this, [ev, dc, targ]);
 													}
 
@@ -461,8 +476,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 												if (k == 13){
 													isKP = true;
 
-													if ($A.inArray(dc.range.current.mDay, dc.range[dc.range.current.month].disabled[dc.range.current.year]
-														|| dc.range[dc.range.current.month].disabled['*'] || []) === -1){
+													if ($A.getAttr(this, 'aria-disabled') != 'true'){
 														handleClick.apply(this, [ev, dc, targ]);
 													}
 
@@ -607,8 +621,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 												var k = ev.which || ev.keyCode;
 
 												if (k == 13 && !isKP){
-													if ($A.inArray(dc.range.current.mDay, dc.range[dc.range.current.month].disabled[dc.range.current.year]
-														|| dc.range[dc.range.current.month].disabled['*'] || []) === -1){
+													if ($A.getAttr(this, 'aria-disabled') != 'true'){
 														if (!dc.setFocus.firstOpen)
 															handleClick.apply(this, [ev, dc, targ]);
 													}
