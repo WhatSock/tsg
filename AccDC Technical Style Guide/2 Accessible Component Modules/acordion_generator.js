@@ -1,6 +1,6 @@
 /*!
-Accordion Generator Module R2.9
-Copyright 2010-2016 Bryan Garaventa (WhatSock.com)
+Accordion Generator Module R2.10
+Copyright 2010-2017 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 
@@ -12,6 +12,11 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 			var isBtn = $A.getAttr(o, 'role') == 'button' || o.nodeName.toLowerCase() == 'button' ? true : false, isLnk =
 				$A.getAttr(o, 'role') == 'link' || (o.nodeName.toLowerCase() == 'a' && $A.getAttr(o, 'href')) ? true : false;
+
+			if (!isBtn && !isLnk){
+				$A.setAttr(o, 'role', 'button');
+				isBtn = true;
+			}
 
 			if (!isAria && (isBtn || isLnk))
 				isAria = true;
