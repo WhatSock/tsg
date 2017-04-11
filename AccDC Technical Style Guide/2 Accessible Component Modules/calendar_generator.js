@@ -1,5 +1,5 @@
 /*!
-ARIA Calendar Module R1.18
+ARIA Calendar Module R1.19
 Copyright 2010-2017 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
@@ -493,13 +493,13 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 													var wd = dc.range.current.wDay;
 
 													if (k == 37){
-														if (wd != dc.iterS && dc.range.current.mDay > 1){
+														if (dc.range.current.mDay > 1){
 															dc.range.current.mDay--;
-															dc.range.current.wDay = (wd - 1) < 0 ? 6 : wd - 1;
+															dc.range.current.wDay = !wd ? 6 : wd - 1;
 															dc.setFocus(dc.range.index[dc.range.current.mDay - 1], this);
 														}
 
-														else if (wd != dc.iterS && dc.range.current.mDay == 1 && wd > 0){
+														else if (dc.range.current.mDay == 1){
 															var month = dc.range.current.month < 1 ? 11 : dc.range.current.month - 1,
 																year = month < 11 ? dc.range.current.year : dc.range.current.year - 1, day = dc.range[month].max;
 
@@ -513,13 +513,13 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 													}
 
 													else if (k == 39){
-														if (wd != dc.iterE && dc.range.current.mDay < dc.range[dc.range.current.month].max){
+														if (dc.range.current.mDay < dc.range[dc.range.current.month].max){
 															dc.range.current.mDay++;
-															dc.range.current.wDay = (wd + 1) > 6 ? 0 : wd + 1;
+															dc.range.current.wDay = wd == 6 ? 0 : wd + 1;
 															dc.setFocus(dc.range.index[dc.range.current.mDay - 1], this);
 														}
 
-														else if (wd != dc.iterE && dc.range.current.mDay == dc.range[dc.range.current.month].max && wd < 6){
+														else if (dc.range.current.mDay == dc.range[dc.range.current.month].max){
 															var month = dc.range.current.month == 11 ? 0 : dc.range.current.month + 1,
 																year = month > 0 ? dc.range.current.year : dc.range.current.year + 1;
 															dc.date = new Date(year, month, 1);
