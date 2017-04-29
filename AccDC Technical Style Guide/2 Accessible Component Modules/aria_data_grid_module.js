@@ -1,6 +1,6 @@
 /*!
-ARIA Data Grid Module R1.5
-Copyright 2010-2016 Bryan Garaventa (WhatSock.com)
+ARIA Data Grid Module R1.6
+Copyright 2010-2017 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 
@@ -172,7 +172,11 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 																		config.page.row.editField.focus();
 
 																		if (config.page.row.editLoad && typeof config.page.row.editLoad === 'function')
-																			config.page.row.editLoad.apply(config.page.row.editField, [config.page.row.editField, cellObject]);
+																			config.page.row.editLoad.apply(config.page.row.editField,
+																							[
+																							config.page.row.editField,
+																							cellObject
+																							]);
 																	}
 																}
 
@@ -412,7 +416,13 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 																			});
 														},
 														clean: function(rowObject, keepData){
-															$A.remAttr(rowObject.rowNode, ['title', 'aria-selected', 'aria-rowindex', 'aria-owns']);
+															$A.remAttr(rowObject.rowNode,
+																			[
+																			'title',
+																			'aria-selected',
+																			'aria-rowindex',
+																			'aria-owns'
+																			]);
 
 															$A.remClass(rowObject.rowNode, config.gridRowFocusedClass + ' ' + config.page.row.selectClass);
 
@@ -421,14 +431,27 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 															for (var n in rowObject.cells){
 																$A.remAttr(rowObject.cells[n].cellNode,
-																	['aria-labelledby', 'aria-describedby', 'tabindex', 'aria-colindex', 'aria-selected',
-																		'aria-readonly']);
+																				[
+																				'aria-activedescendant',
+																				'aria-labelledby',
+																				'aria-describedby',
+																				'tabindex',
+																				'aria-colindex',
+																				'aria-selected',
+																				'aria-readonly'
+																				]);
 
 																$A.remClass(rowObject.cells[n].cellNode,
 																	config.cellReadOnlyClass + ' ' + config.gridCellFocusedClass + ' '
 																	+ (rowObject.cells[n].toggleClass || config.gridCellTogglePressedClass));
 
-																$A.remAttr(rowObject.cells[n].cellNodeA, ['title', ]);
+																$A.remAttr(rowObject.cells[n].cellNodeA,
+																				[
+																				'title',
+																				'role',
+																				'aria-pressed',
+																				'aria-disabled'
+																				]);
 
 																rowObject.cells[n].cellNodeS1.innerHTML = '';
 																rowObject.cells[n].cellNodeS2.innerHTML = '';
@@ -439,8 +462,14 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 															}
 														},
 														changed: function(cellNode, cellObject, val){
-															var ret = config.page.row.changed.cb && typeof config.page.row.changed.cb === 'function'
-																? config.page.row.changed.cb.apply(cellNode, [cellObject, val, cellObject.rowObject, that]) : true;
+															var ret = config.page.row.changed.cb
+																&& typeof config.page.row.changed.cb === 'function' ? config.page.row.changed.cb.apply(cellNode,
+																			[
+																			cellObject,
+																			val,
+																			cellObject.rowObject,
+																			that
+																			]) : true;
 
 															if (typeof ret !== 'boolean')
 																ret = true;
@@ -460,7 +489,12 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 															var newVal = sv || (cellObject.rowObject.selected ? false : true),
 																ret = config.page.row.select.cb && typeof config.page.row.select.cb === 'function'
 																	? config.page.row.select.cb.apply(cellObject.rowObject.rowNode,
-																		[cellObject.rowObject, newVal, config.page.row.selected, that]) : true;
+																			[
+																			cellObject.rowObject,
+																			newVal,
+																			config.page.row.selected,
+																			that
+																			]) : true;
 
 															if (typeof ret !== 'boolean')
 																ret = true;
@@ -566,7 +600,11 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 																				if (pos !== -1){
 																					var ret = config.page.row.deleteRow.callback.cb
 																						&& typeof config.page.row.deleteRow.callback.cb === 'function'
-																							? config.page.row.deleteRow.callback.cb.apply(rowObject.rowNode, [rowObject, that]) : true;
+																							? config.page.row.deleteRow.callback.cb.apply(rowObject.rowNode,
+																									[
+																									rowObject,
+																									that
+																									]) : true;
 
 																					if (typeof ret !== 'boolean')
 																						ret = true;
@@ -615,17 +653,33 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 																	var accText = '&nbsp;' + formatStr(config.page.row.toggleButtonRole);
 
 																	if (val){
+																		$A.setAttr(cellObject.cellNodeA,
+																						{
+																						'aria-describedby': $A.getAttr(cellObject.cellNode, 'aria-describedby'),
+																						role: 'button',
+																						'aria-pressed': 'true'
+																						});
+
 																		$A.addClass(cellObject.cellNodeA, cellObject.toggleClass || config.gridCellTogglePressedClass);
 																		accText += '&nbsp;' + formatStr(config.page.row.toggleButtonState);
 																	}
 
 																	else{
+																		$A.setAttr(cellObject.cellNodeA,
+																						{
+																						'aria-describedby': $A.getAttr(cellObject.cellNode, 'aria-describedby'),
+																						role: 'button',
+																						'aria-pressed': 'false'
+																						});
+
 																		$A.remClass(cellObject.cellNodeA, cellObject.toggleClass || config.gridCellTogglePressedClass);
 																	}
 
 																	if (cellObject.readonly || config.page.row.selectEnabled || !config.edit)
-																		accText += '&nbsp;' + formatStr(config.page.row.disabledText);
-																	cellObject.cellNodeS2.innerHTML = '<span>' + accText + '</span>';
+																		// accText += '&nbsp;' + formatStr(config.page.row.disabledText);
+																		$A.setAttr(cellObject.cellNodeA, 'aria-disabled', 'true');
+
+																// cellObject.cellNodeS2.innerHTML = '<span>' + accText + '</span>';
 																}
 
 																else{
@@ -657,7 +711,13 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 																newCell.focus();
 
 															if (config.page.row.move.cb && typeof config.page.row.move.cb === 'function')
-																config.page.row.move.cb.apply(newCell, [newCell, oldCell, config.dc, that]);
+																config.page.row.move.cb.apply(newCell,
+																				[
+																				newCell,
+																				oldCell,
+																				config.dc,
+																				that
+																				]);
 														}
 														},
 										pageRole: 'Page',
@@ -708,7 +768,12 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 											if (prevC != config.page.current || prevT != config.page.total){
 												if (config.page.indexChanged && typeof config.page.indexChanged === 'function')
-													config.page.indexChanged.apply(that, [config.page.current, config.page.total, that]);
+													config.page.indexChanged.apply(that,
+																	[
+																	config.page.current,
+																	config.page.total,
+																	that
+																	]);
 											}
 
 											if (n)
@@ -738,14 +803,24 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 											config.page.render(config.page.sync(n));
 
 											if (!isLoaded && config.page.on.open && typeof config.page.on.open === 'function')
-												config.page.on.open.apply(container, [container, config.dc, that]);
+												config.page.on.open.apply(container,
+																[
+																container,
+																config.dc,
+																that
+																]);
 										},
 										close: function(){
 											if (config.page.row.editFieldActive)
 												clearEdit(true, true);
 
 											if (config.page.on.close && typeof config.page.on.close === 'function')
-												config.page.on.close.apply(container, [container, config.dc, that]);
+												config.page.on.close.apply(container,
+																[
+																container,
+																config.dc,
+																that
+																]);
 
 											config.page.row.unselectAll();
 											config.page.removeRendered();
@@ -761,7 +836,12 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 												config.page.row.clean(rowObject, true);
 
 												if (config.page.on.rem && typeof config.page.on.rem === 'function')
-													config.page.on.rem.apply(rowObject.rowNode, [rowObject, config.dc, that]);
+													config.page.on.rem.apply(rowObject.rowNode,
+																	[
+																	rowObject,
+																	config.dc,
+																	that
+																	]);
 
 												for (var n in rowObject.cells){
 													if (rowObject.cells[n].cellNode.parentNode)
@@ -839,6 +919,12 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 																	tabindex: '-1'
 																	});
 
+													if (cellObject.type == 'toggle' || (config.edit && !cellObject.readonly))
+														$A.setAttr(cellObject.cellNode,
+																		{
+																		'aria-activedescendant': cellObject.cellNodeId + 'a'
+																		});
+
 													if (config.rowHeaders.enabled && config.rowHeaders.id && config.rowHeaders.id == cellObject.id)
 														$A.setAttr(cellObject.cellNode,
 																		{
@@ -900,28 +986,56 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 													if (cellObject.type == 'toggle'){
 														cellObject.cellNodeS1.innerHTML = '<span>' + formatStr(cellObject.name) + '</span>';
+
 														var accText = '&nbsp;' + formatStr(config.page.row.toggleButtonRole);
 
 														if (cellObject.value){
+															$A.setAttr(cellObject.cellNodeA,
+																			{
+																			'aria-describedby': $A.getAttr(cellObject.cellNode, 'aria-describedby'),
+																			role: 'button',
+																			'aria-pressed': 'true'
+																			});
+
 															$A.addClass(cellObject.cellNodeA, cellObject.toggleClass || config.gridCellTogglePressedClass);
 															accText += '&nbsp;' + formatStr(config.page.row.toggleButtonState);
 														}
 
 														else{
+															$A.setAttr(cellObject.cellNodeA,
+																			{
+																			'aria-describedby': $A.getAttr(cellObject.cellNode, 'aria-describedby'),
+																			role: 'button',
+																			'aria-pressed': 'false'
+																			});
+
 															$A.remClass(cellObject.cellNodeA, cellObject.toggleClass || config.gridCellTogglePressedClass);
 														}
 
 														if (cellObject.readonly || config.page.row.selectEnabled || !config.edit)
-															accText += '&nbsp;' + formatStr(config.page.row.disabledText);
-														cellObject.cellNodeS2.innerHTML = '<span>' + accText + '</span>';
+															// accText += '&nbsp;' + formatStr(config.page.row.disabledText);
+															$A.setAttr(cellObject.cellNodeA, 'aria-disabled', 'true');
+
+													// cellObject.cellNodeS2.innerHTML = '<span>' + accText + '</span>';
 													}
 
 													else{
 														cellObject.cellNodeS1.innerHTML = '<span>' + formatStr(cellObject.value) + '</span>';
 
 														if (config.edit && !cellObject.readonly){
+															$A.setAttr(cellObject.cellNodeA,
+																			{
+																			'aria-describedby': $A.getAttr(cellObject.cellNode, 'aria-describedby'),
+																			role: 'button'
+																			});
+
 															var accText = '&nbsp;' + formatStr(config.page.row.editLinkAction);
+
 															cellObject.cellNodeS2.innerHTML = '<span>' + accText + '</span>';
+														}
+
+														else{
+															$A.setAttr(cellObject.cellNodeA, 'role', 'presentation');
 														}
 													}
 													tr.appendChild(cellObject.cellNode);
@@ -933,7 +1047,12 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 												config.dc.tbody.appendChild(tr);
 
 												if (config.page.on.add && typeof config.page.on.add === 'function')
-													config.page.on.add.apply(tr, [config.page.row.collection[ids[h]], config.dc, that]);
+													config.page.on.add.apply(tr,
+																	[
+																	config.page.row.collection[ids[h]],
+																	config.dc,
+																	that
+																	]);
 											}
 
 											$A.setAttr(config.dc.tbody, 'aria-owns', aoIds.join(' '));
@@ -953,7 +1072,12 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 												$A.announce(config.page.pageRole + ' ' + config.page.current);
 
 												if (config.page.on.change && typeof config.page.on.change === 'function')
-													config.page.on.change.apply(container, [config.page.current, config.page.total, that]);
+													config.page.on.change.apply(container,
+																	[
+																	config.page.current,
+																	config.page.total,
+																	that
+																	]);
 											}
 										},
 										next: function(cellObject, rowObject){
@@ -968,7 +1092,12 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 												$A.announce(config.page.pageRole + ' ' + config.page.current);
 
 												if (config.page.on.change && typeof config.page.on.change === 'function')
-													config.page.on.change.apply(container, [config.page.current, config.page.total, that]);
+													config.page.on.change.apply(container,
+																	[
+																	config.page.current,
+																	config.page.total,
+																	that
+																	]);
 											}
 										},
 										first: function(cellObject, rowObject){
@@ -983,7 +1112,12 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 												$A.announce(config.page.pageRole + ' ' + config.page.current);
 
 												if (config.page.on.change && typeof config.page.on.change === 'function')
-													config.page.on.change.apply(container, [config.page.current, config.page.total, that]);
+													config.page.on.change.apply(container,
+																	[
+																	config.page.current,
+																	config.page.total,
+																	that
+																	]);
 											}
 										},
 										last: function(cellObject, rowObject, lr){
@@ -998,7 +1132,12 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 												$A.announce(config.page.pageRole + ' ' + config.page.current);
 
 												if (config.page.on.change && typeof config.page.on.change === 'function')
-													config.page.on.change.apply(container, [config.page.current, config.page.total, that]);
+													config.page.on.change.apply(container,
+																	[
+																	config.page.current,
+																	config.page.total,
+																	that
+																	]);
 											}
 										}
 										}
