@@ -4,10 +4,13 @@
 		var apiToggles = [], moduleToggles = [], ariaToggles = [], eventToggles = [];
 
 		$A.query('div.AccDC .panel > .control > button', function(i, o){
+			$A.setAttr(o, 'aria-expanded', 'false');
 			apiToggles.push(new $A.Toggle(o,
 							{
 							state: false,
 							callback: function(state){
+								$A.setAttr(this, 'aria-expanded', state ? 'true' : 'false');
+
 								if (state){
 									$A.addClass(this, 'pressed');
 									$A.remClass(this.parentNode.nextElementSibling, 'hdn');
@@ -23,10 +26,13 @@
 		});
 
 		$A.query('div.Modules .panel > .control > button', function(i, o){
+			$A.setAttr(o, 'aria-expanded', 'false');
 			moduleToggles.push(new $A.Toggle(o,
 							{
 							state: false,
 							callback: function(state){
+								$A.setAttr(this, 'aria-expanded', state ? 'true' : 'false');
+
 								if (state){
 									$A.addClass(this, 'pressed');
 									$A.remClass(this.parentNode.nextElementSibling, 'hdn');
@@ -42,10 +48,13 @@
 		});
 
 		$A.query('div.ARIA .panel > .control > button', function(i, o){
+			$A.setAttr(o, 'aria-expanded', 'false');
 			ariaToggles.push(new $A.Toggle(o,
 							{
 							state: false,
 							callback: function(state){
+								$A.setAttr(this, 'aria-expanded', state ? 'true' : 'false');
+
 								if (state){
 									$A.addClass(this, 'pressed');
 									$A.remClass(this.parentNode.nextElementSibling, 'hdn');
@@ -61,10 +70,13 @@
 		});
 
 		$A.query('div.Events .panel > .control > button', function(i, o){
+			$A.setAttr(o, 'aria-expanded', 'false');
 			eventToggles.push(new $A.Toggle(o,
 							{
 							state: false,
 							callback: function(state){
+								$A.setAttr(this, 'aria-expanded', state ? 'true' : 'false');
+
 								if (state){
 									$A.addClass(this, 'pressed');
 									$A.remClass(this.parentNode.nextElementSibling, 'hdn');
