@@ -1,0 +1,81 @@
+/* WHATSOCK, 2016 */
+/* Specific styles for ARIA Combobox */
+
+div.toplevel-div {
+    position: absolute;
+	width: 15em;
+/*
+    background-color: #FFF;
+    border: solid 1px #CCC;
+*/
+    -webkit-box-shadow: 0 10px 6px -6px #777;
+    -moz-box-shadow: 0 10px 6px -6px #777;
+    box-shadow: 0 10px 6px -6px #777;
+    padding: 0.3rem;
+    z-index: 1;
+}
+
+div.middle-div {
+    float: left;
+    width: 150%;
+    height: 100%;
+    border:2px solid #000; 
+}
+
+ul.listbox {
+	position: relative;
+	overflow: scroll;
+	height: 10em;
+        background-color:#fff;
+}
+
+li.option {
+	margin-bottom: 0.3rem;
+    cursor: pointer;
+    padding-right:10px;
+}
+
+
+li.option a, li.option a:visited {
+     /*	display: block; */
+	text-decoration: none;
+    color: #000;
+/*    background: #EEE; */
+	padding: 0.3em; 
+}
+
+li.option a:hover, li.option a:focus, li.option.active a, li.option.active a:visited  {
+    color: #FFF;
+    background: #2E3135;
+}
+
+li[role="option"][aria-checked="false"] {
+   background:url('../img/unchecked.svg'); 
+   background-repeat:no-repeat;
+   background-position: right;
+}
+
+li[role="option"][aria-checked="true"] {
+    background:url('../img/checked.svg');
+    background-repeat:no-repeat;
+    background-position: right;
+}
+
+#ctry, #ctryIcon {}
+
+#ctryIcon, #mobileCloseIcon {
+    height: 27px;
+    width: 27px;
+	padding-left: 0.5rem;
+	vertical-align: bottom;
+    cursor: pointer;
+}
+
+/* For Fastclick: Disable certain interactions on touch devices */
+body {
+    -webkit-touch-callout: none;
+    -webkit-text-size-adjust: none;
+    -webkit-user-select: none;
+    -webkit-highlight: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}

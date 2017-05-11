@@ -35,6 +35,8 @@ Hidden Select Element
 
 All Combobox controls are bound to a standard Select element instance, which may be hidden within the page using CSS, or dynamically generated using JavaScript to support dynamic population via AJAX.
 
+To enable multiselect functionality, add the attribute multiple="multiple" to the hidden select element. (Only available when using the ARIA Combobox Module R2.0 or greater.)
+
 <select name="control-name">
 <option value="value-1"> Value 1 name </option>
 <option value="value-2"> Value 2 name </option>
@@ -165,17 +167,37 @@ myCombobox.onTriggerChange(function(altTriggerElement, toggleState){
 });
 
 // Set a handler to execute every time a new value is saved to the Combobox control
-// This will override the default functionality, so the Combobox listbox will need to be closed manually if desired.
+// This will override the default functionality
 myCombobox.onSelect(function(optionName, optionValue, comboboxControl, selectElement){
 // this = comboboxControl
-// optionName = the visible string for the hidden Select option
-// optionValue = the value attribute for the hidden Select option
+// optionName = the visible string for the hidden Select option that is highlighted.
+// optionValue = the value attribute for the hidden Select option that is selected. This parameter changes to an array of selected option nodes when multiple is set instead. (Only available when using the ARIA Combobox Module R2.0 or greater.)
 // comboboxControl = the Combobox control element
 // selectElement = the hidden Select element
 // Save the new value accordingly
 // then return the saved string to prevent auto reopening of the Combobox listbox
 return 'saved string';
 });
+
+// Set multiple divider to break up list item markup properly when updated.
+// Automatically becomes available when the multiple attribute is set on the hidden select element. (Only available when using the ARIA Combobox Module R2.0 or greater.)
+myCombobox.setMultipleDivider(function(values){
+// 'values' is an array of string names for the selected option nodes.
+return values.join('	');
+});
+
+// Clear all selected options when multiple is set on the hidden select element.
+// (Only available when using the ARIA Combobox Module R2.0 or greater.)
+myCombobox.clearAll();
+
+// Set a character minimum when typing into an editable combobox before autosuggested options are rendered.
+// (Only available when using the ARIA Combobox Module R2.0 or greater.)
+myCombobox.setCharMin(#); // Default = 0
+
+// Get the current value of the hidden select element
+// Returns a value property string for single select elements, or an array of selected option DOM nodes when the multiple attribute is set on the select element.
+// (Only available when using the ARIA Combobox Module R2.0 or greater.)
+myCombobox.getValue();
 
 // Manually resynchronize the hidden Select to rebuild available Options for the Combobox listbox
 // This can be used to repopulate rendered options after remote API queries via AJAX cause the hidden Select to contain new Options

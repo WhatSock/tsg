@@ -1,5 +1,5 @@
 /*!
-ARIA Combobox Module R1.9
+ARIA Combobox Module R2.0
 (Requires AccDC API version 3.3 (11/15/2016) +> )
 Copyright 2010-2017 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
@@ -59,6 +59,8 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 						comboboxControl: true,
 						cb:
 										{
+										key: '',
+										charMin: 0,
 										sel: sel,
 										child: child,
 										baseId: baseId,
@@ -67,6 +69,11 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 										optionNodes: [],
 										size: 0,
 										readonly: false,
+										multiple: false,
+										checked: false,
+										multipleDivider: function(values){
+											return values.join('	');
+										},
 										required: false,
 										parentTag: 'ul',
 										childTag: 'li',
@@ -82,6 +89,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 										activeDescendant: false,
 										sIndex: -1,
 										clicked: false,
+										mClicked: false,
 										isInput: isInput,
 										setDefault: true,
 										bound: false,
@@ -97,6 +105,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 															dc.cb.readonly = dc.cb.isInput ? ($A.getAttr(dc.triggerObj, 'readonly') ? true : false) : true;
 															dc.cb.required = dc.cb.isInput ? ($A.getAttr(dc.triggerObj, 'required') ? true : false)
 																: ($A.getAttr(dc.triggerObj, 'aria-required') == 'true' ? true : false);
+															dc.cb.multiple = $A.getAttr(dc.cb.sel, 'multiple') ? true : false;
 															dc.cb.optionNodes = $A.query('option', dc.cb.sel);
 
 															if (dc.cb.readonly){
@@ -109,12 +118,17 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 																				{
 																				role: 'option',
 																				tabindex: '-1',
-																				id: dc.cb.baseId + dc.cb.baseInc
+																				id: dc.cb.baseId + dc.cb.baseInc,
+																				'data-value': dc.cb.optionNodes[i].value
 																				}, null, dc.optionClass);
+
+																if (dc.cb.multiple)
+																	$A.setAttr(o, 'aria-checked', 'false');
 
 																dc.cb.options[dc.cb.optionNodes[i].value] =
 																				{
 																				so: dc.cb.optionNodes[i],
+																				checked: dc.cb.optionNodes[i].selected,
 																				no: trim($A.getText(dc.cb.optionNodes[i])).replace(/<|>/g, ''),
 																				v: dc.cb.optionNodes[i].value,
 																				i: i
@@ -125,8 +139,16 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 																dc.cb.names.push(dc.cb.options[dc.cb.optionNodes[i].value].no);
 																dc.cb.values.push(dc.cb.optionNodes[i].value);
 															}
+
 															dc.cb.sel.selectedIndex = dc.cb.sel.selectedIndex >= 0 ? dc.cb.sel.selectedIndex : 0;
-															dc.cb.fn.setValue(dc.cb.options[dc.cb.optionNodes[dc.cb.sel.selectedIndex].value], true);
+
+															if (!dc.cb.multiple)
+																dc.cb.fn.setValue(dc.cb.options[dc.cb.optionNodes[dc.cb.sel.selectedIndex].value], true);
+
+															else{
+																dc.cb.autoComplete = true;
+																dc.cb.fn.setValue(false, true);
+															}
 
 															if (dc.cb.required && dc.cb.isInput)
 																$A.setAttr(dc.triggerObj,
@@ -134,8 +156,15 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 																				'aria-required': 'true'
 																				});
 														},
-														render: function(pass, scroll){
+														render: function(pass, scroll, noRecheck){
 															var dc = this.dc;
+
+															if (dc.cb.multiple && !noRecheck){
+																for (var value in dc.cb.options){
+																	var option = dc.cb.options[value];
+																	$A.setAttr(option.o, 'aria-checked', option.checked ? 'true' : 'false');
+																} // End for loop
+															}
 
 															if (dc.cb.readonly){
 																var pShowAll = dc.cb.showAll;
@@ -153,8 +182,8 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 																that.close();
 															}
 
-															if (scroll){
-																var v = dc.cb.value.toLowerCase(), fd = false, oI = dc.cb.sIndex;
+															if (scroll && dc.cb.key){
+																var v = dc.cb.key.toLowerCase(), fd = false, oI = dc.cb.sIndex;
 																dc.cb.sIndex++;
 
 																for (var i = dc.cb.sIndex; i < dc.cb.names.length; i++){
@@ -181,12 +210,34 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 																	dc.cb.sIndex = oI;
 
 																else{
-																	dc.cb.currentOption = dc.cb.options[dc.cb.values[dc.cb.sIndex]];
-																	dc.cb.value = dc.cb.currentOption.no;
-																	$A.setAttr(dc.triggerObj, 'aria-activedescendant', dc.cb.currentOption.o.id);
-																	$A.remClass($A.query('.' + dc.activeClass, dc.source), dc.activeClass);
+																	if (!dc.cb.multiple){
+																		dc.cb.currentOption = dc.cb.options[dc.cb.values[dc.cb.sIndex]];
+																		dc.cb.value = dc.cb.currentOption.no;
+																	}
+
+																	else{
+																		dc.cb.currentOption = [];
+																		dc.cb.currentOption[0] = dc.cb.options[dc.cb.values[dc.cb.sIndex]];
+																		dc.cb.value = dc.cb.currentOption[0].no;
+																	}
+
+																	if (!dc.cb.multiple)
+																		$A.setAttr(dc.triggerObj, 'aria-activedescendant', dc.cb.currentOption.o.id);
+
+																	else
+																		$A.setAttr(dc.triggerObj, 'aria-activedescendant', dc.cb.currentOption[0].o.id);
+																}
+
+																$A.remClass($A.query('.' + dc.activeClass, dc.source), dc.activeClass);
+
+																if (!dc.cb.multiple){
 																	$A.addClass(dc.cb.currentOption.o, dc.activeClass);
 																	that.scrollIntoView(dc.cb.currentOption.o, that);
+																}
+
+																else{
+																	$A.addClass(dc.cb.currentOption[0].o, dc.activeClass);
+																	that.scrollIntoView(dc.cb.currentOption[0].o, that);
 																}
 															}
 
@@ -264,7 +315,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 															else{
 																$A.setAttr(o,
 																				{
-																				// 'aria-hidden': 'true',
+																				'aria-hidden': 'true',
 																				tabindex: '-1'
 																				});
 															}
@@ -282,6 +333,10 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 																	}
 
 																	else{
+																		if (dc.cb.multiple && dc.cb.mClicked){
+																			dc.cb.fn.setValue(false, false, true);
+																			dc.cb.mClicked = false;
+																		}
 																		that.close();
 																	}
 																	dc.triggerObj.focus();
@@ -289,38 +344,97 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 																		dc.cb.altClicked = false;
 																	}, 300);
 																}
+																ev.stopPropagation();
 																ev.preventDefault();
 															});
 															dc.cb.altTrigger = o;
 														},
 														setValue: function(option, pass, manual){
 															var dc = this.dc;
-															dc.cb.value = option.no;
-															dc.cb.currentOption = option;
 
-															if (!pass)
-																option.so.selected = true;
+															if (option && !dc.cb.multiple){
+																dc.cb.value = option.no;
+																dc.cb.currentOption = option;
 
-															if (!pass && dc.cb.fn.onSelect && typeof dc.cb.fn.onSelect === 'function'){
-																var nv = dc.cb.fn.onSelect.apply(dc.triggerObj, [option.no, option.v, dc.triggerObj, dc.cb.sel]);
+																if (!pass)
+																	option.so.selected = true;
 
-																if (nv)
-																	dc.cb.value = nv;
+																if (!pass && dc.cb.fn.onSelect && typeof dc.cb.fn.onSelect === 'function'){
+																	var nv = dc.cb.fn.onSelect.apply(dc.triggerObj, [option.no, option.v, dc.triggerObj, dc.cb.sel]);
+
+																	if (nv || typeof nv == 'string')
+																		dc.cb.value = nv;
+																}
+
+																else if (dc.cb.isInput){
+																	if (manual || dc.cb.setDefault)
+																		dc.triggerObj.value = dc.cb.value;
+																}
+
+																else{
+																	if (manual || dc.cb.setDefault)
+																		dc.cb.child.innerHTML = dc.cb.value;
+																}
 															}
 
-															else if (dc.cb.isInput){
-																if (manual || dc.cb.setDefault)
-																	dc.triggerObj.value = dc.cb.value;
+															else if (!option && dc.cb.multiple){
+
+																var soNodes = [];
+
+																if (pass){
+																	soNodes = $A.query('option[selected]', dc.cb.sel);
+
+																	for (var i = 0; i < soNodes.length; i++){
+																		dc.cb.options[soNodes[i].value].checked = true;
+																	}
+																}
+
+																dc.cb.currentOption = [];
+																dc.cb.value = '';
+																var vals = [];
+
+																for (var value in dc.cb.options){
+																	var option = dc.cb.options[value];
+
+																	if (!pass){
+																		option.checked = $A.getAttr(option.o, 'aria-checked') == 'true' ? true : false;
+																		option.so.selected = option.checked ? 'selected' : false;
+																	}
+
+																	if (option.checked){
+																		dc.cb.currentOption.push(option);
+																		soNodes.push(option.so);
+																		vals.push(option.no);
+																	}
+																} // End for loop
+
+																dc.cb.value = dc.cb.multipleDivider(vals);
+
+																if (!pass && dc.cb.fn.onSelect && typeof dc.cb.fn.onSelect === 'function'){
+																	var nv = dc.cb.fn.onSelect.apply(dc.triggerObj, [dc.cb.value, soNodes, dc.triggerObj, dc.cb.sel]);
+
+																	if (nv || typeof nv == 'string')
+																		dc.cb.value = nv;
+																}
+
+																else if (dc.cb.isInput){
+																	if (manual || dc.cb.setDefault)
+																		dc.triggerObj.value = dc.cb.value;
+																}
+
+																else{
+																	if (manual || dc.cb.setDefault)
+																		dc.cb.child.innerHTML = dc.cb.value;
+																}
 															}
 
-															else{
-																if (manual || dc.cb.setDefault)
-																	dc.cb.child.innerHTML = dc.cb.value;
-															}
 															dc.cb.pValue = dc.cb.value;
 														},
 														checkValue: function(v){
 															var dc = this.dc;
+
+															if (!(v && v.length >= dc.cb.charMin))
+																return -1;
 
 															for (var i = 0; i < dc.cb.names.length; i++){
 																if (trim(v) && trim(v.toLowerCase()) == trim(dc.cb.names[i].toLowerCase())){
@@ -359,8 +473,13 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 																				if (k == 9){
 																					if (dc.loaded){
-																						if (dc.cb.autoComplete && dc.cb.activeDescendant)
-																							dc.cb.fn.setValue(dc.cb.options[dc.cb.matches[dc.cb.sIndex]], false, true);
+																						if (dc.cb.autoComplete && dc.cb.activeDescendant){
+																							if (!dc.cb.multiple)
+																								dc.cb.fn.setValue(dc.cb.options[dc.cb.matches[dc.cb.sIndex]], false, true);
+
+																							else
+																								dc.cb.fn.setValue(false, false, true);
+																						}
 																						that.close();
 																					}
 																				}
@@ -370,15 +489,25 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 																					ev.preventDefault();
 																				}
 
-																				else if ((k == 13 || k == 32) && dc.cb.activeDescendant && dc.loaded){
+																				else if (!dc.cb.multiple && (k == 13 || k == 32) && dc.cb.activeDescendant && dc.loaded){
 																					dc.cb.fn.setValue(dc.cb.options[dc.cb.matches[dc.cb.sIndex]], false, true);
 																					that.close();
+																					announceVal();
+																					ev.preventDefault();
+																				}
 
-																					if (!(dc.cb.fn.onSelect && typeof dc.cb.fn.onSelect === 'function')){
-																						setTimeout(function(){
-																							$A.announce(dc.cb.value, false, true);
-																						}, 100);
-																					}
+																				else if (dc.cb.multiple && k == 13 && dc.cb.activeDescendant && dc.loaded){
+																					dc.cb.fn.setValue(false, false, true);
+																					that.close();
+																					announceVal();
+
+																					ev.preventDefault();
+																				}
+
+																				else if (dc.cb.multiple && k == 32 && dc.cb.activeDescendant && dc.loaded){
+																					$A.setAttr(dc.cb.options[dc.cb.matches[dc.cb.sIndex]].o, 'aria-checked',
+																						$A.getAttr(dc.cb.options[dc.cb.matches[dc.cb.sIndex]].o, 'aria-checked')
+																							== 'true' ? 'false' : 'true');
 																					ev.preventDefault();
 																				}
 
@@ -386,21 +515,29 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 																					ev.preventDefault();
 																				}
 
-																				if (dc.cb.readonly && ((k >= 48 && k <= 57) || (k >= 65 && k <= 90))){
-																					dc.cb.value = String.fromCharCode(k);
-																					dc.cb.fn.render(false, true);
+																				else if (dc.cb.readonly && ((k >= 48 && k <= 57) || (k >= 65 && k <= 90))){
+																					dc.cb.key += String.fromCharCode(k);
+																					dc.cb.fn.render(false, true, true);
+
+																					if (dc.cb.keyReset)
+																						clearTimeout(dc.cb.keyReset);
+																					dc.cb.keyReset = setTimeout(function(){
+																						dc.cb.key = '';
+																					}, 1500);
 																				}
 																			},
 																			keyup: function(ev){
 																				var e = this, k = ev.which || ev.keyCode;
 
-																				if (dc.cb.readonly && dc.loaded && (k == 37 || k == 39)){}
+																				if (dc.cb.readonly && dc.loaded && (k == 37 || k == 39)){
+																					ev.preventDefault();
+																				}
 
 																				else if (((ev.altKey && k == 40) || k == 40)
 																					&& !dc.cb.activeDescendant && !dc.loaded && dc.cb.readonly){
 																					dc.cb.activeDescendant = true;
-																					dc.cb.sIndex = ((dc.cb.readonly || dc.cb.showAll) && dc.cb.sel.selectedIndex >= 0)
-																						? dc.cb.sel.selectedIndex : 0;
+																					dc.cb.sIndex = ((dc.cb.readonly || dc.cb.showAll) && dc.cb.sel.selectedIndex >= 0
+																						&& !dc.cb.multiple) ? dc.cb.sel.selectedIndex : 0;
 																					that.open();
 																					ev.preventDefault();
 																				}
@@ -408,12 +545,12 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 																				else if (((ev.altKey && k == 40) || k == 40)
 																					&& !dc.cb.activeDescendant && dc.loaded && !dc.cb.readonly){
 																					dc.cb.activeDescendant = true;
-																					dc.cb.sIndex = ((dc.cb.readonly || dc.cb.showAll) && dc.cb.sel.selectedIndex >= 0)
-																						? dc.cb.sel.selectedIndex : 0;
+																					dc.cb.sIndex = ((dc.cb.readonly || dc.cb.showAll) && dc.cb.sel.selectedIndex >= 0
+																						&& !dc.cb.multiple) ? dc.cb.sel.selectedIndex : 0;
 																					$A.setAttr(e,
 																									{
-																									'aria-expanded': 'true',
-																									'aria-activedescendant': dc.cb.options[dc.cb.matches[dc.cb.sIndex]].o.id
+																									'aria-activedescendant': dc.cb.options[dc.cb.matches[dc.cb.sIndex]].o.id,
+																									'aria-expanded': 'true'
 																									});
 
 																					$A.remClass($A.query('.' + dc.activeClass, dc.source), dc.activeClass);
@@ -436,14 +573,14 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 																				}
 
 																				else if (ev.altKey && k == 38 && dc.cb.activeDescendant && dc.loaded){
-																					dc.cb.fn.setValue(dc.cb.options[dc.cb.matches[dc.cb.sIndex]], false, true);
-																					that.close();
+																					if (!dc.cb.multiple)
+																						dc.cb.fn.setValue(dc.cb.options[dc.cb.matches[dc.cb.sIndex]], false, true);
 
-																					if (!(dc.cb.fn.onSelect && typeof dc.cb.fn.onSelect === 'function')){
-																						setTimeout(function(){
-																							$A.announce(dc.cb.value, false, true);
-																						}, 100);
-																					}
+																					else
+																						dc.cb.fn.setValue(false, false, true);
+																					that.close();
+																					announceVal();
+
 																					ev.preventDefault();
 																				}
 
@@ -482,13 +619,20 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 																					if (dc.cb.value && x !== -1){
 																						var option = dc.cb.options[dc.cb.values[x]];
-																						dc.cb.currentOption = option;
+
+																						if (!dc.cb.multiple)
+																							dc.cb.currentOption = option;
+
+																						else{
+																							dc.cb.currentOption = [];
+																							dc.cb.currentOption[0] = option;
+																						}
 																						option.so.selected = true;
 																						that.close();
 																					}
 
 																					else{
-																						if (dc.cb.value){
+																						if (dc.cb.value && dc.cb.value.length >= dc.cb.charMin){
 																							var skp = (dc.cb.isInput && !dc.cb.readonly) ? true : false;
 
 																							if (skp){
@@ -514,14 +658,16 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 																					if (!dc.cb.isInput && !dc.loaded)
 																						that.open();
 
-																					else if (!dc.cb.isInput && dc.loaded)
+																					else if ((!dc.cb.isInput || (dc.cb.isInput && dc.cb.multiple)) && dc.loaded)
 																						that.close();
 																				}
+																				ev.stopPropagation();
 																				ev.preventDefault();
 																			},
 																			focus: function(ev){},
 																			blur: function(ev){
-																				if (!('ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0)){
+																				if (!('ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0)
+																					&& !dc.cb.multiple){
 																					setTimeout(function(){
 																						if (!dc.cb.altClicked){
 																							if (dc.loaded){
@@ -607,30 +753,49 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 								$A.setAttr(dc.fn.sraEnd, 'aria-hidden', 'true');
 							}
 						},
+						click: function(ev, dc){
+							ev.stopPropagation();
+						},
 						runAfter: function(dc){
 
 							$A.query(dc.cb.matches, function(i, v){
 								$A.unbind(dc.cb.options[v].o, 'click');
 
-								$A.bind(dc.cb.options[v].o, 'click', function(ev){
-									dc.cb.fn.setValue(dc.cb.options[v], false, true);
-									dc.cb.clicked = true;
-									that.close();
+								$A.bind(dc.cb.options[v].o,
+												{
+												click: function(ev){
+													if (!dc.cb.multiple){
+														dc.cb.fn.setValue(dc.cb.options[v], false, true);
+														dc.cb.clicked = true;
+														that.close();
+														announceVal();
+													}
 
-									if (!(dc.cb.fn.onSelect && typeof dc.cb.fn.onSelect === 'function')){
-										setTimeout(function(){
-											$A.announce(dc.cb.value, false, true);
-										}, 100);
-									}
-									ev.preventDefault();
-								});
+													else{
+														var o = dc.cb.options[v].o;
+
+														if (o)
+															$A.setAttr(o, 'aria-checked', $A.getAttr(o, 'aria-checked') == 'true' ? 'false' : 'true');
+														dc.cb.mClicked = true;
+													}
+
+													ev.preventDefault();
+												},
+												focus: function(ev){
+													if (dc.cb.multiple)
+														$A.setAttr(dc.triggerObj, 'aria-expanded', 'true');
+												}
+												});
 							});
+
+							if (!(dc.cb.sIndex >= 0))
+								dc.cb.sIndex = 0;
 
 							if (dc.cb.readonly){
 								$A.setAttr(dc.triggerObj,
 												{
-												'aria-expanded': 'true',
-												'aria-activedescendant': dc.cb.options[dc.cb.matches[dc.cb.sIndex]].o.id
+												'aria-activedescendant': dc.cb.options[dc.cb.matches[dc.cb.sIndex]].o.id,
+												'aria-expanded': 'true'
 												});
 
 								$A.remClass($A.query('.' + dc.activeClass, dc.source), dc.activeClass);
@@ -641,7 +806,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 							that.scrollIntoView(dc.cb.options[dc.cb.matches[dc.cb.sIndex]].o, that);
 
-							dc.cb.options[dc.cb.matches[dc.cb.sIndex]].no.announce(null, false, true);
+							$A.announce(dc.cb.options[dc.cb.matches[dc.cb.sIndex]].no, true);
 
 							if (dc.cb.altTrigger && dc.cb.altTrigger.nodeType === 1){
 								$A.addClass(dc.cb.altTrigger, dc.toggleClass);
@@ -655,10 +820,27 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 									dc.cb.fn.onTriggerChange.apply(dc.cb.altTrigger, [dc.cb.altTrigger, dc.loaded]);
 							}
 
+							$A.bind('body', 'click.acccombobox', function(ev){
+								if ((!dc.cb.isInput || (dc.cb.isInput && dc.cb.multiple)) && dc.loaded){
+									that.close();
+									ev.preventDefault();
+								}
+							});
+
 							if (dc.cb.fn.onOpen && typeof dc.cb.fn.onOpen === 'function')
 								dc.cb.fn.onOpen.apply(dc.triggerObj, [dc]);
 						},
+						runBeforeClose: function(dc){
+							if (dc.loaded){
+								if (dc.cb.multiple && dc.cb.mClicked){
+									dc.cb.fn.setValue(false, false, true);
+								}
+							}
+						},
 						runAfterClose: function(dc){
+							dc.cb.mClicked = false;
+							$A.setAttr(dc.triggerObj, 'aria-expanded', 'false');
+
 							if (dc.cb.altTrigger && dc.cb.altTrigger.nodeType === 1){
 								$A.remClass(dc.cb.altTrigger, dc.toggleClass);
 
@@ -670,6 +852,8 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 								if (dc.cb.fn.onTriggerChange && typeof dc.cb.fn.onTriggerChange === 'function')
 									dc.cb.fn.onTriggerChange.apply(dc.cb.altTrigger, [dc.cb.altTrigger, dc.loaded]);
 							}
+
+							$A.unbind('body', 'click.acccombobox');
 
 							if (dc.cb.fn.onClose && typeof dc.cb.fn.onClose === 'function')
 								dc.cb.fn.onClose.apply(dc.triggerObj, [dc]);
@@ -683,6 +867,25 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 		that.combobox = dc.triggerObj;
 		that.select = dc.cb.sel;
 		dc.targetObj = dc.triggerObj;
+
+		var announceVal = function(){
+			if (!(dc.cb.fn.onSelect && typeof dc.cb.fn.onSelect === 'function')){
+				setTimeout(function(){
+					if (!dc.cb.multiple || dc.cb.isInput){
+						$A.announce(dc.cb.value.toString(), false, true);
+					}
+
+					else if (dc.cb.child){
+						$A.announce(dc.cb.child, false, true);
+					}
+				}, 150);
+			}
+		};
+
+		that.setCharMin = function(v){
+			if (typeof v == 'number' && v >= 0)
+				dc.cb.charMin = v;
+		};
 
 		that.setShowAll = function(v){
 			dc.cb.showAll = v ? true : false;
@@ -725,6 +928,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							});
 
 			$A.remClass($A.query('.' + dc.activeClass, dc.source), dc.activeClass);
+
 			dc.close();
 			dc.cb.activeDescendant = false;
 		};
@@ -741,8 +945,8 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 					if (!passive){
 						$A.setAttr(dc.triggerObj,
 										{
-										'aria-expanded': 'true',
-										'aria-activedescendant': dc.cb.options[dc.cb.matches[dc.cb.sIndex]].o.id
+										'aria-activedescendant': dc.cb.options[dc.cb.matches[dc.cb.sIndex]].o.id,
+										'aria-expanded': 'true'
 										});
 
 						$A.remClass($A.query('.' + dc.activeClass, dc.source), dc.activeClass);
@@ -797,6 +1001,33 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 		that.setDefault = function(v){
 			dc.cb.setDefault = v ? true : false;
+		};
+
+		that.setMultipleDivider = function(fn){
+			if (fn && typeof fn == 'function')
+				dc.cb.multipleDivider = fn;
+		};
+
+		that.clearAll = function(){
+			that.close();
+
+			for (var value in dc.cb.options){
+				var option = dc.cb.options[value];
+				option.so.selected = false;
+				option.checked = false;
+				$A.setAttr(option.o, 'aria-checked', 'false');
+			} // End for loop
+
+			if (dc.cb.isInput)
+				dc.triggerObj.value = '';
+
+			else if (dc.cb.child){
+				if (!dc.cb.multiple)
+					dc.cb.child.innerHTML = '';
+
+				else
+					dc.cb.fn.setValue(false, true);
+			}
 		};
 
 		that.update = function(){
@@ -859,6 +1090,23 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 			if (document.documentElement.scrollLeft != i)
 				document.documentElement.scrollLeft = i;
+		};
+
+		that.getValue = function(){
+			if (!dc.cb.multiple)
+				return dc.cb.sel.value;
+
+			else{
+				var r = [];
+
+				for (var value in dc.cb.options){
+					var option = dc.cb.options[value];
+
+					if (option.checked && option.so.selected)
+						r.push(option.so);
+				} // End for loop
+				return r;
+			}
 		};
 
 		$A.bind(window, 'resize', function(){

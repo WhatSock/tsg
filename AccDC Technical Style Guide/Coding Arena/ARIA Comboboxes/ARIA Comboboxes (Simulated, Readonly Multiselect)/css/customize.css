@@ -4,8 +4,10 @@
 div.toplevel-div {
     position: absolute;
 	width: 15em;
+/*
     background-color: #FFF;
     border: solid 1px #CCC;
+*/
     -webkit-box-shadow: 0 10px 6px -6px #777;
     -moz-box-shadow: 0 10px 6px -6px #777;
     box-shadow: 0 10px 6px -6px #777;
@@ -15,32 +17,47 @@ div.toplevel-div {
 
 div.middle-div {
     float: left;
-    width: 100%;
+    width: 150%;
     height: 100%;
+    border:2px solid #000;  
 }
 
 ul.listbox {
 	position: relative;
 	overflow: scroll;
 	height: 10em;
+        background-color:#fff;
 }
 
 li.option {
 	margin-bottom: 0.3rem;
     cursor: pointer;
+    padding-right:10px;
 }
 
 li.option a, li.option a:visited {
-	display: block;
+     /*	display: block; */
 	text-decoration: none;
     color: #000;
-    background: #EEE;
+/*    background: #EEE; */
 	padding: 0.3em; 
 }
 
 li.option a:hover, li.option a:focus, li.option.active a, li.option.active a:visited {
     color: #FFF;
     background: #2E3135;
+}
+
+li[role="option"][aria-checked="false"] {
+   background:url('../img/unchecked.svg'); 
+   background-repeat:no-repeat;
+   background-position: right;
+}
+
+li[role="option"][aria-checked="true"] {
+    background:url('../img/checked.svg');
+    background-repeat:no-repeat;
+   background-position: right;
 }
 
 .button {

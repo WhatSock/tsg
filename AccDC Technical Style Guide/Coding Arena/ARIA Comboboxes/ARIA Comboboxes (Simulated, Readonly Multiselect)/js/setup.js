@@ -13,7 +13,13 @@ $A.bind(window, 'load', function(){
 	};
 
 	// Create a new ARIA Combobox instance
-	var myLangCB = new $A.Combobox($A.getEl('languagesId'), $A.getEl('langBtnId'), $A.getEl('langChild'));
+	var myLangCB = new $A.Combobox($A.getEl('languagesId'), $A.getEl('langBtnId'), $A.getEl('insertionPoint'));
+
+	// Set multiple divider to break up list item markup properly when updated.
+	myLangCB.setMultipleDivider(function(values){
+		return values.length ? '<ul><li>' + values.join('</li><li>') + '</li></ul>' : '<i>(None Selected)</i>';
+	});
+
 	myLangCB.scrollIntoView = scrollIntoViewOverride;
 
 	// Set CSS autopositioning relative to the triggering element.
@@ -61,8 +67,22 @@ $A.bind(window, 'load', function(){
 	// Now fire up the newly instantiated ARIA Combobox
 	myLangCB.start();
 
+	$A.bind('#clearAll',
+					{
+					click: function(ev){
+						// Clear all of the selected options.
+						myLangCB.clearAll();
+						myLangCB.combobox.focus();
+						ev.preventDefault();
+					}
+					});
+
 	$A.bind('#frm', 'submit', function(ev){
-		alert(myLangCB.getValue());
+		var values = [], selectedMatches = myLangCB.getValue();
+		$A.query(selectedMatches, function(i, o){
+			values.push(o.value);
+		});
+		alert('Option nodes selected ' + selectedMatches.length + '\n' + 'Selected values ' + values.toString());
 		ev.preventDefault();
 	});
 });

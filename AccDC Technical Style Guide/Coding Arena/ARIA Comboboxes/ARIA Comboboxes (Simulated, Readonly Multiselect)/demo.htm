@@ -3,7 +3,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-        <title>ARIA Comboboxes (Simulated, Readonly) - AccDC Technical Style Guide</title>
+        <title>ARIA Comboboxes (Simulated, Readonly Multiselect) - AccDC Technical Style Guide</title>
         <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
         <link rel="stylesheet" type="text/css" href="css/customize.css" />
         <script type="text/javascript" src="js/detectmobilebrowser.js">
@@ -36,23 +36,25 @@
         	
 			<main>
 				
-				<h2>ARIA Combobox <small>(Simulated, Readonly)</small></h2>
+				<h2>ARIA Combobox <small>(Simulated, Readonly Multiselect)</small></h2>
 				
 				<div class="demo-block">
-            		<h3> Some random page with a language selector</h3>
+            		<h3> Select all of the languages that you speak, or want to speak. </h3>
 		            <div>
 		                <form id="frm" class="clearfix">
 		                    <!--
 		                    The attribute role=combobox is required;
 		                    So too is the tabindex attribute to ensure keyboard accessibility.
-		                    --><span title="Choose language" role="combobox" tabindex="0" id="langBtnId" class="button">
-		                    	<span id="langChild"><!--
-		                            Selected values will be dynamically inserted here.
-		                            --></span>
+		                    --><span role="combobox" aria-labelledby="langChild" tabindex="0" id="langBtnId" class="button">
+		                    	<span id="langChild">Select Languages</span>
 		                        <sup></sup>
 		                    </span>
+		                    		                    <div id="insertionPoint" ><!--
+		                            Selected values will be dynamically inserted here.
+		                            --></div>
+		                    <p><button id="clearAll">Clear All</button></p>
 		                    <p><button>Test saved value</button></p>
-		                    <select name="language" id="languagesId" style="display: none;">
+		                    <select multiple="multiple" name="language" id="languagesId" style="display: none;">
 		                        <option value="Acholi">Acholi</option>
 		                        <option value="Afrikaans">Afrikaans</option>
 		                        <option value="Akan">Akan</option>
@@ -91,7 +93,7 @@
 		                        <option value="Dinka">Dinka</option>
 		                        <option value="Dula">Dula</option>
 		                        <option value="Dutch">Dutch</option>
-		                        <option selected value="English">English</option>
+		                        <option value="English">English</option>
 		                        <option value="Estonian">Estonian</option>
 		                        <option value="Ewe">Ewe</option>
 		                        <option value="Fante">Fante</option>
@@ -265,10 +267,11 @@
 						<li>Click the Language button to open the combobox control.</li>
 						<li>Within the combobox, press the <kbd class="down">Down</kbd> arrow to navigate into the dropdown and use the 
 						<kbd class="up">Up</kbd> and <kbd class="down">Down</kbd> arrow keys to navigate available options.</li>
+						<li>Press the Spacebar to toggle the checked state of specific options.</li>
 						<li>Press any letter or number within a readonly field to jump to an option starting with that character or digit.</li>
 						<li>Press <kbd>Enter</kbd> or <kbd><kbd>Alt</kbd>+<kbd>Up</kbd></kbd> to close the dropdown and save the selection.</li>
 						<li>To cancel, press <kbd>Escape</kbd>, <kbd>Tab</kbd> or <kbd><kbd>Shift</kbd>+<kbd>Tab</kbd></kbd> to close the dropdown.</li>
-						<li>Sighted mouse users can click the desired option to save the selection and close the dropdown.</li>
+						<li>Sighted mouse users can click the desired option to toggle the checked state, then click the combobox field once again to save the selection and close the dropdown.</li>
 					</ul>
 	            </div>
 			</main>
