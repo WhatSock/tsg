@@ -1,6 +1,6 @@
 /*!
-Carousel From XML Module R2.8
-Copyright 2010-2016 Bryan Garaventa (WhatSock.com)
+Carousel From XML Module R2.9
+Copyright 2010-2017 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 
@@ -142,19 +142,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 					rDiv.appendChild(btnNG);
 				}
 			};
-			renderFn.apply(this,
-							[
-							pDiv,
-							lDiv,
-							cDiv,
-							bDiv,
-							rDiv,
-							btnP,
-							btnN,
-							isGrouped,
-							btnPG,
-							btnNG
-							]);
+			renderFn.apply(this, [pDiv, lDiv, cDiv, bDiv, rDiv, btnP, btnN, isGrouped, btnPG, btnNG]);
 
 			$A(
 							[
@@ -257,11 +245,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 											var aS = '';
 
 											if (!autoStart || typeof autoStart !== 'string')
-												aS =
-																[
-																0,
-																0
-																];
+												aS = [0, 0];
 
 											else
 												aS = autoStart.split(',');
@@ -404,11 +388,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 									var ret = null;
 
 									if (handlers.btnPrev && typeof handlers.btnPrev === 'function' && dc.accDCObj)
-										ret = handlers.btnPrev.apply(this,
-														[
-														ev,
-														dc
-														]);
+										ret = handlers.btnPrev.apply(this, [ev, dc]);
 
 									if (typeof ret === 'boolean' && !ret)
 										return false;
@@ -453,14 +433,15 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 								dc.enableAuto = function(v){
 									stop = v ? false : true;
 									dc.isStopped = stop;
-									dc.isPaused = paused;
+
+									if (stop)
+										clearTimeout(dc.inc);
+
+									else
+										dc.setInc();
 
 									if (handlers.stopStateChange && typeof handlers.stopStateChange === 'function')
-										handlers.stopStateChange.apply(dc,
-														[
-														stop || paused || false,
-														dc
-														]);
+										handlers.stopStateChange.apply(dc, [stop || paused || false, dc]);
 								};
 
 								dc.isStopped = function(){
@@ -471,20 +452,10 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 									var isSN = (!isNaN(slideNum) && slideNum >= 0), isGN = (!isNaN(groupNum) && groupNum >= 0);
 
 									if (isGN && isSN)
-										dc.nGroup.apply(this,
-														[
-														null,
-														slideNum,
-														groupNum
-														]);
+										dc.nGroup.apply(this, [null, slideNum, groupNum]);
 
 									else if (isSN)
-										dc.nSlide.apply(this,
-														[
-														null,
-														null,
-														slideNum
-														]);
+										dc.nSlide.apply(this, [null, null, slideNum]);
 								};
 
 								dc.nSlide = function(ev, auto, slideNum){
@@ -494,12 +465,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 									var ret = null;
 
 									if (handlers.btnNext && typeof handlers.btnNext === 'function' && dc.accDCObj)
-										ret = handlers.btnNext.apply(this,
-														[
-														ev,
-														dc,
-														slideNum
-														]);
+										ret = handlers.btnNext.apply(this, [ev, dc, slideNum]);
 
 									if (typeof ret === 'boolean' && !ret)
 										return false;
@@ -552,11 +518,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 									var ret = null;
 
 									if (handlers.btnPrevG && typeof handlers.btnPrevG === 'function')
-										ret = handlers.btnPrevG.apply(this,
-														[
-														ev,
-														dc
-														]);
+										ret = handlers.btnPrevG.apply(this, [ev, dc]);
 
 									if (typeof ret === 'boolean' && !ret)
 										return false;
@@ -584,13 +546,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 									var ret = null;
 
 									if (handlers.btnNextG && typeof handlers.btnNextG === 'function')
-										ret = handlers.btnNextG.apply(this,
-														[
-														ev,
-														dc,
-														slideNum,
-														groupNum
-														]);
+										ret = handlers.btnNextG.apply(this, [ev, dc, slideNum, groupNum]);
 
 									if (typeof ret === 'boolean' && !ret)
 										return false;
@@ -621,22 +577,14 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 												{
 												click: function(ev){
 													ev.preventDefault();
-													dc.pSlide.apply(this,
-																	[
-																	ev,
-																	dc
-																	]);
+													dc.pSlide.apply(this, [ev, dc]);
 												},
 												keydown: function(ev){
 													var k = ev.which || ev.keyCode;
 
 													if (k == 13 || k == 32){
 														ev.preventDefault();
-														dc.pSlide.apply(this,
-																		[
-																		ev,
-																		dc
-																		]);
+														dc.pSlide.apply(this, [ev, dc]);
 													}
 												}
 												});
@@ -645,22 +593,14 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 												{
 												click: function(ev){
 													ev.preventDefault();
-													dc.nSlide.apply(this,
-																	[
-																	ev,
-																	dc
-																	]);
+													dc.nSlide.apply(this, [ev, dc]);
 												},
 												keydown: function(ev){
 													var k = ev.which || ev.keyCode;
 
 													if (k == 13 || k == 32){
 														ev.preventDefault();
-														dc.nSlide.apply(this,
-																		[
-																		ev,
-																		dc
-																		]);
+														dc.nSlide.apply(this, [ev, dc]);
 													}
 												}
 												});
@@ -670,22 +610,14 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 													{
 													click: function(ev){
 														ev.preventDefault();
-														dc.pGroup.apply(this,
-																		[
-																		ev,
-																		dc
-																		]);
+														dc.pGroup.apply(this, [ev, dc]);
 													},
 													keydown: function(ev){
 														var k = ev.which || ev.keyCode;
 
 														if (k == 13 || k == 32){
 															ev.preventDefault();
-															dc.pGroup.apply(this,
-																			[
-																			ev,
-																			dc
-																			]);
+															dc.pGroup.apply(this, [ev, dc]);
 														}
 													}
 													});
@@ -694,22 +626,14 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 													{
 													click: function(ev){
 														ev.preventDefault();
-														dc.nGroup.apply(this,
-																		[
-																		ev,
-																		dc
-																		]);
+														dc.nGroup.apply(this, [ev, dc]);
 													},
 													keydown: function(ev){
 														var k = ev.which || ev.keyCode;
 
 														if (k == 13 || k == 32){
 															ev.preventDefault();
-															dc.nGroup.apply(this,
-																			[
-																			ev,
-																			dc
-																			]);
+															dc.nGroup.apply(this, [ev, dc]);
 														}
 													}
 													});
@@ -722,14 +646,10 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 										if (k == 27){
 											stop = true;
 											dc.isStopped = stop;
-											dc.isPaused = paused;
+											clearTimeout(dc.inc);
 
 											if (handlers.stopStateChange && typeof handlers.stopStateChange === 'function')
-												handlers.stopStateChange.apply(dc,
-																[
-																stop || paused || false,
-																dc
-																]);
+												handlers.stopStateChange.apply(dc, [stop || paused || false, dc]);
 
 											ev.preventDefault();
 										}
@@ -743,59 +663,43 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 									else
 										$A.setAttr(dc.fn.sraStart, 'aria-hidden', 'true');
 								}
+
+								if (config.pauseRotation)
+									dc.enableAuto(false);
 							},
 							focusIn: function(ev, dc){
 								paused = true;
-								clearTimeout(dc.inc);
-								dc.isStopped = stop;
 								dc.isPaused = paused;
+								clearTimeout(dc.inc);
 
 								if (handlers.stopStateChange && typeof handlers.stopStateChange === 'function')
-									handlers.stopStateChange.apply(dc,
-													[
-													stop || paused || false,
-													dc
-													]);
+									handlers.stopStateChange.apply(dc, [stop || paused || false, dc]);
 							},
 							focusOut: function(ev, dc){
 								paused = false;
-								dc.setInc();
-								dc.isStopped = stop;
 								dc.isPaused = paused;
+								dc.setInc();
 
 								if (handlers.stopStateChange && typeof handlers.stopStateChange === 'function')
-									handlers.stopStateChange.apply(dc,
-													[
-													stop || paused || false,
-													dc
-													]);
+									handlers.stopStateChange.apply(dc, [stop || paused || false, dc]);
 							},
 							mouseOver: function(ev, dc){
 								paused = true;
-								clearTimeout(dc.inc);
-								dc.isStopped = stop;
 								dc.isPaused = paused;
+								clearTimeout(dc.inc);
 
 								if (handlers.stopStateChange && typeof handlers.stopStateChange === 'function')
-									handlers.stopStateChange.apply(dc,
-													[
-													stop || paused || false,
-													dc
-													]);
+									handlers.stopStateChange.apply(dc, [stop || paused || false, dc]);
 							},
 							mouseLeave: function(ev, dc){
 								paused = false;
-								dc.setInc();
-								dc.isStopped = stop;
 								dc.isPaused = paused;
+								dc.setInc();
 
 								if (handlers.stopStateChange && typeof handlers.stopStateChange === 'function')
-									handlers.stopStateChange.apply(dc,
-													[
-													stop || paused || false,
-													dc
-													]);
+									handlers.stopStateChange.apply(dc, [stop || paused || false, dc]);
 							},
+							pauseRotation: config.pauseRotation || false,
 							setInc: function(){
 								var dc = this;
 
@@ -892,11 +796,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 				}
 
 				if (config.step)
-					config.step.apply(ele,
-									[
-									nw,
-									nw2
-									]);
+					config.step.apply(ele, [nw, nw2]);
 			}
 
 			else{
@@ -909,11 +809,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 								$A.css(ele2, t, targ2[t]);
 
 				if (config.complete)
-					config.complete.apply(ele,
-									[
-									targ,
-									targ2
-									]);
+					config.complete.apply(ele, [targ, targ2]);
 			}
 		}, 10);
 	};

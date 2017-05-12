@@ -136,6 +136,9 @@ Example:
 
 {
 
+// Pause rotation automatically when carousel is first loaded. (Added in R2.9 for use with a Play/Pause button)
+pauseRotation: false,
+
 // Set the classes for the three floating Div panels that comprise the carousel
 
 // The left Div where the Prev Slide and Prev Group buttons are rendered
