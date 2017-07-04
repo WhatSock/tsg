@@ -1,10 +1,12 @@
 /*!
-Tooltip Module R1.4
+Tooltip Module R1.5
 Copyright 2010-2017 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 
 (function(){
+
+	var isIE = !window.ActiveXObject && 'ActiveXObject' in window ? true : false;
 
 	$A.setTooltip = function(overrides){
 		if (overrides && !overrides.id)
@@ -47,6 +49,9 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 											tabindex: -1,
 											role: 'tooltip'
 											});
+
+							if (isIE)
+								$A.announce(dc.containerDiv);
 						},
 						runAfter: function(dc){
 							$A.setAttr(dc.triggerObj,
