@@ -1,9 +1,9 @@
 /*!
-Toggle Generator R2.2
-Copyright 2010-2016 Bryan Garaventa (WhatSock.com)
+Toggle Generator R2.3
+Copyright 2010-2017 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 
-ARIA Toggle and ARIA Checkbox Rules :
+To avoid backwards compatible screen reader support issues, ARIA Toggle and ARIA Checkbox Rules :
 IMG : Use aria-label to set screen reader text.
 INPUT : Use both aria-label and Title to set screen reader text.
 All tags that support innerHTML: Use innerText (whether offscreen or visible) to set screen reader text.
@@ -14,7 +14,8 @@ Image links (A tag with embedded IMG): Use innerText and add alt="" to the IMG t
 
 	$A.Toggle = function(trigger, config){
 		var config = config || {}, t = typeof trigger === 'string' ? $A.getEl(trigger) : trigger, that = this,
-			isCheckbox = $A.getAttr(t, 'role') == 'checkbox' ? true : false, sraText = $A.createEl('span', null, $A.sraCSS);
+			tRole = $A.getAttr(t, 'role'), isCheckbox = (tRole == 'checkbox' || tRole == 'switch') ? true : false,
+			sraText = $A.createEl('span', null, $A.sraCSS);
 
 		if (!config.noToggle && config.noARIA){
 			if (!config.roleText)

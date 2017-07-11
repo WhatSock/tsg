@@ -1,6 +1,6 @@
-ARIA Toggles and Checkboxes
+ARIA Toggles, Checkboxes, and Switches
 
-The Toggle Control is a multipurpose control type, that covers checkboxes, toggle buttons, and even simulated links and buttons.
+The Toggle Control is a multipurpose control type, that covers checkboxes, toggle buttons, switches, and even simulated links and buttons.
 
 Expected behaviors: The general behavior of a Toggle control is to receive keyboard focus in the tab order regardless of the active select state, to be toggleable or actionable by pressing the Spacebar or by pressing Enter on the control, and to be toggleable or actionable by clicking it as usual.
 
@@ -16,7 +16,7 @@ For IMG tags, the following attributes are required to ensure accessibility for 
 1. aria-label : Specifies a textual label for screen reader users. (The Alt alone won't work for this purpose)
 2. alt="" : Hides the image from screen reader users when no tooltip is desired for mouse users.
 To add a tooltip for sighted mouse users, use both the Alt and Title attributes. The text for both must match the text contained within the aria-label attribute, so that all three are the same. This will also maximize accessibility in iOS devices using Voiceover.
-3. role="button" must be added for toggles, or role="checkbox" must be added for checkboxes.
+3. role="button" must be added for toggle buttons, role="checkbox" must be added for checkboxes, or role="switch" must be added for switches.
 4. A unique ID must be added for proper event binding.
 
 Examples:
@@ -37,6 +37,14 @@ id="uniqueId2"
 src="icon.png"
 />
 
+<img role="switch"
+aria-label="Switch Label"
+alt="Switch Label"
+title="Switch Label"
+id="uniqueId2"
+src="icon.png"
+/>
+
 INPUT
 
 For INPUT tags with type="image", the following attributes are required to ensure accessibility for the widest range of screen readers:
@@ -44,7 +52,7 @@ For INPUT tags with type="image", the following attributes are required to ensur
 2. Title : Specifies a textual label for screen reader users. This must match the text contained within the aria-label attribute.
 (Both the Title and aria-label attributes are required to correct differing screen reader feedback when tabbing versus arrowing down the page using JAWS.)
 3. To add a tooltip for sighted mouse users, use both the Alt and Title attributes. The text for both must match the text contained within the aria-label attribute, so that all three are the same.
-4. role="button" must be added for toggles, or role="checkbox" must be added for checkboxes.
+4. role="button" must be added for toggle buttons, role="checkbox" must be added for checkboxes, or role="switch" must be added for switches.
 5. A unique ID must be added for proper event binding.
 
 Examples:
@@ -67,14 +75,22 @@ id="uniqueId4"
 src="icon.png"
 />
 
+<input type="image"
+role="switch"
+aria-label="Switch Label"
+alt="Switch Label"
+title="Switch Label"
+id="uniqueId4"
+src="icon.png"
+/>
+
 Container Elements
 
 For all other container elements that support innerHTML such as DIVs and SPANs, the following attributes and rules are required to ensure accessibility for the widest range of screen readers:
 1. Inner Text : Specifies a textual label for screen reader users. This may be visible or positioned using offscreenText.
-OffscreenText is required to ensure the same level of accessibility for iOS devices using Voiceover.
-2. No Embedded Active Elements : Don't embed any other active elements, including mouse clickable images, links, or anything else that needs to be activated separately. (The only actionable element should be the element with role="button" or role="checkbox".)
+2. No Embedded Active Elements : Don't embed any other active elements, including mouse clickable images, links, or anything else that needs to be activated separately. (The only actionable element should be the element with role="button", role="checkbox", or role="switch".)
 3. To add a tooltip for sighted mouse users, use the Title attribute. This must match the text contained within the innerText label.
-4. role="button" must be added for toggles, or role="checkbox" must be added for checkboxes.
+4. role="button" must be added for toggle buttons, role="checkbox" must be added for checkboxes, or role="switch" must be added for switches.
 5. A unique ID must be added for proper event binding.
 
 Examples:
@@ -94,6 +110,13 @@ id="uniqueId6">
 Checkbox Label
 </span>
 </div>
+
+<div role="switch"
+title="Switch Label"
+aria-label="Switch Label"
+id="uniqueId6"></div>
+
+(The element with the valid role will automatically be made focusable.)
 
 The following attributes are handled automatically by the Toggle Module:
 
@@ -151,4 +174,4 @@ Styling
 
 The samples in the Coding Arena are styled to look a certain way for the demo, but it doesn't actually matter what they look like.
 
-When applying new styles, simply ensure that sufficient color contrast is observed for low vision users, and a focus outline clearly shows which elements have focus, and your newly styled checkbox or button will be accessible.
+When applying new styles, simply ensure that sufficient color contrast is observed for low vision users, and a focus outline clearly shows which elements have focus, and your newly styled checkbox, button, or switch will be accessible.

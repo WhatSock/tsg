@@ -1,4 +1,4 @@
-AccDC Technical Style Guide for jQuery (05/11/2017)
+AccDC Technical Style Guide for jQuery (07/11/2017)
 ===
 
 The AccDC Technical Style Guide is designed to provide reliable and consistent interaction designs that are accessible to the highest percentage of people possible, and to establish a baseline for Functional Accessibility that can be utilized, built upon, studied, and tested against. 
@@ -48,8 +48,8 @@ Including: With inner labels, outer labels, form field binding, embedded form fi
 ARIA Sliders
 Including: Horizontal sliders, vertical sliders, programmatic control of slider controls, callbacks, and Voiceover support on iOS touch screen devices.
 
-ARIA Toggles, Checkboxes, Links, and Buttons
-Including: ARIA Buttons and Toggle Buttons, ARIA Checkboxes, ARIA Links, Non-ARIA simulated buttons and checkboxes, programmatic control of Toggles and Checkboxes, and callbacks.
+ARIA Toggles, Checkboxes, Switches, Links, and Buttons
+Including: ARIA Buttons and Toggle Buttons, ARIA Checkboxes and Switches, ARIA Links, Non-ARIA simulated buttons and checkboxes, programmatic control of Toggles and Checkboxes, and callbacks.
 
 ARIA Trees
 Including: XML tree parsing, auto rendering, programmatic control of tree objects, and callbacks.

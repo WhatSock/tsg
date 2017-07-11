@@ -2925,9 +2925,9 @@ dc.set.apply(dc);
                     </div>
 					
                     <div class="panel">
-                        <h3 class="control" id="aria-toggles-and-checkboxes"><button id="tgl-2-8">ARIA Toggles and Checkboxes</button></h3>
+                        <h3 class="control" id="aria-toggles-and-checkboxes"><button id="tgl-2-8">ARIA Toggles, Checkboxes, and Switches</button></h3>
                         <div class="content hdn">
-                            <p> The Toggle Control is a multipurpose control type, that covers checkboxes, toggle buttons, and even simulated links and buttons.</p>
+                            <p> The Toggle Control is a multipurpose control type, that covers checkboxes, toggle buttons, switches, and even simulated links and buttons.</p>
                             <p> <strong>Expected behaviors:</strong> The general behavior of a Toggle control is to receive keyboard focus in the tab order regardless 
 							of the active select state, to be toggleable or actionable by pressing the <kbd>Spacebar</kbd> or by pressing <kbd>Enter</kbd> on the control, and to be toggleable or actionable by clicking it as usual.</p>
                             <p> The Toggle Module automates these processes by adding all related event handlers.</p>
@@ -2936,17 +2936,13 @@ dc.set.apply(dc);
                                     <br/>
                                     <a target="ca" href="Coding Arena/ARIA Toggles, Checkboxes, Links, and Buttons/ARIA Checkboxes/demo.htm"> Coding Arena/ARIA Toggles, Checkboxes, Links, and Buttons/ARIA Checkboxes/demo.htm</a>
                                 </li>
-                                <li> Simulated Checkbox controls with offscreen text and no ARIA:
+                                <li> Simulated Switch controls with ARIA <code>role=switch</code>, and <code>aria-checked</code>:
                                     <br/>
-                                    <a target="ca" href="Coding Arena/ARIA Toggles, Checkboxes, Links, and Buttons/Checkboxes (Simulated with No ARIA)/demo.htm"> Coding Arena/ARIA Toggles, Checkboxes, Links, and Buttons/Checkboxes (Simulated with No ARIA)/demo.htm</a>
+                                    <a target="ca" href="Coding Arena/ARIA Toggles, Checkboxes, Links, and Buttons/ARIA Switches/demo.htm"> Coding Arena/ARIA Toggles, Checkboxes, Links, and Buttons/ARIA Switches/demo.htm</a>
                                 </li>
                                 <li> Simulated Toggle Button controls with ARIA <code>role=button</code>, and <code>aria-pressed</code>:
                                     <br/>
                                     <a target="ca" href="Coding Arena/ARIA Toggles, Checkboxes, Links, and Buttons/ARIA Toggle Buttons/demo.htm"> Coding Arena/ARIA Toggles, Checkboxes, Links, and Buttons/ARIA Toggle Buttons/demo.htm</a>
-                                </li>
-                                <li> Simulated Toggle Button controls with offscreen text and no ARIA:
-                                    <br/>
-                                    <a target="ca" href="Coding Arena/ARIA Toggles, Checkboxes, Links, and Buttons/Toggle Buttons (Simulated with No ARIA)/demo.htm"> Coding Arena/ARIA Toggles, Checkboxes, Links, and Buttons/Toggle Buttons (Simulated with No ARIA)/demo.htm</a>
                                 </li>
                                 <li> Simulated Button and Link controls with ARIA <code>role=button</code> or <code>role=link</code>:
                                     <br/>
@@ -2968,7 +2964,7 @@ dc.set.apply(dc);
 									text contained within the <code>aria-label</code> attribute, so that all three are the same. This will also maximize 
 									accessibility in iOS devices using VoiceOver.
                                 </li>
-                                <li> <strong>role="button"</strong> must be added for toggles, or <code>role="checkbox"</code> must be added for checkboxes.</li>
+                                <li> <strong>role="button"</strong> must be added for toggles, <code>role="checkbox"</code> must be added for checkboxes, or <code>role="switch"</code> must be added for switches.</li>
                                 <li> A unique ID must be added for proper event binding.</li>
                             </ol>
                             <p><strong> Examples:</strong></p>
@@ -2988,6 +2984,14 @@ title="Checkbox Label"
 id="uniqueId2"
 src="icon.png"
 />
+
+&lt;img role="switch"
+aria-label="Switch Label"
+alt="Switch Label"
+title="Switch Label"
+id="uniqueId2"
+src="icon.png"
+/>
 </pre>
                             <h5> INPUT</h5>
                             <p> For INPUT tags with <code>type="image"</code>, the following attributes are required to ensure accessibility for the widest range of screen readers:</p>
@@ -2998,7 +3002,7 @@ src="icon.png"
                                     (Both the Title and aria-label attributes are required to correct differing screen reader feedback when tabbing versus arrowing down the page using JAWS.)
                                 </li>
                                 <li> To add a tooltip for sighted mouse users, use both the Alt and Title attributes. The text for both must match the text contained within the aria-label attribute, so that all three are the same.</li>
-                                <li> <code>role="button"</code> must be added for toggles, or <code>role="checkbox"</code> must be added for checkboxes.</li>
+                                <li> <strong>role="button"</strong> must be added for toggles, <code>role="checkbox"</code> must be added for checkboxes, or <code>role="switch"</code> must be added for switches.</li>
                                 <li> A unique ID must be added for proper event binding.</li>
                             </ol>
                             <p> <strong>Examples:</strong></p>
@@ -3020,16 +3024,24 @@ title="Checkbox Label"
 id="uniqueId4"
 src="icon.png"
 />
+
+&lt;input type="image"
+role="switch"
+aria-label="Switch Label"
+alt="Switch Label"
+title="Switch Label"
+id="uniqueId4"
+src="icon.png"
+/>
 </pre>
                             <h5>Container Elements</h5>
                             <p> For all other container elements that support innerHTML such as DIVs and SPANs, the following attributes and rules are 
 							required to ensure accessibility for the widest range of screen readers:</p>
                             <ol>
-                                <li> <strong>Inner Text :</strong> Specifies a textual label for screen reader users. This may be visible or positioned using <code>offscreenText</code>.
-                                    <code>offscreenText</code> is required to ensure the same level of accessibility for iOS devices using VoiceOver.</li>
+                                <li> <strong>Inner Text :</strong> Specifies a textual label for screen reader users. This may be visible or positioned using <code>offscreenText</code>.</li>
                                 <li> <strong>No Embedded Active Elements :</strong> Don't embed any other active elements, including mouse clickable images, links, or anything else that needs to be activated separately. (The only actionable element should be the element with role="button" or role="checkbox".)</li>
                                 <li> To add a tooltip for sighted mouse users, use the Title attribute. This must match the text contained within the innerText label.</li>
-                                <li> <code>role="button"</code> must be added for toggles, or <code>role="checkbox"</code> must be added for checkboxes.</li>
+                                <li> <strong>role="button"</strong> must be added for toggles, <code>role="checkbox"</code> must be added for checkboxes, or <code>role="switch"</code> must be added for switches.</li>
                                 <li> A unique ID must be added for proper event binding.</li>
                             </ol>
                             <p> <strong>Examples:</strong></p>
@@ -3049,7 +3061,13 @@ id="uniqueId6">
 Checkbox Label
 &lt;/span>
 &lt;/div>
+
+&lt;div role="switch"
+title="Switch Label"
+aria-label="Switch Label"
+id="uniqueId6">&lt;/div>
 </pre>
+                            <p> (The element with the valid role will automatically be made focusable.)</p>
                             <p> The following attributes are handled automatically by the Toggle Module:</p>
                             <ul>
                                 <li> <code>tabindex</code></li>
@@ -3113,7 +3131,7 @@ myToggle.set(Boolean); // Set the Toggle with the specified state (true or false
                             </div>
                             <p> The samples in the Coding Arena are styled to look a certain way for the demo, but it doesn't actually matter what they look like.</p>
                             <p> When applying new styles, simply ensure that sufficient color contrast is observed for low vision users, and a focus outline 
-							clearly shows which elements have focus, and your newly styled checkbox or button will be accessible.</p>
+							clearly shows which elements have focus, and your newly styled checkbox, button, or switch will be accessible.</p>
                         </div>
                     </div>
 					
