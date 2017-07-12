@@ -1,5 +1,5 @@
 /*!
-ARIA Combobox Module R2.0
+ARIA Combobox Module R2.1
 (Requires AccDC API version 3.3 (11/15/2016) +> )
 Copyright 2010-2017 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
@@ -21,6 +21,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 			alert('The combobox element is missing the role="combobox" attribute, which is required.');
 			return null;
 		}
+		$A.setAttr(combobox, 'aria-haspopup', 'listbox');
 
 		var baseId = 'cb' + $A.genId(), that = this, start = false, promptText = $A.createEl('div',
 						{
