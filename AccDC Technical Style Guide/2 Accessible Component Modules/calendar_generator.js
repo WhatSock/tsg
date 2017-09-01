@@ -1,5 +1,5 @@
 /*!
-ARIA Calendar Module R1.19
+ARIA Calendar Module R1.20
 Copyright 2010-2017 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
@@ -206,8 +206,11 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							return d;
 						},
 						setFocus: function(o, p, s){
+							var dc = this;
+
 							if (!o)
 								return;
+
 							this.current = o;
 							$A.query('td.day.selected', this.containerDiv, function(i, p){
 								$A.setAttr(p,
@@ -223,8 +226,35 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 											tabindex: '0'
 											});
 
-							if (!s)
-								o.focus();
+							if (!s){
+								if (dc.navBtn == 'PM'){
+									$A.getEl(dc.prevBtnId).focus();
+									$A.announce(dc.range[dc.range.current.month].name);
+									dc.navBtnS = true;
+								}
+
+								else if (dc.navBtn == 'NM'){
+									$A.getEl(dc.nextBtnId).focus();
+									$A.announce(dc.range[dc.range.current.month].name);
+									dc.navBtnS = true;
+								}
+
+								else if (dc.navBtn == 'PY'){
+									$A.getEl(dc.prevBtnId + 'Y').focus();
+									$A.announce(dc.range.current.year.toString());
+									dc.navBtnS = true;
+								}
+
+								else if (dc.navBtn == 'NY'){
+									$A.getEl(dc.nextBtnId + 'Y').focus();
+									$A.announce(dc.range.current.year.toString());
+									dc.navBtnS = true;
+								}
+
+								else
+									o.focus();
+							}
+							dc.navBtn = '';
 						},
 						setCurrent: function(dc){
 							dc.range.current =
@@ -636,6 +666,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							$A.bind('#' + dc.prevBtnId,
 											{
 											click: function(ev){
+												dc.navBtn = 'PM';
 												pMonth();
 												ev.preventDefault();
 											},
@@ -644,6 +675,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 												var k = ev.which || ev.keyCode;
 
 												if (k == 13 || k == 32){
+													dc.navBtn = 'PM';
 													pMonth();
 													ev.preventDefault();
 												}
@@ -674,6 +706,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							$A.bind('#' + dc.nextBtnId,
 											{
 											click: function(ev){
+												dc.navBtn = 'NM';
 												nMonth();
 												ev.preventDefault();
 											},
@@ -682,6 +715,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 												var k = ev.which || ev.keyCode;
 
 												if (k == 13 || k == 32){
+													dc.navBtn = 'NM';
 													nMonth();
 													ev.preventDefault();
 												}
@@ -713,6 +747,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							$A.bind('#' + dc.prevBtnId + 'Y',
 											{
 											click: function(ev){
+												dc.navBtn = 'PY';
 												gYear();
 												ev.preventDefault();
 											},
@@ -721,6 +756,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 												var k = ev.which || ev.keyCode;
 
 												if (k == 13 || k == 32){
+													dc.navBtn = 'PY';
 													gYear();
 													ev.preventDefault();
 												}
@@ -756,6 +792,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							$A.bind('#' + dc.nextBtnId + 'Y',
 											{
 											click: function(ev){
+												dc.navBtn = 'NY';
 												gYear(true);
 												ev.preventDefault();
 											},
@@ -764,6 +801,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 												var k = ev.which || ev.keyCode;
 
 												if (k == 13 || k == 32){
+													dc.navBtn = 'NY';
 													gYear(true);
 													ev.preventDefault();
 												}
@@ -794,6 +832,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 							dc.range.index = $A.query('td.day', dc.containerDiv);
 							dc.setFocus.firstOpen = true;
+
 							dc.setFocus(dc.range.index[dc.range.current.mDay - 1]);
 
 							if (commentsEnabled && config.editor && config.editor.show)
@@ -808,8 +847,11 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 								dc.datepickerLoaded = true;
 							}, 750);
 
-							if (!('ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0))
-								$A.announce(dc.helpText);
+							if (!dc.navBtnS){
+								if (!('ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0))
+									$A.announce(dc.helpText);
+							}
+							dc.navBtnS = false;
 						},
 						helpText: helpText,
 						tabOut: function(ev, dc){
