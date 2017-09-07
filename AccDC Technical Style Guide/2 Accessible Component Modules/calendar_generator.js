@@ -1,5 +1,5 @@
 /*!
-ARIA Calendar Module R1.20
+ARIA Calendar Module R1.21
 Copyright 2010-2017 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
@@ -268,6 +268,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 						runOnceBefore: function(dc){
 							dc.date = new Date();
 							dc.setCurrent(dc);
+							dc.fn.current = dc.range.current;
 						},
 						runBefore: function(dc){
 							if (config.ajax && typeof config.ajax === 'function' && !dc.stopAjax && !dc.ajaxLoading){
@@ -348,6 +349,10 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 									comm = commentsAll[i];
 
 								dc.source += '<td ';
+
+								if (i == dc.fn.current.mDay && dc.range.current.month == dc.fn.current.month
+									&& dc.range.current.year == dc.fn.current.year)
+									dc.source += 'aria-current="date" ';
 
 								if (dis)
 									dc.source += 'aria-disabled="true" ';
@@ -486,6 +491,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 												if ($A.hasClass(this, 'selected') || (!commentsEnabled && !$A.hasClass(this, 'comment'))){
 													if ($A.getAttr(this, 'aria-disabled') != 'true'){
+														dc.fn.current = dc.range.current;
 														handleClick.apply(this, [ev, dc, targ]);
 													}
 
@@ -507,6 +513,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 													isKP = true;
 
 													if ($A.getAttr(this, 'aria-disabled') != 'true'){
+														dc.fn.current = dc.range.current;
 														handleClick.apply(this, [ev, dc, targ]);
 													}
 
@@ -652,6 +659,8 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 												if (k == 13 && !isKP){
 													if ($A.getAttr(this, 'aria-disabled') != 'true'){
+														dc.fn.current = dc.range.current;
+
 														if (!dc.setFocus.firstOpen)
 															handleClick.apply(this, [ev, dc, targ]);
 													}
@@ -862,6 +871,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 								if (config.resetCurrent){
 									dc.date = new Date();
 									dc.setCurrent(dc);
+									dc.fn.current = dc.range.current;
 								}
 
 								if (commentsEnabled)
