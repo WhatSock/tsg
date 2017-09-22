@@ -57,10 +57,9 @@ td.day {
 
 td.day:hover {background: #E2A037;}
 
-td.selected, td[aria-current="date"] {background: #E2A037;}
+td[aria-current="date"] {background: #E2A037;}
 
 div.calendar *:focus, div.commentAdd *:focus {
-    background: #E2A037;
         outline: blue 2px inset;
 }
 
