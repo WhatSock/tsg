@@ -1,5 +1,5 @@
 /*!
-ARIA Calendar Module R1.21
+ARIA Calendar Module R1.22
 Copyright 2010-2017 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
@@ -268,12 +268,17 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 						runOnceBefore: function(dc){
 							dc.date = new Date();
 							dc.setCurrent(dc);
-							dc.fn.current = dc.range.current;
+							dc.fn.current = {};
+							$A.internal.extend(true, dc.fn.current, dc.range.current);
 						},
 						runBefore: function(dc){
 							if (config.ajax && typeof config.ajax === 'function' && !dc.stopAjax && !dc.ajaxLoading){
 								dc.ajaxLoading = dc.cancel = true;
-								config.ajax.apply(dc, [dc, false]);
+								config.ajax.apply(dc,
+												[
+												dc,
+												false
+												]);
 							}
 
 							if (dc.range.current.month === 1)
@@ -491,8 +496,13 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 												if ($A.hasClass(this, 'selected') || (!commentsEnabled && !$A.hasClass(this, 'comment'))){
 													if ($A.getAttr(this, 'aria-disabled') != 'true'){
-														dc.fn.current = dc.range.current;
-														handleClick.apply(this, [ev, dc, targ]);
+														$A.internal.extend(true, dc.fn.current, dc.range.current);
+														handleClick.apply(this,
+																		[
+																		ev,
+																		dc,
+																		targ
+																		]);
 													}
 
 													else{
@@ -513,8 +523,13 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 													isKP = true;
 
 													if ($A.getAttr(this, 'aria-disabled') != 'true'){
-														dc.fn.current = dc.range.current;
-														handleClick.apply(this, [ev, dc, targ]);
+														$A.internal.extend(true, dc.fn.current, dc.range.current);
+														handleClick.apply(this,
+																		[
+																		ev,
+																		dc,
+																		targ
+																		]);
 													}
 
 													ev.preventDefault();
@@ -659,10 +674,15 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 												if (k == 13 && !isKP){
 													if ($A.getAttr(this, 'aria-disabled') != 'true'){
-														dc.fn.current = dc.range.current;
+														$A.internal.extend(true, dc.fn.current, dc.range.current);
 
 														if (!dc.setFocus.firstOpen)
-															handleClick.apply(this, [ev, dc, targ]);
+															handleClick.apply(this,
+																			[
+																			ev,
+																			dc,
+																			targ
+																			]);
 													}
 
 													ev.preventDefault();
@@ -871,7 +891,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 								if (config.resetCurrent){
 									dc.date = new Date();
 									dc.setCurrent(dc);
-									dc.fn.current = dc.range.current;
+									$A.internal.extend(true, dc.fn.current, dc.range.current);
 								}
 
 								if (commentsEnabled)
@@ -1166,7 +1186,11 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							$A.unbind(window, 'resize.dateeditor');
 
 							if (config.ajax && typeof config.ajax === 'function')
-								config.ajax.apply(dc.parent, [dc.parent, true]);
+								config.ajax.apply(dc.parent,
+												[
+												dc.parent,
+												true
+												]);
 
 							dc.parent.setFocus.firstOpen = true;
 						},
