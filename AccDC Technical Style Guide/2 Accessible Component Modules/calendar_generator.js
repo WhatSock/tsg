@@ -1,5 +1,5 @@
 /*!
-ARIA Calendar Module R1.24
+ARIA Calendar Module R1.25
 Copyright 2010-2017 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
@@ -288,23 +288,33 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							dc.baseId = 'b' + $A.genId();
 							dc.prevBtnId = dc.baseId + 'p';
 							dc.nextBtnId = dc.baseId + 'n';
-							dc.source = '<table role="application" class="calendar" aria-label="' + dc.role
-								+ '"><tr role="presentation"><td class="nav btn prev year" accesskey="1" title="'
-								+ dc.prevTxt.replace(/<|>|\"/g, '') + ' '
-								+ dc.yearTxt.replace(/<|>|\"/g, '') + '" aria-label="' + dc.prevTxt.replace(/<|>|\"/g, '') + ' '
-								+ dc.yearTxt.replace(/<|>|\"/g, '') + '" role="button" id="' + dc.prevBtnId
-								+ 'Y" tabindex="0"><span aria-hidden="true">&#8656;</span></td><td title="'
-								+ dc.tooltipTxt.replace(/<|>|\"/g, '') + '" colspan="5" class="year" role="presentation"><span>'
-								+ dc.range.current.year + '</span></td><td class="nav btn next year" accesskey="2" title="'
-								+ dc.nextTxt.replace(/<|>|\"/g, '') + ' '
-								+ dc.yearTxt.replace(/<|>|\"/g, '') + '" aria-label="' + dc.nextTxt.replace(/<|>|\"/g, '') + ' '
-								+ dc.yearTxt.replace(/<|>|\"/g, '') + '" role="button" id="' + dc.nextBtnId
-								+ 'Y" tabindex="0"><span aria-hidden="true">&#8658;</span></td></tr><tr role="presentation"><td class="nav btn prev month" accesskey="3" title="'
+							dc.source = '<table role="application" class="calendar" aria-label="' + dc.role + '">';
+
+							if (!config.condenseYear)
+								dc.source += '<tr role="presentation"><td class="nav btn prev year" accesskey="1" title="'
+									+ dc.prevTxt.replace(/<|>|\"/g, '') + ' '
+									+ dc.yearTxt.replace(/<|>|\"/g, '') + '" aria-label="' + dc.prevTxt.replace(/<|>|\"/g, '') + ' '
+									+ dc.yearTxt.replace(/<|>|\"/g, '') + '" role="button" id="' + dc.prevBtnId
+									+ 'Y" tabindex="0"><span aria-hidden="true">&#8656;</span></td><td title="'
+									+ dc.tooltipTxt.replace(/<|>|\"/g, '') + '" colspan="5" class="year" role="presentation"><span>'
+									+ dc.range.current.year + '</span></td><td class="nav btn next year" accesskey="2" title="'
+									+ dc.nextTxt.replace(/<|>|\"/g, '') + ' '
+									+ dc.yearTxt.replace(/<|>|\"/g, '') + '" aria-label="' + dc.nextTxt.replace(/<|>|\"/g, '') + ' '
+									+ dc.yearTxt.replace(/<|>|\"/g, '') + '" role="button" id="' + dc.nextBtnId
+									+ 'Y" tabindex="0"><span aria-hidden="true">&#8658;</span></td></tr>';
+
+							dc.source += '<tr role="presentation"><td class="nav btn prev month" accesskey="3" title="'
 								+ dc.prevTxt.replace(/<|>|\"/g, '') + ' ' + dc.monthTxt.replace(/<|>|\"/g, '') + '" aria-label="'
 								+ dc.prevTxt.replace(/<|>|\"/g, '') + ' ' + dc.monthTxt.replace(/<|>|\"/g, '') + '" role="button" id="'
 								+ dc.prevBtnId
-								+ '" tabindex="0"><span aria-hidden="true">&#8592;</span></td><td colspan="5" class="month" role="presentation"><span>'
-								+ dc.range[dc.range.current.month].name + '</span></td><td class="nav btn next month" accesskey="4" title="'
+								+ '" tabindex="0"><span aria-hidden="true">&#8592;</span></td><td colspan="5" class="month" role="presentation"><span>';
+
+							dc.source += dc.range[dc.range.current.month].name;
+
+							if (config.condenseYear)
+								dc.source += '&nbsp;' + dc.range.current.year;
+
+							dc.source += '</span></td><td class="nav btn next month" accesskey="4" title="'
 								+ dc.nextTxt.replace(/<|>|\"/g, '') + ' ' + dc.monthTxt.replace(/<|>|\"/g, '') + '" aria-label="'
 								+ dc.nextTxt.replace(/<|>|\"/g, '') + ' ' + dc.monthTxt.replace(/<|>|\"/g, '') + '" role="button" id="'
 								+ dc.nextBtnId + '" tabindex="0"><span aria-hidden="true">&#8594;</span></td></tr><tr role="presentation">';
@@ -439,16 +449,16 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 						runAfter: function(dc){
 							dc.buttons =
 											{
-											pY: $A.getEl(dc.prevBtnId + 'Y'),
-											nY: $A.getEl(dc.nextBtnId + 'Y'),
+											pY: config.condenseYear ? null : $A.getEl(dc.prevBtnId + 'Y'),
+											nY: config.condenseYear ? null : $A.getEl(dc.nextBtnId + 'Y'),
 											pM: $A.getEl(dc.prevBtnId),
 											nM: $A.getEl(dc.nextBtnId)
 											};
 
-							if (dc.disableNavPrevYearBtn)
+							if (!config.condenseYear && dc.disableNavPrevYearBtn)
 								$A.setAttr(dc.buttons.pY, 'aria-disabled', 'true');
 
-							if (dc.disableNavNextYearBtn)
+							if (!config.condenseYear && dc.disableNavNextYearBtn)
 								$A.setAttr(dc.buttons.nY, 'aria-disabled', 'true');
 
 							if (dc.disableNavPrevMonthBtn)
@@ -484,8 +494,8 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 								dc.reopen = true;
 								dc.open();
 							}, gYear = function(forward){
-								if ((!forward && $A.getAttr(dc.buttons.pY, 'aria-disabled') == 'true')
-									|| (forward && $A.getAttr(dc.buttons.nY, 'aria-disabled') == 'true'))
+								if ((!forward && ((!config.condenseYear && $A.getAttr(dc.buttons.pY, 'aria-disabled') == 'true') || (config.condenseYear && dc.disableNavPrevYearBtn)))
+									|| (forward && ((!config.condenseYear && $A.getAttr(dc.buttons.nY, 'aria-disabled') == 'true') || (config.condenseYear && dc.disableNavNextYearBtn))))
 									return;
 								$A.internal.extend(true, dc.prevCurrent, dc.range.current);
 								var month = dc.range.current.month, year = forward ? dc.range.current.year + 1 : dc.range.current.year - 1;
@@ -710,10 +720,10 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 												else if (k == 9 && !pressed.alt && !pressed.ctrl && !pressed.shift){
 													$A.internal.extend(true, dc.prevCurrent, dc.range.current);
 
-													if ($A.getAttr(dc.buttons.pY, 'aria-disabled') != 'true')
+													if (!config.condenseYear && $A.getAttr(dc.buttons.pY, 'aria-disabled') != 'true')
 														dc.buttons.pY.focus();
 
-													else if ($A.getAttr(dc.buttons.nY, 'aria-disabled') != 'true')
+													else if (!config.condenseYear && $A.getAttr(dc.buttons.nY, 'aria-disabled') != 'true')
 														dc.buttons.nY.focus();
 
 													else if ($A.getAttr(dc.buttons.pM, 'aria-disabled') != 'true')
@@ -734,10 +744,10 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 													else if ($A.getAttr(dc.buttons.pM, 'aria-disabled') != 'true')
 														dc.buttons.pM.focus();
 
-													else if ($A.getAttr(dc.buttons.nY, 'aria-disabled') != 'true')
+													else if (!config.condenseYear && $A.getAttr(dc.buttons.nY, 'aria-disabled') != 'true')
 														dc.buttons.nY.focus();
 
-													else if ($A.getAttr(dc.buttons.pY, 'aria-disabled') != 'true')
+													else if (!config.condenseYear && $A.getAttr(dc.buttons.pY, 'aria-disabled') != 'true')
 														dc.buttons.pY.focus();
 
 													ev.preventDefault();
@@ -784,7 +794,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 													ev.preventDefault();
 												}
 
-												else if (k == 38){
+												else if (!config.condenseYear && k == 38){
 													dc.buttons.pY.focus();
 													ev.preventDefault();
 												}
@@ -809,10 +819,10 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 												}
 
 												else if (k == 9 && !pressed.alt && !pressed.ctrl && pressed.shift){
-													if ($A.getAttr(dc.buttons.nY, 'aria-disabled') != 'true')
+													if (!config.condenseYear && $A.getAttr(dc.buttons.nY, 'aria-disabled') != 'true')
 														dc.buttons.nY.focus();
 
-													else if ($A.getAttr(dc.buttons.pY, 'aria-disabled') != 'true')
+													else if (!config.condenseYear && $A.getAttr(dc.buttons.pY, 'aria-disabled') != 'true')
 														dc.buttons.pY.focus();
 
 													else
@@ -847,7 +857,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 													ev.preventDefault();
 												}
 
-												else if (k == 38){
+												else if (!config.condenseYear && k == 38){
 													dc.buttons.nY.focus();
 													ev.preventDefault();
 												}
@@ -870,10 +880,10 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 													if ($A.getAttr(dc.buttons.pM, 'aria-disabled') != 'true')
 														dc.buttons.pM.focus();
 
-													else if ($A.getAttr(dc.buttons.nY, 'aria-disabled') != 'true')
+													else if (!config.condenseYear && $A.getAttr(dc.buttons.nY, 'aria-disabled') != 'true')
 														dc.buttons.nY.focus();
 
-													else if ($A.getAttr(dc.buttons.pY, 'aria-disabled') != 'true')
+													else if (!config.condenseYear && $A.getAttr(dc.buttons.pY, 'aria-disabled') != 'true')
 														dc.buttons.pY.focus();
 
 													else
@@ -887,130 +897,133 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 											}
 											});
 
-							$A.bind(dc.buttons.pY,
-											{
-											click: function(ev){
-												dc.navBtn = 'PY';
-												gYear();
-												ev.preventDefault();
-											},
-											keydown: function(ev){
-												changePressed(ev);
-												var k = ev.which || ev.keyCode;
-
-												if (k == 13 || k == 32){
+							if (!config.condenseYear)
+								$A.bind(dc.buttons.pY,
+												{
+												click: function(ev){
 													dc.navBtn = 'PY';
 													gYear();
 													ev.preventDefault();
-												}
+												},
+												keydown: function(ev){
+													changePressed(ev);
+													var k = ev.which || ev.keyCode;
 
-												else if (k == 27){
-													dc.close();
-													ev.preventDefault();
-												}
+													if (k == 13 || k == 32){
+														dc.navBtn = 'PY';
+														gYear();
+														ev.preventDefault();
+													}
 
-												else if (k == 39){
-													dc.buttons.nY.focus();
-													ev.preventDefault();
-												}
+													else if (k == 27){
+														dc.close();
+														ev.preventDefault();
+													}
 
-												else if (k == 40){
-													dc.buttons.pM.focus();
-													ev.preventDefault();
-												}
-
-												else if (k == 37 || k == 38){
-													ev.preventDefault();
-												}
-
-												else if (k == 9 && !pressed.alt && !pressed.ctrl && !pressed.shift){
-													if ($A.getAttr(dc.buttons.nY, 'aria-disabled') != 'true')
+													else if (k == 39){
 														dc.buttons.nY.focus();
+														ev.preventDefault();
+													}
 
-													else if ($A.getAttr(dc.buttons.pM, 'aria-disabled') != 'true')
+													else if (k == 40){
 														dc.buttons.pM.focus();
+														ev.preventDefault();
+													}
 
-													else if ($A.getAttr(dc.buttons.nM, 'aria-disabled') != 'true')
-														dc.buttons.nM.focus();
+													else if (k == 37 || k == 38){
+														ev.preventDefault();
+													}
 
-													else
+													else if (k == 9 && !pressed.alt && !pressed.ctrl && !pressed.shift){
+														if ($A.getAttr(dc.buttons.nY, 'aria-disabled') != 'true')
+															dc.buttons.nY.focus();
+
+														else if ($A.getAttr(dc.buttons.pM, 'aria-disabled') != 'true')
+															dc.buttons.pM.focus();
+
+														else if ($A.getAttr(dc.buttons.nM, 'aria-disabled') != 'true')
+															dc.buttons.nM.focus();
+
+														else
+															$A.query('td.day[tabindex="0"]', dc.containerDiv)[0].focus();
+
+														ev.preventDefault();
+													}
+
+													else if (k == 9 && !pressed.alt && !pressed.ctrl && pressed.shift){
 														$A.query('td.day[tabindex="0"]', dc.containerDiv)[0].focus();
-
-													ev.preventDefault();
+														ev.preventDefault();
+													}
+												},
+												keyup: function(ev){
+													changePressed(ev);
 												}
+												});
 
-												else if (k == 9 && !pressed.alt && !pressed.ctrl && pressed.shift){
-													$A.query('td.day[tabindex="0"]', dc.containerDiv)[0].focus();
-													ev.preventDefault();
-												}
-											},
-											keyup: function(ev){
-												changePressed(ev);
-											}
-											});
-							$A.bind(dc.buttons.nY,
-											{
-											click: function(ev){
-												dc.navBtn = 'NY';
-												gYear(true);
-												ev.preventDefault();
-											},
-											keydown: function(ev){
-												changePressed(ev);
-												var k = ev.which || ev.keyCode;
-
-												if (k == 13 || k == 32){
+							if (!config.condenseYear)
+								$A.bind(dc.buttons.nY,
+												{
+												click: function(ev){
 													dc.navBtn = 'NY';
 													gYear(true);
 													ev.preventDefault();
-												}
+												},
+												keydown: function(ev){
+													changePressed(ev);
+													var k = ev.which || ev.keyCode;
 
-												else if (k == 27){
-													dc.close();
-													ev.preventDefault();
-												}
+													if (k == 13 || k == 32){
+														dc.navBtn = 'NY';
+														gYear(true);
+														ev.preventDefault();
+													}
 
-												else if (k == 37){
-													dc.buttons.pY.focus();
-													ev.preventDefault();
-												}
+													else if (k == 27){
+														dc.close();
+														ev.preventDefault();
+													}
 
-												else if (k == 40){
-													dc.buttons.nM.focus();
-													ev.preventDefault();
-												}
-
-												else if (k == 38 || k == 39){
-													ev.preventDefault();
-												}
-
-												else if (k == 9 && !pressed.alt && !pressed.ctrl && !pressed.shift){
-													if ($A.getAttr(dc.buttons.pM, 'aria-disabled') != 'true')
-														dc.buttons.pM.focus();
-
-													else if ($A.getAttr(dc.buttons.nM, 'aria-disabled') != 'true')
-														dc.buttons.nM.focus();
-
-													else
-														$A.query('td.day[tabindex="0"]', dc.containerDiv)[0].focus();
-
-													ev.preventDefault();
-												}
-
-												else if (k == 9 && !pressed.alt && !pressed.ctrl && pressed.shift){
-													if ($A.getAttr(dc.buttons.pY, 'aria-disabled') != 'true')
+													else if (k == 37){
 														dc.buttons.pY.focus();
+														ev.preventDefault();
+													}
 
-													else
-														$A.query('td.day[tabindex="0"]', dc.containerDiv)[0].focus();
+													else if (k == 40){
+														dc.buttons.nM.focus();
+														ev.preventDefault();
+													}
 
-													ev.preventDefault();
+													else if (k == 38 || k == 39){
+														ev.preventDefault();
+													}
+
+													else if (k == 9 && !pressed.alt && !pressed.ctrl && !pressed.shift){
+														if ($A.getAttr(dc.buttons.pM, 'aria-disabled') != 'true')
+															dc.buttons.pM.focus();
+
+														else if ($A.getAttr(dc.buttons.nM, 'aria-disabled') != 'true')
+															dc.buttons.nM.focus();
+
+														else
+															$A.query('td.day[tabindex="0"]', dc.containerDiv)[0].focus();
+
+														ev.preventDefault();
+													}
+
+													else if (k == 9 && !pressed.alt && !pressed.ctrl && pressed.shift){
+														if ($A.getAttr(dc.buttons.pY, 'aria-disabled') != 'true')
+															dc.buttons.pY.focus();
+
+														else
+															$A.query('td.day[tabindex="0"]', dc.containerDiv)[0].focus();
+
+														ev.preventDefault();
+													}
+												},
+												keyup: function(ev){
+													changePressed(ev);
 												}
-											},
-											keyup: function(ev){
-												changePressed(ev);
-											}
-											});
+												});
 
 							dc.range.index = $A.query('td.day', dc.containerDiv);
 							dc.setFocus.firstOpen = true;
