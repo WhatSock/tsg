@@ -1,5 +1,5 @@
 /*!
-ARIA Calendar Module R1.25
+ARIA Calendar Module R1.26
 Copyright 2010-2017 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
@@ -39,7 +39,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 						trigger: trigger,
 						bind: 'opendatepicker',
 						allowReopen: true,
-						showHiddenClose: commentsEnabled && config.editor && config.editor.show ? false : true,
+						showHiddenClose: false,
 						controlType: 'DatePicker',
 						tooltipTxt: config.tooltipTxt || 'Press Escape to cancel',
 						disabledTxt: config.disabledTxt || 'Disabled',
@@ -494,8 +494,10 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 								dc.reopen = true;
 								dc.open();
 							}, gYear = function(forward){
-								if ((!forward && ((!config.condenseYear && $A.getAttr(dc.buttons.pY, 'aria-disabled') == 'true') || (config.condenseYear && dc.disableNavPrevYearBtn)))
-									|| (forward && ((!config.condenseYear && $A.getAttr(dc.buttons.nY, 'aria-disabled') == 'true') || (config.condenseYear && dc.disableNavNextYearBtn))))
+								if ((!forward && ((!config.condenseYear && $A.getAttr(dc.buttons.pY, 'aria-disabled') == 'true')
+									|| (config.condenseYear && dc.disableNavPrevYearBtn)))
+									|| (forward && ((!config.condenseYear && $A.getAttr(dc.buttons.nY, 'aria-disabled') == 'true')
+										|| (config.condenseYear && dc.disableNavNextYearBtn))))
 									return;
 								$A.internal.extend(true, dc.prevCurrent, dc.range.current);
 								var month = dc.range.current.month, year = forward ? dc.range.current.year + 1 : dc.range.current.year - 1;
@@ -757,7 +759,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 												changePressed(ev);
 												var k = ev.which || ev.keyCode;
 
-												if (k == 13 && !isKP){
+												if (k == 13 && !isKP && !dc.isAdd){
 													if ($A.getAttr(this, 'aria-disabled') != 'true'){
 														$A.internal.extend(true, dc.fn.current, dc.range.current);
 
@@ -768,7 +770,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 													ev.preventDefault();
 												}
 
-												isKP = dc.setFocus.firstOpen = false;
+												isKP = dc.setFocus.firstOpen = dc.isAdd = false;
 											}
 											});
 
@@ -1049,9 +1051,6 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							dc.navBtnS = false;
 						},
 						helpText: helpText,
-						tabOut: function(ev, dc){
-						// dc.close();
-						},
 						runAfterClose: function(dc){
 							if (!dc.reopen){
 								if (config.resetCurrent){
@@ -1235,6 +1234,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 																this.value = this.value.substring(0, 799);
 
 															if (k == 13){
+																dc.parent.isAdd = true;
 																dc.add.apply(this, [dc]);
 																dc.parent.current.focus();
 																dc.openEditor = false;
@@ -1305,6 +1305,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 												},
 												click: function(ev){
 													if (dc.openEditor){
+														dc.parent.isAdd = true;
 														dc.add.apply(this, [dc]);
 														dc.parent.current.focus();
 														dc.openEditor = false;
@@ -1327,8 +1328,6 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 															dc.reset();
 														}
 
-														else
-															dc.parent.close();
 														ev.preventDefault();
 													}
 												}
@@ -1341,9 +1340,18 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 								dc.setPosition();
 								dc.reset();
 							});
+
+							$A.bind($A.query('textarea', dc.containerDiv)[0], 'keydown', function(ev){
+								var k = ev.which || ev.keyCode;
+
+								if (k == 9 && !ev.altKey && !ev.ctrlKey && ev.shiftKey){
+									$A.query('button', dc.containerDiv)[0].focus();
+									ev.preventDefault();
+								}
+							});
 						},
 						tabOut: function(ev, dc){
-							dc.parent.close();
+							$A.query('textarea', dc.containerDiv)[0].focus();
 						},
 						runBeforeClose: function(dc){
 							dc.openEditor = false;
