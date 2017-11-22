@@ -3,9 +3,32 @@ $A.bind(window, 'load', function(){
 	// Declare a value mapping that can be used to customize the returned value for the slider control
 
 	var timeVals =
-		['12:00 AM', '1:00 AM', '2:00 AM', '3:00 AM', '4:00 AM', '5:00 AM', '6:00 AM', '7:00 AM', '8:00 AM', '9:00 AM',
-			'10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM', '6:00 PM', '7:00 PM',
-			'8:00 PM', '9:00 PM', '10:00 PM', '11:00 PM'];
+					[
+					'12:00 AM',
+					'1:00 AM',
+					'2:00 AM',
+					'3:00 AM',
+					'4:00 AM',
+					'5:00 AM',
+					'6:00 AM',
+					'7:00 AM',
+					'8:00 AM',
+					'9:00 AM',
+					'10:00 AM',
+					'11:00 AM',
+					'12:00 PM',
+					'1:00 PM',
+					'2:00 PM',
+					'3:00 PM',
+					'4:00 PM',
+					'5:00 PM',
+					'6:00 PM',
+					'7:00 PM',
+					'8:00 PM',
+					'9:00 PM',
+					'10:00 PM',
+					'11:00 PM'
+					];
 
 	// Set the vertical ARIA Slider
 
@@ -38,7 +61,11 @@ $A.bind(window, 'load', function(){
 					// Return the string that will act as the textual notification for screen reader users when the slider is moved
 					valueText: function(dc, val){
 						// Return the string mapped in the Time array with the matching index value
-						return timeVals[val];
+						var vText = timeVals[val];
+// Save a reference of the new value-text string value within the slider dc object so it can be referenced by the Decrement and Increment buttons.
+						dc.vText = vText;
+						// Return the updated string so it can be added to the aria-valuetext attribute within the slider when moved.
+						return vText;
 					},
 
 					// Set the action to occur whenever the value changes
@@ -60,5 +87,44 @@ $A.bind(window, 'load', function(){
 		dc.config.now = parseInt(this.value);
 		// Apply the change
 		dc.set.apply(dc);
+	});
+
+	// Configure the Decrement and Increment buttons for mobile device support.
+	$A.query('div.min2, div.max2', function(i, o){
+		var dir = $A.getAttr(o, 'data-dir');
+
+		if (dir == 'd'){
+			// Set click binding for the Decrement button
+			$A.bind(o, 'click', function(ev){
+				// Get a reference to the Slider AccDC Object using its ID, which matches the handle elements ID attribute
+				var dc = $A.reg['handle2'];
+				// Assign a new slider value
+				dc.config.now--;
+				// Apply the change to the slider
+				dc.set.apply(dc);
+				// Update the associated select element
+				$A.getEl('syncSelect').value = dc.config.now.toString();
+				// Now announce the new value-text string for screen reader users.
+				dc.vText.announce();
+				ev.preventDefault();
+			});
+		}
+
+		else if (dir == 'i'){
+			// Set click binding for the Increment button
+			$A.bind(o, 'click', function(ev){
+				// Get a reference to the Slider AccDC Object using its ID, which matches the handle elements ID attribute
+				var dc = $A.reg['handle2'];
+				// Assign a new slider value
+				dc.config.now++;
+				// Apply the change to the slider
+				dc.set.apply(dc);
+				// Update the associated select element
+				$A.getEl('syncSelect').value = dc.config.now.toString();
+				// Now announce the new value-text string for screen reader users.
+				dc.vText.announce();
+				ev.preventDefault();
+			});
+		}
 	});
 });

@@ -176,6 +176,13 @@ $A.bind(window, 'load', function(){
 					ddCSS:
 									{
 									position: 'absolute',
+									padding: '0',
+									margin: '0',
+									'margin-left': '-50px',
+									'margin-top': '10px',
+									width: '120px',
+									'background-color': 'white',
+									color: 'blue',
 									zIndex: 10
 									},
 

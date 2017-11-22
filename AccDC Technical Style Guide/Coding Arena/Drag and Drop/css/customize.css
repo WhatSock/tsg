@@ -98,4 +98,8 @@ ddLink {}
 	#subtotals p:last-child {font-size: 1.1em;}
 }
 
-
+body {
+    overflow-x: hidden;
+    -webkit-user-select: none; /* disable selection/Copy of UIWebView */
+    -webkit-touch-callout: none; /* disable the IOS popup when long-press */
+}

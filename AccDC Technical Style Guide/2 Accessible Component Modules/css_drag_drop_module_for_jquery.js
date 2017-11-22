@@ -1,7 +1,7 @@
 /*!
-CSS Drag and Drop Module R2.4 for jQuery
-(Requires AccDC API version 3.3+> )
-Copyright 2010-2016 Bryan Garaventa (WhatSock.com)
+CSS Drag and Drop Module R2.5 for jQuery
+(Requires AccDC API version 3.4+> )
+Copyright 2010-2017 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 
@@ -262,16 +262,8 @@ return false;
 },
 // returns an interaction object
 interaction: function( elem, dd ){
-/* BG edit start */
-// var offset = $( elem )[ dd.relative ? "position" : "offset" ]() || { top:0, left:0 };
-var offset = $A.xOffset(elem),
-position = $A.css(elem, 'position');
-if (position == 'fixed')
-offset.top = elem.offsetTop;
-else if (dd.relative || position == 'relative'){
-offset = $A.xOffset(elem, null, true);
-}
-/* BG edit end */
+// BG:3.4:11/15/2017
+var offset = $A.xOffset(elem);
 return {
 drag: elem, 
 callback: new drag.callback(), 
@@ -523,17 +515,26 @@ button = original.button,
 fromElement = original.fromElement;
 
 // Calculate pageX/Y if missing and clientX/Y available
-if ( event.pageX == null && original.clientX != null ) {
+if (event.pageX == null && (original.clientX != null || original.pageX != null)) {
+// BG:3.4:11/15/2017
+var calcPos = $A.pointerPos(original);
+event.pageX = calcPos.x;
+event.pageY = calcPos.y;
+
 eventDoc = event.target.ownerDocument || document;
 doc = eventDoc.documentElement;
 body = eventDoc.body;
 
+// BG:3.4:11/15/2017
+/*
 event.pageX = original.clientX +
 ( doc && doc.scrollLeft || body && body.scrollLeft || 0 ) -
 ( doc && doc.clientLeft || body && body.clientLeft || 0 );
 event.pageY = original.clientY +
 ( doc && doc.scrollTop  || body && body.scrollTop  || 0 ) -
 ( doc && doc.clientTop  || body && body.clientTop  || 0 );
+*/
+
 }
 
 // Add relatedTarget, if necessary
@@ -778,28 +779,16 @@ break;
 locate: function( elem, index ){ 
 var data = $.data( elem, drop.datakey ),
 $elem = $( elem ), 
-/* BG edit start */
-// posi = $elem.offset() || {}, 
-posi = $A.xOffset(elem),
-// height = $elem.outerHeight(), 
-height = $A.xHeight(elem),  
-// width = $elem.outerWidth();
-width = $A.xWidth(elem),
-position = $A.css(elem, 'position');
-if (position == 'fixed')
-posi.top = elem.offsetTop;
-else if (position == 'relative'){
-posi = $A.xOffset(elem, null, true);
-}
+// BG:3.4:11/19/2017
+posi = $A.xOffset(elem, true);
 var location = { 
-/* BG edit end */
 elem: elem, 
-width: width, 
-height: height,
+width: posi.width, 
+height: posi.height,
 top: posi.top, 
 left: posi.left, 
-right: posi.left + width, 
-bottom: posi.top + height
+right: posi.right, 
+bottom: posi.bottom
 };
 // drag elements might not have dropdata
 if ( data ){
@@ -848,7 +837,9 @@ var i, drp, drg, data, arr, len, elem,
 // interaction iteration variables
 x = 0, ia, end = dd.interactions.length,
 // determine the mouse coords
-xy = [ drop.event.pageX, drop.event.pageY ],
+// BG:3.4:11/19/2017
+cPos = $A.pointerPos(drop.event),
+xy = [ cPos.x, cPos.y ],
 // custom or stored tolerance fn
 tolerance = drop.tolerance || drop.modes[ drop.mode ];
 // go through each passed interaction...
@@ -1102,35 +1093,36 @@ pL(dc.accDCObj)
 
 .drag('init', function(ev, dd){
 dc.fn.isDragging = true;
-var cssPos = $A.css(this, 'position'),
-objos = $A.xOffset(this);
-if (cssPos == 'fixed'){
-objos.top = this.offsetTop;
-} else if (cssPos == 'relative'){
-objos = $A.xOffset(this, null, true);
-}
-objos.right = '';
-objos.bottom = '';
+// BG:3.4:11/19/2017
+var objos = $A.xOffset(this, false, false, true);
 $A.css(this, objos);
 if (typeof dc.drag.confineTo === 'string')
 dc.drag.confineToN = $A.query(dc.drag.confineTo)[0];
-else if (dc.drag.confineTo && dc.drag.confineTo.nodeName)
+else if (dc.drag.confineTo && dc.drag.confineTo.nodeType === 1)
 dc.drag.confineToN = dc.drag.confineTo;
-if (dc.drag.confineToN && dc.drag.confineToN.nodeName){
+// BG:3.4:11/19/2017
+if (dc.drag.confineToN && dc.drag.confineToN.nodeType === 1){
 save.nFixed = false;
-var cssNPos = $A.css(dc.drag.confineToN, 'position'),
-objNos = $A.xOffset(dc.drag.confineToN);
-if (cssPos == 'relative' && this.offsetParent == dc.drag.confineToN){
-objNos = dd.limit = { top: 0, left: 0 };
-} else if (cssPos == 'fixed' && cssNPos == 'fixed'){
-objNos.top = dc.drag.confineToN.offsetTop;
-save.nFixed = true;
-dd.limit = objNos;
-} else {
-dd.limit = objNos;
+// BG:3.4:11/19/2017
+var cssPos = $A.css(this, 'position'),
+cssNPos = $A.css(dc.drag.confineToN, 'position'),
+objNos = $A.xOffset(dc.drag.confineToN, true);
+// BG:3.4:11/19/2017
+if (cssPos == 'absolute'){
+save.dAbsolute = true;
+save.dFixed = save.dRelative = false;
+} else if (cssPos == 'relative'){
+save.dRelative = true;
+save.dAbsolute = save.dFixed = false;
+} else if (cssPos == 'fixed'){
+save.dFixed = true;
+save.dAbsolute = save.dRelative = false;
 }
-dd.limit.bottom = dd.limit.top + $A.xHeight(dc.drag.confineToN);
-dd.limit.right = dd.limit.left + $A.xWidth(dc.drag.confineToN);
+if (save.dFixed && cssNPos == 'fixed'){
+save.nFixed = true;
+objNos = $A.xOffset(dc.drag.confineToN);
+}
+dd.limit = objNos;
 }
 $A.setAttr(dc.accDCObj, 'aria-grabbed', 'true');
 if (dc.drag.init && typeof dc.drag.init === 'function')
@@ -1142,35 +1134,47 @@ dc.onDragStart.apply(this, [ev, dd, dc]);
 })
 
 .drag(function(ev, dd){
-// $A.announce(dd.offsetX ? dd.offsetX+'px' : 'null', false, true);
+// BG:3.4:11/15/2017
 if (save.y != dd.offsetY || save.x != dd.offsetX){
-var position = $A.css(this, 'position');
 if (dc.drag.override && typeof dc.drag.override === 'function')
 dc.drag.override.apply(this, [ev, dd, dc]);
 
-else if (dc.drag.confineToN && dc.drag.confineToN.nodeName){
-var n = {
+// BG:3.4:11/19/2017 - full block edit
+else if (dc.drag.confineToN && dc.drag.confineToN.nodeType === 1){
+var cancelMoveL = false,
+cancelMoveT = false,
+n = {
 top: dd.offsetY,
 left: dd.offsetX
 },
-height = $A.xHeight(this),
-width = $A.xWidth(this);
+dO = $A.xOffset(this, true);
+if (save.dFixed && save.nFixed)
+dO = $A.xOffset(this, false, false);
 // Correct for flush edges
-if (n.top < dd.limit.top)
-n.top = dd.limit.top;
-if ((n.top + height) > dd.limit.bottom)
-n.top = dd.limit.bottom;
-if (n.left < dd.limit.left)
-n.left = dd.limit.left;
-if ((n.left + width) > dd.limit.right)
-n.left = dd.limit.right;
+if (dO.top < dd.limit.top){
+if (save.dAbsolute || (save.dFixed && save.nFixed)) n.top = dd.limit.top;
+else cancelMoveT = true;
+}
+if (dO.bottom > dd.limit.bottom){
+if (save.dAbsolute || (save.dFixed && save.nFixed)) n.top = dd.limit.bottom - dO.height;
+else cancelMoveT = true;
+}
+if (dO.left < dd.limit.left){
+if (save.dAbsolute || (save.dFixed && save.nFixed)) n.left = dd.limit.left;
+else cancelMoveL = true;
+}
+if (dO.right > dd.limit.right){
+if (save.dAbsolute || (save.dFixed && save.nFixed)) n.left = dd.limit.right - dO.width;
+else cancelMoveL = true;
+}
 // Set positioning
-if (n.top >= dd.limit.top && (n.top + height) <= dd.limit.bottom)
+if (!cancelMoveT)
 $A.xTop(this, n.top);
-if (n.left >= dd.limit.left && (n.left + width) <= dd.limit.right)
+if (!cancelMoveL)
 $A.xLeft(this, n.left);
+} // end block
 
-} else if (typeof dc.drag.maxX === 'number' || typeof dc.drag.maxY === 'number'){
+else if (typeof dc.drag.maxX === 'number' || typeof dc.drag.maxY === 'number'){
 if (typeof dc.drag.maxX === 'number' && ((dd.originalX < dd.offsetX && (dd.offsetX - dd.originalX) <= dc.drag.maxX) || (dd.originalX > dd.offsetX && (dd.originalX - dd.offsetX) <= dc.drag.maxX)))
 $A.xLeft(this, dd.offsetX);
 if (typeof dc.drag.maxY === 'number' && ((dd.originalY < dd.offsetY && (dd.offsetY - dd.originalY) <= dc.drag.maxY) || (dd.originalY > dd.offsetY && (dd.originalY - dd.offsetY) <= dc.drag.maxY)))
