@@ -1,11 +1,11 @@
 /*!
-AccDC API - 3.4 Standalone (11/19/2017)
+AccDC API - 3.4 Standalone (12/11/2017)
 Copyright 2010-2017 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 (function( window, undefined ) {
 
-var accDCVersion = '3.4 (11/19/2017)',
+var accDCVersion = '3.4 (12/11/2017)',
 document = window.document,
 accDC = {},
 
@@ -4898,10 +4898,16 @@ dc.accDCObj = createEl('div', {
 id: dc.fn.accDCObjId
 });
 if (dc.className) addClass(dc.accDCObj, dc.className);
+// BG:3.4:12/11/2017 start
+if (dc.showHiddenBounds)
 pL(dc.accDCObj)
-.append(dc.fn.sraStart)
-.append(dc.containerDiv)
+.append(dc.fn.sraStart);
+pL(dc.accDCObj)
+.append(dc.containerDiv);
+if (dc.showHiddenBounds)
+pL(dc.accDCObj)
 .append(dc.fn.sraEnd);
+// BG:3.4:12/11/2017 end
 var events = {
 mouseOver: function(ev){
 dc.mouseOver.apply(this, [ev, dc]);
