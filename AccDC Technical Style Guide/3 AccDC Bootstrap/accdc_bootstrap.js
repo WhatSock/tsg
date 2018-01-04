@@ -1,6 +1,6 @@
 /*!
-AccDC Bootstrap R1.2
-Copyright 2010-2017 Bryan Garaventa (WhatSock.com)
+AccDC Bootstrap R1.3
+Copyright 2010-2018 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 
 Please edit this file however desired to customize functionality.
@@ -649,7 +649,7 @@ dividerTag: 'li',
 					$A.setAttr(o,
 									{
 									tabindex: '0',
-									'aria-pressed': 'false'
+									'aria-expanded': 'false'
 									});
 
 					// Ensure keyboard accessibility for non-active elements such as Divs, Spans, and A tags with no href attribute
@@ -690,11 +690,11 @@ dividerTag: 'li',
 									runAfter: function(dc){
 										$A.remAttr(dc.accDCObj, 'aria-label');
 										$A.addClass(o, toggleClass);
-										$A.setAttr(dc.triggerObj, 'aria-pressed', 'true');
+										$A.setAttr(dc.triggerObj, 'aria-expanded', 'true');
 									},
 									runAfterClose: function(dc){
 										$A.remClass(o, toggleClass);
-										$A.setAttr(dc.triggerObj, 'aria-pressed', 'false');
+										$A.setAttr(dc.triggerObj, 'aria-expanded', 'false');
 									},
 									keyDown: function(ev, dc){},
 									announce: false,
