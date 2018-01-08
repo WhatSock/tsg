@@ -1,5 +1,5 @@
 /*!
-Popup Module R1.6
+Popup Module R1.7
 Copyright 2010-2018 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
@@ -53,11 +53,12 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 								dc.setPosition();
 							});
 
-							$A.setAttr(dc.accDCObj,
-											{
-											role: 'region',
-											'aria-label': dc.role
-											});
+							if (dc.role.replace(/^\s+|\s+$/g, ''))
+								$A.setAttr(dc.accDCObj,
+												{
+												role: 'region',
+												'aria-label': dc.role
+												});
 
 							dc.fn.sraStart.innerHTML = dc.fn.sraEnd.innerHTML = '';
 							$A.setAttr(dc.fn.sraStart,
