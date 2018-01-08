@@ -1,5 +1,5 @@
 /*!
-AccDC Bootstrap R1.3
+AccDC Bootstrap R1.4
 Copyright 2010-2018 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 
@@ -238,8 +238,6 @@ Please edit this file however desired to customize functionality.
 									id: o.id,
 									// Set screen reader accessible boundary text values
 									role: $A.getAttr(o, 'data-role') || 'Popup',
-									accStart: 'Start',
-									accEnd: 'End',
 									source: cid && cid.nodeType === 1 ? cid : p.replace('#', ' #'),
 									mode: cid && cid.nodeType === 1 ? 0 : null,
 									trigger: o,
@@ -251,8 +249,14 @@ Please edit this file however desired to customize functionality.
 // Set the class name for the screen reader accessible close link
 // This must match the class name for any close links or buttons within the popup content, which will cause Close Method Binding to automatically occur when the content is rendered.
 									closeClassName: 'popupClose',
-									// Set the heading level that will be accessible for screen reader users
-									ariaLevel: 2
+									runDuring: function(dc){
+// Add a named ARIA region to the surrounding container element and use aria-labelledby to reference the triggering element, which will aid navigation for screen reader users.
+										$A.setAttr(dc.accDCObj,
+														{
+														role: 'region',
+														'aria-labelledby': dc.id
+														});
+									}
 									// (Other AccDC API properties and methods can be declared here also to customize functionality and behavior)
 									});
 			});
