@@ -1,6 +1,6 @@
 /*!
-Popup Module R1.5
-Copyright 2010-2016 Bryan Garaventa (WhatSock.com)
+Popup Module R1.6
+Copyright 2010-2018 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 
@@ -41,10 +41,12 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 						},
 						runDuring: function(dc){
 							dc.popupLoaded = false;
-							$A.bind('body', 'click.popup', function(ev){
-								if (dc.popupLoaded)
-									dc.close();
-							});
+
+							if (!dc.preventAutoClose)
+								$A.bind('body', 'click.popup', function(ev){
+									if (dc.popupLoaded)
+										dc.close();
+								});
 
 							// Set a resize event so that auto positioning will be recalculated automatically
 							$A.bind(window, 'resize.popup', function(){

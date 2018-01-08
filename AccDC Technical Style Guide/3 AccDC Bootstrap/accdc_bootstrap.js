@@ -248,15 +248,7 @@ Please edit this file however desired to customize functionality.
 									className: 'popup',
 // Set the class name for the screen reader accessible close link
 // This must match the class name for any close links or buttons within the popup content, which will cause Close Method Binding to automatically occur when the content is rendered.
-									closeClassName: 'popupClose',
-									runDuring: function(dc){
-// Add a named ARIA region to the surrounding container element and use aria-labelledby to reference the triggering element, which will aid navigation for screen reader users.
-										$A.setAttr(dc.accDCObj,
-														{
-														role: 'region',
-														'aria-labelledby': dc.id
-														});
-									}
+									closeClassName: 'popupClose'
 									// (Other AccDC API properties and methods can be declared here also to customize functionality and behavior)
 									});
 			});
@@ -629,7 +621,6 @@ dividerTag: 'li',
 
 		// Accessible Toggle
 		// Parse all tags that include the class 'accToggle'
-		// Must be a container element that includes label text, even if offscreen positioned.
 		// Required: Accessible Popup Module
 		if ($A.setPopup)
 			$A.query('.accToggle', context, function(i, o){
@@ -638,7 +629,8 @@ dividerTag: 'li',
 
 				var p = $A.getAttr(o, 'data-src'),
 					cid = $A.getEl($A.getAttr(o, 'data-internal')) || (p ? null : $A.reg[o.id] && $A.reg[o.id].source),
-					isStatic = $A.getEl($A.getAttr(o, 'data-insert')), state = $A.getAttr(o, 'data-defaultopen') ? true : false,
+					isStatic = $A.getEl($A.getAttr(o, 'data-insert')),
+					state = $A.getAttr(o, 'data-defaultopen') == 'true' ? true : false,
 					toggleClass = $A.getAttr(o, 'data-toggleclass') || 'togglePressed';
 
 				// Prevent duplicate event bindings when nested within multi-level same page apps
@@ -650,10 +642,46 @@ dividerTag: 'li',
 
 				if (!multiple && ((cid || p) && isStatic)){
 
-					$A.setAttr(o,
+					$A.setPopup(
 									{
-									tabindex: '0',
-									'aria-expanded': 'false'
+									// Set the ID of the AccDC Object to match the ID of the triggering element.
+									id: o.id,
+									role: ' ',
+									bind: 'click',
+									trigger: o,
+									isToggle: true,
+									source: cid && cid.nodeType === 1 ? cid : p.replace('#', ' #'),
+									mode: cid && cid.nodeType === 1 ? 0 : null,
+									isStatic: isStatic,
+									autoStart: state,
+									// Manually override defaults
+									preventAutoClose: true,
+									autoPosition: 0,
+									cssObj:
+													{
+													position: ''
+													},
+									runDuring: function(dc){
+										$A.setAttr(dc.accDCObj,
+														{
+														role: 'region',
+														'aria-labelledby': o.id
+														});
+									},
+									runAfter: function(dc){
+										$A.addClass(dc.triggerObj, toggleClass);
+										$A.setAttr(dc.triggerObj, 'aria-expanded', 'true');
+									},
+									runAfterClose: function(dc){
+										$A.remClass(dc.triggerObj, toggleClass);
+										$A.setAttr(dc.triggerObj, 'aria-expanded', 'false');
+									},
+									keyDown: function(ev, dc){},
+									announce: false,
+									forceFocus: false,
+									returnFocus: false,
+									className: 'toggle-section',
+									showHiddenBounds: false
 									});
 
 					// Ensure keyboard accessibility for non-active elements such as Divs, Spans, and A tags with no href attribute
@@ -666,50 +694,11 @@ dividerTag: 'li',
 						}
 					});
 
-					$A.setPopup(
+					$A.setAttr(o,
 									{
-									// Set the ID of the AccDC Object to match the ID of the triggering element.
-									id: o.id,
-									role: 'Region',
-									bind: 'click',
-									trigger: o,
-									isToggle: true,
-									source: cid && cid.nodeType === 1 ? cid : p.replace('#', ' #'),
-									mode: cid && cid.nodeType === 1 ? 0 : null,
-									isStatic: isStatic,
-									autoStart: false,
-									// Manually override defaults
-									autoPosition: 0,
-									cssObj:
-													{
-													position: ''
-													},
-									runDuring: function(dc){
-										$A.setAttr(dc.accDCObj,
-														{
-														'aria-labelledby': o.id
-														});
-									},
-									runBeforeClose: function(dc){},
-									runAfter: function(dc){
-										$A.remAttr(dc.accDCObj, 'aria-label');
-										$A.addClass(o, toggleClass);
-										$A.setAttr(dc.triggerObj, 'aria-expanded', 'true');
-									},
-									runAfterClose: function(dc){
-										$A.remClass(o, toggleClass);
-										$A.setAttr(dc.triggerObj, 'aria-expanded', 'false');
-									},
-									keyDown: function(ev, dc){},
-									announce: false,
-									forceFocus: false,
-									returnFocus: false,
-									className: 'toggle-section',
-									showHiddenBounds: false
+									tabindex: '0',
+									'aria-expanded': state ? 'true' : 'false'
 									});
-
-					if (state)
-						$A.trigger(o, 'click');
 				}
 			});
 
