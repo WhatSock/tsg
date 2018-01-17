@@ -1,5 +1,5 @@
 /*!
-AccDC Bootstrap R1.4
+AccDC Bootstrap R1.5
 Copyright 2010-2018 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 
@@ -248,7 +248,16 @@ Please edit this file however desired to customize functionality.
 									className: 'popup',
 // Set the class name for the screen reader accessible close link
 // This must match the class name for any close links or buttons within the popup content, which will cause Close Method Binding to automatically occur when the content is rendered.
-									closeClassName: 'popupClose'
+									closeClassName: 'popupClose',
+// Add a controlType name so this can be used to close previously opened popups automatically when another is opened.
+									controlType: 'popup',
+									runBefore: function(dc){
+										// Loop through all registered AccDC Objects before this popup is opened to close all others in advance.
+										$A.find('*', function(dc){
+											if (dc.controlType == 'popup' && dc.loaded)
+												dc.close();
+										});
+									}
 									// (Other AccDC API properties and methods can be declared here also to customize functionality and behavior)
 									});
 			});

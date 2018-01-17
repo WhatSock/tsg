@@ -17,8 +17,6 @@ $A.bind(window, 'load', function(){
 
 // Set the screen reader accessible boundary text values
 					role: 'Excerpt',
-					accStart: 'Start',
-					accEnd: 'End',
 
 					// Set the triggering element using a DOM node or a CSS Selector
 					trigger: 'a#myPopup',
@@ -27,7 +25,6 @@ $A.bind(window, 'load', function(){
 					mode: 0,
 
 					// Use removeChild to grab the desired modal content from within the document
-					// This is important to prevent ID attribute conflicts later
 					source: $A.getEl('popup-info').parentNode.removeChild($A.getEl('popup-info')),
 
 					// Position the popup on the right of the triggering element
@@ -45,19 +42,26 @@ $A.bind(window, 'load', function(){
 					closeClassName: 'popupClose',
 
 					// Set a visually hidden close link for screen reader users to appear at the end of the popup content
-					showHiddenClose: true,
+					showHiddenClose: false,
 
 // Set the visually hidden close link to appear onFocus (required for 508 compliance if no other keyboard accessible close method is available)
 					displayHiddenClose: true,
-
-					// Set the heading level that will be accessible for screen reader users
-					ariaLevel: 2,
 
 // Choose a different insertion point in the DOM; must be a DOM node; defaults to the triggering element if not specified.
 					targetObj: null,
 
 // Choose a different focus element in the DOM for CSS autoPositioning; may be a DOM node or CSS Selector; defaults to the triggering element if not specified.
-					posAnchor: ''
+					posAnchor: '',
+
+// Add a controlType name so this can be used to close previously opened popups automatically when another is opened.
+					controlType: 'popup',
+					runBefore: function(dc){
+						// Loop through all registered AccDC Objects before this popup is opened to close all others in advance.
+						$A.find('*', function(dc){
+							if (dc.controlType == 'popup' && dc.loaded)
+								dc.close();
+						});
+					}
 
 					// (Other AccDC API properties and methods can be declared here also to customize functionality and behavior)
 
