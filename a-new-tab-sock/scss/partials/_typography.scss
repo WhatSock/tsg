@@ -1,0 +1,184 @@
+//Baseline Grids and Vertical Rhythm
+
+$font-stack:    Arial, Helvetica, sans-serif; //Replace with default font family if different.
+$handwriting-script: gloria_hallelujahregular;
+$code-font: monospace;
+$aweful-font: FontAwesome;
+$non-body-font-nor: metaRomanNormal;
+$non-body-font-med: metaRomanMedium;
+$customFont: yanone_kaffeesatz-extralight;
+
+
+//Change this value to get the desired visual effect
+$default-line-height: 1.8;
+//Now using the browser default of 100% due to research into zoom functionality
+$base-font-size: 100%;
+$base-line-height: 1.5;
+
+//- start loop
+@for $i from 1 through 3 { // the loop
+
+$h1:2;
+%font-h1 {
+  font-size:$h1 + rem;
+  line-height:$default-line-height / $h1;
+  margin-top:0;
+  margin-bottom:$default-line-height / $h1 + em;
+  font-weight:700;
+  color:nth($colour_level_Primary, $i);//nth($m_col_lvl_01_list, $i);
+}
+//Custom for main content heading 1
+.chapter__module{
+  line-height:$default-line-height / 2.8 * 2; 
+}
+$h2:1.625;
+%font-h2 {
+  font-size:$h2 + rem;
+  line-height:$default-line-height / $h2;
+  margin-top:0;
+  margin-bottom:$default-line-height / $h2 + em;
+  font-weight:700;
+  color:$colour_paragraph;
+}
+$h3:1.375;
+%font-h3 {
+  font-size:$h3 + rem;
+  line-height:$default-line-height / $h3;
+  margin-top:0;
+  margin-bottom: $default-line-height / $h3 / 2 + em;
+  font-weight:700;
+  color:$colour_paragraph;
+}
+$h4:1.125;
+%font-h4 {
+  font-size:$h4 + rem;
+  line-height:$default-line-height / $h4;
+  margin-top:0;
+  margin-bottom:$default-line-height / $h4 + em; 
+  font-weight:700;
+  color:$colour_paragraph;
+}
+$h5:1;
+%font-h5 {
+  font-size:$h5 + rem;
+  line-height:$default-line-height / $h5;
+  margin-top:0;
+  margin-bottom:$default-line-height / $h5 + em;
+  font-weight:600;
+  color:$colour_paragraph;
+}
+$h6:0.875;
+%font-h6 {
+  font-size:$h6 + rem;
+  line-height:$default-line-height / $h6;
+  margin-top:0; 
+  margin-bottom:$default-line-height / $h6 + em;
+  font-style:italic;
+  color:$colour_paragraph;
+}
+$p:1;
+%font-p {
+  font-size:$p + rem;
+  line-height:$default-line-height / $p;
+  margin-top:0; 
+  margin-bottom:$default-line-height / $p + em;
+  color:$colour_paragraph;
+}
+$li:1;
+%font-li {
+  font-size:$li + rem; 
+  line-height:$default-line-height / $p;
+  margin-top:0;
+}
+ul, ol, dl{
+margin-bottom:$default-line-height / $p + em;
+}
+main ul {
+    margin-left: 3rem;
+    list-style-type:disc;
+      li ul{
+        list-style-type:circle;
+      }
+}
+
+li, dt, dd, br, th, td {
+margin-bottom: 0;
+}
+
+/*Active styles*/
+h1 {
+    @extend %font-h1; 
+}
+
+h2 {
+    @extend %font-h2;
+}
+h3 {
+    @extend %font-h3;
+}
+h4 {
+  @extend %font-h4;
+    + ol, & + ul, & + dl{
+        margin-top:-1.5rem;
+        }
+}
+h5 {
+  @extend %font-h5;
+        + ol, & + ul, & + dl{
+        margin-top:-1.5rem;
+        }
+}
+h6{
+  @extend %font-h6;
+}
+p{
+  @extend %font-p;
+    ~ ul{
+    margin-top: -1.5em; 
+    }
+}
+ul{
+  list-style:square;
+  margin-left:3em;
+}
+ul li, ol li, dl dt, dl dd {
+  @extend %font-li;
+}
+blockquote {
+  padding: 1rem 2rem;
+  margin: 0 0 20px;
+  font-size:$p + rem;
+  border-left: 5px solid #eeeeee;
+}
+cite{
+font-size:$p + rem;
+}
+code{
+display:block;
+font-family:$code-font;
+font-size:$p * 1.2 + rem;
+line-height:1.5;
+margin-bottom:1.5rem;
+color:blue;
+}
+mark{
+background-color:$colour_background;
+color:#fff;
+font-weight:700;
+}
+
+a, a:link {
+text-decoration: underline;
+  &:hover, &:focus{
+  text-decoration:none;
+  }
+}
+p, ul, ol, dl{
+	& a:focus {
+	outline: none;
+	background-color: #cef;
+	}
+}
+
+//- end loop 
+}

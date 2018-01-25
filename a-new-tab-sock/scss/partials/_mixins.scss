@@ -1,0 +1,65 @@
+
+// Sass Breakpoint Mixin
+@mixin breakpoint($point) {
+    @if $point == breakpoint-x-small {
+        @media (min-width: 375px)  { @content; }
+    }
+    @if $point == breakpoint-small {
+        @media  (min-width: 640px)  { @content; }
+    }
+    @if $point == breakpoint-medium {
+        @media  (min-width: 768px)  { @content; }
+    }
+    @if $point == breakpoint-large {
+        @media (min-width: 1024px)  { @content; }
+    }
+    @if $point == breakpoint-desktop {
+        @media (min-width: 1024) { @content; }
+    }
+}
+/*
+@include breakpoint(breakpoint-x-small) {
+
+}
+  */
+@mixin apply-to-IE {
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+@content;
+}
+@media screen and (min-width:0\0) {
+@content;
+}
+}
+@include apply-to-IE() {
+@include breakpoint(breakpoint-1010MAX) {
+#chapter-content{
+    display:block;
+  }
+}
+}
+
+/****
+@include apply-to-IE() {
+  #chapter-content{
+  display:block;
+  }
+}
+*****/
+%clearfix {
+    *zoom: 1;
+    &:before,
+    &:after {
+        display: table;
+        content: "";
+        line-height: 0;
+    }
+    &:after {
+        clear: both;
+    }
+}
+// @extend %clearfix;
+
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+}

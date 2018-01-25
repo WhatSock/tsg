@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8">
+<title>ARIA Tabs (Bootstrap Internal Content) - AccDC Technical Style Guide</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+<link rel="stylesheet" href="css/font-awesome/font-awesome.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/tabs.css">
+<style>
+
+</style>
+</head>
+
+<body>
+
+	<div class="wrapper">
+  <header class="header">
+  	<div class="innerBanner">
+				<span class="branding">
+				<a href="http://whatsock.com">
+					WhatSock : Changing the world one step at a time <span>AccDC</span> Technical Style Guide
+				</a>
+				</span>
+</div>	
+
+  </header>
+  <aside class="sidebar">
+
+  	<h2>Resources</h2>
+  		<ul>
+  			<li><a href="http://whatsock.com/training/matrices/" target="_blank">WhatSock &mdash;The ARIA Role Matrices</a></li>
+  			<li><a href="https://www.w3.org/TR/wai-aria-practices/" target="_blank">WAI-ARIA Authoring Practices 1.1</a></li>
+  		</ul>
+  	<h2>Visual ARIA</h2>
+  		<ul>
+  			<li><a href="https://chrome.google.com/webstore/detail/visual-aria/lhbmajchkkmakajkjenkchhnhbadmhmk" target="_blank">Chrome extention</a></li>
+  			<li><a href="https://addons.mozilla.org/en-US/firefox/addon/visual-aria/" target="_blank">Mozilla Firefox extention</a></li>
+  			<li><a href="https://github.com/accdc/visual-aria" target="_blank">GitHub</a></li>
+  		</ul>
+    <h2>Other space saving demos</h2>
+      <ul>
+        <li>Accordion</li>
+        <li>Disclosure (show/hide)</li>
+      </ul>
+
+
+  </aside>
+  <main class="content">
+    <h1>TABS</h1>
+
+		<section class="tabsContainer" arialabelledby="sec_01">
+			<h2 id="sec_01">Tabs (internal content model)</h2>
+
+	            <ul class="tabs ARIA" role="tablist" aria-label="Instructions">
+	                <li id="tab1hid" class="accTab tab" role="tab" data-internal="tab1hcontent" data-defaultopen="true" data-insert="tabInsertIdh" data-group="instructions">
+	                    About tabs
+	                </li>
+	                <li id="tab2hid" class="accTab tab" role="tab" data-internal="tab2hcontent" data-insert="tabInsertIdh" data-group="instructions">
+	                    Tab 2
+	                </li>
+	                <li id="tab3hid" class="accTab tab" role="tab" data-internal="tab3hcontent" data-insert="tabInsertIdh" data-group="instructions">
+	                    Tab 3
+	                </li>
+                    <li id="tab4hid" class="accTab tab" role="tab" data-internal="tab4hcontent" data-insert="tabInsertIdh" data-group="instructions">
+	                    Tab 4
+	                </li>
+	            </ul>
+	            <div class="content" id="tabInsertIdh">
+	            </div>
+                <div class="hidden">
+
+                <div id="tab1hcontent">
+                	<p>A tab control is a selection mechanism that conditionally renders dynamic content.</p>
+                </div>
+                
+                <div id="tab2hcontent">
+                <p>Tab content 2</p>
+                </div>
+                
+                <div id="tab3hcontent">
+                    <p>Tab content 3</p>
+                </div>
+                
+                 <div id="tab4hcontent">
+                <p>Tab content 4</p>
+                </div>
+                
+                </div>
+			</section>
+			<section aria-labelledby="whatisSock">
+					<h2 id="whatisSock">Accelerated Dynamic Content (AccDc)</h2>
+					<p>AccDC is a free development resource for international businesses, organizations, and academic institutions wishing to incorporate Accessible Innovation within future web technologies.</p>
+					<p>"Accessible Innovation" refers to the creation of new technologies that include Accessibility as a core platform feature of development.</p>
+					<p>The AccDC API is a JavaScript based Dynamic Content Management System that automates the rendering of dynamic content to ensure accessibility for screen reader and keyboard only users.</p>
+					<p>Discover more accessible widgets on the <a href="whatsock.com">WhatSock website</a></p>
+					</section>
+  </main>
+  <aside class="lastbar">
+  	
+  	<h2 class="icon-keyboard">Keyboard</h2>
+            <p>The tab controls are keyboard accessible:</p>
+                <ul>
+					<li>Set focus on the tab control.</li>
+					<li>Press the Arrow keys to move focus between tabs.</li>
+					<li>Press <kbd >Home</kbd> or <kbd>End</kbd> to move to the first or last tab.</li>
+					<li>Press any letter or number to jump to a tab starting with that character or digit.</li>
+					<li>Press the <kbd>Spacebar</kbd> to open (or optionally toggle if configured) the selected tab.</li>
+					<li>Mouse users can click the desired tab as usual.</li>
+				</ul>
+  </aside>
+</div>
+<footer class="footer">
+    
+    <div class="flex-container-row">
+                  <div class="flex-item">
+          <h3>Created by Bryan Garaventa</h3>
+          <ul class="details">
+              <li><a href="http://www.whatsock.com/">WhatSock</a> |</li>
+              <li><a href="https://github.com/accdc">GitHub</a> |</li>
+              <li><a href="https://www.linkedin.com/in/bgaraventa" target="_blank">LinkedIn</a> |</li>
+              <li><a href="https://twitter.com/bryanegaraventa" target="_blank">Twitter</a></li>
+            </ul>
+                  </div>
+                  <div class="flex-item">
+            <p>
+              &copy; <script>new Date().getFullYear()>2010&&document.write(+new Date().getFullYear());</script>, WhatSock. All rights reserved.
+            </p>
+                  </div>
+                  
+                </div>
+  </footer>
+
+
+
+
+
+
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/style.js"></script>
+<script src="js/aria-controls/Acc.DC.API.js"></script>
+<script src="js/aria-controls/aria_tabs_module.js"></script>
+<script src="js/aria-controls/accdc_bootstrap.js"></script>
+    
+</body>
+</html>

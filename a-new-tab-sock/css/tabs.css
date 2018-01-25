@@ -1,0 +1,84 @@
+/* ==== COLOUR VARIABLES ==== */
+/*****************************
+Common Single Colour Variables
+******************************/
+/*******************************
+Common List of Colours Variables
+********************************/
+/*****************************
+Site Specific Colour Variables
+******************************/
+/*
+@include breakpoint(breakpoint-x-small) {
+
+}
+  */
+/****
+@include apply-to-IE() {
+  #chapter-content{
+  display:block;
+  }
+}
+*****/
+.tabsContainer {
+  *zoom: 1; }
+  .tabsContainer:before, .tabsContainer:after {
+    display: table;
+    content: "";
+    line-height: 0; }
+  .tabsContainer:after {
+    clear: both; }
+
+.tabs {
+  margin: 0; }
+  .tabs + div.content {
+    margin-bottom: 2rem;
+    padding: 1rem; }
+  .tabs[role="tablist"] {
+    margin: 0 0 -.08em; }
+
+.tab {
+  display: inline-block;
+  margin: 0 0 0.05em; }
+
+.tab {
+  position: relative;
+  display: inline-block;
+  color: #000;
+  background-color: #fff;
+  border: 1px solid #27AAE1;
+  padding: 0.5rem 1.5rem;
+  cursor: pointer;
+  outline: none; }
+
+.tab:hover,
+.tab:focus {
+  text-decoration: none;
+  color: #000;
+  border-top: 6px solid #DB0016; }
+
+.tab[aria-selected="true"] {
+  color: #000;
+  font-weight: 700;
+  border-bottom: none;
+  border-top: 6px solid #1D80A9; }
+
+.tab[aria-selected="true"]:after {
+  position: absolute;
+  z-index: 3;
+  bottom: -1px;
+  right: 0;
+  left: 0;
+  height: .3em;
+  background: #fff;
+  content: ''; }
+
+.tab[aria-selected="true"]:hover,
+.tab[aria-selected="true"]:focus {
+  border-top: 6px solid #DB0016; }
+
+#tabInsertIdh {
+  text-align: left;
+  background: #fff;
+  padding: 1rem;
+  border: 1px solid #27AAE1; }

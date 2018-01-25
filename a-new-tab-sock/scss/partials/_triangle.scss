@@ -1,0 +1,106 @@
+
+@mixin triangle($direction, $size: 1.2rem, $color: currentColor, $before: false) {
+
+  $w: null;
+  $h: null;
+  $c: null;
+  $length: length($size);
+  $pseudo: if($before, 'before', 'after');
+
+  @if $length > 2 {
+    $w: nth($size, 1);
+    $h: nth($size, 2);
+    $c: nth($size, 3);
+  } @else if $length > 1 {
+    $w: nth($size, 1);
+    $h: nth($size, 2);
+    $c: nth($size, 2);
+  } @else if $length == 1 {
+    $w: nth($size, 1);
+    $h: nth($size, 1);
+    $c: nth($size, 1);
+  } @else {
+    @error "Invalid size \"#{$size}\"";
+  }
+
+  &:#{$pseudo} {
+
+    display: inline-block;
+    content: "";
+    width: 0;
+    height: 0;
+    vertical-align: middle;
+
+    @if $direction == 'up' {
+
+      @if ($length < 3) {
+
+        border-bottom: $h solid $color;
+        border-left: $w/2 solid transparent;
+        border-right: $w/2 solid transparent;
+
+      } @else {
+
+        border-bottom: $h solid $color;
+        border-left: $w solid transparent;
+        border-right: $c solid transparent;
+
+      }
+
+    } @else if $direction == 'down' {
+
+      @if ($length < 3) {
+
+        border-top: $h solid $color;
+        border-left: $w/2 solid transparent;
+        border-right: $w/2 solid transparent;
+
+      } @else {
+
+        border-top: $h solid $color;
+        border-left: $w solid transparent;
+        border-right: $c solid transparent;
+
+      }
+
+    } @else if $direction == 'left' {
+
+      @if ($length < 3) {
+
+        border-right: $h solid $color;
+        border-top: $w/2 solid transparent;
+        border-bottom: $w/2 solid transparent;
+
+      } @else {
+
+        border-right: $h solid $color;
+        border-top: $w solid transparent;
+        border-bottom: $c solid transparent;
+
+      }
+
+    } @else if $direction == 'right' {
+
+      @if ($length < 3) {
+
+        border-left: $h solid $color;
+        border-top: $w/2 solid transparent;
+        border-bottom: $w/2 solid transparent;
+
+      } @else {
+
+        border-left: $h solid $color;
+        border-top: $w solid transparent;
+        border-bottom: $c solid transparent;
+
+      }
+
+    } @else {
+      @error "Invalid direction \"#{$direction}\"";
+    }
+
+    @content;
+
+  }
+
+}
