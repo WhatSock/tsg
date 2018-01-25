@@ -1,6 +1,6 @@
 /*!
-AccDC Bootstrap R1.10
-Copyright 2010-2016 Bryan Garaventa (WhatSock.com)
+AccDC Bootstrap R1.5
+Copyright 2010-2018 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 
 Please edit this file however desired to customize functionality.
@@ -25,108 +25,117 @@ Please edit this file however desired to customize functionality.
 				}
 
 				var targ = $A.query('input[name="' + $A.getAttr(o, 'data-name') + '"]', context)[0];
-				$A.setCalendar(o.id, o, targ, false, function(ev, dc){
 
-					targ.value = ('0' + (dc.range.current.month + 1)).slice(-2) + '/' + ('0' + dc.range.current.mDay).slice(-2) + '/'
-						+ dc.range.current.year;
+				// Prevent duplicate event bindings when nested within multi-level same page apps
+				if ($A.internal.data(o, 'bound'))
+					var multiple = true;
 
-					dc.close();
-				},
-								{
-								// Uncomment to disable auto positioning
-								// autoPosition: 0,
-								cssObj:
-												{
-												position: 'absolute',
-												zIndex: 1
-												},
-								// Uncomment the following to enable disabled date ranges
-								/*
-																disabledTxt: 'Disabled',
-																ajax: function(dc, save){
-				
-										// Run before the datepicker renders
-				
-										// Set current date variables
-										var date = new Date(), current =
-														{
-														day: date.getDate(),
-														month: date.getMonth(),
-														year: date.getFullYear(),
-														weekDay: date.getDay()
-														};
-				
-										// Disable all dates prior to the current day
-										if (current.year > dc.range.current.year
-											|| (current.year === dc.range.current.year && current.month > dc.range.current.month)){
-											dc.range[dc.range.current.month].disabled[dc.range.current.year] =
-															[
-															1,
-															2,
-															3,
-															4,
-															5,
-															6,
-															7,
-															8,
-															9,
-															10,
-															11,
-															12,
-															13,
-															14,
-															15,
-															16,
-															17,
-															18,
-															19,
-															20,
-															21,
-															22,
-															23,
-															24,
-															25,
-															26,
-															27,
-															28,
-															29,
-															30,
-															31
-															];
-										}
-				
-										if (current.year === dc.range.current.year && current.month === dc.range.current.month){
-											dc.range[dc.range.current.month].disabled[dc.range.current.year] = [];
-				
-											for (var day = 1; day < current.day; day++){
-												dc.range[dc.range.current.month].disabled[dc.range.current.year].push(day);
+				else
+					$A.internal.data(o, 'bound', true);
+
+				if (!multiple)
+					$A.setCalendar(o.id, o, targ, false, function(ev, dc){
+
+						targ.value = ('0' + (dc.range.current.month + 1)).slice(-2) + '/' + ('0' + dc.range.current.mDay).slice(-2) + '/'
+							+ dc.range.current.year;
+
+						dc.close();
+					},
+									{
+									// Uncomment to disable auto positioning
+									// autoPosition: 0,
+									cssObj:
+													{
+													position: 'absolute',
+													zIndex: 1
+													},
+									// Uncomment the following to enable disabled date ranges
+									/*
+																	disabledTxt: 'Disabled',
+																	ajax: function(dc, save){
+					
+											// Run before the datepicker renders
+					
+											// Set current date variables
+											var date = new Date(), current =
+															{
+															day: date.getDate(),
+															month: date.getMonth(),
+															year: date.getFullYear(),
+															weekDay: date.getDay()
+															};
+					
+											// Disable all dates prior to the current day
+											if (current.year > dc.range.current.year
+												|| (current.year === dc.range.current.year && current.month > dc.range.current.month)){
+												dc.range[dc.range.current.month].disabled[dc.range.current.year] =
+																[
+																1,
+																2,
+																3,
+																4,
+																5,
+																6,
+																7,
+																8,
+																9,
+																10,
+																11,
+																12,
+																13,
+																14,
+																15,
+																16,
+																17,
+																18,
+																19,
+																20,
+																21,
+																22,
+																23,
+																24,
+																25,
+																26,
+																27,
+																28,
+																29,
+																30,
+																31
+																];
 											}
-										}
-				
-										// Disable all dates that fall on Saturday or Sunday
-										if (!dc.range[dc.range.current.month].disabled[dc.range.current.year])
-											dc.range[dc.range.current.month].disabled[dc.range.current.year] = [];
-										date.setFullYear(dc.range.current.year);
-										date.setMonth(dc.range.current.month);
-										var max = dc.range[dc.range.current.month].max;
-				
-										if (dc.range.current.month === 1)
-											max = (new Date(dc.range.current.year, 1, 29).getMonth() == 1) ? 29 : 28;
-				
-										for (var day = 1; day <= max; day++){
-											date.setDate(day);
-											var weekDay = date.getDay();
-				
-											// 0 = Sunday, 6 = Saturday
-											if (weekDay === 0 || weekDay === 6)
-												dc.range[dc.range.current.month].disabled[dc.range.current.year].push(day);
-										}
-				
-										// Now render the datepicker after configuring the disabled date ranges
-																	dc.open();
-																}
-								*/
-								});
+					
+											if (current.year === dc.range.current.year && current.month === dc.range.current.month){
+												dc.range[dc.range.current.month].disabled[dc.range.current.year] = [];
+					
+												for (var day = 1; day < current.day; day++){
+													dc.range[dc.range.current.month].disabled[dc.range.current.year].push(day);
+												}
+											}
+					
+											// Disable all dates that fall on Saturday or Sunday
+											if (!dc.range[dc.range.current.month].disabled[dc.range.current.year])
+												dc.range[dc.range.current.month].disabled[dc.range.current.year] = [];
+											date.setFullYear(dc.range.current.year);
+											date.setMonth(dc.range.current.month);
+											var max = dc.range[dc.range.current.month].max;
+					
+											if (dc.range.current.month === 1)
+												max = (new Date(dc.range.current.year, 1, 29).getMonth() == 1) ? 29 : 28;
+					
+											for (var day = 1; day <= max; day++){
+												date.setDate(day);
+												var weekDay = date.getDay();
+					
+												// 0 = Sunday, 6 = Saturday
+												if (weekDay === 0 || weekDay === 6)
+													dc.range[dc.range.current.month].disabled[dc.range.current.year].push(day);
+											}
+					
+											// Now render the datepicker after configuring the disabled date ranges
+																		dc.open();
+																	}
+									*/
+									});
 			});
 
 		// Accessible Modals
@@ -144,7 +153,14 @@ Please edit this file however desired to customize functionality.
 				var p = $A.getAttr(o, 'data-src'),
 					cid = $A.getEl($A.getAttr(o, 'data-internal')) || (p ? null : $A.reg[o.id] && $A.reg[o.id].source);
 
-				if (cid || p)
+				// Prevent duplicate event bindings when nested within multi-level same page apps
+				if ($A.internal.data(o, 'bound'))
+					var multiple = true;
+
+				else
+					$A.internal.data(o, 'bound', true);
+
+				if (!multiple && (cid || p))
 					$A.setModal(
 									{
 									// Set the ID of the AccDC Object to match the ID of the triggering element.
@@ -208,15 +224,20 @@ Please edit this file however desired to customize functionality.
 					autoPosition = parseInt($A.getAttr(o, 'data-autoposition')),
 					offsetLeft = parseInt($A.getAttr(o, 'data-offsetleft')), offsetTop = parseInt($A.getAttr(o, 'data-offsettop'));
 
-				if (cid || p)
+				// Prevent duplicate event bindings when nested within multi-level same page apps
+				if ($A.internal.data(o, 'bound'))
+					var multiple = true;
+
+				else
+					$A.internal.data(o, 'bound', true);
+
+				if (!multiple && (cid || p))
 					$A.setPopup(
 									{
 									// Set the ID of the AccDC Object to match the ID of the triggering element.
 									id: o.id,
 									// Set screen reader accessible boundary text values
 									role: $A.getAttr(o, 'data-role') || 'Popup',
-									accStart: 'Start',
-									accEnd: 'End',
 									source: cid && cid.nodeType === 1 ? cid : p.replace('#', ' #'),
 									mode: cid && cid.nodeType === 1 ? 0 : null,
 									trigger: o,
@@ -228,8 +249,15 @@ Please edit this file however desired to customize functionality.
 // Set the class name for the screen reader accessible close link
 // This must match the class name for any close links or buttons within the popup content, which will cause Close Method Binding to automatically occur when the content is rendered.
 									closeClassName: 'popupClose',
-									// Set the heading level that will be accessible for screen reader users
-									ariaLevel: 2
+// Add a controlType name so this can be used to close previously opened popups automatically when another is opened.
+									controlType: 'popup',
+									runBefore: function(dc){
+										// Loop through all registered AccDC Objects before this popup is opened to close all others in advance.
+										$A.find('*', function(dc){
+											if (dc.controlType == 'popup' && dc.loaded)
+												dc.close();
+										});
+									}
 									// (Other AccDC API properties and methods can be declared here also to customize functionality and behavior)
 									});
 			});
@@ -251,7 +279,14 @@ Please edit this file however desired to customize functionality.
 					autoPosition = parseInt($A.getAttr(o, 'data-autoposition')),
 					offsetLeft = parseInt($A.getAttr(o, 'data-offsetleft')), offsetTop = parseInt($A.getAttr(o, 'data-offsettop'));
 
-				if (cid || p)
+				// Prevent duplicate event bindings when nested within multi-level same page apps
+				if ($A.internal.data(o, 'bound'))
+					var multiple = true;
+
+				else
+					$A.internal.data(o, 'bound', true);
+
+				if (!multiple && (cid || p))
 					$A.setTooltip(
 									{
 									// Set the ID of the AccDC Object to match the ID of the triggering element.
@@ -280,34 +315,42 @@ Please edit this file however desired to customize functionality.
 						tdc.returnFocus = true;
 					}
 
-					$A.setBanner(
-									{
-									// Set the ID of the AccDC Object to match the ID of the triggering element.
-									id: o.id,
-									// Set screen reader accessible boundary text values
-									role: $A.getAttr(o, 'data-role') || 'Banner',
-									accStart: 'Start',
-									accEnd: 'End',
-									source: p.replace('#', ' #'),
-									// Insert the banner content within the div
-									isStatic: o,
-									// Configure a hidden close link for screen reader users
-									showHiddenClose: true,
-									// Choose whether the hidden close link appears in the tab order
-									displayHiddenClose: false,
-									// Set a class name for the hidden close link
-									closeClassName: 'closeLnk',
-									// Clear inline styling and prevent auto positioning, to use a style sheet instead
-									cssObj: {},
-									autoFix: 0,
-									// Set the heading level that will be accessible for screen reader users
-									ariaLevel: 2,
-									// Configure a mouse event handler for the AccDC Object
-									mouseOut: function(ev, dc){
-									// Remove this if you don't want to close the banner onMouseOut
-									//										dc.close();
-									}
-									});
+					// Prevent duplicate event bindings when nested within multi-level same page apps
+					if ($A.internal.data(o, 'bound'))
+						var multiple = true;
+
+					else
+						$A.internal.data(o, 'bound', true);
+
+					if (!multiple)
+						$A.setBanner(
+										{
+										// Set the ID of the AccDC Object to match the ID of the triggering element.
+										id: o.id,
+										// Set screen reader accessible boundary text values
+										role: $A.getAttr(o, 'data-role') || 'Banner',
+										accStart: 'Start',
+										accEnd: 'End',
+										source: p.replace('#', ' #'),
+										// Insert the banner content within the div
+										isStatic: o,
+										// Configure a hidden close link for screen reader users
+										showHiddenClose: true,
+										// Choose whether the hidden close link appears in the tab order
+										displayHiddenClose: false,
+										// Set a class name for the hidden close link
+										closeClassName: 'closeLnk',
+										// Clear inline styling and prevent auto positioning, to use a style sheet instead
+										cssObj: {},
+										autoFix: 0,
+										// Set the heading level that will be accessible for screen reader users
+										ariaLevel: 2,
+										// Configure a mouse event handler for the AccDC Object
+										mouseOut: function(ev, dc){
+										// Remove this if you don't want to close the banner onMouseOut
+										//										dc.close();
+										}
+										});
 				}
 			});
 
@@ -318,7 +361,14 @@ Please edit this file however desired to customize functionality.
 			$A.query('.accAccordion', context, function(i, o){
 				var g = $A.getAttr(o, 'data-group');
 
-				if (g){
+				// Prevent duplicate event bindings when nested within multi-level same page apps
+				if ($A.internal.data(o, 'bound'))
+					var multiple = true;
+
+				else
+					$A.internal.data(o, 'bound', true);
+
+				if (!multiple && g){
 					if (!track[g])
 						track[g] = [];
 
@@ -367,7 +417,14 @@ Please edit this file however desired to customize functionality.
 			$A.query('div.accCarousel', context, function(i, o){
 				var p = $A.getAttr(o, 'data-src'), d = $A.getAttr(o, 'data-defaultopen');
 
-				if (p)
+				// Prevent duplicate event bindings when nested within multi-level same page apps
+				if ($A.internal.data(o, 'bound'))
+					var multiple = true;
+
+				else
+					$A.internal.data(o, 'bound', true);
+
+				if (!multiple && p)
 					$A.setCarousel(o, p, d,
 									{
 									complete: function(dc){
@@ -394,7 +451,14 @@ Please edit this file however desired to customize functionality.
 			$A.query('div.accTree', context, function(i, o){
 				var p = $A.getAttr(o, 'data-src'), t = $A.getAttr(o, 'data-type');
 
-				if (p){
+				// Prevent duplicate event bindings when nested within multi-level same page apps
+				if ($A.internal.data(o, 'bound'))
+					var multiple = true;
+
+				else
+					$A.internal.data(o, 'bound', true);
+
+				if (!multiple && p){
 
 					// Configure custom functionality based on the value of data-type
 					if (t == 'google-map')
@@ -445,7 +509,14 @@ dividerTag: 'li',
 			$A.query('button.accMenu, a.accMenu', context, function(i, o){
 				var p = $A.getAttr(o, 'data-src'), cid = $A.getAttr(o, 'data-internal'), flyout = $A.getAttr(o, 'data-flyout');
 
-				if (cid || p)
+				// Prevent duplicate event bindings when nested within multi-level same page apps
+				if ($A.internal.data(o, 'bound'))
+					var multiple = true;
+
+				else
+					$A.internal.data(o, 'bound', true);
+
+				if (!multiple && (cid || p))
 					$A.setMenu(o, cid || p.substring(0, p.indexOf('#')), cid ? p : p.substring(p.indexOf('#') + 1), function(ev, dc){
 						// Do something with the menu item A tag when it is activated
 						alert('Do something with this.href or id="' + this.id
@@ -518,7 +589,14 @@ dividerTag: 'li',
 			$A.query('.accTab', context, function(i, o){
 				var g = $A.getAttr(o, 'data-group');
 
-				if (g){
+				// Prevent duplicate event bindings when nested within multi-level same page apps
+				if ($A.internal.data(o, 'bound'))
+					var multiple = true;
+
+				else
+					$A.internal.data(o, 'bound', true);
+
+				if (!multiple && g){
 					if (!track[g])
 						track[g] = [];
 
@@ -552,7 +630,6 @@ dividerTag: 'li',
 
 		// Accessible Toggle
 		// Parse all tags that include the class 'accToggle'
-		// Must be a container element that includes label text, even if offscreen positioned.
 		// Required: Accessible Popup Module
 		if ($A.setPopup)
 			$A.query('.accToggle', context, function(i, o){
@@ -561,15 +638,59 @@ dividerTag: 'li',
 
 				var p = $A.getAttr(o, 'data-src'),
 					cid = $A.getEl($A.getAttr(o, 'data-internal')) || (p ? null : $A.reg[o.id] && $A.reg[o.id].source),
-					isStatic = $A.getEl($A.getAttr(o, 'data-insert')), state = $A.getAttr(o, 'data-defaultopen') ? true : false,
+					isStatic = $A.getEl($A.getAttr(o, 'data-insert')),
+					state = $A.getAttr(o, 'data-defaultopen') == 'true' ? true : false,
 					toggleClass = $A.getAttr(o, 'data-toggleclass') || 'togglePressed';
 
-				if ((cid || p) && isStatic){
+				// Prevent duplicate event bindings when nested within multi-level same page apps
+				if ($A.internal.data(o, 'bound'))
+					var multiple = true;
 
-					$A.setAttr(o,
+				else
+					$A.internal.data(o, 'bound', true);
+
+				if (!multiple && ((cid || p) && isStatic)){
+
+					$A.setPopup(
 									{
-									tabindex: '0',
-									'aria-pressed': 'false'
+									// Set the ID of the AccDC Object to match the ID of the triggering element.
+									id: o.id,
+									role: ' ',
+									bind: 'click',
+									trigger: o,
+									isToggle: true,
+									source: cid && cid.nodeType === 1 ? cid : p.replace('#', ' #'),
+									mode: cid && cid.nodeType === 1 ? 0 : null,
+									isStatic: isStatic,
+									autoStart: state,
+									// Manually override defaults
+									preventAutoClose: true,
+									autoPosition: 0,
+									cssObj:
+													{
+													position: ''
+													},
+									runDuring: function(dc){
+										$A.setAttr(dc.accDCObj,
+														{
+														role: 'region',
+														'aria-labelledby': o.id
+														});
+									},
+									runAfter: function(dc){
+										$A.addClass(dc.triggerObj, toggleClass);
+										$A.setAttr(dc.triggerObj, 'aria-expanded', 'true');
+									},
+									runAfterClose: function(dc){
+										$A.remClass(dc.triggerObj, toggleClass);
+										$A.setAttr(dc.triggerObj, 'aria-expanded', 'false');
+									},
+									keyDown: function(ev, dc){},
+									announce: false,
+									forceFocus: false,
+									returnFocus: false,
+									className: 'toggle-section',
+									showHiddenBounds: false
 									});
 
 					// Ensure keyboard accessibility for non-active elements such as Divs, Spans, and A tags with no href attribute
@@ -582,50 +703,11 @@ dividerTag: 'li',
 						}
 					});
 
-					$A.setPopup(
+					$A.setAttr(o,
 									{
-									// Set the ID of the AccDC Object to match the ID of the triggering element.
-									id: o.id,
-									role: 'Region',
-									bind: 'click',
-									trigger: o,
-									isToggle: true,
-									source: cid && cid.nodeType === 1 ? cid : p.replace('#', ' #'),
-									mode: cid && cid.nodeType === 1 ? 0 : null,
-									isStatic: isStatic,
-									autoStart: false,
-									// Manually override defaults
-									autoPosition: 0,
-									cssObj:
-													{
-													position: ''
-													},
-									runDuring: function(dc){
-										$A.setAttr(dc.accDCObj,
-														{
-														'aria-labelledby': o.id
-														});
-									},
-									runBeforeClose: function(dc){},
-									runAfter: function(dc){
-										$A.remAttr(dc.accDCObj, 'aria-label');
-										$A.addClass(o, toggleClass);
-										$A.setAttr(dc.triggerObj, 'aria-pressed', 'true');
-									},
-									runAfterClose: function(dc){
-										$A.remClass(o, toggleClass);
-										$A.setAttr(dc.triggerObj, 'aria-pressed', 'false');
-									},
-									keyDown: function(ev, dc){},
-									announce: false,
-									forceFocus: false,
-									returnFocus: false,
-									className: 'toggle-section',
-									showHiddenBounds: false
+									tabindex: '0',
+									'aria-expanded': state ? 'true' : 'false'
 									});
-
-					if (state)
-						$A.trigger(o, 'click');
 				}
 			});
 
@@ -635,18 +717,26 @@ dividerTag: 'li',
 			// Get the first object simply to configure shared parameters
 			var o = $A.query('span.accFootnote', context)[0];
 
-			$A.setFootnotes('span.accFootnote', context,
-							{
+			// Prevent duplicate event bindings when nested within multi-level same page apps
+			if ($A.internal.data(o, 'bound'))
+				var multiple = true;
 
-							// Set the tooltip text for the footnote (this will also be the accessible name for screen reader users)
-							fnText: $A.getAttr(o, 'data-fntext') || 'Footnote',
+			else
+				$A.internal.data(o, 'bound', true);
 
-							// Set the footnote character or text that will comprise the visual link text for returning footnotes
-							fnChar: $A.getAttr(o, 'data-fnchar') || '&#8224;',
+			if (!multiple)
+				$A.setFootnotes('span.accFootnote', context,
+								{
+
+								// Set the tooltip text for the footnote (this will also be the accessible name for screen reader users)
+								fnText: $A.getAttr(o, 'data-fntext') || 'Footnote',
+
+								// Set the footnote character or text that will comprise the visual link text for returning footnotes
+								fnChar: $A.getAttr(o, 'data-fnchar') || '&#8224;',
 
 // Set the tooltip text for the footnote back links (this will also be the accessible name for screen reader users)
-							backText: $A.getAttr(o, 'data-backtext') || 'Back to Footnote'
-							});
+								backText: $A.getAttr(o, 'data-backtext') || 'Back to Footnote'
+								});
 		}
 	};
 

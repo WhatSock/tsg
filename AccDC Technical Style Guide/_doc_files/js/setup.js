@@ -8,6 +8,7 @@
 			apiToggles.push(new $A.Toggle(o,
 							{
 							state: false,
+							suppressARIAPressed: true,
 							callback: function(state){
 								$A.setAttr(this, 'aria-expanded', state ? 'true' : 'false');
 
@@ -30,6 +31,7 @@
 			moduleToggles.push(new $A.Toggle(o,
 							{
 							state: false,
+							suppressARIAPressed: true,
 							callback: function(state){
 								$A.setAttr(this, 'aria-expanded', state ? 'true' : 'false');
 
@@ -52,6 +54,7 @@
 			ariaToggles.push(new $A.Toggle(o,
 							{
 							state: false,
+							suppressARIAPressed: true,
 							callback: function(state){
 								$A.setAttr(this, 'aria-expanded', state ? 'true' : 'false');
 
@@ -74,6 +77,7 @@
 			eventToggles.push(new $A.Toggle(o,
 							{
 							state: false,
+							suppressARIAPressed: true,
 							callback: function(state){
 								$A.setAttr(this, 'aria-expanded', state ? 'true' : 'false');
 

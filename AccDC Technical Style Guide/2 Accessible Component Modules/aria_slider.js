@@ -1,6 +1,6 @@
 /*!
-ARIA Slider Module R1.6
-Copyright 2010-2016 Bryan Garaventa (WhatSock.com)
+ARIA Slider Module R1.7
+Copyright 2010-2017 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 	*/
 
@@ -43,7 +43,15 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 						set: function(){
 							var dc = this;
 							dc.update.apply(dc);
-							dc.onDrag.apply(dc.accDCObj, [null, null, dc, dc.config.now, null, true]);
+							dc.onDrag.apply(dc.accDCObj,
+											[
+											null,
+											null,
+											dc,
+											dc.config.now,
+											null,
+											true
+											]);
 						},
 						update: function(){
 							var dc = this, posi =
@@ -51,6 +59,12 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 											top: 0,
 											left: 0
 											};
+
+							if (dc.config.now < dc.config.min)
+								dc.config.now = dc.config.min;
+
+							else if (dc.config.now > dc.config.max)
+								dc.config.now = dc.config.max;
 
 							dc.css(
 											{
@@ -81,7 +95,13 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							}
 
 							if (!s && config.onDrag && typeof config.onDrag === 'function')
-								config.onDrag.apply(this, [ev, dd, dc, v]);
+								config.onDrag.apply(this,
+												[
+												ev,
+												dd,
+												dc,
+												v
+												]);
 						},
 						onDragEnd: function(ev, dd, dc){
 							dc.update.apply(dc);
@@ -114,7 +134,13 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 								setTimeout(function(){
 									dc.update.apply(dc);
-									dc.onDrag.apply(this, [ev, null, dc, dc.config.now]);
+									dc.onDrag.apply(this,
+													[
+													ev,
+													null,
+													dc,
+													dc.config.now
+													]);
 								}, 1);
 
 								ev.stopPropagation();
@@ -138,7 +164,13 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 						runAfter: function(dc){
 							if (dc.config.now){
 								dc.update.apply(dc);
-								dc.onDrag.apply(dc.accDCObj, [null, null, dc, dc.config.now]);
+								dc.onDrag.apply(dc.accDCObj,
+												[
+												null,
+												null,
+												dc,
+												dc.config.now
+												]);
 							}
 
 							dc.config.inc = parseInt(dc.config.max * 0.1);
@@ -153,7 +185,9 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 											tabindex: '-1'
 											}, dc.sraCSS, null, dc.config.degradeLbl);
 
-							pNode.appendChild(dc.config.degrade);
+							if (config.degradeGracefully)
+								pNode.appendChild(dc.config.degrade);
+
 							$A.bind(dc.config.degrade,
 											{
 											click: function(ev){
@@ -186,7 +220,14 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 													if (v != dc.config.now){
 														dc.config.now = v;
 														dc.update.apply(dc);
-														dc.onDrag.apply(dc.accDCObj, [ev, null, dc, v, true]);
+														dc.onDrag.apply(dc.accDCObj,
+																		[
+																		ev,
+																		null,
+																		dc,
+																		v,
+																		true
+																		]);
 													}
 												});
 

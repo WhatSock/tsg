@@ -1,6 +1,6 @@
 /*!
-Toggle Generator R2.3
-Copyright 2010-2017 Bryan Garaventa (WhatSock.com)
+Toggle Generator R2.4
+Copyright 2010-2018 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 
 To avoid backwards compatible screen reader support issues, ARIA Toggle and ARIA Checkbox Rules :
@@ -15,7 +15,7 @@ Image links (A tag with embedded IMG): Use innerText and add alt="" to the IMG t
 	$A.Toggle = function(trigger, config){
 		var config = config || {}, t = typeof trigger === 'string' ? $A.getEl(trigger) : trigger, that = this,
 			tRole = $A.getAttr(t, 'role'), isCheckbox = (tRole == 'checkbox' || tRole == 'switch') ? true : false,
-			sraText = $A.createEl('span', null, $A.sraCSS);
+			sraText = $A.createEl('span', null, $A.sraCSS), sAP = config.suppressARIAPressed ? true : false;
 
 		if (!config.noToggle && config.noARIA){
 			if (!config.roleText)
@@ -38,8 +38,10 @@ Image links (A tag with embedded IMG): Use innerText and add alt="" to the IMG t
 					sraText.innerHTML = state
 						? ('&nbsp;' + config.roleText + '&nbsp;' + config.stateText) : '&nbsp;' + config.roleText;
 
-				else if (!config.noToggle)
-					$A.setAttr(t, isCheckbox ? 'aria-checked' : 'aria-pressed', state ? 'true' : 'false');
+				else if (!config.noToggle){
+					if (!sAP)
+						$A.setAttr(t, isCheckbox ? 'aria-checked' : 'aria-pressed', state ? 'true' : 'false');
+				}
 				that.state = state;
 			}
 		};

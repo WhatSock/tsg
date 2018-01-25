@@ -98,4 +98,27 @@ ddLink {}
 	#subtotals p:last-child {font-size: 1.1em;}
 }
 
+body {
+    overflow-x: hidden;
+    -webkit-user-select: none; /* disable selection/Copy of UIWebView */
+    -webkit-touch-callout: none; /* disable the IOS popup when long-press */
+}
 
+div.booksWrapper div[aria-grabbed] {
+position: absolute;
+}
+
+div.booksWrapper div[aria-grabbed="true"] {
+z-index: 2;
+}
+
+div.booksWrapper div[aria-grabbed] a.ddLink:focus {
+position: absolute;
+z-index: 3;
+padding: 0;
+margin: 5px 0 0 -55px;
+width: 120px;
+background-color: white;
+color: blue;
+font-size: 0.8em;
+}

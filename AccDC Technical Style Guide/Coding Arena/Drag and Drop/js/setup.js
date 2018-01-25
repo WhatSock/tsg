@@ -59,12 +59,11 @@ $A.bind(window, 'load', function(){
 						return $A.getAttr(obj, 'data-label');
 					},
 
-					// Set the initial styles for the morphed AccDC Object, which will need absolute positioning
-					cssObj:
-									{
-									position: 'absolute',
-									zIndex: 1
-									},
+					// Optionally set the initial styles for the morphed AccDC Object, which will need absolute positioning
+					cssObj: {
+					// Props here, or leave blank to use external stylesheet
+					// position: 'absolute'
+					},
 
 					// Prevent block formatting when surrounding divs are added
 					displayInline: true,
@@ -80,11 +79,12 @@ $A.bind(window, 'load', function(){
 										// CSS to reset inline style changes when dragging and dropping
 										clearCSS:
 														{
-														zIndex: 1,
 														top: '',
 														left: '',
 														height: '',
-														width: ''
+														width: '',
+														right: '',
+														bottom: ''
 														}
 										};
 
@@ -107,9 +107,7 @@ $A.bind(window, 'load', function(){
 					on:
 									{
 									dragStart: function(ev, dd, dc){
-
-										// Increment the z-index value as soon as an image is grabbed so that it floats above the others
-										dc.css('zIndex', 2);
+									// Do something
 									},
 									drop: function(ev, dd, dc){
 
@@ -175,8 +173,18 @@ $A.bind(window, 'load', function(){
 					// Override default relative positioning to use absolute instead
 					ddCSS:
 									{
-									position: 'absolute',
-									zIndex: 10
+									// Optionally use blank values to override defaults and use external stylesheet instead.
+									position: '',
+									zIndex: ''
+									/*
+																		padding: '0',
+																		margin: '0',
+																		'margin-left': '-50px',
+																		'margin-top': '10px',
+																		width: '120px',
+																		'background-color': 'white',
+																		color: 'blue'
+									*/
 									},
 
 					// Set class names for the drag links

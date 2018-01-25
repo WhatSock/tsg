@@ -171,6 +171,9 @@ className: 'commentAdd',
 action1: 'Save'
 },
 
+// Condense the year display by removing the year nav buttons. Requires the Calendar Module version 1.25 or greater.
+condenseYear: false,
+
 // Manually configure the calendar using AJAX or a customization script
 ajax: function(dc, save){
 // 'save' is true when closing the Editor, false otherwise for fetching content when the calendar is opened.

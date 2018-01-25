@@ -1,11 +1,11 @@
 /*!
-AccDC API - 3.3 Standalone (12/15/2016)
-Copyright 2010-2016 Bryan Garaventa (WhatSock.com)
+AccDC API - 3.4 Standalone (12/11/2017)
+Copyright 2010-2017 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 (function( window, undefined ) {
 
-var accDCVersion = '3.3 (12/15/2016)',
+var accDCVersion = '3.4 (12/11/2017)',
 document = window.document,
 accDC = {},
 
@@ -282,20 +282,42 @@ config.complete.apply(ele);
 }, 10);
 },
 
-// U@11/25
-xOffset = function(c, p, isR){
-if (isR) return {
-top: c.offsetTop,
-left: c.offsetLeft
-};
-var o = {left:0, top:0},
-p = p || document.body;
-while (c && c != p) {
-o.left += c.offsetLeft;
-o.top += c.offsetTop;
-c = c.offsetParent;
+// BG:3.4:11/19/2017
+xOffset = function(c, forceAbsolute, forceRelative, returnTopLeftOnly){
+if (c && c.nodeType === 1){
+var r = {},
+position = css(c, 'position');
+if (forceAbsolute || position == 'absolute') r = getAbsolutePos(c);
+else if (forceRelative || position == 'relative'){
+r.top = c.offsetTop;
+r.left = c.offsetLeft;
+} else
+r = c.getBoundingClientRect();
+if (!returnTopLeftOnly){
+// Normalize the height, width, right, and bottom properties of r regardless which method above is used
+r.height = xHeight(c);
+r.width = xWidth(c);
+r.right = r.left + r.width;
+r.bottom = r.top + r.height;
+} else {
+// Otherwise ensure only top and left properties are returned if returnTopLeftOnly = true
+r.height = r.width = r.right = r.bottom = '';
 }
-return o;
+return r;
+} else return null;
+},
+
+// BG:3.4:11/17/2017
+getAbsolutePos = function(obj){
+var curleft = curtop = 0;
+do {
+curleft += obj.offsetLeft;
+curtop += obj.offsetTop;
+} while (obj = obj.offsetParent);
+return {
+left: curleft,
+top: curtop
+};
 },
 
 xCamelize = function(cssPropStr){
@@ -449,6 +471,25 @@ if(xNum(iX)) e.style.pixelLeft=iX;
 else iX=e.style.pixelLeft;
 }
 return iX;
+},
+
+// BG:3.4:11/15/2017
+pointerPos = function(e){
+var posx = 0, posy = 0;
+if (e.pageX || e.pageY) {
+posx = e.pageX;
+posy = e.pageY;
+}
+else if (e.clientX || e.clientY) {
+posx = e.clientX + document.body.scrollLeft
++ document.documentElement.scrollLeft;
+posy = e.clientY + document.body.scrollTop
++ document.documentElement.scrollTop;
+}
+return {
+x: posx,
+y: posy
+};
 },
 
 /*
@@ -4481,6 +4522,10 @@ xHeight: xHeight,
 xWidth: xWidth,
 xTop: xTop,
 xLeft: xLeft,
+// BG:3.4:11/15/2017
+pointerPos: pointerPos,
+// BG:3.4:11/17/2017
+getAbsolutePos: getAbsolutePos,
 xDef: xDef,
 xNum: xNum,
 transition: transition,
@@ -4647,7 +4692,7 @@ return ta;
 
 window[(window.AccDCNamespace ? window.AccDCNamespace : '$A')] = $A;
 
-// U@11/25
+// BG:3.4:11/17/2017
 var calcPosition = function(dc, objArg, posVal){
 var obj = objArg || dc.posAnchor;
 if (obj && typeof obj == 'string') obj = pL(obj).get(0);
@@ -4655,37 +4700,32 @@ else if (!obj) obj = dc.triggerObj;
 if (!obj) return;
 var
 autoPosition = posVal || dc.autoPosition,
-pos = { },
+pos = {},
 aPos = {
 height: xHeight(dc.accDCObj),
 width: xWidth(dc.accDCObj)
 },
 oPos = xOffset(obj),
 position = css(dc.accDCObj, 'position');
-if (position == 'relative'){
-oPos = xOffset(obj, null, true);
-} else if (position == 'fixed' && css(obj, 'position') == 'fixed')
-oPos.top = obj.offsetTop;
-oPos.height = xHeight(obj);
-oPos.width = xWidth(obj);
+if (position == 'absolute' && css(obj, 'position') != 'fixed') oPos = xOffset(obj, true);
 if (autoPosition == 1){
 pos.left = oPos.left;
 pos.top = oPos.top - aPos.height;
 } else if (autoPosition == 2){
-pos.left = oPos.left + oPos.width;
+pos.left = oPos.right;
 pos.top = oPos.top - aPos.height;
 } else if (autoPosition == 3){
-pos.left = oPos.left + oPos.width;
+pos.left = oPos.right;
 pos.top = oPos.top;
 } else if (autoPosition == 4){
-pos.left = oPos.left + oPos.width;
-pos.top = oPos.top + oPos.height;
+pos.left = oPos.right;
+pos.top = oPos.bottom;
 } else if (autoPosition == 5){
 pos.left = oPos.left;
-pos.top = oPos.top + oPos.height;
+pos.top = oPos.bottom;
 } else if (autoPosition == 6){
 pos.left = oPos.left - aPos.width;
-pos.top = oPos.top + oPos.height;
+pos.top = oPos.bottom;
 } else if (autoPosition == 7){
 pos.left = oPos.left - aPos.width;
 pos.top = oPos.top;
@@ -4696,14 +4736,14 @@ pos.top = oPos.top - aPos.height;
 pos.left = oPos.left;
 pos.top = oPos.top;
 } else if (autoPosition == 10){
-pos.left = oPos.left + oPos.width - aPos.width;
+pos.left = oPos.right - aPos.width;
 pos.top = oPos.top - aPos.height;
 } else if (autoPosition == 11){
-pos.left = oPos.left + oPos.width - aPos.width;
+pos.left = oPos.right - aPos.width;
 pos.top = oPos.top;
 } else if (autoPosition == 12){
-pos.left = oPos.left + oPos.width - aPos.width;
-pos.top = oPos.top + oPos.height;
+pos.left = oPos.right - aPos.width;
+pos.top = oPos.bottom;
 }
 if (typeof dc.offsetTop === 'number' && (dc.offsetTop < 0 || dc.offsetTop > 0))
 pos.top += dc.offsetTop;
@@ -4858,10 +4898,16 @@ dc.accDCObj = createEl('div', {
 id: dc.fn.accDCObjId
 });
 if (dc.className) addClass(dc.accDCObj, dc.className);
+// BG:3.4:12/11/2017 start
+if (dc.showHiddenBounds)
 pL(dc.accDCObj)
-.append(dc.fn.sraStart)
-.append(dc.containerDiv)
+.append(dc.fn.sraStart);
+pL(dc.accDCObj)
+.append(dc.containerDiv);
+if (dc.showHiddenBounds)
+pL(dc.accDCObj)
 .append(dc.fn.sraEnd);
+// BG:3.4:12/11/2017 end
 var events = {
 mouseOver: function(ev){
 dc.mouseOver.apply(this, [ev, dc]);
@@ -5350,7 +5396,7 @@ top: 50 - nph + '%'
 }
 if (dc.offsetTop < 0 || dc.offsetTop > 0 || dc.offsetLeft < 0 || dc.offsetLeft > 0){
 var cs = xOffset(dc.accDCObj);
-cs.top = dc.accDCObj.offsetTop;
+// BG:3.4:11/15/2017
 cs.top += dc.offsetTop;
 cs.left += dc.offsetLeft;
 css(dc.accDCObj, cs);
@@ -5610,8 +5656,9 @@ if (da) dc.accDD.dropAnchors[0] = da;
 return dc.accDD.dragDD.drop = dc.accDD.dragDD.available = dc.accDD.dropTargets;
 },
 */
-startX: os.left + (xWidth(this) / 2),
-startY: os.top + (xHeight(this) / 2),
+// BG:3.4:11/15/2017
+startX: os.left + (os.width / 2),
+startY: os.top + (os.height / 2),
 deltaX: 0,
 deltaY: 0,
 originalX: os.left,
@@ -5620,14 +5667,7 @@ offsetX: 0,
 offsetY: 0
 };
 dc.accDD.dragDD.target = pL(dc.drag.handle).get(0) || this;
-var position = css(this, 'position');
-if (position == 'fixed')
-dc.accDD.dragDD.originalY = this.offsetTop;
-else if (position == 'relative'){
-var xos = xOffset(this, null, true);
-dc.accDD.dragDD.originalY = xos.top;
-dc.accDD.dragDD.originalX = xos.left;
-}
+// BG:3.4:11/15/2017
 dc.onDragStart.apply(this, [ev, dc.accDD.dragDD, dc]);
 },
 fireDrop: function(ev, dc){
@@ -5653,28 +5693,13 @@ deltaY: 0,
 offsetX: os.left,
 offsetY: os.top
 };
-var position = css(this, 'position');
-if (position == 'fixed')
-dc.accDD.dropDD.offsetY = this.offsetTop;
-else if (position == 'relative'){
-var xos = xOffset(this, null, true);
-dc.accDD.dropDD.offsetY = xos.top;
-dc.accDD.dropDD.offsetX = xos.left;
-}
+// BG:3.4:11/15/2017
 function update(){
-var position = css(dc.accDD.dragDD.drag, 'position'),
-os = xOffset(dc.accDD.dragDD.drag);
+// BG:3.4:11/15/2017
+var os = xOffset(dc.accDD.dragDD.drag);
 dc.accDD.dragDD.offsetY = os.top;
 dc.accDD.dragDD.offsetX = os.left;
-if (position == 'fixed')
-dc.accDD.dragDD.offsetY = dc.accDD.dragDD.drag.offsetTop;
-else if (position == 'relative'){
-var xos = xOffset(dc.accDD.dragDD.drag, null, true);
-dc.accDD.dragDD.offsetY = xos.top;
-dc.accDD.dragDD.offsetX = xos.left;
 }
-}
-
 transition(dc.accDD.dragDD.drag, {
 top: dc.accDD.dropDD.offsetY,
 left: dc.accDD.dropDD.offsetX

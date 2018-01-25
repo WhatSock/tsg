@@ -86,8 +86,7 @@ td.comment.selected {
 	background: #E2A037; 
 }
 
-
-td.disabled, td.disabled:hover {
+td[role="button"][aria-disabled="true"], td[role="button"][aria-disabled="true"]:hover, td.disabled, td.disabled:hover {
 	color: #CCC;
     background: #bdbdbd;
     cursor: auto; 

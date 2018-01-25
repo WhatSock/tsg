@@ -1,6 +1,6 @@
 /*!
-Accordion Generator Module R2.10
-Copyright 2010-2017 Bryan Garaventa (WhatSock.com)
+Accordion Generator Module R2.11
+Copyright 2010-2018 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 
@@ -102,7 +102,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 				if (isAria)
 					$A.setAttr(dc.triggerObj, isBtn ?
 									{
-									'aria-pressed': 'true',
+									// 'aria-pressed': 'true',
 									'aria-expanded': 'true'
 									} : (isLnk ?
 									{
@@ -118,7 +118,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 				if (isAria)
 					$A.setAttr(dc.triggerObj, isBtn ?
 									{
-									'aria-pressed': 'false',
+									// 'aria-pressed': 'false',
 									'aria-expanded': 'false'
 									} : (isLnk ?
 									{
@@ -149,7 +149,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 			if (isAria)
 				$A.setAttr(o, isBtn ?
 								{
-								'aria-pressed': 'false',
+								// 'aria-pressed': 'false',
 								'aria-expanded': 'false'
 								} : (isLnk ?
 								{
