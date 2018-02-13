@@ -1,6 +1,7 @@
 /*!
-Modal Module R1.8
-Copyright 2010-2017 Bryan Garaventa (WhatSock.com)
+Modal Module R1.9
+Copyright 2010-2018 Bryan Garaventa (WhatSock.com)
+Refactoring Contributions Copyright 2018 Danny Allen (dannya.com) / Wonderscore Ltd (wonderscore.co.uk)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 
@@ -95,11 +96,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 						runAfter: function(dc){
 							if (!openModals.length){
 								$A.bind(window, 'resize.accmodal', function(ev){
-									if (openModals[openModals.length - 1].autoFix)
-										openModals[openModals.length - 1].applyFix();
-
-									else if (openModals[openModals.length - 1].autoPosition)
-										openModals[openModals.length - 1].setPosition();
+									dc.reposition();
 								});
 								$A.bind('body', 'focusin.accmodal', function(ev){
 									if (openModals[openModals.length - 1].tempFocus)
@@ -143,9 +140,23 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							});
 						},
 
+						reposition: function () {
+							if (!openModals.length) {
+								return false;
+							}
+
+							if (openModals[openModals.length - 1].autoFix)
+								openModals[openModals.length - 1].applyFix();
+
+							else if (openModals[openModals.length - 1].autoPosition)
+								openModals[openModals.length - 1].setPosition();
+
+							return true;
+						},
+
 						// Set a localized focusIn handler on the AccDC Object to control circular tabbing
 						focusIn: function(ev, dc){
-// dc.tempFocus will bubble up to the body focusIn handler to verify if focus is still within the AccDC Object or not
+							// dc.tempFocus will bubble up to the body focusIn handler to verify if focus is still within the AccDC Object or not
 							dc.tempFocus = this;
 						},
 						tabOut: function(ev, dc){
@@ -161,8 +172,8 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							if (k == 27)
 								dc.close();
 						},
-// Set the className for the close link, must match the className for any other close links in the rendered content
-// AccDC Object close functionality is automatically configured
+						// Set the className for the close link, must match the className for any other close links in the rendered content
+						// AccDC Object close functionality is automatically configured
 						closeClassName: 'lbClose',
 						className: 'modal'
 						}, true);
