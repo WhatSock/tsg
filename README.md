@@ -105,26 +105,8 @@ http://whatsock.com/tsg
 Related projects:
 -----
 
-The Accessibility Tree - A Training Guide for Advanced Web Development: https://github.com/accdc/training
-
-The ARIA Role Conformance Matrices: https://github.com/accdc/aria-matrices
-
-AccDC API
-Standalone: https://github.com/accdc/accdc
-For jQuery: https://github.com/accdc/accdc-jquery
-For Dojo: https://github.com/accdc/accdc-dojo
-For MooTools: https://github.com/accdc/accdc-mootools
-
-AccDC Bootstrap
-Standalone: https://github.com/accdc/bootstrap
-For jQuery: https://github.com/accdc/bootstrap-jquery
-For Dojo: https://github.com/accdc/bootstrap-dojo
-For MooTools: https://github.com/accdc/bootstrap-mootools
-
-AccDC Technical Style Guide and Coding Arena
-For AccDC Standalone and jQuery: https://github.com/accdc/tsg
-For Dojo: https://github.com/accdc/tsg-dojo
-For MooTools: https://github.com/accdc/tsg-mootools
+* WhatSock Organization: https://github.com/whatsock
+* Visual ARIA: https://github.com/accdc/visual-aria
 
 Understanding AccDC: A Quick Start Guide
 -----
@@ -176,16 +158,16 @@ There are many more AccDC API commands and customizable rendering functionalitie
 
 In order to test and verify this functionality, there are three dedicated TSG GitHub projects, all of which use the same component code for each widget type shared between them, which tie into the AccDC API for automatic normalization.
 
-* Powered by jQuery: https://github.com/accdc/tsg
-* Powered by Dojo: https://github.com/accdc/tsg-dojo
-* Powered by MooTools: https://github.com/accdc/tsg-mootools
+* Powered by jQuery: https://github.com/whatsock/tsg
+* Powered by Dojo: https://github.com/whatsock/tsg-dojo
+* Powered by MooTools: https://github.com/whatsock/tsg-mootools
 
 In order to ensure the highest level of accessibility possible for all user types, including non-sighted screen reader users, mobility impaired keyboard only users, voice navigation software users, and low vision screen magnification software users, all of the scalable widgets provided within the TSG archives are programmed specifically to be as accessible as possible using all current standards, with specific adherence to the principles and guidelines documented at:
 
 http://whatsock.com/training
 
 Also available for download at:
-https://github.com/accdc/training
+https://github.com/whatsock/training
 
 For community support, please address any questions to the Accessibility Innovators LinkedIn group, at:
 https://www.linkedin.com/groups/Accessibility-Innovators-4512178
