@@ -1,5 +1,5 @@
 /*!
-Modal Module R1.9
+Modal Module R1.10
 Copyright 2010-2018 Bryan Garaventa (WhatSock.com)
 Refactoring Contributions Copyright 2018 Danny Allen (dannya.com) / Wonderscore Ltd (wonderscore.co.uk)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
@@ -140,7 +140,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							});
 						},
 
-						reposition: function () {
+						reposition: function (callbackFn) {
 							if (!openModals.length) {
 								return false;
 							}
@@ -150,6 +150,11 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 							else if (openModals[openModals.length - 1].autoPosition)
 								openModals[openModals.length - 1].setPosition();
+
+							// Run custom specified function?
+							if (typeof callbackFn === 'function'){
+								callbackFn(openModals[openModals.length - 1]);
+							}
 
 							return true;
 						},

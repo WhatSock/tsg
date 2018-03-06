@@ -1,5 +1,5 @@
 /*!
-AccDC Bootstrap R1.5
+AccDC Bootstrap R1.6
 Copyright 2010-2018 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 
@@ -27,11 +27,13 @@ Please edit this file however desired to customize functionality.
 				var targ = $A.query('input[name="' + $A.getAttr(o, 'data-name') + '"]', context)[0];
 
 				// Prevent duplicate event bindings when nested within multi-level same page apps
-				if ($A.internal.data(o, 'bound'))
-					var multiple = true;
+				if (o){
+					if ($A.internal.data(o, 'bound'))
+						var multiple = true;
 
-				else
-					$A.internal.data(o, 'bound', true);
+					else
+						$A.internal.data(o, 'bound', true);
+				}
 
 				if (!multiple)
 					$A.setCalendar(o.id, o, targ, false, function(ev, dc){
@@ -154,11 +156,13 @@ Please edit this file however desired to customize functionality.
 					cid = $A.getEl($A.getAttr(o, 'data-internal')) || (p ? null : $A.reg[o.id] && $A.reg[o.id].source);
 
 				// Prevent duplicate event bindings when nested within multi-level same page apps
-				if ($A.internal.data(o, 'bound'))
-					var multiple = true;
+				if (o){
+					if ($A.internal.data(o, 'bound'))
+						var multiple = true;
 
-				else
-					$A.internal.data(o, 'bound', true);
+					else
+						$A.internal.data(o, 'bound', true);
+				}
 
 				if (!multiple && (cid || p))
 					$A.setModal(
@@ -225,11 +229,13 @@ Please edit this file however desired to customize functionality.
 					offsetLeft = parseInt($A.getAttr(o, 'data-offsetleft')), offsetTop = parseInt($A.getAttr(o, 'data-offsettop'));
 
 				// Prevent duplicate event bindings when nested within multi-level same page apps
-				if ($A.internal.data(o, 'bound'))
-					var multiple = true;
+				if (o){
+					if ($A.internal.data(o, 'bound'))
+						var multiple = true;
 
-				else
-					$A.internal.data(o, 'bound', true);
+					else
+						$A.internal.data(o, 'bound', true);
+				}
 
 				if (!multiple && (cid || p))
 					$A.setPopup(
@@ -280,11 +286,13 @@ Please edit this file however desired to customize functionality.
 					offsetLeft = parseInt($A.getAttr(o, 'data-offsetleft')), offsetTop = parseInt($A.getAttr(o, 'data-offsettop'));
 
 				// Prevent duplicate event bindings when nested within multi-level same page apps
-				if ($A.internal.data(o, 'bound'))
-					var multiple = true;
+				if (o){
+					if ($A.internal.data(o, 'bound'))
+						var multiple = true;
 
-				else
-					$A.internal.data(o, 'bound', true);
+					else
+						$A.internal.data(o, 'bound', true);
+				}
 
 				if (!multiple && (cid || p))
 					$A.setTooltip(
@@ -316,11 +324,13 @@ Please edit this file however desired to customize functionality.
 					}
 
 					// Prevent duplicate event bindings when nested within multi-level same page apps
-					if ($A.internal.data(o, 'bound'))
-						var multiple = true;
+					if (o){
+						if ($A.internal.data(o, 'bound'))
+							var multiple = true;
 
-					else
-						$A.internal.data(o, 'bound', true);
+						else
+							$A.internal.data(o, 'bound', true);
+					}
 
 					if (!multiple)
 						$A.setBanner(
@@ -362,11 +372,13 @@ Please edit this file however desired to customize functionality.
 				var g = $A.getAttr(o, 'data-group');
 
 				// Prevent duplicate event bindings when nested within multi-level same page apps
-				if ($A.internal.data(o, 'bound'))
-					var multiple = true;
+				if (o){
+					if ($A.internal.data(o, 'bound'))
+						var multiple = true;
 
-				else
-					$A.internal.data(o, 'bound', true);
+					else
+						$A.internal.data(o, 'bound', true);
+				}
 
 				if (!multiple && g){
 					if (!track[g])
@@ -418,11 +430,13 @@ Please edit this file however desired to customize functionality.
 				var p = $A.getAttr(o, 'data-src'), d = $A.getAttr(o, 'data-defaultopen');
 
 				// Prevent duplicate event bindings when nested within multi-level same page apps
-				if ($A.internal.data(o, 'bound'))
-					var multiple = true;
+				if (o){
+					if ($A.internal.data(o, 'bound'))
+						var multiple = true;
 
-				else
-					$A.internal.data(o, 'bound', true);
+					else
+						$A.internal.data(o, 'bound', true);
+				}
 
 				if (!multiple && p)
 					$A.setCarousel(o, p, d,
@@ -452,11 +466,13 @@ Please edit this file however desired to customize functionality.
 				var p = $A.getAttr(o, 'data-src'), t = $A.getAttr(o, 'data-type');
 
 				// Prevent duplicate event bindings when nested within multi-level same page apps
-				if ($A.internal.data(o, 'bound'))
-					var multiple = true;
+				if (o){
+					if ($A.internal.data(o, 'bound'))
+						var multiple = true;
 
-				else
-					$A.internal.data(o, 'bound', true);
+					else
+						$A.internal.data(o, 'bound', true);
+				}
 
 				if (!multiple && p){
 
@@ -510,11 +526,13 @@ dividerTag: 'li',
 				var p = $A.getAttr(o, 'data-src'), cid = $A.getAttr(o, 'data-internal'), flyout = $A.getAttr(o, 'data-flyout');
 
 				// Prevent duplicate event bindings when nested within multi-level same page apps
-				if ($A.internal.data(o, 'bound'))
-					var multiple = true;
+				if (o){
+					if ($A.internal.data(o, 'bound'))
+						var multiple = true;
 
-				else
-					$A.internal.data(o, 'bound', true);
+					else
+						$A.internal.data(o, 'bound', true);
+				}
 
 				if (!multiple && (cid || p))
 					$A.setMenu(o, cid || p.substring(0, p.indexOf('#')), cid ? p : p.substring(p.indexOf('#') + 1), function(ev, dc){
@@ -590,11 +608,13 @@ dividerTag: 'li',
 				var g = $A.getAttr(o, 'data-group');
 
 				// Prevent duplicate event bindings when nested within multi-level same page apps
-				if ($A.internal.data(o, 'bound'))
-					var multiple = true;
+				if (o){
+					if ($A.internal.data(o, 'bound'))
+						var multiple = true;
 
-				else
-					$A.internal.data(o, 'bound', true);
+					else
+						$A.internal.data(o, 'bound', true);
+				}
 
 				if (!multiple && g){
 					if (!track[g])
@@ -643,11 +663,13 @@ dividerTag: 'li',
 					toggleClass = $A.getAttr(o, 'data-toggleclass') || 'togglePressed';
 
 				// Prevent duplicate event bindings when nested within multi-level same page apps
-				if ($A.internal.data(o, 'bound'))
-					var multiple = true;
+				if (o){
+					if ($A.internal.data(o, 'bound'))
+						var multiple = true;
 
-				else
-					$A.internal.data(o, 'bound', true);
+					else
+						$A.internal.data(o, 'bound', true);
+				}
 
 				if (!multiple && ((cid || p) && isStatic)){
 
@@ -718,11 +740,13 @@ dividerTag: 'li',
 			var o = $A.query('span.accFootnote', context)[0];
 
 			// Prevent duplicate event bindings when nested within multi-level same page apps
-			if ($A.internal.data(o, 'bound'))
-				var multiple = true;
+			if (o){
+				if ($A.internal.data(o, 'bound'))
+					var multiple = true;
 
-			else
-				$A.internal.data(o, 'bound', true);
+				else
+					$A.internal.data(o, 'bound', true);
+			}
 
 			if (!multiple)
 				$A.setFootnotes('span.accFootnote', context,
