@@ -64,6 +64,7 @@ Example:
     // Set tooltip text
     tooltipTxt: 'Press Escape to cancel',
     disabledTxt: 'Disabled',
+    markedTxt: 'Selected',
     commentedTxt: 'Has Comment',
     prevTxt: 'Previous',
     nextTxt: 'Next',
@@ -117,6 +118,53 @@ Example:
             l: 'Saturday'
         }
     ],
+
+    // Switch the behaviour when the PageUp or PageDown keys are pressed to a "natural" behaviour
+    // (PageUp goes to previous month, PageDown goes to next month)
+    pageUpDownNatural: false,
+
+    // Append a "dayToday" CSS class to the current day cell element - this allows styling to be targeted to this specific element
+    highlightToday: true,
+
+    // Fill in the day cells outside of the current month so that the calendar grid is always filled with day cells
+    drawFullCalendar: true,
+
+    // Run custom functions at the end of the code within the following component functions.
+    // Receives a single parameter "dc", which provides access to the Datepicker object.
+    runBefore: function (dc) {
+        console.log('runBefore');
+        console.log(dc);
+    },
+    runAfterClose: function (dc) {
+        console.log('runAfterClose');
+        console.log(dc);
+    },
+
+    // Override the character used on the month / year change buttons
+    leftButtonYearText: '&lt;',
+    rightButtonYearText: '&gt;',
+    leftButtonMonthText: '&lt;',
+    rightButtonMonthText: '&gt;',
+
+    // Set specific start / end boundaries of a date range. Can be Date objects (absolute boundaries), or positive/negative integers (relative boundaries).
+    // If undefined, no date range will be enforced.
+    minDate: undefined,
+    maxDate: undefined,
+
+    // Using a token system, set a specific date string format to be used when setting the selected value into the calendar input box
+    inputDateFormat: 'dddd MMMM D, YYYY',
+
+    // Using a token system, set a specific date string format to be read out to screen reader users
+    audibleDateFormat: 'D, MMMM YYYY (dddd)',
+
+    // Allow a date that isn't today to be set as the initial date. If unset, this value is initialised to today's date
+    initialDate: new Date(),
+
+    // Disable weekdays from selection
+    disableWeekdays: false,
+
+    // Disable weekends from selection
+    disableWeekends: false,
 
     // Set positive or negative offset for differing column arrangements, or 0 for none
     wdOffset: 0,
@@ -214,6 +262,34 @@ dc.open();
 dc.close();
 
 // All other AccDC API properties and methods can be applied here as well.
+
+
+
+Additional Programmatic Control
+
+There are some additional methods which allow altering the Date Picker state after invocation:
+
+• dc.setDayMarked(dc, dateObj, isMarked)
+
+• dc.clearAllMarked(dc)
+
+• dc.setDayDisabled(dc, dateObj, isDisabled)
+
+• dc.setMonthDisabled(dc, dateObj, isDisabled)
+
+• dc.setDayOfWeekDisabled(dc, dateObj, daysOfWeekArray, isDisabled)
+
+• dc.setWeekdaysDisabled(dc, dateObj, isDisabled)
+
+• dc.setWeekendsDisabled(dc, dateObj, isDisabled)
+
+• dc.clearAllDisabled(dc)
+
+• dc.setMonthMessage(dc, dateObj, message)
+
+• dc.clearAllMessage(dc)
+
+• dc.setDate(dc, dateObj)
 
 
 
