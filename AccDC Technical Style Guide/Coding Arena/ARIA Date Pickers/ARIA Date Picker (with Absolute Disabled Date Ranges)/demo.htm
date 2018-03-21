@@ -3,7 +3,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-		<title>ARIA Date Picker (with Tooltip Comments) - AccDC Technical Style Guide</title>
+		<title>ARIA Date Picker (with Absolute Disabled Date Ranges) - AccDC Technical Style Guide</title>
 		<link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
 		<link rel="stylesheet" type="text/css" href="css/customize.css" />
 		<link rel="stylesheet" type="text/css" href="css/calendar.css" />
@@ -21,8 +21,7 @@
 		</script>
 	</head>
 	<body>
-
-	<div id="coding-arena">
+		<div id="coding-arena">
 			<header>
 				<h1 tabindex="-1">
 					<a href="http://whatsock.com"><img alt="WhatSock : Changing the world one step at a time" src="../../_common/img/whatsock.svg" />
@@ -30,12 +29,27 @@
 			</header>
 
 			<main>
-				<h2>ARIA Date Picker <small> (With Tooltip Comments)</small></h2>
-		   	 	<div class="demo-block">
-					<p class="dateField">
+				<h2>ARIA Date Picker <small> (With Absolute Disabled Date Ranges)</small></h2>
+
+				<div class="description">
+					<p>
+						No earlier than 1st January 2018, and no later than 3 days after today).
+					</p>
+
+					<code>
+						{<br />
+						&nbsp;&nbsp;minDate: new Date(2018, 0, 1),<br />
+						&nbsp;&nbsp;maxDate: 3<br />
+						}
+					</code>
+				</div>
+
+				<div class="demo-block">
+				<p class="dateField">
 						<label for="date">Set Date:</label>
-						<input id="date" type="text" name="date" />
-						<a role="button" aria-describedby="date" href="#" id="dateIcon" class="accCalendar datePicker"><img src="img/calendar-button.svg" alt="Calendar" title="Calendar" /></a>
+						<input id="date" type="text" name="date" placeholder="mm/dd/yyyy" />
+							<a role="button" aria-describedby="date" href="#" id="dateIcon" class="accCalendar datePicker">
+							<img src="img/calendar-button.svg" alt="Calendar" title="Calendar" /></a>
 					</p>
 				</div>
 				<div class="keyboard">
@@ -52,7 +66,7 @@
 						<li>Mouse users can click the desired date buttons as usual.</li>
 					</ul>
 				</div>
-		</main>
-	</div>
+			</main>
+		</div>
 	</body>
 </html>
