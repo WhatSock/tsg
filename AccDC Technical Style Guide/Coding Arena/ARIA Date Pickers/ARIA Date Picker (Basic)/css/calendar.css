@@ -1,17 +1,21 @@
-/* WHATSOCK, 2016 */
+/* WHATSOCK, 2018 */
 /* Specific styles for ARIA Calendar */
 
 #datepicker-demo {
-    background: #E0E0E0;
-    padding: 1rem;
-    margin: 1rem 0 2rem;
+	background: #E0E0E0;
+	padding: 1rem;
+	margin: 1rem 0 2rem;
 }
 
-	#datepicker-demo em {display: block; font-size: 90%;}
+#datepicker-demo em {
+	display: block;
+	font-size: 90%;
+}
 
-#date, #party {
-    width: 90%;
-    max-width: 25em;
+#date,
+#party {
+	width: 90%;
+	max-width: 25em;
 	vertical-align: 20px;
 }
 
@@ -21,55 +25,77 @@ a.accCalendar {
 }
 
 div.calendar {
-    text-align: center;
-    color: #FFF;
-    background: #2E3135;
-    padding: 0.5rem;
-    border-radius: 0.3rem;
-    -webkit-box-shadow: 0 10px 6px -6px #777;
-    -moz-box-shadow: 0 10px 6px -6px #777;
-    box-shadow: 0 10px 6px -6px #777;
+	text-align: center;
+	color: #FFF;
+	background: #2E3135;
+	padding: 0.5rem;
+	border-radius: 0.3rem;
+	-webkit-box-shadow: 0 10px 6px -6px #777;
+	-moz-box-shadow: 0 10px 6px -6px #777;
+	box-shadow: 0 10px 6px -6px #777;
 }
 
 table.calendar {
-    border-collapse: separate;
-    border-spacing: 1px;
+	border-collapse: separate;
+	border-spacing: 1px;
 }
 
-table.calendar td, table.calendar th {
-    padding: 0.3em 0.5em;
-    border-radius: 0.15rem;
+table.calendar td,
+table.calendar th {
+	padding: 0.3em 0.5em;
+	border-radius: 0.15rem;
 }
 
 td.empty {
-    background: rgba(255, 255, 255, .07);
+	background: rgba(255, 255, 255, .07);
 }
 
 th.week {}
 
-td.nav, td.day {cursor: pointer;}
-
+td.nav,
 td.day {
-    text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
-    color: #000;
-    background: #63B7C2;
+	cursor: pointer;
 }
 
-td.day:hover {background: #E2A037;}
+td.day {
+	text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
+	color: #000;
+	background: #63B7C2;
+}
 
-td[aria-current="date"] {background: #E2A037;}
+td.dayToday {
+	color: #000;
+	background: #db7093;
+}
 
-div.calendar *:focus, div.commentAdd *:focus {
-        outline: blue 2px inset;
+td.dayInPrevMonth,
+td.dayInNextMonth {
+	color: #000;
+	background: #e6e6e6;
+}
+
+td.day:hover {
+	background: #E2A037;
+}
+
+td[aria-current="date"] {
+	background: #E2A037;
+}
+
+div.calendar *:focus,
+div.commentAdd *:focus {
+	outline: blue 2px inset;
 }
 
 td.month {
-    font-weight: 600;
-    color: #63B7C2;
-    text-shadow: 0 1px 0 #000;
+	font-weight: 600;
+	color: #63B7C2;
+	text-shadow: 0 1px 0 #000;
 }
 
-td.comment {position: relative;}
+td.comment {
+	position: relative;
+}
 td.comment span::after {
 	display: block;
 	position: absolute;
@@ -83,17 +109,20 @@ td.comment span::after {
 }
 
 td.comment.selected {
-	background: #E2A037; 
+	background: #E2A037;
 }
 
 
-td.disabled, td.disabled:hover {
+td.disabled,
+td.disabled:hover {
 	color: #CCC;
-    background: #bdbdbd;
-    cursor: auto; 
+	background: #bdbdbd;
+	cursor: auto;
 }
 
-td.disabled.selected {background: #C2C2C2;}
+td.disabled.selected {
+	background: #C2C2C2;
+}
 
 div.commentTooltip {
 	width: 271px;
@@ -114,20 +143,20 @@ div.commentAdd {
 	border-radius: 0.3rem;
 }
 
-	div.commentAdd button {
-		font-size: 100%;
-		text-transform: uppercase;
-	    color: #FFF;
-	    background: #2E3135;
-	    padding: 0.5rem;
-		margin-top: -5px;
-		border: none;
-	    border-bottom-left-radius: 0.3rem;
-	    border-bottom-right-radius: 0.3rem;
-	    -webkit-box-shadow: 0 10px 6px -6px #777;
-	    -moz-box-shadow: 0 10px 6px -6px #777;
-	    box-shadow: 0 10px 6px -6px #777;
-	}
+div.commentAdd button {
+	font-size: 100%;
+	text-transform: uppercase;
+	color: #FFF;
+	background: #2E3135;
+	padding: 0.5rem;
+	margin-top: -5px;
+	border: none;
+	border-bottom-left-radius: 0.3rem;
+	border-bottom-right-radius: 0.3rem;
+	-webkit-box-shadow: 0 10px 6px -6px #777;
+	-moz-box-shadow: 0 10px 6px -6px #777;
+	box-shadow: 0 10px 6px -6px #777;
+}
 
 div.commentAdd textarea {
 	width: 270px;
@@ -137,4 +166,11 @@ div.commentAdd textarea {
 	text-align: left;
 	padding: 0.2em;
 	margin: 0.5rem 0.5rem 0;
+}
+
+
+div.monthMessage {
+	border: 1px solid #000;
+	margin: 20px 10px 10px 10px;
+	padding: 10px;
 }
