@@ -1,7 +1,7 @@
-/*-------------------------------------------------------------------- 
-         WHATSOCKC AccDC
+/*--------------------------------------------------------------------
+         WHATSOCK AccDC
          TECHNICAL STYLEGUIDE
-         2016
+         2016-2018
 -------------------------------------------------------------------- */
 
 
@@ -71,7 +71,22 @@ h2 {
 	color: #C13836;
 	margin: 0 0 1em;
 }
-	h2 small {display: block;}
+	h2 small {
+		display: block;
+	}
+
+	div.description {
+		margin-bottom: 40px;
+	}
+		div.description ul {
+			margin: 0 0 0 14px;
+		}
+		div.description code {
+			display: block;
+			max-width: 50%;
+			margin-top: 20px;
+			padding: 14px;
+		}
 
 
 h3 {
@@ -81,7 +96,7 @@ h3 {
 	margin: 1.5em 0 0.5em;
 }
 	aside section h3 {margin: 0 0 0.5em;}
-	
+
 p, li, dt, dd {font-size: 0.9em; line-height: 1.45;}
 
 li li {font-size: 100%;}
@@ -128,7 +143,7 @@ kbd {
 	border-radius: 2px;
 }
 	kbd kbd {padding: 0; border: none;}
-	
+
 	kbd[class] {
 		border: none;
 	}
@@ -172,7 +187,7 @@ aside {color: #000; background: #E1E1E1; padding: 2rem 5%;}
 
 p.baseline {font-size: 0.75em; margin-top: 1.5em;}
 p.logo {position: absolute; top: 2rem; left: 50%; width: 100px; margin-left: -50px;}
-	
+
 	p.logo a {background: transparent;}
 
 
@@ -254,8 +269,8 @@ input {
 
 .buttons-bar {text-align: center; margin: 2rem 0 0;}
 	.buttons-bar input {margin: 0 0.5rem;}
-	
-	
+
+
 	.buttons-bar button {
 		text-transform: uppercase;
 		color: #FFF;
@@ -314,8 +329,8 @@ nav h2, aside h2 {
 	clip-path: inset(50%);
 	padding: 0;
 	border: 0;
-	height: 1px; 
-	width: 1px; 
+	height: 1px;
+	width: 1px;
 	overflow: hidden;
 	white-space: nowrap;
 }
@@ -429,9 +444,9 @@ div.demo-block {
 	border-top: 2px dotted #63B7C2;
 	border-bottom: 2px dotted #63B7C2;
 }
-	
+
 	div.demo-block h3 {margin: 0 0 0.5em;}
-	
+
 .hidden {display: none;}
 
 /* --------------------------------------------------------------------------- */

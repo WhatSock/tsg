@@ -2,27 +2,12 @@ $A.bind(window, 'load', function(){
 
 	// Syntax : setCalendar( ID , TriggeringElement , TargetEditField , EnableComments , clickHandler , config )
 
-	$A.setCalendar('UniqueCalendarId', $A.getEl('dateIcon'), $A.getEl('date'), false, function(ev, dc, targ){
-
-		// Save the desired date string
-		// Format: mm/dd/yyyy
-		targ.value = ('0' + (dc.range.current.month + 1)).slice(-2) + '/' + ('0' + dc.range.current.mDay).slice(-2) + '/'
-			+ dc.range.current.year;
-
-		// Or variable
-		/*
-				targ.value = dc.range.wDays[dc.range.current.wDay].lng + ' ' + dc.range[dc.range.current.month].name + ' '
-					+ dc.range.current.mDay + ', ' + dc.range.current.year;
-		*/
-
-		// Then close the date picker
-		dc.close();
-	},
+	$A.setCalendar('UniqueCalendarId', $A.getEl('dateIcon'), $A.getEl('date'), false, undefined,
 					{
 
 					// Configure optional overrides
 
-					// Configure flexible disabled date ranges
+					// Configure complex disabled date ranges
 					ajax: function(dc, save){
 
 						// Run before the datepicker renders

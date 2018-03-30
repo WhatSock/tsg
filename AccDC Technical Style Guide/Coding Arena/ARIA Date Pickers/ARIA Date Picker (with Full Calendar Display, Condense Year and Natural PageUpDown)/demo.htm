@@ -3,7 +3,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-		<title>ARIA Date Picker (with Tooltip Comments) - AccDC Technical Style Guide</title>
+		<title>ARIA Date Picker (with Full Calendar Display, Condense Year and Natural PageUpDown) - AccDC Technical Style Guide</title>
 		<link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
 		<link rel="stylesheet" type="text/css" href="css/customize.css" />
 		<link rel="stylesheet" type="text/css" href="css/calendar.css" />
@@ -21,8 +21,7 @@
 		</script>
 	</head>
 	<body>
-
-	<div id="coding-arena">
+		<div id="coding-arena">
 			<header>
 				<h1 tabindex="-1">
 					<a href="http://whatsock.com"><img alt="WhatSock : Changing the world one step at a time" src="../../_common/img/whatsock.svg" />
@@ -30,12 +29,36 @@
 			</header>
 
 			<main>
-				<h2>ARIA Date Picker <small> (With Tooltip Comments)</small></h2>
-		   	 	<div class="demo-block">
-					<p class="dateField">
+				<h2>ARIA Date Picker <small> (with Full Calendar Display, Condense Year and Natural PageUpDown)</small></h2>
+
+				<div class="description">
+					<ul>
+						<li>
+							Condense the year display by removing the year nav buttons
+						</li>
+						<li>
+							Draw the full calendar, including days in the previous and next months
+						</li>
+						<li>
+							Make the PageUp key go to the previous month, and the PageDown key go to the next month
+						</li>
+					</ul>
+
+					<code>
+						{<br />
+						&nbsp;&nbsp;condenseYear: true,<br />
+						&nbsp;&nbsp;drawFullCalendar: true,<br />
+						&nbsp;&nbsp;pageUpDownNatural: true<br />
+						}
+					</code>
+				</div>
+
+				<div class="demo-block">
+				<p class="dateField">
 						<label for="date">Set Date:</label>
-						<input id="date" type="text" name="date" />
-						<a role="button" aria-describedby="date" href="#" id="dateIcon" class="accCalendar datePicker"><img src="img/calendar-button.svg" alt="Calendar" title="Calendar" /></a>
+						<input id="date" type="text" name="date" placeholder="mm/dd/yyyy" />
+							<a role="button" aria-describedby="date" href="#" id="dateIcon" class="accCalendar datePicker">
+							<img src="img/calendar-button.svg" alt="Calendar" title="Calendar" /></a>
 					</p>
 				</div>
 				<div class="keyboard">
@@ -52,7 +75,7 @@
 						<li>Mouse users can click the desired date buttons as usual.</li>
 					</ul>
 				</div>
-		</main>
-	</div>
+			</main>
+		</div>
 	</body>
 </html>

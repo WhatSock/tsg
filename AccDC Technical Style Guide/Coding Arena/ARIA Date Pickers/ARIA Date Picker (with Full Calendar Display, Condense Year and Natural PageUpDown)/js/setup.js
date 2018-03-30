@@ -2,19 +2,24 @@ $A.bind(window, 'load', function(){
 
 	// Syntax : setCalendar( ID , TriggeringElement , TargetEditField , EnableComments , clickHandler , config )
 
-	$A.setCalendar('UniqueCalendarId', $A.getEl('dateIcon'), $A.getEl('date'), true, undefined,
+	$A.setCalendar('UniqueCalendarId', $A.getEl('dateIcon'), $A.getEl('date'), false, undefined,
 					{
 
 					// Configure optional overrides
+
+					// Condense the year display by removing the year nav buttons
+					condenseYear: true,
+
+					// Draw the full calendar, including days in the previous and next months
+					drawFullCalendar: true,
+
+					// Make the PageUp key go to the previous month, and the PageDown key go to the next month
+					pageUpDownNatural: true,
 
 					// If not included, all of the below values are set by default
 
 					// Set role name text for screen reader users
 					role: 'Calendar',
-
-					// Set boundary text wording for screen reader users
-					accStart: 'Start',
-					accEnd: 'End',
 
 					// Set tooltip text
 					tooltipTxt: 'Press Escape to cancel',
@@ -87,55 +92,9 @@ $A.bind(window, 'load', function(){
 					className: 'calendar',
 
 // Choose a different insertion point in the DOM; must be a DOM node; defaults to the triggering element if not specified.
-targetObj: null,
+					targetObj: null,
 
 // Choose a different focus element in the DOM for CSS autoPositioning; may be a DOM node or CSS Selector; defaults to the triggering element if not specified.
-					posAnchor: '',
-
-					// Configure the Comments tooltip pane
-					comments:
-									{
-									role: 'Comment',
-									autoPosition: 1,
-									offsetTop: 0,
-									offsetLeft: 0,
-									className: 'commentTooltip'
-									}
+					posAnchor: ''
 					});
-
-	// Set Tooltip Comments for the newly created Calendar AccDC Object using it's ID "UniqueCalendarId"
-
-	// Get a reference to the AccDC Object
-
-	var bc = $A.reg['UniqueCalendarId'];
-
-	// Set comments for dates in January. (Change '*' to a year such as 2013 to localize date ranges)
-
-	bc.range[0].comments['*'] =
-					{
-					1: 'Happy New Year!'
-					};
-
-	// Set comments for dates in July. (Change '*' to a year such as 2013 to localize date ranges)
-
-	bc.range[6].comments['*'] =
-					{
-					4: 'Happy 4th of July!'
-					};
-
-	// Set comments for dates in October. (Change '*' to a year such as 2013 to localize date ranges)
-
-	bc.range[9].comments['*'] =
-					{
-					31: 'Happy Halloween!'
-					};
-
-	// Set comments for dates in December. (Change '*' to a year such as 2013 to localize date ranges)
-
-	bc.range[11].comments['*'] =
-					{
-					24: 'Happy Christmas Eve!',
-					25: 'Merry Christmas!',
-					31: 'Happy New Year\'s Eve!'
-					};
 });
