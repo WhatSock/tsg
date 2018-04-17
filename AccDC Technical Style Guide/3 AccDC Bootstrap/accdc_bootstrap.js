@@ -36,108 +36,68 @@ Please edit this file however desired to customize functionality.
 				}
 
 				if (!multiple)
-					$A.setCalendar(o.id, o, targ, false, function(ev, dc){
+					$A.setCalendar(
+						o.id,
+						o,
+						targ,
+						false,
+						// Uncomment to provide a custom onValueSelect function. Note that if you set a custom function, you must
+						// handle setting the calendar input value manually, and also handle closing the datepicker after selection
+						// - example code for doing so is inside this sample function, but consider using dc.formatDate() for this
+						// function(ev, dc){
+						// 	targ.value = ('0' + (dc.range.current.month + 1)).slice(-2) + '/' + ('0' + dc.range.current.mDay).slice(-2) + '/'
+						// 	+ dc.range.current.year;
+						//
+						// 	dc.close();
+						// },
+						{
+							// Uncomment to disable auto positioning
+							// autoPosition: 0,
 
-						targ.value = ('0' + (dc.range.current.month + 1)).slice(-2) + '/' + ('0' + dc.range.current.mDay).slice(-2) + '/'
-							+ dc.range.current.year;
+							// Uncomment to combine the year and month selectors
+							// condenseYear: true,
 
-						dc.close();
-					},
-									{
-									// Uncomment to disable auto positioning
-									// autoPosition: 0,
-									cssObj:
-													{
-													position: 'absolute',
-													zIndex: 1
-													},
-									// Uncomment the following to enable disabled date ranges
-									/*
-																	disabledTxt: 'Disabled',
-																	ajax: function(dc, save){
-					
-											// Run before the datepicker renders
-					
-											// Set current date variables
-											var date = new Date(), current =
-															{
-															day: date.getDate(),
-															month: date.getMonth(),
-															year: date.getFullYear(),
-															weekDay: date.getDay()
-															};
-					
-											// Disable all dates prior to the current day
-											if (current.year > dc.range.current.year
-												|| (current.year === dc.range.current.year && current.month > dc.range.current.month)){
-												dc.range[dc.range.current.month].disabled[dc.range.current.year] =
-																[
-																1,
-																2,
-																3,
-																4,
-																5,
-																6,
-																7,
-																8,
-																9,
-																10,
-																11,
-																12,
-																13,
-																14,
-																15,
-																16,
-																17,
-																18,
-																19,
-																20,
-																21,
-																22,
-																23,
-																24,
-																25,
-																26,
-																27,
-																28,
-																29,
-																30,
-																31
-																];
-											}
-					
-											if (current.year === dc.range.current.year && current.month === dc.range.current.month){
-												dc.range[dc.range.current.month].disabled[dc.range.current.year] = [];
-					
-												for (var day = 1; day < current.day; day++){
-													dc.range[dc.range.current.month].disabled[dc.range.current.year].push(day);
-												}
-											}
-					
-											// Disable all dates that fall on Saturday or Sunday
-											if (!dc.range[dc.range.current.month].disabled[dc.range.current.year])
-												dc.range[dc.range.current.month].disabled[dc.range.current.year] = [];
-											date.setFullYear(dc.range.current.year);
-											date.setMonth(dc.range.current.month);
-											var max = dc.range[dc.range.current.month].max;
-					
-											if (dc.range.current.month === 1)
-												max = (new Date(dc.range.current.year, 1, 29).getMonth() == 1) ? 29 : 28;
-					
-											for (var day = 1; day <= max; day++){
-												date.setDate(day);
-												var weekDay = date.getDay();
-					
-												// 0 = Sunday, 6 = Saturday
-												if (weekDay === 0 || weekDay === 6)
-													dc.range[dc.range.current.month].disabled[dc.range.current.year].push(day);
-											}
-					
-											// Now render the datepicker after configuring the disabled date ranges
-																		dc.open();
-																	}
-									*/
-									});
+							// Uncomment to switch the behaviour when the PageUp or PageDown keys are pressed to a "natural" behaviour (PageUp goes to previous month, PageDown goes to next month)
+							// pageUpDownNatural: true,
+
+							// Uncomment to append a "dayToday" CSS class to the current day cell element - this allows styling to be targeted to this specific element
+							// highlightToday: true,
+
+							// Uncomment to fill in the day cells outside of the current month so that the calendar grid is always filled with day cells
+							// drawFullCalendar: true,
+
+							// Uncomment to run custom functions at the end of the code within the following component functions. Receives a single parameter "dc", which provides access to the Datepicker object.
+							// runBefore: function (dc) {
+							// 	console.log('runBefore');
+							// 	console.log(dc);
+							// },
+							// runAfterClose: function (dc) {
+							// 	console.log('runAfterClose');
+							// 	console.log(dc);
+							// },
+
+							// Uncomment to override the character used on the month / year change buttons
+							// leftButtonYearText: '&lt;',
+							// rightButtonYearText: '&gt;',
+							// leftButtonMonthText: '&lt;',
+							// rightButtonMonthText: '&gt;',
+
+							// Uncomment to set specific start / end boundaries of a date range. Can be Date objects (absolute boundaries), or integers (relative boundaries)
+							// minDate: (new Date(1987, 4, 19)),
+							// maxDate: 28,
+
+							// Uncomment to set a specific date string format to be used when setting the selected value into the calendar input box
+							// inputDateFormat: 'dddd MMMM D, YYYY',
+
+							// Uncomment to set a specific date string format to be read out to screen reader users
+							// audibleDateFormat: 'D, MMMM YYYY (dddd)',
+
+							cssObj: {
+								position: 'absolute',
+								zIndex: 1
+							}
+						}
+					);
 			});
 
 		// Accessible Modals
