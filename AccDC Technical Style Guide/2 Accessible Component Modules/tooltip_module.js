@@ -1,6 +1,6 @@
 /*!
-Tooltip Module R1.5
-Copyright 2010-2017 Bryan Garaventa (WhatSock.com)
+Tooltip Module R1.6
+Copyright 2010-2018 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 
@@ -62,6 +62,9 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 						runAfterClose: function(dc){
 							$A.remAttr($A.setAttr(dc.triggerObj, 'aria-describedby', ''), 'aria-describedby');
 						},
+						mouseLeave: function(ev, dc){
+							dc.close();
+						},
 						className: 'tooltip'
 						});
 
@@ -76,7 +79,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							closetooltip: function(ev){
 								dc.close();
 							},
-							'mouseover focusin': function(ev){
+							'mouseenter focusin': function(ev){
 								if (!waiting){
 									waiting = true;
 									var that = this;
@@ -86,14 +89,16 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 									}, dc.wait);
 								}
 							},
-							'mouseleave blur': function(ev){
+							'blur': function(ev){
 								if (waiting){
 									clearTimeout(wTo);
 									waiting = false;
 								}
 
-								if (dc.loaded)
-									dc.close();
+								if (!('ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0)){
+									if (dc.loaded)
+										dc.close();
+								}
 							},
 							keydown: function(ev){
 								var k = ev.which || ev.keyCode;
