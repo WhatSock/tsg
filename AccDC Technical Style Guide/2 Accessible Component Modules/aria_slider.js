@@ -1,6 +1,6 @@
 /*!
-ARIA Slider Module R1.7
-Copyright 2010-2017 Bryan Garaventa (WhatSock.com)
+ARIA Slider Module R1.8
+Copyright 2010-2018 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 	*/
 
@@ -40,18 +40,22 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 										},
 										degradeLbl: document.createTextNode(config.degradeLbl || 'Open Manual Slider')
 										},
-						set: function(){
+						set: function(fn){
 							var dc = this;
-							dc.update.apply(dc);
-							dc.onDrag.apply(dc.accDCObj,
-											[
-											null,
-											null,
-											dc,
-											dc.config.now,
-											null,
-											true
-											]);
+							dc.dragCallback = typeof fn === "function" ? fn : null;
+							setTimeout(function(){
+								dc.update.apply(dc);
+								dc.onDrag.apply(this,
+												[
+												null,
+												null,
+												dc,
+												dc.config.now
+												]);
+
+								if (dc.dragCallback)
+									dc.dragCallback.call(dc, dc);
+							}, 1);
 						},
 						update: function(){
 							var dc = this, posi =

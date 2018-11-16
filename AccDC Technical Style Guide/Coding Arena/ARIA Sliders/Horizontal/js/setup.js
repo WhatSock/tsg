@@ -70,9 +70,11 @@ $A.bind(window, 'load', function(){
 				// Assign a new slider value
 				dc.config.now--;
 				// Apply the change
-				dc.set.apply(dc);
-				// Now announce the new value-text string for screen reader users.
-				dc.vText.announce();
+				dc.set(function(dc){
+					// Drag action callback
+					// Now announce the new value-text string for screen reader users.
+					dc.vText.announce();
+				});
 				ev.preventDefault();
 			});
 		}
@@ -85,9 +87,11 @@ $A.bind(window, 'load', function(){
 				// Assign a new slider value
 				dc.config.now++;
 				// Apply the change
-				dc.set.apply(dc);
-				// Now announce the new value-text string for screen reader users.
-				dc.vText.announce();
+				dc.set(function(dc){
+					// Drag action callback
+					// Now announce the new value-text string for screen reader users.
+					dc.vText.announce();
+				});
 				ev.preventDefault();
 			});
 		}
