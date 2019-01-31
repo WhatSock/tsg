@@ -129,7 +129,7 @@ if (!obj) return null;
 if (typeof name === 'string'){
 obj.setAttribute(name, value);
 } else if (typeof name === 'object'){
-for (n in name){
+for (var n in name){
 obj.setAttribute(n, name[n]);
 }
 }
