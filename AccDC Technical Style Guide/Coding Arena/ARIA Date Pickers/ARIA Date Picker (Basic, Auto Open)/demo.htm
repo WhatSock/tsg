@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+		<title>ARIA Date Picker (Basic, Auto Open) - AccDC Technical Style Guide</title>
+		<link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+		<link rel="stylesheet" type="text/css" href="css/customize.css" />
+		<link rel="stylesheet" type="text/css" href="css/calendar.css" />
+		<script type="text/javascript" src="../../_common/js/jQuery.js">
+			// Load jQuery.
+			// This is not necessary if using the Standalone AccDC API version.
+		</script>
+		<script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+			// Load the AccDC API, which all modules are plugged into as the common interface.
+		</script>
+		<!-- Now load all desired modules, which plugs them into AccDC. -->
+        <script type="text/javascript" src="../../../2 Accessible Component Modules/calendar_generator.js"></script>
+		<script type="text/javascript" src="js/setup.js">
+			// Run the setup script where module invocation statements are contained.
+		</script>
+	</head>
+	<body>
+
+	<div id="coding-arena">
+		<header>
+			<h1 tabindex="-1">
+				<a href="http://whatsock.com"><img alt="WhatSock : Changing the world one step at a time" src="../../_common/img/whatsock.svg" />
+				<strong>AccDC</strong> Technical Style Guide</a></h1>
+		</header>
+
+		<main>
+			<h2>ARIA Date Picker <small> (Basic, Auto Open)</small></h2>
+			<div class="demo-block">
+				<p class="dateField">
+					<label for="date">Set Date:</label>
+					<input placeholder="mm/dd/yyyy" id="date" type="text" name="date" />
+					<a role="button" aria-describedby="date" href="#" id="dateIcon" class="accCalendar datePicker"><img src="img/calendar-button.svg" alt="Calendar" title="Calendar" /></a>
+				</p>
+			</div>
+			<div class="keyboard">
+				<p>The calendar is keyboard accessible:</p>
+				<ul>
+					<li>When the calendar is opened, focus is set on the current date.</li>
+					<li>Press the <kbd class="left">Left</kbd> and <kbd class="right">Right</kbd> arrow keys to navigate the row by week day.</li>
+					<li>Press the <kbd class="home">Home</kbd> and <kbd class="end">End</kbd> keys to jump to the beginning or end of the current row.</li>
+					<li>Press the <kbd class="up">Up</kbd> and <kbd class="down">Down</kbd> arrow keys to navigate between weeks on the same week day.</li>
+					<li>Press the <kbd>PageDown</kbd> and <kbd>PageUp</kbd> keys to navigate backwards or forwards by month.</li>
+					<li>Press <kbd><kbd>Alt</kbd>+<kbd>PageDown</kbd></kbd> and <kbd><kbd>Alt</kbd>+<kbd>PageUp</kbd></kbd> to navigate backwards or forwards by year.</li>
+					<li>Press the <kbd>Enter</kbd> key to activate the selected date.</li>
+					<li>Press <kbd>Escape</kbd> to close the calendar without making a selection.</li>
+					<li>Mouse users can click the desired date buttons as usual.</li>
+				</ul>
+			</div>
+		</main>
+	</div>
+	</body>
+</html>

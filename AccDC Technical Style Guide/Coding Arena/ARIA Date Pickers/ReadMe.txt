@@ -146,16 +146,31 @@ Example:
     leftButtonMonthText: '&lt;',
     rightButtonMonthText: '&gt;',
 
+    // Specify if the calendar should open when the input field receives focus.
+    // If true, the Down arrow must be pressed to move focus from the input field into the calendar for manual traversal, and Escape will collapse the calendar.
+    openOnFocus: false,
+    openOnFocusHelpText: 'Date picker expanded. Press Down arrow to browse the calendar, or Escape to collapse.',
+    helpTextOnClose: 'Calendar collapsed.',
+
     // Set specific start / end boundaries of a date range. Can be Date objects (absolute boundaries), or positive/negative integers (relative boundaries).
     // If undefined, no date range will be enforced.
     minDate: undefined,
     maxDate: undefined,
 
     // Using a token system, set a specific date string format to be used when setting the selected value into the calendar input box
-    inputDateFormat: 'dddd MMMM D, YYYY',
+    // 'YYYY': 4 digit year, 2019
+    // 'MMMM': Full name of month, January, etc.
+    // 'dddd': Full name of weekday, Monday, etc.
+    // 'MM': 2 digit month, 01, etc.
+    // 'DD': 2 digit day, 01, etc.
+    // 'Do': getDateOrdinalSuffix, 1st, 2nd, 3rd.
+    // 'M': 1 or 2 digit month, 1 through 12
+    // 'D': 1 or 2 digit day, 1 through 31.
+
+    inputDateFormat: 'MM/DD/YYYY',
 
     // Using a token system, set a specific date string format to be read out to screen reader users
-    audibleDateFormat: 'D, MMMM YYYY (dddd)',
+    audibleDateFormat: 'D, dddd MMMM YYYY',
 
     // Allow a date that isn't today to be set as the initial date. If unset, this value is initialised to today's date
     initialDate: new Date(),
