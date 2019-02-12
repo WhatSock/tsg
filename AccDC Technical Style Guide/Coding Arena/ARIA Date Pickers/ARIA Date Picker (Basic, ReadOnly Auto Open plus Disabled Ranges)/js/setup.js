@@ -13,8 +13,7 @@ $A.bind(window, 'load', function(){
 					// Disable weekends from selection
 					disableWeekends: true,
 					openOnFocus: true,
-					openOnFocusHelpText: 'Date picker expanded. Press Down arrow to browse the calendar, or Escape to collapse.',
-					helpTextOnClose: 'Calendar collapsed.',
+					openOnFocusHelpText: 'Press Down arrow to browse the calendar, or Escape to close.',
 					inputDateFormat: 'MM/DD/YYYY',
 
 					// Always restore today's date as being selected when calendar is activated.

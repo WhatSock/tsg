@@ -149,8 +149,7 @@ Example:
     // Specify if the calendar should open when the input field receives focus.
     // If true, the Down arrow must be pressed to move focus from the input field into the calendar for manual traversal, and Escape will collapse the calendar.
     openOnFocus: false,
-    openOnFocusHelpText: 'Date picker expanded. Press Down arrow to browse the calendar, or Escape to collapse.',
-    helpTextOnClose: 'Calendar collapsed.',
+    openOnFocusHelpText: 'Press Down arrow to browse the calendar, or Escape to close.',
 
     // Set specific start / end boundaries of a date range. Can be Date objects (absolute boundaries), or positive/negative integers (relative boundaries).
     // If undefined, no date range will be enforced.
