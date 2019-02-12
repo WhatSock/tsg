@@ -17,6 +17,16 @@ $A.bind(window, 'load', function(){
 					autoPosition: 3,
 					// Customize with positive or negative offsets
 					offsetTop: 0,
-					offsetLeft: 5
+					offsetLeft: 5,
+					overrides:
+									{
+									allowCascade: true,
+									runAfter: function(dc){
+										$A.remAttr($A.getEl('keyboardHint'), 'hidden');
+									},
+									runAfterClose: function(dc){
+										$A.setAttr($A.getEl('keyboardHint'), 'hidden', true);
+									}
+									}
 					});
 });

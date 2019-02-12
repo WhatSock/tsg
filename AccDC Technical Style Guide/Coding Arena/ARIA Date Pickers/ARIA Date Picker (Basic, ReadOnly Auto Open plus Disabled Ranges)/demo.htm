@@ -35,13 +35,15 @@
 				<p class="dateField">
 					<label for="date">Set Date:</label>
 					<input readonly placeholder="mm/dd/yyyy" id="date" type="text" name="date" />
+					<kbd id="keyboardHint" hidden class="down"></kbd>
 					<a role="button" aria-describedby="date" href="#" id="dateIcon" class="accCalendar datePicker"><img src="img/calendar-button.svg" alt="Calendar" title="Calendar" /></a>
 				</p>
 			</div>
 			<div class="keyboard">
 				<p>The calendar is keyboard accessible:</p>
 				<ul>
-					<li>When the calendar is opened, focus is set on the current date.</li>
+					<li>Set focus to the input field to automatically open the calendar, focus will remain on the input field.</li>
+					<li>When the input has focus, press the <kbd class="down">Down</kbd> arrow to set focus on the current date within the calendar.</li>
 					<li>Press the <kbd class="left">Left</kbd> and <kbd class="right">Right</kbd> arrow keys to navigate the row by week day.</li>
 					<li>Press the <kbd class="home">Home</kbd> and <kbd class="end">End</kbd> keys to jump to the beginning or end of the current row.</li>
 					<li>Press the <kbd class="up">Up</kbd> and <kbd class="down">Down</kbd> arrow keys to navigate between weeks on the same week day.</li>

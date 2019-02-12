@@ -174,3 +174,31 @@ div.monthMessage {
 	margin: 20px 10px 10px 10px;
 	padding: 10px;
 }
+
+kbd {
+	font-size: 110%;
+	text-transform: uppercase;
+	padding: 0 0.3em;
+	border: 2px solid #2E3135;
+	border-radius: 2px;
+}
+	kbd kbd {padding: 0; border: none;}
+
+	kbd[class] {
+		border: none;
+	}
+	kbd[class]::before {
+		display: inline-block;
+		line-height: 1;
+		padding: 0 0.3em 0.2em;
+		margin-right: 0.5em;
+		border: 2px solid #2E3135;
+		border-radius: 2px;
+		vertical-align: top;
+	}
+	kbd.left::before {content: "\2190";}
+	kbd.right::before {content: "\2192";}
+	kbd.up::before {content: "\2191";}
+	kbd.down::before {content: "\2193";}
+	kbd.home::before {content: "\21E4";}
+	kbd.end::before {content: "\21E5";}
