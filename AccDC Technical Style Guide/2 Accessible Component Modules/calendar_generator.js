@@ -2080,7 +2080,6 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 				// Toggles for openOnFocus support.
 				onFocusInit = false;
 				onFocusTraverse = false;
-				$A.announce(odc.helpTextOnClose);
 				setTimeout(odcDelFn, 1000);
 			}
 		};
@@ -2145,7 +2144,6 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 									onFocusInit = false;
 									onFocusTraverse = false;
 									odc.close();
-									$A.announce(odc.helpTextOnClose);
 									ev.preventDefault();
 									ev.stopPropagation();
 								}
@@ -2154,7 +2152,6 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 									onFocusInit = false;
 									onFocusTraverse = false;
 									odc.close();
-									$A.announce(odc.helpTextOnClose);
 									ev.preventDefault();
 									ev.stopPropagation();
 								}
