@@ -202,3 +202,20 @@ kbd {
 	kbd.down::before {content: "\2193";}
 	kbd.home::before {content: "\21E4";}
 	kbd.end::before {content: "\21E5";}
+	kbd.esc::before {content: "\238B";}
+
+button.esc-button {
+position: absolute;
+	font-size: 100%;
+	text-transform: uppercase;
+	color: #FFF;
+	background: #2E3135;
+	padding: 0.5rem;
+	margin-top: -45px;
+	border: none;
+	border-bottom-left-radius: 0.3rem;
+	border-bottom-right-radius: 0.3rem;
+	-webkit-box-shadow: 0 10px 6px -6px #777;
+	-moz-box-shadow: 0 10px 6px -6px #777;
+	box-shadow: 0 10px 6px -6px #777;
+}

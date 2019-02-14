@@ -19,6 +19,9 @@ $A.bind(window, 'load', function(){
 					// Always restore today's date as being selected when calendar is activated.
 					resetCurrent: true,
 					highlightToday: true,
+					showEscBtn: true,
+					escBtnName: 'Close',
+					escBtnIcon: '<kbd class="esc"></kbd>',
 
 					// Set CSS positioning calculation for the calendar
 					autoPosition: 3,
