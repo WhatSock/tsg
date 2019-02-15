@@ -14,7 +14,7 @@ $A.bind(window, 'load', function(){
 					highlightToday: true,
 					showEscBtn: true,
 					escBtnName: 'Close',
-					escBtnIcon: '<kbd class="esc"></kbd>',
+					escBtnIcon: '&times;',
 
 					// Set CSS positioning calculation for the calendar
 					autoPosition: 3,

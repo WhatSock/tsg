@@ -1,5 +1,5 @@
 /*!
-ARIA Calendar Module R2.4
+ARIA Calendar Module R2.5
 Copyright 2019 Bryan Garaventa (WhatSock.com)
 Refactoring Contributions Copyright 2018 Danny Allen (dannya.com) / Wonderscore Ltd (wonderscore.co.uk)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
@@ -62,7 +62,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 						openOnFocusHelpText: openOnFocusHelpText,
 						showEscBtn: (config.showEscBtn === true),
 						escBtnName: config.escBtnName || 'Close',
-						escBtnIcon: config.escBtnIcon || '<kbd class="esc"></kbd>',
+						escBtnIcon: config.escBtnIcon || '&times;',
 						allowReopen: true,
 						showHiddenClose: false,
 						controlType: 'DatePicker',
@@ -565,7 +565,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 						isOutsideDateRange: function(dateObj){
 							var dateCmp = this.createDateComparisonValue(dateObj);
 
-							return((this.minDateComparisonValue && (dateCmp < this.minDateComparisonValue))
+							return ((this.minDateComparisonValue && (dateCmp < this.minDateComparisonValue))
 								|| (this.maxDateComparisonValue && (dateCmp > this.maxDateComparisonValue)));
 						},
 						createDayCell: function(i, cellDateObj, cssClasses, isDisabled, isSelected){
@@ -959,7 +959,6 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							// Reconfigured for Esc btn processing
 							if (dc.showEscBtn){
 								dc.escBtn = $A.query('button.esc-button', dc.containerDiv)[0];
-								$A.css(dc.escBtn, dc.sraCSS);
 							}
 
 							dc.fn.sraStart.innerHTML = dc.fn.sraEnd.innerHTML = '';
@@ -1549,12 +1548,8 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 												keyup: function(ev){
 													changePressed(ev);
 												},
-												focus: function(ev){
-													$A.sraCSSClear(dc.escBtn);
-												},
-												blur: function(ev){
-													$A.css(dc.escBtn, dc.sraCSS);
-												}
+												focus: function(ev){},
+												blur: function(ev){}
 												});
 							}
 

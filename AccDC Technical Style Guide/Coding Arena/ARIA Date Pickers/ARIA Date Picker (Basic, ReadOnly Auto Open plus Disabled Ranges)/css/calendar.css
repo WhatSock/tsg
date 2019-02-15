@@ -36,6 +36,7 @@ div.calendar {
 }
 
 table.calendar {
+	margin-top: 20px;
 	border-collapse: separate;
 	border-spacing: 1px;
 }
@@ -205,17 +206,18 @@ kbd {
 	kbd.esc::before {content: "\238B";}
 
 button.esc-button {
-position: absolute;
-	font-size: 100%;
+	position: absolute;
+	font-size: 30%;
 	text-transform: uppercase;
-	color: #FFF;
-	background: #2E3135;
+	color: red;
+	background: #FFF;
 	padding: 0.5rem;
-	margin-top: -45px;
 	border: none;
 	border-bottom-left-radius: 0.3rem;
 	border-bottom-right-radius: 0.3rem;
 	-webkit-box-shadow: 0 10px 6px -6px #777;
 	-moz-box-shadow: 0 10px 6px -6px #777;
 	box-shadow: 0 10px 6px -6px #777;
+	top: 0;
+	right: 0;
 }
