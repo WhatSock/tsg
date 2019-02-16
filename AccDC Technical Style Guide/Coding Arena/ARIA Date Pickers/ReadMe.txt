@@ -151,6 +151,11 @@ Example:
     openOnFocus: false,
     openOnFocusHelpText: 'Press Down arrow to browse the calendar, or Escape to close.',
 
+    // Display a Close button
+    showEscBtn: true,
+    escBtnName: 'Close',
+    escBtnIcon: '&times;',
+
     // Set specific start / end boundaries of a date range. Can be Date objects (absolute boundaries), or positive/negative integers (relative boundaries).
     // If undefined, no date range will be enforced.
     minDate: undefined,
