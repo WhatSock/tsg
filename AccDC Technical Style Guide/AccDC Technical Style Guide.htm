@@ -1772,7 +1772,10 @@ dc.close();
     // Set role name text for screen reader users
     role: 'Calendar',
 
-    // Set screen reader text to automatically be announced
+    // Short help text message that is automatically announced to screen reader users when the calendar first opens.
+    helpTextShort: 'Press H for help.',
+
+    // Set screen reader text to automatically be announced when H is pressed.
     // This is also set within the data-helptext attribute in the top level div element of the calendar for CSS pseudo element referencing via attr(data-helptext) for sighted keyboard only users if desired.
     helpText: 'Press the arrow keys to navigate by day, PageUp and PageDown to navigate by month, Alt+PageUp and Alt+PageDown to navigate by year, or Escape to cancel.',
 
