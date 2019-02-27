@@ -1,5 +1,5 @@
 /*!
-ARIA Calendar Module R2.10
+ARIA Calendar Module R2.11
 Copyright 2019 Bryan Garaventa (WhatSock.com)
 Refactoring Contributions Copyright 2018 Danny Allen (dannya.com) / Wonderscore Ltd (wonderscore.co.uk)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
@@ -554,7 +554,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 						isOutsideDateRange: function(dateObj){
 							var dateCmp = this.createDateComparisonValue(dateObj);
 
-							return ((this.minDateComparisonValue && (dateCmp < this.minDateComparisonValue))
+							return((this.minDateComparisonValue && (dateCmp < this.minDateComparisonValue))
 								|| (this.maxDateComparisonValue && (dateCmp > this.maxDateComparisonValue)));
 						},
 						createDayCell: function(i, cellDateObj, cssClasses, isDisabled, isSelected){
@@ -662,6 +662,26 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							return parseInt((dateObj.getFullYear() + ('00' + dateObj.getMonth()).slice(-2)
 								+ ('00' + dateObj.getDate()).slice(-2)), 10);
 						},
+						presetDate: function(dc, initialDate, minDate, maxDate){
+							dc = dc || this;
+							dc.initialDate = initialDate || dc.initialDate || new Date();
+							dc.minDate = minDate || dc.minDate;
+							dc.maxDate = maxDate || dc.maxDate;
+
+							if (dc.minDate){
+								dc.minDate.setHours(0, 0, 0, 0);
+								dc.minDateComparisonValue = dc.createDateComparisonValue(dc.minDate);
+							}
+
+							if (dc.maxDate){
+								dc.maxDate.setHours(0, 0, 0, 0);
+								dc.maxDateComparisonValue = dc.createDateComparisonValue(dc.maxDate);
+							}
+							dc.setDate(dc);
+							dc.currentDate = new Date();
+							dc.currentDateComparisonValue = dc.createDateComparisonValue(dc.currentDate);
+							dc.setCurrent(dc);
+						},
 						setDate: function(dc, dateObj){
 							// if dateObj is not specified, set to an initial value...
 							if (dateObj === undefined){
@@ -701,7 +721,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							}
 
 							// set date to initialDate
-							this.setDate(dc);
+							dc.setDate(dc);
 
 							// Cache current date for comparison
 							dc.currentDate = new Date();

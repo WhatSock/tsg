@@ -313,6 +313,7 @@ There are some additional methods which allow altering the Date Picker state aft
 
 • dc.setDate(dc, dateObj)
 
+• dc.presetDate(dc, initialDateObj, minDateObj, maxDateObj)
 
 
 Triggering Element Requirements
