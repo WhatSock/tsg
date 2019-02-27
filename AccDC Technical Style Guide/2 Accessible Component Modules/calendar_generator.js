@@ -1,5 +1,5 @@
 /*!
-ARIA Calendar Module R2.11
+ARIA Calendar Module R2.12
 Copyright 2019 Bryan Garaventa (WhatSock.com)
 Refactoring Contributions Copyright 2018 Danny Allen (dannya.com) / Wonderscore Ltd (wonderscore.co.uk)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
@@ -23,17 +23,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 		// Control the behavior of date selection clicks
 		handleClick = (callback && typeof callback === 'function') ? callback : function(ev, dc){
 			// format selected calendar value and set into input field
-			targ.value = dc.formatDate(dc,
-							{
-							'YYYY': dc.range.current.year,
-							'MMMM': dc.range[dc.range.current.month].name,
-							'dddd': dc.range.wDays[dc.range.current.wDay].lng,
-							'MM': ('00' + (dc.range.current.month + 1)).slice(-2),
-							'DD': ('00' + dc.range.current.mDay).slice(-2),
-							'Do': dc.getDateOrdinalSuffix(dc.range.current.mDay),
-							'M': (dc.range.current.month + 1),
-							'D': dc.range.current.mDay
-							});
+			targ.value = dc.formatDate(dc);
 
 			dc.close();
 			// Toggles for openOnFocus support.
@@ -289,10 +279,22 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							return i + 'th';
 						},
 						formatDate: function(dc, dateFormatTokens, dateFormat){
+							if (!dateFormatTokens)
+								dateFormatTokens =
+												{
+												'YYYY': dc.range.current.year,
+												'MMMM': dc.range[dc.range.current.month].name,
+												'dddd': dc.range.wDays[dc.range.current.wDay].lng,
+												'MM': ('00' + (dc.range.current.month + 1)).slice(-2),
+												'DD': ('00' + dc.range.current.mDay).slice(-2),
+												'Do': dc.getDateOrdinalSuffix(dc.range.current.mDay),
+												'M': (dc.range.current.month + 1),
+												'D': dc.range.current.mDay
+												};
+
 							// if dateFormat is not specified, use component default
-							if (typeof dateFormat !== 'string'){
+							if (typeof dateFormat !== 'string')
 								dateFormat = dc.inputDateFormat;
-							}
 
 							var re = new RegExp(Object.keys(dateFormatTokens).join('|'), 'gi');
 
