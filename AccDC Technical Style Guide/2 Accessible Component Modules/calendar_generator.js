@@ -1,5 +1,5 @@
 /*!
-ARIA Calendar Module R2.12
+ARIA Calendar Module R2.13
 Copyright 2019 Bryan Garaventa (WhatSock.com)
 Refactoring Contributions Copyright 2018 Danny Allen (dannya.com) / Wonderscore Ltd (wonderscore.co.uk)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
@@ -26,9 +26,6 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 			targ.value = dc.formatDate(dc);
 
 			dc.close();
-			// Toggles for openOnFocus support.
-			onFocusInit = false;
-			onFocusTraverse = true;
 			targ.focus();
 		}, pressed = {}, changePressed = function(ev){
 			pressed.alt = ev.altKey;
@@ -556,7 +553,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 						isOutsideDateRange: function(dateObj){
 							var dateCmp = this.createDateComparisonValue(dateObj);
 
-							return((this.minDateComparisonValue && (dateCmp < this.minDateComparisonValue))
+							return ((this.minDateComparisonValue && (dateCmp < this.minDateComparisonValue))
 								|| (this.maxDateComparisonValue && (dateCmp > this.maxDateComparisonValue)));
 						},
 						createDayCell: function(i, cellDateObj, cssClasses, isDisabled, isSelected){
@@ -1189,6 +1186,9 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 												if ($A.hasClass(this, 'selected') || (!commentsEnabled && !$A.hasClass(this, 'comment'))){
 													if ($A.getAttr(this, 'aria-disabled') !== 'true'){
 														$A.internal.extend(true, dc.fn.current, dc.range.current);
+														// Toggles for openOnFocus support.
+														onFocusInit = false;
+														onFocusTraverse = true;
 														handleClick.apply(this, [ev, dc, targ]);
 													}
 
@@ -1211,6 +1211,9 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
 													if ($A.getAttr(this, 'aria-disabled') !== 'true'){
 														$A.internal.extend(true, dc.fn.current, dc.range.current);
+														// Toggles for openOnFocus support.
+														onFocusInit = false;
+														onFocusTraverse = true;
 														handleClick.apply(this, [ev, dc, targ]);
 													}
 
@@ -1502,8 +1505,12 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 													if ($A.getAttr(this, 'aria-disabled') !== 'true'){
 														$A.internal.extend(true, dc.fn.current, dc.range.current);
 
-														if (!dc.setFocus.firstOpen)
+														if (!dc.setFocus.firstOpen){
+															// Toggles for openOnFocus support.
+															onFocusInit = false;
+															onFocusTraverse = true;
 															handleClick.apply(this, [ev, dc, targ]);
+														}
 													}
 
 													ev.preventDefault();
