@@ -56,3 +56,7 @@ font-size: 1.5em;
 background-color: black;
 color: white;
 }
+/*Updates for DIV structure*/
+#accordionGroup div[role="heading"] {
+margin-top: 15px;
+}
