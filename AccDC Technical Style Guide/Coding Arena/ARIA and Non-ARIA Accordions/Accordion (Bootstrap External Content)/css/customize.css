@@ -22,11 +22,24 @@
 	font-size: 100%;
 	text-align: left;
 	color: #000;
-	background: transparent url(../img/accordion/sprite.svg) right 0.35em no-repeat;
+	background: transparent url(../img/accordion/sprite.svg) right -0.95em no-repeat;
 	padding: 0.3em 0.5em;
 	cursor: pointer;
 }
 
 .accAccordion.open {
-    background-position: right -119px;
+    background-position: right -135px;
 }
+/*Updates for DIV structure*/
+#accordionGroup div[role="heading"] {
+	position: relative;
+	text-transform: uppercase;
+	background: #63B7C2;
+	padding: 0.3em 0.5em;
+	margin-bottom: 1px;
+}
+#accordionGroup span.insertContent {
+	text-align: center;
+	background: #FFF;
+}
+#accordionGroup span.insertContent img {width: 150px; vertical-align: middle;}

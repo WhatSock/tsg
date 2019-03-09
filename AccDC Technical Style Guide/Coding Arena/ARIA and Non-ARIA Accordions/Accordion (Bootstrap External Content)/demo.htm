@@ -22,14 +22,14 @@
         <div id="coding-arena">
         	
 			<header>
-				<h1 tabindex="-1">
+				<div class="innerHeader">
 					<a href="http://whatsock.com"><img alt="WhatSock : Changing the world one step at a time" src="../../_common/img/whatsock.svg" /> 
-					<strong>AccDC</strong> Technical Style Guide</a></h1>
+					<strong>AccDC</strong> Technical Style Guide</a></div>
 			</header>
         	
 			<main>
 				
-				<h2>Accordion <small>(Bootstrap External Content)</small></h2>
+				<h1 class="pageTitle">Accordion <small>(Bootstrap External Content)</small></h1>
 	            <!-- Attributes explained:
 	            • class="accAccordion" : The bootstrap class name that specifies an accessible accordion node.
 	            • data-src : The resource path and pointer to the ID attribute of the accordion content container element.
@@ -52,23 +52,23 @@
 	            // All other AccDC API properties and methods are similarly available.
 	            -->
 				<div class="demo-block">
-		            <dl id="accordionGroup">
-		                <dt role="heading" aria-level="2" class="clearfix">
+		            <div id="accordionGroup">
+		                <div role="heading" aria-level="2" class="clearfix">
 		                    <button class="accAccordion" data-src="files/accordion.html#accordion-sect1" data-insert="sect1" data-defaultopen="true" data-role="Accordion" data-openstate="Expanded" data-group="SharedGroupName" id="accordion1id">Section One</button>
-		                </dt>
-		                <dd id="sect1">
-		                </dd>
-		                <dt role="heading" aria-level="2" class="clearfix">
+		                </div>
+		                <span id="sect1" class="insertContent">
+		                </span>
+		                <div role="heading" aria-level="2" class="clearfix">
 		                    <button class="accAccordion" data-src="files/accordion.html#accordion-sect2" data-insert="sect2" data-role="Accordion" data-openstate="Expanded" data-group="SharedGroupName" id="accordion2id">Section Two</button>
-		                </dt>
-		                <dd id="sect2">
-		                </dd>
-		                <dt role="heading" aria-level="2" class="clearfix">
+		                </div>
+		                <span id="sect2" class="insertContent">
+		                </span>
+		                <div role="heading" aria-level="2" class="clearfix">
 		                    <button class="accAccordion" data-src="files/accordion.html#accordion-sect3" data-insert="sect3" data-role="Accordion" data-openstate="Expanded" data-group="SharedGroupName" id="accordion3id">Section Three</button>
-		                </dt>
-		                <dd id="sect3">
-		                </dd>
-		            </dl>
+		                </div>
+		                <span id="sect3" class="insertContent">
+		                </span>
+		            </div>
 				</div>
 				
 	            <div class="desc keyboard">
