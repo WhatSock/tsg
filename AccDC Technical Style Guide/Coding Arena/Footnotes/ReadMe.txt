@@ -23,6 +23,12 @@ Required attributes for Footnote SPANs in the body:
 
 Important: When the footnotes are parsed using the class name, a numerical index link is generated and appended to the footnote SPAN tag.
 
+By default, the inner text content is used to generate the title attribute for the associated footnote link, but this can optionally be overridden by adding the attribute data-label to the associated footnote span tag.
+
+Example:
+
+<span data-label="My custom tooltip" class="accFootnote" data-footnote="footnotePointer1">My body text</span>
+
 For Footnote Text nodes in the footer:
 
 <span id="footnotePointer1"></span>

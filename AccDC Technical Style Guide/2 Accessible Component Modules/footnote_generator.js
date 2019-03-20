@@ -1,6 +1,6 @@
 /*!
-ARIA Footnote Generator Module R2.5
-Copyright 2010-2017 Bryan Garaventa (WhatSock.com)
+ARIA Footnote Generator Module R2.6
+Copyright 2019 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 
@@ -23,7 +23,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 								{
 								fns: [],
 								last: 0,
-								name: $A.getText(o),
+								name: $A.getAttr(o, 'data-label') || $A.getText(o),
 								targ: $A.getEl(fnId)
 								};
 
@@ -42,7 +42,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							{
 							id: base + fnId + i,
 							href: '#',
-							title: $A.getText(o),
+							title: $A.getAttr(o, 'data-label') || $A.getText(o),
 							'aria-label': fnText + (i + 1)
 							}, null, null, $A.createEl('sup',
 							{
@@ -62,8 +62,8 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 				var a2 = $A[base + 'a'][base + fnId + i] = $A.createEl('a',
 								{
 								href: '#',
-								title: backText + ' ' + pair[fnId].name,
-								'aria-label': backText + ' ' + pair[fnId].name
+								title: backText,
+								'aria-label': backText
 								});
 
 				a2.innerHTML = '<span aria-hidden="true">' + fnChar + '</span>';
