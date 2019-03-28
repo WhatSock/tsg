@@ -29,7 +29,8 @@ a[role=tab]:hover, a[role=tab]:focus {
 
 a[role=tab].active, a[role=tab].active:link, a[role=tab].active:visited {
 	color: #FFF;
-	background-color: #2E3135;
+	background-color: #E2A037;
+	text-decoration: underline;
 }
 
 #tabInsertId {
