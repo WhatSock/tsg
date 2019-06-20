@@ -1,5 +1,5 @@
 /*!
-ARIA Calendar Module R2.15
+ARIA Calendar Module R2.16
 Copyright 2019 Bryan Garaventa (WhatSock.com)
 Refactoring Contributions Copyright 2018 Danny Allen (dannya.com) / Wonderscore Ltd (wonderscore.co.uk)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
@@ -276,6 +276,9 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 							return i + 'th';
 						},
 						formatDate: function(dc, dateFormatTokens, dateFormat){
+							onFocusInit = false;
+							onFocusTraverse = true;
+
 							if (!dateFormatTokens)
 								dateFormatTokens =
 												{
@@ -2257,8 +2260,13 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 			}
 		};
 
+		var triggeredByTouch = false;
+
 		$A.bind(trigger,
 						{
+							touchstart: function(ev){
+								triggeredByTouch = true;
+							},
 						click: function(ev){
 							odcFn.call(this);
 							ev.preventDefault();
@@ -2281,6 +2289,8 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 			$A.bind(targ,
 							{
 							touchstart: function(ev){
+								triggeredByTouch = true;
+
 								if (!odcDel && !odc.loaded && !onFocusInit && !onFocusTraverse){
 									odcDel = true;
 									$A.trigger(trigger, 'opendatepicker');
@@ -2289,7 +2299,13 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 								}
 							},
 							focus: function(ev){
-								if (!odcDel && !odc.loaded && !onFocusInit && !onFocusTraverse){
+								if (triggeredByTouch && !odcDel && !odc.loaded && !onFocusInit && onFocusTraverse){
+									ev.preventDefault();
+									this.blur();
+if (trigger) $A.setFocus(trigger);
+								}
+
+								else if (!odcDel && !odc.loaded && !onFocusInit && !onFocusTraverse){
 									odcDel = true;
 									$A.trigger(trigger, 'opendatepicker');
 									$A.announce(odc.openOnFocusHelpText);
@@ -2352,6 +2368,25 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 									ev.preventDefault();
 									ev.stopPropagation();
 								}
+							}
+							});
+		}
+
+		else{
+			$A.bind(targ,
+							{
+							touchstart: function(ev){
+								triggeredByTouch = true;
+							},
+							focus: function(ev){
+								if (triggeredByTouch && !odcDel && !odc.loaded && !onFocusInit && onFocusTraverse){
+									ev.preventDefault();
+									this.blur();
+if (trigger) $A.setFocus(trigger);
+								}
+
+								onFocusInit = true;
+								onFocusTraverse = false;
 							}
 							});
 		}
