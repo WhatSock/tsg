@@ -1,71 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-        <title>Inline Form Field Validation (Complex) - AccDC Technical Style Guide</title>
-        <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
-        <link rel="stylesheet" type="text/css" href="css/customize.css" />
-        <script type="text/javascript" src="../../_common/js/jQuery.js">
-            // Load jQuery.
-            // This is not necessary if using the Standalone AccDC API version.
-        </script>
-        <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
-            // Load the AccDC API, which all modules are plugged into as the common interface.
-        </script>
-        <!-- Now load all desired modules, which plugs them into AccDC. --><script type="text/javascript" src="../../../2 Accessible Component Modules/form_field_validator.min.js"></script>
-        <script type="text/javascript" src="js/setup.js">
-            // Run the setup script where module invocation statements are contained.
-        </script>
-    </head>
-    <body>
-    	<div id="coding-arena">
-			<header>
-				<div class="innerHeader">
-					<a href="http://whatsock.com"><img alt="WhatSock : Changing the world one step at a time" src="../../_common/img/whatsock.svg" /> 
-					<strong>AccDC</strong> Technical Style Guide</a></div>
-			</header>
-			
-			<main>
-				<h1 class="pageTitle">Inline Form Field Validation</h1>
-        	
-	            <div class="demo-block">
-	            	<h3>Enter your billing and shipping addresses</h3>
-	                <form id="addressForm" action="#">
-	                	<fieldset>
-	                		<legend>Billing</legend>
-							<p><label for="b-add1">Address 1:</label>
-								<input type="text" name="b-add1" id="b-add1" /></p>
-							<p><label for="b-add2">Address 2:</label>
-								<input type="text" name="b-add2" id="b-add2" /></p>
-							<p><label for="b-city">City:</label>
-								  <input type="text" name="b-city" id="b-city" /></p>
-							<p><label for="b-state">State:</label>
-								 <input type="text" name="b-state" id="b-state" /></p>
-							<p><label for="b-zip">Zip Code:</label>
-								<input type="text" name="b-zip" id="b-zip" /></p>
-	                	</fieldset>
-	                	<fieldset>
-	                		<legend>Shipping</legend>
-							<p><label for="m-add1">Address 1:</label>
-								<input type="text" name="m-add1" id="m-add1" /></p>
-							<p><label for="m-add2">Address 2:</label>
-								<input type="text" name="m-add2" id="m-add2" /></p>
-							<p><label for="m-city">City:</label>
-								  <input type="text" name="m-city" id="m-city" /></p>
-							<p><label for="m-state">State:</label>
-								 <input type="text" name="m-state" id="m-state" /></p>
-							<p><label for="m-zip">Zip Code:</label>
-								<input type="text" name="m-zip" id="m-zip" /></p>
-	                	</fieldset>
-	                    <p class="buttons-bar"><input title="" type="submit" value="Submit" /></p>
-	                </form>
-				</div>
-				
-                <div class="keyboard">
-                    <p> Error tooltips are automatically rendered when focus moves away from each required form field.</p>
-                </div>
-			</main>
-        </div>
-    </body>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Inline Form Field Validation (Complex) - AccDC Technical Style Guide</title>
+    <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+    <link rel="stylesheet" type="text/css" href="css/customize.css" />
+    <script type="text/javascript" src="../../_common/js/jQuery.js">
+        // Load jQuery.
+        // This is not necessary if using the Standalone AccDC API version.
+    </script>
+    <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+        // Load the AccDC API, which all modules are plugged into as the common interface.
+    </script>
+    <!-- Now load all desired modules, which plugs them into AccDC. -->
+    <script type="text/javascript" src="../../../2 Accessible Component Modules/form_field_validator.min.js"></script>
+    <script type="text/javascript" src="js/setup.js">
+        // Run the setup script where module invocation statements are contained.
+    </script>
+</head>
+
+<body>
+    <div id="coding-arena">
+        <header>
+            <div class="innerHeader">
+                <a href="http://whatsock.com"><img alt="WhatSock : Changing the world one step at a time" src="../../_common/img/whatsock.svg" />
+                    <strong>AccDC</strong> Technical Style Guide</a></div>
+        </header>
+
+        <main>
+            <h1 class="pageTitle">Inline Form Field Validation</h1>
+
+            <div class="demo-block">
+                <h3>Enter your billing and shipping addresses</h3>
+                <form id="addressForm" action="#">
+                    <fieldset>
+                        <legend>Billing</legend>
+                        <p><label for="b-add1">Address 1:</label>
+                            <input type="text" name="b-add1" id="b-add1" /></p>
+                        <p><label for="b-add2">Address 2:</label>
+                            <input type="text" name="b-add2" id="b-add2" /></p>
+                        <p><label for="b-city">City:</label>
+                            <input type="text" name="b-city" id="b-city" /></p>
+                        <p><label for="b-state">State:</label>
+                            <input type="text" name="b-state" id="b-state" /></p>
+                        <p><label for="b-zip">Zip Code:</label>
+                            <input type="text" name="b-zip" id="b-zip" /></p>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Shipping</legend>
+                        <p><label for="m-add1">Address 1:</label>
+                            <input type="text" name="m-add1" id="m-add1" /></p>
+                        <p><label for="m-add2">Address 2:</label>
+                            <input type="text" name="m-add2" id="m-add2" /></p>
+                        <p><label for="m-city">City:</label>
+                            <input type="text" name="m-city" id="m-city" /></p>
+                        <p><label for="m-state">State:</label>
+                            <input type="text" name="m-state" id="m-state" /></p>
+                        <p><label for="m-zip">Zip Code:</label>
+                            <input type="text" name="m-zip" id="m-zip" /></p>
+                    </fieldset>
+                    <p class="buttons-bar"><input title="" type="submit" value="Submit" /></p>
+                </form>
+            </div>
+
+            <div class="keyboard">
+                <p> Error tooltips are automatically rendered when focus moves away from each required form field.</p>
+            </div>
+        </main>
+    </div>
+</body>
+
 </html>

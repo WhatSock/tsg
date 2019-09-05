@@ -2,54 +2,64 @@
 /* Specific styles for ARIA Menus */
 
 button.menu {
-	font-size: 100%;
-	text-transform: uppercase;
-	color: #FFF;
-	background: #286278 url(../img/sprite.svg) right -290px no-repeat;
-	padding: 0.3em 36px 0.3em 0.5em;
-	border: none;
-	box-shadow: 0 1px 2px rgba(0,0,0,.7);
-	border-radius: 2px;
-	cursor: pointer;
+  font-size: 100%;
+  text-transform: uppercase;
+  color: #fff;
+  background: #286278 url(../img/sprite.svg) right -290px no-repeat;
+  padding: 0.3em 36px 0.3em 0.5em;
+  border: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+  border-radius: 2px;
+  cursor: pointer;
 }
-button.menu:hover, button.menu:focus {
-	color: #FFF;
-	background-color: #C13836;
-	box-shadow: none;
-	border-radius: 0;
+button.menu:hover,
+button.menu:focus {
+  color: #fff;
+  background-color: #c13836;
+  box-shadow: none;
+  border-radius: 0;
 }
 
 #menu-options {
-	width: 10em;
-	list-style: none;
-	background: #2E3135;
-	margin: 2em 0 0;
+  width: 10em;
+  list-style: none;
+  background: #2e3135;
+  margin: 2em 0 0;
 }
-#menu-options  > li {
-	text-transform: uppercase;
+#menu-options > li {
+  text-transform: uppercase;
 }
-	#menu-options  > li li {font-size: 100%;}
-	
-ol.menu {width: 10em; list-style: none; margin-left: 11em;}
-	
-#menu-options  a {
-	display: block;
-	text-align: center;
-	text-decoration: none;
-	color: #FFF;
-	background: #2E3135;
-	padding: 0.3em 0.8em;
+#menu-options > li li {
+  font-size: 100%;
 }
-#menu-options a.submenu {
-	color: #FFF;
-	background: #2E3135 url(../img/sprite.svg) right -288px no-repeat;
-	padding: 0.3em 36px 0.3em 0.8em;
+
+ol.menu {
+  width: 10em;
+  list-style: none;
+  margin-left: 11em;
 }
-#menu-options a:focus, #menu-options a:hover, #menu-options a.submenu:hover, #menu-options a.submenu:focus {
-	color: #FFF;
-	background-color: #C13836;
+
+#menu-options a {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  background: #2e3135;
+  padding: 0.3em 0.8em;
 }
 #menu-options a.submenu {
-	background: #2E3135 url(../img/sprite.svg) right -288px no-repeat;
-	padding: 0.3em 36px 0.3em 0.8em;
+  color: #fff;
+  background: #2e3135 url(../img/sprite.svg) right -288px no-repeat;
+  padding: 0.3em 36px 0.3em 0.8em;
+}
+#menu-options a:focus,
+#menu-options a:hover,
+#menu-options a.submenu:hover,
+#menu-options a.submenu:focus {
+  color: #fff;
+  background-color: #c13836;
+}
+#menu-options a.submenu {
+  background: #2e3135 url(../img/sprite.svg) right -288px no-repeat;
+  padding: 0.3em 36px 0.3em 0.8em;
 }

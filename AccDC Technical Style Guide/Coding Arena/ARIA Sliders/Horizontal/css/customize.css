@@ -1,86 +1,90 @@
 /* WHATSOCK, 2016 */
 /* Specific styles for ARIA Sliders */
 
-table.sample {}
+table.sample {
+}
 
 table.sample td {
-    width: 100%;
-    text-align: center;
-    vertical-align: middle;
+  width: 100%;
+  text-align: center;
+  vertical-align: middle;
 }
 
 table.sample td.imageTD {
-    height: 428px;
-    overflow: hidden;
+  height: 428px;
+  overflow: hidden;
 }
-
-.slider2 {}
 
 .slider2 {
-	display: -webkit-flex;
-	display: -ms-flex;
-	display: flex;
 }
 
-.min2, .max2 {
-    width: 4em;
-	line-height: 1.8em;
-	text-align: center;
+.slider2 {
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
 }
 
-.min2 span, .max2 span {
-    position: relative;
-    top: 10px;
+.min2,
+.max2 {
+  width: 4em;
+  line-height: 1.8em;
+  text-align: center;
+}
+
+.min2 span,
+.max2 span {
+  position: relative;
+  top: 10px;
 }
 
 .slideWrapper {
-	position: relative;
-    height: 48px;
-    width: 428px;
+  position: relative;
+  height: 48px;
+  width: 428px;
 }
-	.slideWrapper::before {
-		position: absolute;
-		display: block;
-		width: 100%;
-		height: 0.2rem;
-		top: 50%;
-		content: "";
-		background: #CCC;
-		border-radius: 2px;
-		z-index: 2;
-	}
-	.slideWrapper::after {
-		position: absolute;
-		display: block;
-		width: 100%;
-		height: 0.2rem;
-		top: 50%;
-		content: "";
-		background: #999;
-		margin-top: 2px;
-		border-radius: 2px;
-		z-index: 1;
-	}
+.slideWrapper::before {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 0.2rem;
+  top: 50%;
+  content: "";
+  background: #ccc;
+  border-radius: 2px;
+  z-index: 2;
+}
+.slideWrapper::after {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 0.2rem;
+  top: 50%;
+  content: "";
+  background: #999;
+  margin-top: 2px;
+  border-radius: 2px;
+  z-index: 1;
+}
 
 .slide2 {
-    height: 46px;
-    width: 426px;
-    position: relative; /* Important: The parentNode of the draggable nub must be relatively positioned. */
-	z-index: 10;
+  height: 46px;
+  width: 426px;
+  position: relative; /* Important: The parentNode of the draggable nub must be relatively positioned. */
+  z-index: 10;
 }
 
 .slide2 > div.nub2 {
-    width: 30px;
-    height: 47px;
-    background: url(../img/sprite.svg) 0 -1906px no-repeat;
-    cursor: pointer;
+  width: 30px;
+  height: 47px;
+  background: url(../img/sprite.svg) 0 -1906px no-repeat;
+  cursor: pointer;
 }
 
 .slide2 > div.nub:focus {
-    outline: red 2px inset;
+  outline: red 2px inset;
 }
 
 #earthImg {
-    height: 0;
-    width: 0;
+  height: 0;
+  width: 0;
 }

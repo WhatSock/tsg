@@ -1,4 +1,3 @@
-
 /* The container element with role="tablist" */
 ul.tabs {
 }
@@ -17,6 +16,5 @@ a.accTab.active {
 
 /* All elements that have focus */
 *:focus {
-outline: #990000 2px inset;
+  outline: #990000 2px inset;
 }
-

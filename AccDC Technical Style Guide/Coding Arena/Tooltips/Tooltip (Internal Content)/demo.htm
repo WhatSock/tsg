@@ -1,37 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-        <title>Tooltip (Internal Content) - AccDC Technical Style Guide</title>
-        <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
-        <link rel="stylesheet" type="text/css" href="css/customize.css" />
-        <script type="text/javascript" src="../../_common/js/jQuery.js">
-            // Load jQuery.
-            // This is not necessary if using the Standalone AccDC API version.
-        </script>
-        <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
-            // Load the AccDC API, which all modules are plugged into as the common interface.
-        </script>
-        <!-- Now load all desired modules, which plugs them into AccDC. --><script type="text/javascript" src="../../../2 Accessible Component Modules/tooltip_module.min.js"></script>
-        <script type="text/javascript" src="js/setup.js">
-            // Run the setup script where module invocation statements are contained.
-        </script>
-    </head>
-    <body>
-    	<div id="coding-arena">
-			<header>
-				<div class="innerHeader">
-					<a href="http://whatsock.com"><img alt="WhatSock : Changing the world one step at a time" src="../../_common/img/whatsock.svg" /> 
-					<strong>AccDC</strong> Technical Style Guide</a></div>
-			</header>
-			
-			<main>
-				<h1 class="pageTitle">Tooltip <small>Internal Content</small></h1>
-		        <div class="demo-block">
-		            <p><label for="dummyField1"> Field1 to set focus to: </label> 
-						<input type="text" id="dummyField1" /></p>
-				   <!-- Important
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Tooltip (Internal Content) - AccDC Technical Style Guide</title>
+    <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+    <link rel="stylesheet" type="text/css" href="css/customize.css" />
+    <script type="text/javascript" src="../../_common/js/jQuery.js">
+        // Load jQuery.
+        // This is not necessary if using the Standalone AccDC API version.
+    </script>
+    <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+        // Load the AccDC API, which all modules are plugged into as the common interface.
+    </script>
+    <!-- Now load all desired modules, which plugs them into AccDC. -->
+    <script type="text/javascript" src="../../../2 Accessible Component Modules/tooltip_module.min.js"></script>
+    <script type="text/javascript" src="js/setup.js">
+        // Run the setup script where module invocation statements are contained.
+    </script>
+</head>
+
+<body>
+    <div id="coding-arena">
+        <header>
+            <div class="innerHeader">
+                <a href="http://whatsock.com"><img alt="WhatSock : Changing the world one step at a time" src="../../_common/img/whatsock.svg" />
+                    <strong>AccDC</strong> Technical Style Guide</a></div>
+        </header>
+
+        <main>
+            <h1 class="pageTitle">Tooltip <small>Internal Content</small></h1>
+            <div class="demo-block">
+                <p><label for="dummyField1"> Field1 to set focus to: </label>
+                    <input type="text" id="dummyField1" /></p>
+                <!-- Important
 		                When an A tag is used as the triggering element, it must adhere to the following:
 		                1. If the element contains no link text and no Img element, then the link should include an 
 						informative Title attribute. (This is only valid if there is no link text at all)
@@ -40,38 +43,39 @@
 		                3. The A tag must include an Href attribute, to ensure keyboard accessibility.
 		                This will ensure the highest level of accessibility for both screen reader and keyboard only users.
 		                -->
-					<p><a id="helpIcon" href="#" class="helpIcon"><img src="img/ic_help.svg" alt="What is the greatest secret known to man?" title="What is the greatest secret known to man?" /></a></p>
-					<p><label for="pWord">Password:</label> 
-						<input id="pWord" type="password" /></p>
-					<p><label for="dummyField2">Field2 to set focus to:</label> <input type="text" id="dummyField2" /></p>
-		        </div>
-			
-	            <div class="intro tal keyboard">
-	                <p>The tooltip is optimized for screen readers and keyboard only users:</p>
-	                <ul>
-						<li>Set focus on one of the Focus fields,
-							then press <kbd>Tab</kbd> and <kbd><kbd>Shift</kbd>+<kbd>Tab</kbd></kbd> to navigate between them.</li>
-						<li>Tabbing away from an active element with a tooltip, or pressing <kbd>Escape</kbd>, will close the tooltip.</li>
-						<li>Mouse users can mouse in and out of the icon to show or hide the tooltip as usual.</li>
-					</ul>
-	            </div>
-			</main>
-		</div>
-		
-        <div class="hidden">
-            <div id="tooltip-help">
-                "It is a mistake to think you can solve any major problems just with potatoes.", Douglas Adams
+                <p><a id="helpIcon" href="#" class="helpIcon"><img src="img/ic_help.svg" alt="What is the greatest secret known to man?" title="What is the greatest secret known to man?" /></a></p>
+                <p><label for="pWord">Password:</label>
+                    <input id="pWord" type="password" /></p>
+                <p><label for="dummyField2">Field2 to set focus to:</label> <input type="text" id="dummyField2" /></p>
             </div>
-            <div id="tooltip-password">
-                <div>
-                    Important:
-                </div>
+
+            <div class="intro tal keyboard">
+                <p>The tooltip is optimized for screen readers and keyboard only users:</p>
                 <ul>
-                    <li> Must be 8 characters in length.</li>
-                    <li> Must not contain special characters.</li>
+                    <li>Set focus on one of the Focus fields,
+                        then press <kbd>Tab</kbd> and <kbd><kbd>Shift</kbd>+<kbd>Tab</kbd></kbd> to navigate between them.</li>
+                    <li>Tabbing away from an active element with a tooltip, or pressing <kbd>Escape</kbd>, will close the tooltip.</li>
+                    <li>Mouse users can mouse in and out of the icon to show or hide the tooltip as usual.</li>
                 </ul>
             </div>
+        </main>
+    </div>
+
+    <div class="hidden">
+        <div id="tooltip-help">
+            "It is a mistake to think you can solve any major problems just with potatoes.", Douglas Adams
         </div>
-		
-    </body>
+        <div id="tooltip-password">
+            <div>
+                Important:
+            </div>
+            <ul>
+                <li> Must be 8 characters in length.</li>
+                <li> Must not contain special characters.</li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+
 </html>

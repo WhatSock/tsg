@@ -2,163 +2,188 @@
 /* Specific styles for ARIA Carousel */
 
 /* Styling for the Auto Rotating Carousel */
-div.demo-block {padding-top: 4rem;}
+div.demo-block {
+  padding-top: 4rem;
+}
 
 /* The container element where the dynamically generated carousel will be inserted */
 #carouselId {
-    display: block;
-    height: 15em;
-	margin: 1rem auto 0;
+  display: block;
+  height: 15em;
+  margin: 1rem auto 0;
 }
 
 /* The top level Div element that holds all carousel nodes */
 #carouselId div.carouselCls {
-	width: 90%;
-    text-align: center;
-	margin: 0 10%;
+  width: 90%;
+  text-align: center;
+  margin: 0 10%;
 }
 
 /* The left and right content Div elements where Nav buttons are added */
-#carouselId div.lNav, #carouselId div.rNav {
-    position: absolute;
-    height: 158px;
-    padding: 6px;
+#carouselId div.lNav,
+#carouselId div.rNav {
+  position: absolute;
+  height: 158px;
+  padding: 6px;
 }
 
 /* The center Div element where rotating slides are added */
 #carouselId div.centerContent {
-    position: absolute;
-    overflow: hidden;
-    left: 50%;
-    width: 195px;
-    height: 250px;
-	margin-left: -97px
+  position: absolute;
+  overflow: hidden;
+  left: 50%;
+  width: 195px;
+  height: 250px;
+  margin-left: -97px;
 }
-	#carouselId div.centerContent div div {transition: opacity 1s;}
-	#carouselId div.centerContent div div[aria-hidden=false] {opacity: 1;}
-	#carouselId div.centerContent div div[aria-hidden=true] {opacity: 0;}
-
+#carouselId div.centerContent div div {
+  transition: opacity 1s;
+}
+#carouselId div.centerContent div div[aria-hidden="false"] {
+  opacity: 1;
+}
+#carouselId div.centerContent div div[aria-hidden="true"] {
+  opacity: 0;
+}
 
 /* The right content Div element where Nav buttons are added */
-#carouselId div.rNav {right: 0;}
+#carouselId div.rNav {
+  right: 0;
+}
 
 /* Point to all Nav buttons in the carousel */
 #carouselId .navButton {
-    display: block;
-	overflow: hidden;
-    width: 28px;
-    height: 28px;
-    border: 0;
-    padding: 0;
-    margin: 0;
+  display: block;
+  overflow: hidden;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  padding: 0;
+  margin: 0;
 }
 
-	#carouselId .navButton span[aria-hidden=true] {display: none;}
-	
-	#carouselId .navButton[aria-label="Previous Step"] {
-		background: url(../img/sprite.svg) 0 -660px no-repeat;
-	}
-	#carouselId .navButton[aria-label="Previous Group"] {
-		background: url(../img/sprite.svg) 0 -1020px no-repeat;
-	}
-	
-	#carouselId .navButton[aria-label="Next Step"] {
-		background: url(../img/sprite.svg) 0 -479px no-repeat;
-	}
-	#carouselId .navButton[aria-label="Next Group"] {
-		background: url(../img/sprite.svg) 0 -839px no-repeat;
-	}
+#carouselId .navButton span[aria-hidden="true"] {
+  display: none;
+}
+
+#carouselId .navButton[aria-label="Previous Step"] {
+  background: url(../img/sprite.svg) 0 -660px no-repeat;
+}
+#carouselId .navButton[aria-label="Previous Group"] {
+  background: url(../img/sprite.svg) 0 -1020px no-repeat;
+}
+
+#carouselId .navButton[aria-label="Next Step"] {
+  background: url(../img/sprite.svg) 0 -479px no-repeat;
+}
+#carouselId .navButton[aria-label="Next Group"] {
+  background: url(../img/sprite.svg) 0 -839px no-repeat;
+}
 
 /* Point to the Previous and Next Slide buttons */
-#carouselId .navSlideButton {margin-top: 40px;}
+#carouselId .navSlideButton {
+  margin-top: 40px;
+}
 
 #carouselId .navGroupButton {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 #carouselId div.groupName {
-    position: absolute;
-	top: 0;
-	left: 0;
-    width: 195px;
-	font-size: 1.3em;
-    text-align: center;
-    z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 195px;
+  font-size: 1.3em;
+  text-align: center;
+  z-index: 1;
 }
 
 #carouselId div.groupName span {
-	position: relative;
-	top: -1rem;
-	text-transform: uppercase;
-	color: #49182E;
+  position: relative;
+  top: -1rem;
+  text-transform: uppercase;
+  color: #49182e;
 }
-
 
 /* Styling for the Dynamic Wizard */
 
 div.wizardCls {
-	position: static !important;
-	display: block;
-	width: 90%;
-	height: 200px;
-	background-color: #FFF;
-	margin-bottom: 2rem;
-	padding: 1rem 5%;
-	box-shadow: 1px 2px 3px rgba(0,0,0,.5);
-	transition: height 1s, top 1s;
-	-webkit-transition: height 1s, top 1s;
-	-ms-transition: height 1s, top 1s;
+  position: static !important;
+  display: block;
+  width: 90%;
+  height: 200px;
+  background-color: #fff;
+  margin-bottom: 2rem;
+  padding: 1rem 5%;
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
+  transition: height 1s, top 1s;
+  -webkit-transition: height 1s, top 1s;
+  -ms-transition: height 1s, top 1s;
 }
 
-div.wizardCls div.carouselCls {background-color: #FFF;}
+div.wizardCls div.carouselCls {
+  background-color: #fff;
+}
 
-div.wizardCls div.lNav, div.wizardCls div.rNav {}
+div.wizardCls div.lNav,
+div.wizardCls div.rNav {
+}
 
 div.wizardCls div.centerContent {
-	position: absolute;
-	left: auto;
-	width: 695px;
-	height: 250px;
-	overflow: hidden;
+  position: absolute;
+  left: auto;
+  width: 695px;
+  height: 250px;
+  overflow: hidden;
 }
 
-
 #wizardId {
-	text-transform: uppercase;
-	color: #FFF;
-	background: #286278;
-	padding: 0.3em 0.5em;
-	margin-bottom: 1rem;
-	border: none;
-	border-radius: 3px;
-	text-shadow: 0px 1px 1px #000;
-	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.7);
-	transition: border-radius, text-shadow, box-shadow;
-	-webkit-transition: border-radius, text-shadow, box-shadow;
-	-ms-transition: border-radius, text-shadow, box-shadow;
+  text-transform: uppercase;
+  color: #fff;
+  background: #286278;
+  padding: 0.3em 0.5em;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 3px;
+  text-shadow: 0px 1px 1px #000;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.7);
+  transition: border-radius, text-shadow, box-shadow;
+  -webkit-transition: border-radius, text-shadow, box-shadow;
+  -ms-transition: border-radius, text-shadow, box-shadow;
 }
 
 div.wizardCls form {
-	box-sizing: border-box;
-	height: 130px;
-	overflow: auto;
-	background: #EEE;
-	margin-top: 2.5rem;
-	padding: 1rem;
+  box-sizing: border-box;
+  height: 130px;
+  overflow: auto;
+  background: #eee;
+  margin-top: 2.5rem;
+  padding: 1rem;
 }
 
-	div.wizardCls form br {display: none;}
-	div.wizardCls form div + div {margin-top: 1rem;}
-	div.wizardCls form label {margin-bottom: 0.3rem;}
+div.wizardCls form br {
+  display: none;
+}
+div.wizardCls form div + div {
+  margin-top: 1rem;
+}
+div.wizardCls form label {
+  margin-bottom: 0.3rem;
+}
 
 div.wizardCls div.legend {
-	font-size: 0.8em;
-	text-align: left;
-	text-transform: uppercase;
-	margin-bottom: 1em;
+  font-size: 0.8em;
+  text-align: left;
+  text-transform: uppercase;
+  margin-bottom: 1em;
 }
 
-
-div.wizardCls .lNav, div.wizardCls .rNav {position: absolute;}
-div.wizardCls .rNav {left: 595px;}
-
+div.wizardCls .lNav,
+div.wizardCls .rNav {
+  position: absolute;
+}
+div.wizardCls .rNav {
+  left: 595px;
+}

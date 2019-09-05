@@ -1,77 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-        <title>Checkboxes (Simulated with No ARIA) - AccDC Technical Style Guide</title>
-        <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
-        <link rel="stylesheet" type="text/css" href="css/customize.css" />
-        <script type="text/javascript" src="../../_common/js/jQuery.js">
-            // Load jQuery.
-            // This is not necessary if using the Standalone AccDC API version.
-        </script>
-        <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
-            // Load the AccDC API, which all modules are plugged into as the common interface.
-        </script>
-        <!-- Now load all desired modules, which plugs them into AccDC. --><script type="text/javascript" src="../../../2 Accessible Component Modules/aria_toggler.min.js"></script>
-        <script type="text/javascript" src="js/setup.js">
-            // Run the setup script where module invocation statements are contained.
-        </script>
-    </head>
-    <body>
-        <div id="coding-arena">
-			<header>
-				<div class="innerHeader">
-					<a href="http://whatsock.com"><img alt="WhatSock : Changing the world one step at a time" src="../../_common/img/whatsock.svg" /> 
-					<strong>AccDC</strong> Technical Style Guide</a>
-				</div>
-			</header>
-		
-        	<main>
-        		<h1 class="pageTitle">ARIA Checkboxes</h1>
-	            <div class="demo-block">
-	                <h3>What do you want to be when you grow up?</h3>
-		                <dl>
-		                    <dt>
-		                        Standard Image Link (A tag with an embedded IMG) as a toggle:
-		                    </dt>
-		                    <dd class="clearfix">
-		                        <!-- For container elements that support innerHTML, the following attributes and rules are required to ensure accessibility for the widest range of screen readers:
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Checkboxes (Simulated with No ARIA) - AccDC Technical Style Guide</title>
+    <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+    <link rel="stylesheet" type="text/css" href="css/customize.css" />
+    <script type="text/javascript" src="../../_common/js/jQuery.js">
+        // Load jQuery.
+        // This is not necessary if using the Standalone AccDC API version.
+    </script>
+    <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+        // Load the AccDC API, which all modules are plugged into as the common interface.
+    </script>
+    <!-- Now load all desired modules, which plugs them into AccDC. -->
+    <script type="text/javascript" src="../../../2 Accessible Component Modules/aria_toggler.min.js"></script>
+    <script type="text/javascript" src="js/setup.js">
+        // Run the setup script where module invocation statements are contained.
+    </script>
+</head>
+
+<body>
+    <div id="coding-arena">
+        <header>
+            <div class="innerHeader">
+                <a href="http://whatsock.com"><img alt="WhatSock : Changing the world one step at a time" src="../../_common/img/whatsock.svg" />
+                    <strong>AccDC</strong> Technical Style Guide</a>
+            </div>
+        </header>
+
+        <main>
+            <h1 class="pageTitle">ARIA Checkboxes</h1>
+            <div class="demo-block">
+                <h3>What do you want to be when you grow up?</h3>
+                <dl>
+                    <dt>
+                        Standard Image Link (A tag with an embedded IMG) as a toggle:
+                    </dt>
+                    <dd class="clearfix">
+                        <!-- For container elements that support innerHTML, the following attributes and rules are required to ensure accessibility for the widest range of screen readers:
 		                        1. Inner Text : Specifies a textual label for screen reader users. This may be visible or positioned using offscreenText. (Must not be hidden using display:none or visibility:hidden) offscreenText is required to ensure the same level of accessibility for iOS devices using Voiceover.
 		                        2. No Embedded Active Elements : Don't embed any other active elements, including mouse clickable images, links, or anything else that needs to be activated separately.
 		                        3. The A tag must include an href attribute (even if it only includes a # symbol), which is needed to ensure keyboard accessibility in all browsers.
 		                        3. Set the Alt attribute on the IMG tag to "", like so: alt=""
 		                        To add a tooltip for sighted mouse users, use the Title attribute on the A tag only. This must match the text contained within the innerText label.
 		                        --><a href="#" id="a1"><img id="a1img" alt="" src="img/horse.svg" /><span class="offscreenText"> A Horse!</span></a>
-		                        <!-- To prevent redundant label announcement for screen reader users, the visible text below is hidden from screen readers using aria-hidden. This should only be done when the same text is already available for screen reader users. --><span class="lbl" aria-hidden="true"> A Horse!</span>
-		                        <input type="checkbox" id="a1mirror" title="Checkbox mirror of A Horse" />
-		                    </dd>
-		                    <dt>
-		                        Standard A tag with a background image as a toggle:
-		                    </dt>
-		                    <dd class="clearfix">
-		                        <!-- For container elements that support innerHTML, the following attributes and rules are required to ensure accessibility for the widest range of screen readers:
+                        <!-- To prevent redundant label announcement for screen reader users, the visible text below is hidden from screen readers using aria-hidden. This should only be done when the same text is already available for screen reader users. --><span class="lbl" aria-hidden="true"> A Horse!</span>
+                        <input type="checkbox" id="a1mirror" title="Checkbox mirror of A Horse" />
+                    </dd>
+                    <dt>
+                        Standard A tag with a background image as a toggle:
+                    </dt>
+                    <dd class="clearfix">
+                        <!-- For container elements that support innerHTML, the following attributes and rules are required to ensure accessibility for the widest range of screen readers:
 		                        1. Inner Text : Specifies a textual label for screen reader users. This may be visible or positioned using offscreenText. (Must not be hidden using display:none or visibility:hidden) offscreenText is required to ensure the same level of accessibility for iOS devices using Voiceover.
 		                        2. No Embedded Active Elements : Don't embed any other active elements, including mouse clickable images, links, or anything else that needs to be activated separately.
 		                        3. The A tag must include an href attribute (even if it only includes a # symbol), which is needed to ensure keyboard accessibility in all browsers.
 		                        To add a tooltip for sighted mouse users, use the Title attribute on the A tag only. This must match the text contained within the innerText label.
 		                        --><a href="#" id="a2"><span class="offscreenText"> A Donkey!</span></a>
-		                        <!-- To prevent redundant label announcement for screen reader users, the visible text below is hidden from screen readers using aria-hidden. This should only be done when the same text is already available for screen reader users. --><span class="lbl" aria-hidden="true"> A Donkey!</span>
-		                        <input type="checkbox" id="a2mirror" title="Checkbox mirror of A Donkey" />
-		                    </dd>
-		                </dl>
-					</div>
-				
-	                <div class="keyboard">
-	                    <p>The ARIA checkbox controls are keyboard accessible:</p>
-	                    <ul>
-							<li>Press the <kbd>Tab</kbd> key to navigate between the ARIA Checkboxes. 
-							<li>Press the <kbd>Spacebar</kbd> to toggle the state of the selected checkbox.
-							<li>Mouse users can click a checkbox to toggle the state as usual.
-						</ul>
-	                </div>
-				
-            </main>
-        </div>
-    </body>
+                        <!-- To prevent redundant label announcement for screen reader users, the visible text below is hidden from screen readers using aria-hidden. This should only be done when the same text is already available for screen reader users. --><span class="lbl" aria-hidden="true"> A Donkey!</span>
+                        <input type="checkbox" id="a2mirror" title="Checkbox mirror of A Donkey" />
+                    </dd>
+                </dl>
+            </div>
+
+            <div class="keyboard">
+                <p>The ARIA checkbox controls are keyboard accessible:</p>
+                <ul>
+                    <li>Press the <kbd>Tab</kbd> key to navigate between the ARIA Checkboxes.
+                    <li>Press the <kbd>Spacebar</kbd> to toggle the state of the selected checkbox.
+                    <li>Mouse users can click a checkbox to toggle the state as usual.
+                </ul>
+            </div>
+
+        </main>
+    </div>
+</body>
+
 </html>

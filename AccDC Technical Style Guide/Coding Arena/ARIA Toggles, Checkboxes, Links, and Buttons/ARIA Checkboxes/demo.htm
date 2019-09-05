@@ -1,40 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-        <title>ARIA Checkboxes - AccDC Technical Style Guide</title>
-        <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
-        <link rel="stylesheet" type="text/css" href="css/customize.css" />
-        <script type="text/javascript" src="../../_common/js/jQuery.js">
-            // Load jQuery.
-            // This is not necessary if using the Standalone AccDC API version.
-        </script>
-        <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
-            // Load the AccDC API, which all modules are plugged into as the common interface.
-        </script>
-        <!-- Now load all desired modules, which plugs them into AccDC. --><script type="text/javascript" src="../../../2 Accessible Component Modules/aria_toggler.min.js"></script>
-        <script type="text/javascript" src="js/setup.js">
-            // Run the setup script where module invocation statements are contained.
-        </script>
-    </head>
-    <body>
-        <div id="coding-arena">
-			<header>
-				<div class="innerHeader">
-					<a href="http://whatsock.com"><img alt="WhatSock : Changing the world one step at a time" src="../../_common/img/whatsock.svg" /> 
-					<strong>AccDC</strong> Technical Style Guide</a>
-				</div>
-			</header>
-		
-        	<main>
-        		<h1 class="pageTitle">ARIA Checkboxes</h1>
-	            <div class="demo-block">
-	                <h3>What do you want to be when you grow up?</h3>
-	                <dl class="check-demo">
-	                    <dt>Standard IMG tag as a toggle:</dt>
-	                    <dd>
-	                        <!-- For IMG tags, the following attributes are required to ensure accessibility for the widest range of screen readers:
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>ARIA Checkboxes - AccDC Technical Style Guide</title>
+    <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+    <link rel="stylesheet" type="text/css" href="css/customize.css" />
+    <script type="text/javascript" src="../../_common/js/jQuery.js">
+        // Load jQuery.
+        // This is not necessary if using the Standalone AccDC API version.
+    </script>
+    <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+        // Load the AccDC API, which all modules are plugged into as the common interface.
+    </script>
+    <!-- Now load all desired modules, which plugs them into AccDC. -->
+    <script type="text/javascript" src="../../../2 Accessible Component Modules/aria_toggler.min.js"></script>
+    <script type="text/javascript" src="js/setup.js">
+        // Run the setup script where module invocation statements are contained.
+    </script>
+</head>
+
+<body>
+    <div id="coding-arena">
+        <header>
+            <div class="innerHeader">
+                <a href="http://whatsock.com"><img alt="WhatSock : Changing the world one step at a time" src="../../_common/img/whatsock.svg" />
+                    <strong>AccDC</strong> Technical Style Guide</a>
+            </div>
+        </header>
+
+        <main>
+            <h1 class="pageTitle">ARIA Checkboxes</h1>
+            <div class="demo-block">
+                <h3>What do you want to be when you grow up?</h3>
+                <dl class="check-demo">
+                    <dt>Standard IMG tag as a toggle:</dt>
+                    <dd>
+                        <!-- For IMG tags, the following attributes are required to ensure accessibility for the widest range of screen readers:
 	                        1. role="checkbox" : Specifies an ARIA Checkbox control. (Must only be present on the active element, and nowhere else. Also, don't add 
 							role="checkbox" to standard INPUT tags with type="checkbox")
 	                        2. aria-label : Specifies a textual label for screen reader users. (The Alt alone won't work for this purpose)
@@ -42,15 +45,15 @@
 	                        To add a tooltip for sighted mouse users, use both the Alt and Title attributes. The text for both must match the text contained within 
 							the aria-label attribute, so that all three are the same.
 	                        -->
-							<img id="img1" role="checkbox" aria-label="A Horse" alt="" src="img/horse.svg" />
-							<!-- To prevent redundant label announcement for screen reader users, the visible text below is hidden from screen readers using 
+                        <img id="img1" role="checkbox" aria-label="A Horse" alt="" src="img/horse.svg" />
+                        <!-- To prevent redundant label announcement for screen reader users, the visible text below is hidden from screen readers using 
 							aria-hidden. This should only be done when the same text is already available for screen reader users. -->
-							<span class="lbl" aria-hidden="true"> A Horse!</span>
-	                        <input type="checkbox" id="img1mirror" title="Checkbox mirror of A Horse" />
-	                    </dd>
-	                    <dt>INPUT with type="image" as a toggle:</dt>
-	                    <dd>
-	                        <!-- For INPUT tags with type="image", the following attributes are required to ensure accessibility for the widest range of screen readers:
+                        <span class="lbl" aria-hidden="true"> A Horse!</span>
+                        <input type="checkbox" id="img1mirror" title="Checkbox mirror of A Horse" />
+                    </dd>
+                    <dt>INPUT with type="image" as a toggle:</dt>
+                    <dd>
+                        <!-- For INPUT tags with type="image", the following attributes are required to ensure accessibility for the widest range of screen readers:
 	                        1. role="checkbox" : Specifies an ARIA Checkbox control. (Must only be present on the active element, and nowhere else. 
 							Also, don't add role="checkbox" to standard INPUT tags with type="checkbox")
 	                        2. aria-label : Specifies a textual label for screen reader users. (The Alt alone won't work for this purpose)
@@ -59,15 +62,15 @@
 	                        To add a tooltip for sighted mouse users, use both the Alt and Title attributes. The text for both must match the text contained 
 							within the aria-label attribute, so that all three are the same.
 	                        -->
-							<input id="input1" role="checkbox" title="A Donkey!" alt="A Donkey!" aria-label="A Donkey!" src="img/donkey.svg" type="image" />
-							<!-- To prevent redundant label announcement for screen reader users, the visible text below is hidden from screen readers using 
+                        <input id="input1" role="checkbox" title="A Donkey!" alt="A Donkey!" aria-label="A Donkey!" src="img/donkey.svg" type="image" />
+                        <!-- To prevent redundant label announcement for screen reader users, the visible text below is hidden from screen readers using 
 							aria-hidden. This should only be done when the same text is already available for screen reader users. -->
-							<span class="lbl" aria-hidden="true"> A Donkey!</span>
-	                        <input type="checkbox" id="input1mirror" title="Checkbox mirror of A Donkey" />
-	                    </dd>
-	                    <dt>DIV tag with a background image as a toggle:</dt>
-	                    <dd>
-	                        <!-- For all other container elements that support innerHTML, the following attributes and rules are required to ensure 
+                        <span class="lbl" aria-hidden="true"> A Donkey!</span>
+                        <input type="checkbox" id="input1mirror" title="Checkbox mirror of A Donkey" />
+                    </dd>
+                    <dt>DIV tag with a background image as a toggle:</dt>
+                    <dd>
+                        <!-- For all other container elements that support innerHTML, the following attributes and rules are required to ensure 
 							accessibility for the widest range of screen readers:
 	                        1. role="checkbox" : Specifies an ARIA Checkbox control. (Must only be present on the active element, and nowhere else.
 							 Also, don't add role="checkbox" to standard INPUT tags with type="checkbox")
@@ -78,27 +81,28 @@
 							else that needs to be activated separately. The only actionable element should be the element with role="checkbox".
 	                        To add a tooltip for sighted mouse users, use the Title attribute. This must match the text contained within the innerText label.
 	                        -->
-	                        <div id="div1" role="checkbox">
-	                            <span class="offscreenText"> A Goat!</span>
-	                        </div>
-	                        <!-- To prevent redundant label announcement for screen reader users, the visible text below is hidden from screen readers 
+                        <div id="div1" role="checkbox">
+                            <span class="offscreenText"> A Goat!</span>
+                        </div>
+                        <!-- To prevent redundant label announcement for screen reader users, the visible text below is hidden from screen readers 
 							using aria-hidden. This should only be done when the same text is already available for screen reader users. -->
-							<span class="lbl" aria-hidden="true"> A Goat!</span>
-	                        <input type="checkbox" id="div1mirror" title="Checkbox mirror of A Goat" />
-	                    </dd>
-	                </dl>
-				</div>
-				
-                <div class="keyboard">
-                    <p>The ARIA checkbox controls are keyboard accessible:</p>
-                    <ul>
-						<li>Press the <kbd>Tab</kbd> key to navigate between the ARIA Checkboxes. 
-						<li>Press the <kbd>Spacebar</kbd> to toggle the state of the selected checkbox.
-						<li>Mouse users can click a checkbox to toggle the state as usual.
-					</ul>
-                </div>
-				
-            </main>
-        </div>
-    </body>
+                        <span class="lbl" aria-hidden="true"> A Goat!</span>
+                        <input type="checkbox" id="div1mirror" title="Checkbox mirror of A Goat" />
+                    </dd>
+                </dl>
+            </div>
+
+            <div class="keyboard">
+                <p>The ARIA checkbox controls are keyboard accessible:</p>
+                <ul>
+                    <li>Press the <kbd>Tab</kbd> key to navigate between the ARIA Checkboxes.
+                    <li>Press the <kbd>Spacebar</kbd> to toggle the state of the selected checkbox.
+                    <li>Mouse users can click a checkbox to toggle the state as usual.
+                </ul>
+            </div>
+
+        </main>
+    </div>
+</body>
+
 </html>

@@ -2,33 +2,39 @@
 /* Specific styles for Accessible Tooltip */
 
 div.tooltip {
-	position: absolute;
-	width: auto;
-	color: #FFF;
-	background: #2E3135;
-	padding: 0.3em 0.5em;
-	-webkit-box-shadow: 0 1px 1px #afafaf, inset 0 1px 0 #868686;
-	-moz-box-shadow: 0 1px 1px #afafaf, inset 0 1px 0 #868686;
-	box-shadow: 0 1px 1px #afafaf, inset 0 1px 0 #868686;
-	z-index: 100;
+  position: absolute;
+  width: auto;
+  color: #fff;
+  background: #2e3135;
+  padding: 0.3em 0.5em;
+  -webkit-box-shadow: 0 1px 1px #afafaf, inset 0 1px 0 #868686;
+  -moz-box-shadow: 0 1px 1px #afafaf, inset 0 1px 0 #868686;
+  box-shadow: 0 1px 1px #afafaf, inset 0 1px 0 #868686;
+  z-index: 100;
 }
 
 .accTooltip {
-	font-size: 100%;
-	text-align: center;
-	background: transparent;
-	border: none;
+  font-size: 100%;
+  text-align: center;
+  background: transparent;
+  border: none;
 }
 
-	.accTooltip img {display: block; vertical-align: middle; margin: 0.5rem auto 0;}
-	
+.accTooltip img {
+  display: block;
+  vertical-align: middle;
+  margin: 0.5rem auto 0;
+}
 
 #helpIcon {
-	display: block;
-	background-color: transparent;
-	margin: 1rem 0;
+  display: block;
+  background-color: transparent;
+  margin: 1rem 0;
 }
 
 @media screen and (min-width: 750px) {
-	.accTooltip img {display: inline; margin: 0 0 0 0.5rem;}
+  .accTooltip img {
+    display: inline;
+    margin: 0 0 0 0.5rem;
+  }
 }

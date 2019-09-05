@@ -1,65 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-<title>Scrollable Div (External Content) - AccDC Technical Style Guide</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Scrollable Div (External Content) - AccDC Technical Style Guide</title>
 
-<link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
-<link rel="stylesheet" type="text/css" href="css/customize.css" />
+    <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+    <link rel="stylesheet" type="text/css" href="css/customize.css" />
 
-<script type="text/javascript" src="../../_common/js/jQuery.js">
-// Load jQuery.
-// This is not necessary if using the Standalone AccDC API version.
-</script>
+    <script type="text/javascript" src="../../_common/js/jQuery.js">
+        // Load jQuery.
+        // This is not necessary if using the Standalone AccDC API version.
+    </script>
 
-<script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
-// Load the AccDC API, which all modules are plugged into as the common interface.
-</script>
+    <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+        // Load the AccDC API, which all modules are plugged into as the common interface.
+    </script>
 
-<!-- Now load all desired modules, which plugs them into AccDC. -->
-<script type="text/javascript" src="../../../2 Accessible Component Modules/scrollable_div_generator.min.js"></script>
+    <!-- Now load all desired modules, which plugs them into AccDC. -->
+    <script type="text/javascript" src="../../../2 Accessible Component Modules/scrollable_div_generator.min.js"></script>
 
-<script type="text/javascript" src="js/setup.js">
-// Run the setup script where module invocation statements are contained.
-</script>
+    <script type="text/javascript" src="js/setup.js">
+        // Run the setup script where module invocation statements are contained.
+    </script>
 
 </head>
+
 <body>
-<div>
+    <div>
 
-<div class="viewport">
+        <div class="viewport">
 
-<p class="title">
-Load scenes from Hamlet, by William Shakespeare
-</p>
+            <p class="title">
+                Load scenes from Hamlet, by William Shakespeare
+            </p>
 
-<p>
-<button id="btn1">Act 1 Scene 1</button>
-<button id="btn2">Act 1 Scene 2</button>
-<button id="btn3">Act 1 Scene 3</button>
-</p>
+            <p>
+                <button id="btn1">Act 1 Scene 1</button>
+                <button id="btn2">Act 1 Scene 2</button>
+                <button id="btn3">Act 1 Scene 3</button>
+            </p>
 
-<!-- Important
+            <!-- Important
 When the scrollable div is configured, it measures the firstChild node of the scrollable container, so all content that is to be scrollable must be contained within the firstChild node of the container, unless this is overridden within the JavaScript invocation statement.
 -->
 
-<div class="accScrollable" id="scrollPane"></div>
+            <div class="accScrollable" id="scrollPane"></div>
 
-</div>
+        </div>
 
-<div class="desc">
-<p>
-The scrollable div window is keyboard accessible.
-</p>
-<p><pre>
+        <div class="desc">
+            <p>
+                The scrollable div window is keyboard accessible.
+            </p>
+            <p>
+                <pre>
 Tab to the scrollable div window.
 Press Up/Down/Left/Right to navigate in 30% increments.
 Press PageUp/PageDown to navigate by 90% increments.
 Press Home/End to navigate to the beginning or end of the scrollable content.
-</pre></p>
-</div>
+</pre>
+            </p>
+        </div>
 
-</div>
+    </div>
 </body>
+
 </html>

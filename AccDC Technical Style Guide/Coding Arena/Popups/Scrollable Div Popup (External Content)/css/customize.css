@@ -2,55 +2,60 @@
 /* Specific styles for ARIA Listboxes */
 
 #myPopup {
-	display: inline-block;
-	text-transform: uppercase;
-	color: #FFF;
-	background: #286278;
-	padding: 0.3em 0.5em;
-	margin: 1rem 0 5rem;
-	border-radius: 0.3em;
-	box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.7);
-	transition: border-radius 0s ease 0s;
+  display: inline-block;
+  text-transform: uppercase;
+  color: #fff;
+  background: #286278;
+  padding: 0.3em 0.5em;
+  margin: 1rem 0 5rem;
+  border-radius: 0.3em;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.7);
+  transition: border-radius 0s ease 0s;
 }
 
-#myPopup:hover, #myPopup:focus {
-	text-decoration: none;
-	color: #FFF;
-	background: #C13836;
-	border-radius: 0;
-	box-shadow: none;
+#myPopup:hover,
+#myPopup:focus {
+  text-decoration: none;
+  color: #fff;
+  background: #c13836;
+  border-radius: 0;
+  box-shadow: none;
 }
-#myPopup[aria-pressed=true] {
-	background: #92dbf6;
-	border-color: #7caec0 #68a3ba #5a9cb5;
-	text-shadow: 0 1px 0 #bee9fa;
-	-webkit-box-shadow: 0 1px 1px #d6d6d6, inset 0 1px 0 #ade4f8;
-	-moz-box-shadow: 0 1px 1px #d6d6d6, inset 0 1px 0 #ade4f8;
-	box-shadow: 0 1px 1px #d6d6d6, inset 0 1px 0 #ade4f8;  
+#myPopup[aria-pressed="true"] {
+  background: #92dbf6;
+  border-color: #7caec0 #68a3ba #5a9cb5;
+  text-shadow: 0 1px 0 #bee9fa;
+  -webkit-box-shadow: 0 1px 1px #d6d6d6, inset 0 1px 0 #ade4f8;
+  -moz-box-shadow: 0 1px 1px #d6d6d6, inset 0 1px 0 #ade4f8;
+  box-shadow: 0 1px 1px #d6d6d6, inset 0 1px 0 #ade4f8;
 }
 
 div.popup {
-	position: absolute;
-	overflow: auto;
-	width: 70%;
-	max-width: 30em;
-	height: 14em;
-	font: 1.2em Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif;
-	background: url(../img/scroll/backdrop.jpg) #000 no-repeat;
-	color: #fff;
-	padding: 1.5rem 2rem;
-	-webkit-box-shadow: 0 10px 6px -6px #777;
-	-moz-box-shadow: 0 10px 6px -6px #777;
-	box-shadow: 0 10px 6px -6px #777;
+  position: absolute;
+  overflow: auto;
+  width: 70%;
+  max-width: 30em;
+  height: 14em;
+  font: 1.2em Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida,
+    "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif;
+  background: url(../img/scroll/backdrop.jpg) #000 no-repeat;
+  color: #fff;
+  padding: 1.5rem 2rem;
+  -webkit-box-shadow: 0 10px 6px -6px #777;
+  -moz-box-shadow: 0 10px 6px -6px #777;
+  box-shadow: 0 10px 6px -6px #777;
 }
-	
-	div.popup h3 {color: #fff; text-shadow: 0 0 5px rgba(0,0,0,1);}
+
+div.popup h3 {
+  color: #fff;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 1);
+}
 
 .standardWrapper {
-	overflow-x: hidden;
-	overflow-y: auto;
-	border: solid thin black;
-	position: relative;
-	height: 6em;
-	padding: 0 10px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border: solid thin black;
+  position: relative;
+  height: 6em;
+  padding: 0 10px;
 }

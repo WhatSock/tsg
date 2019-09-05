@@ -1,77 +1,82 @@
-
 button.menu {
-float: left;
-margin: 100px;
+  float: left;
+  margin: 100px;
 }
 
 div.menu {
-text-align: left;
-padding: 6px;
-width: 122px;
-left: 120px;
-top: 3px;
+  text-align: left;
+  padding: 6px;
+  width: 122px;
+  left: 120px;
+  top: 3px;
 }
 
 div.menu ol.menu {
-list-style: none;
-padding: 0;
-margin: 0;
-background-color: #f5f5f5;
-border: solid thin black;
-float: left;
-width: 110px;
--webkit-box-shadow: 0 5px 3px -3px #777;
--moz-box-shadow: 0 5px 3px -3px #777;
-box-shadow: 0 5px 3px -3px #777;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: #f5f5f5;
+  border: solid thin black;
+  float: left;
+  width: 110px;
+  -webkit-box-shadow: 0 5px 3px -3px #777;
+  -moz-box-shadow: 0 5px 3px -3px #777;
+  box-shadow: 0 5px 3px -3px #777;
 }
 
 div.menu ol.menu > li {
-margin: 2px 0px;
-padding: 3px 6px;
-position: relative;
+  margin: 2px 0px;
+  padding: 3px 6px;
+  position: relative;
 }
 
 div.menu ol.menu a {
-display: block;
-padding: 3px 6px;
-text-align: left;
-cursor: pointer;
-text-decoration: none;
-font: bold 12px/12px HelveticaNeue, Arial;
-border: 1px solid #dedede;
-background: #525252;
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5e5e5e', endColorstr='#434343'); /* IE */
-background: -webkit-gradient(linear, left top, left bottom, from(#5e5e5e), to(#434343)); /* WebKit */
-background: -moz-linear-gradient(top, #5e5e5e, #434343);
-border-color: #4c4c4c #313131 #1f1f1f;
-color: #fff;
-text-shadow: 0 1px 0 #2e2e2e;
--webkit-box-shadow: 0 1px 1px #afafaf, inset 0 1px 0 #868686;
--moz-box-shadow: 0 1px 1px #afafaf, inset 0 1px 0 #868686;
-box-shadow: 0 1px 1px #afafaf, inset 0 1px 0 #868686;        
+  display: block;
+  padding: 3px 6px;
+  text-align: left;
+  cursor: pointer;
+  text-decoration: none;
+  font: bold 12px/12px HelveticaNeue, Arial;
+  border: 1px solid #dedede;
+  background: #525252;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5e5e5e', endColorstr='#434343'); /* IE */
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(#5e5e5e),
+    to(#434343)
+  ); /* WebKit */
+  background: -moz-linear-gradient(top, #5e5e5e, #434343);
+  border-color: #4c4c4c #313131 #1f1f1f;
+  color: #fff;
+  text-shadow: 0 1px 0 #2e2e2e;
+  -webkit-box-shadow: 0 1px 1px #afafaf, inset 0 1px 0 #868686;
+  -moz-box-shadow: 0 1px 1px #afafaf, inset 0 1px 0 #868686;
+  box-shadow: 0 1px 1px #afafaf, inset 0 1px 0 #868686;
 }
 
 div.menu ol.menu a:focus {
-outline: 2px red inset;
-background: #5a5a5a;
-border-color: #2c2c2c #1c1c1c #101010;
-text-shadow: 0 1px 0 #363636;
--webkit-box-shadow: 0 1px 1px #b1b1b1, inset 0 1px 0 #838383;
--moz-box-shadow: 0 1px 1px #b1b1b1, inset 0 1px 0 #838383;
-box-shadow: 0 1px 1px #b1b1b1, inset 0 1px 0 #838383;
+  outline: 2px red inset;
+  background: #5a5a5a;
+  border-color: #2c2c2c #1c1c1c #101010;
+  text-shadow: 0 1px 0 #363636;
+  -webkit-box-shadow: 0 1px 1px #b1b1b1, inset 0 1px 0 #838383;
+  -moz-box-shadow: 0 1px 1px #b1b1b1, inset 0 1px 0 #838383;
+  box-shadow: 0 1px 1px #b1b1b1, inset 0 1px 0 #838383;
 }
 
 div.menu ol.menu a.submenu:after {
-content: ' \25BC';
-color: blue;
+  content: " \25BC";
+  color: blue;
 }
 
 *.menu[role="button"]:after {
-content: ' \25BC';
-color: black;
+  content: " \25BC";
+  color: black;
 }
 
 *.menu2[role="button"]:after {
-content: ' \25BC';
-color: black;
+  content: " \25BC";
+  color: black;
 }

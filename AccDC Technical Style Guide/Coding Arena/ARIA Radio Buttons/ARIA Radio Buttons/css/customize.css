@@ -1,54 +1,60 @@
 /* WHATSOCK, 2016 */
 /* Specific styles for ARIA Radio Buttons */
 
-h3 {font-size: 1.2em; margin-bottom: 2rem;}
+h3 {
+  font-size: 1.2em;
+  margin-bottom: 2rem;
+}
 fieldset {
-	padding: 0 1rem 1rem;
-	margin-top: 2rem;
-	border: 1px solid #4E4E4E;
+  padding: 0 1rem 1rem;
+  margin-top: 2rem;
+  border: 1px solid #4e4e4e;
 }
 
 legend {
-	font-size: 1em;
-	font-weight: bold;
-	text-align: center;
+  font-size: 1em;
+  font-weight: bold;
+  text-align: center;
 }
 
-div.rGroup ul {margin-top: 2rem;}
+div.rGroup ul {
+  margin-top: 2rem;
+}
 div.rGroup li {
-	width: 8em;
-	list-style-type: none;
-	text-align: center;
-	margin: 0.5rem auto;
+  width: 8em;
+  list-style-type: none;
+  text-align: center;
+  margin: 0.5rem auto;
 }
 
 div.rGroup a.accRadio {
-	display: block;
-	font-size: 100%;
-	text-decoration: none;
-	text-transform: uppercase;
-	color: #FFF;
-	background: #286278;
-	padding:0.3em 0.5em;
-	border: none;
-	box-shadow: 0 1px 2px rgba(0,0,0,.7);
-	border-radius: 2px;
-	cursor: pointer;
+  display: block;
+  font-size: 100%;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #fff;
+  background: #286278;
+  padding: 0.3em 0.5em;
+  border: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+  border-radius: 2px;
+  cursor: pointer;
 }
-div.rGroup a.accRadio:hover, div.rGroup a.accRadio:focus, div.rGroup a.accRadio[aria-checked =true] {
-	color: #FFF;
-	background-color: #C13836;
-	box-shadow: none;
-	border-radius: 0;
+div.rGroup a.accRadio:hover,
+div.rGroup a.accRadio:focus,
+div.rGroup a.accRadio[aria-checked="true"] {
+  color: #fff;
+  background-color: #c13836;
+  box-shadow: none;
+  border-radius: 0;
 }
 
 fieldset.radiogroup label {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 700px) {
-	div.demo-block {
-		display: flex;
-	}
-	
+  div.demo-block {
+    display: flex;
+  }
 }

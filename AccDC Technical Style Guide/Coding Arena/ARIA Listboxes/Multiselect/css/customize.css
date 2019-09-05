@@ -2,108 +2,114 @@
 /* Specific styles for ARIA Listboxes */
 
 div.sample {
-	-webkit-display: flex;
-	-ms-display: flex;
-	display: flex;
+  -webkit-display: flex;
+  -ms-display: flex;
+  display: flex;
 }
 
 .multiselectWrapper {
-    position: relative;
-    overflow-x: hidden;
-    overflow-y: auto;
-	text-align: center;
-	background-color: #E0E0E0;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  text-align: center;
+  background-color: #e0e0e0;
 }
 
 #multiSelectField {
-	max-width: 200px;
-	-webkit-flex: 0 1 70%;
-	-ms-flex: 0 1 70%;
-	flex: 0 1 70%;
-	margin-left: 5%;
+  max-width: 200px;
+  -webkit-flex: 0 1 70%;
+  -ms-flex: 0 1 70%;
+  flex: 0 1 70%;
+  margin-left: 5%;
 }
 
 #multiselectLB {
-    list-style: none;
-	display: -webkit-flex;
-	display: -ms-flex;
-	display: flex;
-	-webkit-flex-flow: row wrap;
-	-ms-flex-flow: row wrap;
-	flex-flow: row wrap;
-	-webkit-justify-content: space-around;
-	-ms-justify-content: space-around;
-	justify-content: space-around;
-	padding: 1rem;
-    margin: 0;
+  list-style: none;
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+  -webkit-justify-content: space-around;
+  -ms-justify-content: space-around;
+  justify-content: space-around;
+  padding: 1rem;
+  margin: 0;
 }
 
 #multiselectLB > li {
-	position: relative;
-    padding: 0.5rem;
+  position: relative;
+  padding: 0.5rem;
 }
 
 #multiselectLB a {
-    cursor: pointer;
-    display: inline-block;
-    text-decoration: none;
-	color: #000;
-	background: #FFF;
-    padding: 0.3em 0.5em;
-	box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  color: #000;
+  background: #fff;
+  padding: 0.3em 0.5em;
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
 }
 
-#multiselectLB a[role=option]::before {
-	display: block;
-	position: absolute;
-	width: 25px;
-	height: 25px;
-	top: 5px;
-	left: 0;
-	content: "";
-	background: #C00;
-	border-radius: 25px;
+#multiselectLB a[role="option"]::before {
+  display: block;
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  top: 5px;
+  left: 0;
+  content: "";
+  background: #c00;
+  border-radius: 25px;
 }
 
-#multiselectLB a[role=option]::after {
-	display: block;
-	position: absolute;
-	width: 3px;
-	height: 10px;
-	top: 0;
-	left: 10px;
-	content: "";
-	background: #333;
+#multiselectLB a[role="option"]::after {
+  display: block;
+  position: absolute;
+  width: 3px;
+  height: 10px;
+  top: 0;
+  left: 10px;
+  content: "";
+  background: #333;
 }
 
-#multiselectLB a[role=option] span::after {
-	display: block;
-	position: absolute;
-	width: 8px;
-	height: 8px;
-	top: 2px;
-	left: 12px;
-	content: "";
-	background: #80FF00;
-	border-radius: 16px;
-	-moz-transform: skewX(-15deg);
-	-ms-transform: skewX(-15deg);
-	-o-transform: skewX(-15deg);
-	-webkit-transform: skewX(-15deg);
-	transform: skewX(-15deg);
+#multiselectLB a[role="option"] span::after {
+  display: block;
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  top: 2px;
+  left: 12px;
+  content: "";
+  background: #80ff00;
+  border-radius: 16px;
+  -moz-transform: skewX(-15deg);
+  -ms-transform: skewX(-15deg);
+  -o-transform: skewX(-15deg);
+  -webkit-transform: skewX(-15deg);
+  transform: skewX(-15deg);
 }
 
-#multiselectLB a[aria-selected="true"], #multiselectLB a:hover, #multiselectLB a:focus {
-    background: #92dbf6;
-    box-shadow: none;
+#multiselectLB a[aria-selected="true"],
+#multiselectLB a:hover,
+#multiselectLB a:focus {
+  background: #92dbf6;
+  box-shadow: none;
 }
 
-form.addFrm {	
-	background: #E1E1E1;
-	padding: 0.3rem 0.5rem 0.5rem;
-	margin-top: 2rem;
+form.addFrm {
+  background: #e1e1e1;
+  padding: 0.3rem 0.5rem 0.5rem;
+  margin-top: 2rem;
 }
 
-form.addFrm p + p {margin: 0.5rem 2rem 0 0;}
+form.addFrm p + p {
+  margin: 0.5rem 2rem 0 0;
+}
 
-form.addFrm p:last-child {margin-bottom: 0.5rem;}
+form.addFrm p:last-child {
+  margin-bottom: 0.5rem;
+}

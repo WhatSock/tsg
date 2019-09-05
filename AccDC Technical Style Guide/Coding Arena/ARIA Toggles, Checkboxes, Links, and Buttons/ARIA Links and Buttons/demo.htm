@@ -1,67 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-        <title>ARIA Links and Buttons - AccDC Technical Style Guide</title>
-        <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
-        <link rel="stylesheet" type="text/css" href="css/customize.css" />
-        <script type="text/javascript" src="../../_common/js/jQuery.js">
-            // Load jQuery.
-            // This is not necessary if using the Standalone AccDC API version.
-        </script>
-        <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
-            // Load the AccDC API, which all modules are plugged into as the common interface.
-        </script>
-        <!-- Now load all desired modules, which plugs them into AccDC. --><script type="text/javascript" src="../../../2 Accessible Component Modules/aria_toggler.min.js"></script>
-        <script type="text/javascript" src="js/setup.js">
-            // Run the setup script where module invocation statements are contained.
-        </script>
-    </head>
-    <body>
-        <div id="coding-arena">
-			<header>
-				<div class="innerHeader">
-					<a href="http://whatsock.com"><img alt="WhatSock : Changing the world one step at a time" src="../../_common/img/whatsock.svg" /> 
-					<strong>AccDC</strong> Technical Style Guide</a>
-				</div>
-			</header>
-	    	<main>
-	    		<h1 class="pageTitle">ARIA Links and Buttons</h1>
-		        <div class="demo-block">
-		            <h3>Take me somewhere special!</h3>
-		            <dl>
-		                <dt>
-		                    Standard A tag as an ARIA Button:
-		                </dt>
-		                <dd>
-		                    <!-- For all container elements that support innerHTML, the following attributes and rules are required to ensure accessibility for the widest range of screen readers:
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>ARIA Links and Buttons - AccDC Technical Style Guide</title>
+    <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+    <link rel="stylesheet" type="text/css" href="css/customize.css" />
+    <script type="text/javascript" src="../../_common/js/jQuery.js">
+        // Load jQuery.
+        // This is not necessary if using the Standalone AccDC API version.
+    </script>
+    <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+        // Load the AccDC API, which all modules are plugged into as the common interface.
+    </script>
+    <!-- Now load all desired modules, which plugs them into AccDC. -->
+    <script type="text/javascript" src="../../../2 Accessible Component Modules/aria_toggler.min.js"></script>
+    <script type="text/javascript" src="js/setup.js">
+        // Run the setup script where module invocation statements are contained.
+    </script>
+</head>
+
+<body>
+    <div id="coding-arena">
+        <header>
+            <div class="innerHeader">
+                <a href="http://whatsock.com"><img alt="WhatSock : Changing the world one step at a time" src="../../_common/img/whatsock.svg" />
+                    <strong>AccDC</strong> Technical Style Guide</a>
+            </div>
+        </header>
+        <main>
+            <h1 class="pageTitle">ARIA Links and Buttons</h1>
+            <div class="demo-block">
+                <h3>Take me somewhere special!</h3>
+                <dl>
+                    <dt>
+                        Standard A tag as an ARIA Button:
+                    </dt>
+                    <dd>
+                        <!-- For all container elements that support innerHTML, the following attributes and rules are required to ensure accessibility for the widest range of screen readers:
 		                    1. role="button" : Specifies an ARIA Button control. (Must only be present on the active element, and nowhere else.)
 		                    2. Inner Text : Specifies a textual label for screen reader users. This may be visible or positioned using offscreenText. (Must not be hidden using display:none or visibility:hidden) offscreenText is required to ensure the same level of accessibility for iOS devices using Voiceover.
 		                    3. No Embedded Active Elements : Don't embed any other active elements, including mouse clickable images, links, or anything else that needs to be activated separately. The only actionable element should be the element with role="button".
 		                    To add a tooltip for sighted mouse users, use the Title attribute. This must match the text contained within the innerText label.
 		                    --><a href="URL" id="a1" role="button"><span class="lbl"> The Moon</span></a>
-		                </dd>
-		                <dt>
-		                    Standard DIV tag as an ARIA Button:
-		                </dt>
-		                <dd>
-		                    <!-- For all container elements that support innerHTML, the following attributes and rules are required to ensure accessibility for the widest range of screen readers:
+                    </dd>
+                    <dt>
+                        Standard DIV tag as an ARIA Button:
+                    </dt>
+                    <dd>
+                        <!-- For all container elements that support innerHTML, the following attributes and rules are required to ensure accessibility for the widest range of screen readers:
 		                    1. role="button" : Specifies an ARIA Button control. (Must only be present on the active element, and nowhere else.)
 		                    2. Inner Text : Specifies a textual label for screen reader users. This may be visible or positioned using offscreenText. (Must not be hidden using display:none or visibility:hidden) offscreenText is required to ensure the same level of accessibility for iOS devices using Voiceover.
 		                    3. No Embedded Active Elements : Don't embed any other active elements, including mouse clickable images, links, or anything else that needs to be activated separately. The only actionable element should be the element with role="button".
 		                    To add a tooltip for sighted mouse users, use the Title attribute. This must match the text contained within the innerText label.
 		                    The data-href attribute has been added to show how additional values can be added using HTML5.
 		                    -->
-		                    <div id="div1" role="button" data-href="URL" class="button white">
-		                        <span class="lbl"> San Francisco</span>
-		                    </div>
-		                </dd>
-		                <dt>
-		                    Standard SPAN tag as an ARIA Link:
-		                </dt>
-		                <dd>
-		                    <!-- For all container elements that support innerHTML, the following attributes and rules are required to ensure accessibility for the widest range of screen readers:
+                        <div id="div1" role="button" data-href="URL" class="button white">
+                            <span class="lbl"> San Francisco</span>
+                        </div>
+                    </dd>
+                    <dt>
+                        Standard SPAN tag as an ARIA Link:
+                    </dt>
+                    <dd>
+                        <!-- For all container elements that support innerHTML, the following attributes and rules are required to ensure accessibility for the widest range of screen readers:
 		                    1. role="link" : Specifies an ARIA Link control. (Must only be present on the active element, and nowhere else.)
 		                    2. Inner Text : Specifies a textual label for screen reader users. This may be visible or positioned using offscreenText. (Must not be hidden using display:none or visibility:hidden) offscreenText is required to ensure the same level of accessibility for iOS devices using Voiceover.
 		                    3. No Embedded Active Elements : Don't embed any other active elements, including mouse clickable images, links, or anything else that needs to be activated separately. The only actionable element should be the element with role="button".
@@ -69,28 +72,29 @@
 		                    As you can see from the rendered page, it doesn't matter what the element is styled as, screen readers still identify this as a Link, even though it may look like a button visually.
 		                    The data-href attribute has been added to show how additional values can be added using HTML5.
 		                    --><span id="span1" role="link" data-href="URL" class="button darkblue"><span class="lbl"> Ukiah</span></span>
-		                </dd>
-		            </dl>
-		            <div>
-		                <!-- For IMG tags, the following attributes are required to ensure accessibility for the widest range of screen readers:
+                    </dd>
+                </dl>
+                <div>
+                    <!-- For IMG tags, the following attributes are required to ensure accessibility for the widest range of screen readers:
 		                1. role="link" : Specifies an ARIA Link control. (Must only be present on the active element, and nowhere else.)
 		                2. aria-label : Specifies a textual label for screen reader users. (The Alt alone won't work for this purpose)
 		                3. alt="" : Hides the image from screen reader users when no tooltip is desired for mouse users.
 		                To add a tooltip for sighted mouse users, use both the Alt and Title attributes. The text for both must match the text contained within the aria-label attribute, so that all three are the same.
 		                The data-href attribute has been added to show how additional values can be added using HTML5.
 		                --><img id="helpIcon" role="link" aria-label="Learn more about this page" title="Learn more about this page" alt="Learn more about this page" data-href="URL" src="img/ic_help.svg" />
-		            </div>
-				</div>
-				
-	            <div class="keyboard">
-	                <p>The ARIA link and button controls are keyboard accessible:</p>
-	                    <ul>
-							<li>Press the <kbd>Tab</kbd> key to navigate between the ARIA Checkboxes. 
-							<li>Press the <kbd>Spacebar</kbd> to toggle the state of the selected checkbox.
-							<li>Mouse users can click a checkbox to toggle the state as usual.
-						</ul>
-	            </div>
-			</main>
+                </div>
+            </div>
+
+            <div class="keyboard">
+                <p>The ARIA link and button controls are keyboard accessible:</p>
+                <ul>
+                    <li>Press the <kbd>Tab</kbd> key to navigate between the ARIA Checkboxes.
+                    <li>Press the <kbd>Spacebar</kbd> to toggle the state of the selected checkbox.
+                    <li>Mouse users can click a checkbox to toggle the state as usual.
+                </ul>
+            </div>
+        </main>
     </div>
 </body>
+
 </html>

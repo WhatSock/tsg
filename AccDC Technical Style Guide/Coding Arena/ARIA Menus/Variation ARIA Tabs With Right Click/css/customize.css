@@ -1,43 +1,51 @@
 /* WHATSOCK, 2016 */
 /* Specific styles for Tabs */
 
-
-ul.tabs {margin: 0; border-bottom: 3px solid #2E3135;}
-ul.tabs + div.content {margin-bottom: 2rem;}
-
+ul.tabs {
+  margin: 0;
+  border-bottom: 3px solid #2e3135;
+}
+ul.tabs + div.content {
+  margin-bottom: 2rem;
+}
 
 ul.tabs li {
-	display: inline-block;
-	list-style-type: none;
-	margin: 0;
+  display: inline-block;
+  list-style-type: none;
+  margin: 0;
 }
 
-
-ul.tabs a, ul.tabs a:link, ul.tabs a:visited {
-	display: inline-block;
-	color: #FFF;
-	background: #17191B;
-	padding: 0.3em 0.5em 0.5em;
-	border-top-right-radius: 2px;
-	border-top-left-radius: 2px;
-	cursor: pointer;
+ul.tabs a,
+ul.tabs a:link,
+ul.tabs a:visited {
+  display: inline-block;
+  color: #fff;
+  background: #17191b;
+  padding: 0.3em 0.5em 0.5em;
+  border-top-right-radius: 2px;
+  border-top-left-radius: 2px;
+  cursor: pointer;
 }
 
-ul.tabs a:hover, ul.tabs a:focus {
-	text-decoration: none;
-	color: #FFF;
-	background-color: #2E3135;
+ul.tabs a:hover,
+ul.tabs a:focus {
+  text-decoration: none;
+  color: #fff;
+  background-color: #2e3135;
 }
 
-ul.tabs li.active a, ul.tabs li.active a:link {
-	color: #FFF;
-	background-color: #2E3135;
+ul.tabs li.active a,
+ul.tabs li.active a:link {
+  color: #fff;
+  background-color: #2e3135;
 }
 
 #tabInsertId {
-	text-align: center;
-	background: #FFF:
-	padding: 1rem;
-	border-bottom: 3px solid #2E3135;
+  text-align: center;
+  background: #fff;
+  padding: 1rem;
+  border-bottom: 3px solid #2e3135;
 }
-	#tabInsertId div {padding: 0.5rem;}
+#tabInsertId div {
+  padding: 0.5rem;
+}

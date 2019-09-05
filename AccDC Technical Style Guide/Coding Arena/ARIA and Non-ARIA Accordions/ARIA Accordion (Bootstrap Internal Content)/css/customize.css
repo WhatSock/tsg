@@ -1,63 +1,62 @@
-
 dt {
-margin-top: 15px;
+  margin-top: 15px;
 }
 
 .accAccordion {
-font-size: 1.2em;
-float: left;
-cursor: pointer;
-border: solid thin black;
+  font-size: 1.2em;
+  float: left;
+  cursor: pointer;
+  border: solid thin black;
 }
 
 .accAccordion .icon {
-height: 20px;
-width: 19px;
-background: url("../img/accordion/right.png") #f5f5f5 no-repeat;
-float: left;
-margin-right: 10px;
+  height: 20px;
+  width: 19px;
+  background: url("../img/accordion/right.png") #f5f5f5 no-repeat;
+  float: left;
+  margin-right: 10px;
 }
 
 .accAccordion.open .icon {
-background: url("../img/accordion/left.png") #f5f5f5 no-repeat;
+  background: url("../img/accordion/left.png") #f5f5f5 no-repeat;
 }
 
 .accAccordion .lbl {
-float: left;
-color: #000;
-background-color: #f5f5f5;
+  float: left;
+  color: #000;
+  background-color: #f5f5f5;
 }
 
 .accAccordion.open .lbl {
-color: #f5f5f5;
-background-color: #000;
+  color: #f5f5f5;
+  background-color: #000;
 }
 
 #accordion-sect1 > div {
-padding: 50px 0;
-text-align: center;
-font-size: 1.5em;
-background-color: blue;
-color: red;
+  padding: 50px 0;
+  text-align: center;
+  font-size: 1.5em;
+  background-color: blue;
+  color: red;
 }
 
 #accordion-sect2 > div {
-padding: 50px 0;
-text-align: center;
-font-size: 1.5em;
-background-color: yellow;
-color: green;
+  padding: 50px 0;
+  text-align: center;
+  font-size: 1.5em;
+  background-color: yellow;
+  color: green;
 }
 
 #accordion-sect3 > div {
-padding: 50px 0;
-text-align: center;
-font-size: 1.5em;
-background-color: black;
-color: white;
+  padding: 50px 0;
+  text-align: center;
+  font-size: 1.5em;
+  background-color: black;
+  color: white;
 }
 /*Updates for DIV structure*/
 
 #accordionGroup div[role="heading"] {
-margin-top: 15px;
+  margin-top: 15px;
 }

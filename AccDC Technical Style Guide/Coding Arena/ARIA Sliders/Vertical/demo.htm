@@ -1,99 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-        <title>Vertical Slider - AccDC Technical Style Guide</title>
-        <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
-        <link rel="stylesheet" type="text/css" href="css/customize.css" />
-        <script type="text/javascript" src="../../_common/js/jQuery.js">
-            // Load jQuery.
-            // This is not necessary if using the Standalone AccDC API version.
-        </script>
-        <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
-            // Load the AccDC API, which all modules are plugged into as the common interface.
-        </script>
-        <!-- Now load all desired modules, which plugs them into AccDC. --><script type="text/javascript" src="../../../2 Accessible Component Modules/css_drag_drop_module_for_jquery.min.js"></script>
-        <script type="text/javascript" src="../../../2 Accessible Component Modules/aria_slider.min.js"></script>
-        <script type="text/javascript" src="js/setup.js">
-            // Run the setup script where module invocation statements are contained.
-        </script>
-    </head>
-    <body>
-         <div id="coding-arena">
-			<header>
-				<div class="innerHeader">
-					<a href="http://whatsock.com"><img alt="WhatSock : Changing the world one step at a time" src="../../_common/img/whatsock.svg" /> 
-					<strong>AccDC</strong> Technical Style Guide</a>
-				</div>
-			</header>
-		
-        	<main>
-        		<h1 class="pageTitle">ARIA Vertical Slider</h1>
-           	 	<div class="demo-block">
-	                <table class="sample">
-	                    <tr>
-	                        <!-- Simply use CSS to set the size of the slider, and the height and width of the container element, and then the slider will configure itself using these offsets.
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Vertical Slider - AccDC Technical Style Guide</title>
+    <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+    <link rel="stylesheet" type="text/css" href="css/customize.css" />
+    <script type="text/javascript" src="../../_common/js/jQuery.js">
+        // Load jQuery.
+        // This is not necessary if using the Standalone AccDC API version.
+    </script>
+    <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+        // Load the AccDC API, which all modules are plugged into as the common interface.
+    </script>
+    <!-- Now load all desired modules, which plugs them into AccDC. -->
+    <script type="text/javascript" src="../../../2 Accessible Component Modules/css_drag_drop_module_for_jquery.min.js"></script>
+    <script type="text/javascript" src="../../../2 Accessible Component Modules/aria_slider.min.js"></script>
+    <script type="text/javascript" src="js/setup.js">
+        // Run the setup script where module invocation statements are contained.
+    </script>
+</head>
+
+<body>
+    <div id="coding-arena">
+        <header>
+            <div class="innerHeader">
+                <a href="http://whatsock.com"><img alt="WhatSock : Changing the world one step at a time" src="../../_common/img/whatsock.svg" />
+                    <strong>AccDC</strong> Technical Style Guide</a>
+            </div>
+        </header>
+
+        <main>
+            <h1 class="pageTitle">ARIA Vertical Slider</h1>
+            <div class="demo-block">
+                <table class="sample">
+                    <tr>
+                        <!-- Simply use CSS to set the size of the slider, and the height and width of the container element, and then the slider will configure itself using these offsets.
 	                        The slide icon can be changed to anything, or an image or CSS background image can be used instead, and the styling can be configured for any layout, and it will still be accessible for screen reader and keyboard only users. -->
-	                        <td>
-	                            <div class="slider2">
-	                                <div class="min2" data-dir="d" role="button" aria-label="Decrement" title="Decrease time slider">
-	                                    <span aria-hidden="true">12AM</span>
-	                                </div>
-	                                <div class="slideWrapper">
-	                                    <div class="slide2 clearfix">
-	                                        <div class="nub2" id="handle2"></div>
-	                                    </div>
-	                                </div>
-	                                <div class="max2" data-dir="i" role="button" aria-label="Increment" title="Increase time slider">
-	                                    <span aria-hidden="true">11PM</span>
-	                                </div>
-	                            </div>
-	                        </td>
-	                        <td>
-	                            <select id="syncSelect" size="24" title="Mirrored select field">
-	                                <option value="0">12:00 AM</option>
-	                                <option value="1">1:00 AM</option>
-	                                <option value="2">2:00 AM</option>
-	                                <option value="3">3:00 AM</option>
-	                                <option value="4">4:00 AM</option>
-	                                <option value="5">5:00 AM</option>
-	                                <option value="6">6:00 AM</option>
-	                                <option value="7">7:00 AM</option>
-	                                <option value="8">8:00 AM</option>
-	                                <option value="9">9:00 AM</option>
-	                                <option value="10">10:00 AM</option>
-	                                <option value="11">11:00 AM</option>
-	                                <option value="12">12:00 PM</option>
-	                                <option value="13">1:00 PM</option>
-	                                <option value="14">2:00 PM</option>
-	                                <option value="15">3:00 PM</option>
-	                                <option value="16">4:00 PM</option>
-	                                <option value="17">5:00 PM</option>
-	                                <option value="18">6:00 PM</option>
-	                                <option value="19">7:00 PM</option>
-	                                <option value="20">8:00 PM</option>
-	                                <option value="21">9:00 PM</option>
-	                                <option value="22">10:00 PM</option>
-	                                <option value="23">11:00 PM</option>
-	                            </select>
-	                        </td>
-	                    </tr>
-	                </table>
-				</div>
-                
-				<div class="keyboard">
-                    <p>The Slider Control is keyboard accessible:</p>
-                    <ul>
-						<li>Set focus on the slider.</li>
-						<li>Press the Arrow keys to move the slider.</li>
-						<li>Press <kbd class="home">Home</kbd> or <kbd class="end">End</kbd> to jump to the beginning or end.</li>
-						<li>Press <kbd>PageUp</kbd> or <kbd>PageDown</kbd> to jump by increments of 10%.</li>
-						<li>Mouse users can drag the slider as usual.</li>
-					</ul>
-                </div>
-				
-            </main>
-        </div>
-    </body>
+                        <td>
+                            <div class="slider2">
+                                <div class="min2" data-dir="d" role="button" aria-label="Decrement" title="Decrease time slider">
+                                    <span aria-hidden="true">12AM</span>
+                                </div>
+                                <div class="slideWrapper">
+                                    <div class="slide2 clearfix">
+                                        <div class="nub2" id="handle2"></div>
+                                    </div>
+                                </div>
+                                <div class="max2" data-dir="i" role="button" aria-label="Increment" title="Increase time slider">
+                                    <span aria-hidden="true">11PM</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <select id="syncSelect" size="24" title="Mirrored select field">
+                                <option value="0">12:00 AM</option>
+                                <option value="1">1:00 AM</option>
+                                <option value="2">2:00 AM</option>
+                                <option value="3">3:00 AM</option>
+                                <option value="4">4:00 AM</option>
+                                <option value="5">5:00 AM</option>
+                                <option value="6">6:00 AM</option>
+                                <option value="7">7:00 AM</option>
+                                <option value="8">8:00 AM</option>
+                                <option value="9">9:00 AM</option>
+                                <option value="10">10:00 AM</option>
+                                <option value="11">11:00 AM</option>
+                                <option value="12">12:00 PM</option>
+                                <option value="13">1:00 PM</option>
+                                <option value="14">2:00 PM</option>
+                                <option value="15">3:00 PM</option>
+                                <option value="16">4:00 PM</option>
+                                <option value="17">5:00 PM</option>
+                                <option value="18">6:00 PM</option>
+                                <option value="19">7:00 PM</option>
+                                <option value="20">8:00 PM</option>
+                                <option value="21">9:00 PM</option>
+                                <option value="22">10:00 PM</option>
+                                <option value="23">11:00 PM</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="keyboard">
+                <p>The Slider Control is keyboard accessible:</p>
+                <ul>
+                    <li>Set focus on the slider.</li>
+                    <li>Press the Arrow keys to move the slider.</li>
+                    <li>Press <kbd class="home">Home</kbd> or <kbd class="end">End</kbd> to jump to the beginning or end.</li>
+                    <li>Press <kbd>PageUp</kbd> or <kbd>PageDown</kbd> to jump by increments of 10%.</li>
+                    <li>Mouse users can drag the slider as usual.</li>
+                </ul>
+            </div>
+
+        </main>
+    </div>
+</body>
+
 </html>

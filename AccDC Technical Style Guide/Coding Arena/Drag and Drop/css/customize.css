@@ -1,124 +1,148 @@
 /* WHATSOCK, 2016 */
 /* Specific styles for Drag and drop */
 
-.demo-block p > em {display: block;}
-
+.demo-block p > em {
+  display: block;
+}
 
 div.booksWrapper {
-	display: -webkit-flex;
-	display: -ms-flex;
-	display: flex;
-	-webkit-flex-flow: column wrap;
-	-ms-flex-flow: column wrap;
-	flex-flow: column wrap;
-	margin: 1rem 0;
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-flow: column wrap;
+  -ms-flex-flow: column wrap;
+  flex-flow: column wrap;
+  margin: 1rem 0;
 }
 div.booksWrapper > div {
-	width: 94%;
-	max-width: 40em;
-    height: 310px;
-	padding: 1rem 3%;
-	border: 1px solid #EEE;
+  width: 94%;
+  max-width: 40em;
+  height: 310px;
+  padding: 1rem 3%;
+  border: 1px solid #eee;
 }
 
 div.booksWrapper img {
-    height: 75px;
-    border: 0;
-	box-shadow: 0 1px 3px rgba(0,0,0,.5);
-    padding: 0.3rem;
-	cursor: move;
+  height: 75px;
+  border: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  padding: 0.3rem;
+  cursor: move;
 }
 
-div.availableBooks {background: url(../img/shelf.jpg); margin-bottom: 1rem;}
+div.availableBooks {
+  background: url(../img/shelf.jpg);
+  margin-bottom: 1rem;
+}
 
-.demo-block ul, .demo-block ol {list-style: none; margin-left: -2rem;}
+.demo-block ul,
+.demo-block ol {
+  list-style: none;
+  margin-left: -2rem;
+}
 
-.demo-block ul li, .demo-block ol li {
-    float: left;
-    width: 19%;
-    text-align: center;
-    padding: 0.2rem 0.5rem;
-    height: 85px;
+.demo-block ul li,
+.demo-block ol li {
+  float: left;
+  width: 19%;
+  text-align: center;
+  padding: 0.2rem 0.5rem;
+  height: 85px;
 }
 
 div.chosenBooks {
-	background-image: linear-gradient(90deg, transparent 80%, #E0E0E0 20%), linear-gradient(transparent 80%, #E0E0E0 20%);
-	background-size: 15px 15px, 15px 15px;
+  background-image: linear-gradient(90deg, transparent 80%, #e0e0e0 20%),
+    linear-gradient(transparent 80%, #e0e0e0 20%);
+  background-size: 15px 15px, 15px 15px;
 }
 
 div.totals {
-	position: relative;
-	background: #E0E0E0;
-	padding: 1rem;
-	margin-top: 1rem;
+  position: relative;
+  background: #e0e0e0;
+  padding: 1rem;
+  margin-top: 1rem;
 }
 
 #subtotals p:last-child {
-	font-weight: bold;
-	text-transform: uppercase;
-	margin-top: 0.3rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-top: 0.3rem;
 }
 
-span#quantity {}
+span#quantity {
+}
 
-span#subtotal {}
+span#subtotal {
+}
 
 button#checkout {
-	position: absolute;
-	top: 1rem;
-	right: 1rem;
-	width: 7.5em;
-	text-transform: uppercase;
-	color: #FFF;
-	background: #286278;
-	padding: 0.3em 0.5em;
-	border: none;
-	border-radius: 3px;
-	box-shadow: 0 1px 2px rgba(0,0,0,.7);
-	transition: border-radius;
-	-webkit-transition: border-radius;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 7.5em;
+  text-transform: uppercase;
+  color: #fff;
+  background: #286278;
+  padding: 0.3em 0.5em;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+  transition: border-radius;
+  -webkit-transition: border-radius;
 }
 
-button#checkout:hover, button#checkout:focus {
-	text-decoration: none; border-radius: 0; box-shadow: none;
+button#checkout:hover,
+button#checkout:focus {
+  text-decoration: none;
+  border-radius: 0;
+  box-shadow: none;
 }
 
-ddLink {}
+ddLink {
+}
 
 @media screen and (min-width: 750px) {
-	div.chosenBooks {margin-left: 2.5%;}
-	div.availableBooks {margin-bottom: 0;}
-	div.booksWrapper {
-		-webkit-flex-flow: row nowrap;
-		-ms-flex-flow: row nowrap;
-		flex-flow: row nowrap;
-	}
-	button#checkout {width: 15em;}
-	
-	#subtotals p:last-child {font-size: 1.1em;}
+  div.chosenBooks {
+    margin-left: 2.5%;
+  }
+  div.availableBooks {
+    margin-bottom: 0;
+  }
+  div.booksWrapper {
+    -webkit-flex-flow: row nowrap;
+    -ms-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+  }
+  button#checkout {
+    width: 15em;
+  }
+
+  #subtotals p:last-child {
+    font-size: 1.1em;
+  }
 }
 
 body {
-    overflow-x: hidden;
-    -webkit-user-select: none; /* disable selection/Copy of UIWebView */
-    -webkit-touch-callout: none; /* disable the IOS popup when long-press */
+  overflow-x: hidden;
+  -webkit-user-select: none; /* disable selection/Copy of UIWebView */
+  -webkit-touch-callout: none; /* disable the IOS popup when long-press */
 }
 
 div.booksWrapper div[aria-grabbed] {
-position: absolute;
+  position: absolute;
 }
 
 div.booksWrapper div[aria-grabbed="true"] {
-z-index: 2;
+  z-index: 2;
 }
 
 div.booksWrapper div[aria-grabbed] a.ddLink:focus {
-position: absolute;
-z-index: 3;
-padding: 0;
-margin: 5px 0 0 -55px;
-width: 120px;
-background-color: white;
-color: blue;
-font-size: 0.8em;
+  position: absolute;
+  z-index: 3;
+  padding: 0;
+  margin: 5px 0 0 -55px;
+  width: 120px;
+  background-color: white;
+  color: blue;
+  font-size: 0.8em;
 }

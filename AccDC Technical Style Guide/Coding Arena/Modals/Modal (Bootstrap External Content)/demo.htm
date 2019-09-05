@@ -1,62 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-<title>Modal (Bootstrap External Content) - AccDC Technical Style Guide</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Modal (Bootstrap External Content) - AccDC Technical Style Guide</title>
 
-<link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
-<link rel="stylesheet" type="text/css" href="css/customize.css" />
+    <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+    <link rel="stylesheet" type="text/css" href="css/customize.css" />
 
-<script type="text/javascript" src="../../_common/js/jQuery.js">
-// Load jQuery.
-// This is not necessary if using the Standalone AccDC API version.
-</script>
+    <script type="text/javascript" src="../../_common/js/jQuery.js">
+        // Load jQuery.
+        // This is not necessary if using the Standalone AccDC API version.
+    </script>
 
-<script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
-// Load the AccDC API, which all modules are plugged into as the common interface.
-</script>
+    <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+        // Load the AccDC API, which all modules are plugged into as the common interface.
+    </script>
 
-<!-- Now load all desired modules, which plugs them into AccDC. -->
-<script type="text/javascript" src="../../../2 Accessible Component Modules/modal_module.min.js"></script>
+    <!-- Now load all desired modules, which plugs them into AccDC. -->
+    <script type="text/javascript" src="../../../2 Accessible Component Modules/modal_module.min.js"></script>
 
-<script type="text/javascript" src="../../../3 AccDC Bootstrap/accdc_bootstrap.js">
-// Load AccDC Bootstrap to enable HTML parsing.
-</script>
+    <script type="text/javascript" src="../../../3 AccDC Bootstrap/accdc_bootstrap.js">
+        // Load AccDC Bootstrap to enable HTML parsing.
+    </script>
 
 </head>
+
 <body>
-<div>
+    <div>
 
-<p>
+        <p>
 
-<!-- Attributes explained
+            <!-- Attributes explained
 
-• class="accModal" : The bootstrap class name that specifies an accessible modal. 
-• data-src : The resource path and pointer to the ID attribute of the modal container element. If set, data-internal should be blank or not included. 
-• data-internal : The ID attribute of the modal container element within the same document.
+ï¿½ class="accModal" : The bootstrap class name that specifies an accessible modal. 
+ï¿½ data-src : The resource path and pointer to the ID attribute of the modal container element. If set, data-internal should be blank or not included. 
+ï¿½ data-internal : The ID attribute of the modal container element within the same document.
 If data-internal is set, data-src should be blank or not included. 
-• data-role : The role name that is conveyed to screen reader users as beginning and ending boundary text for the new content. "Modal" is set by default if no value is specified. 
-• id : The unique ID of the element. This value is also registered as the ID of the modal AccDC Object, making it possible to invoke the object programmatically.
+ï¿½ data-role : The role name that is conveyed to screen reader users as beginning and ending boundary text for the new content. "Modal" is set by default if no value is specified. 
+ï¿½ id : The unique ID of the element. This value is also registered as the ID of the modal AccDC Object, making it possible to invoke the object programmatically.
 E.G $A.reg.uniqueID.open();
 // All other AccDC API properties and methods are similarly available.  
 -->
 
-<button id="loginBtn" data-src="files/modal.html#modal-login" data-role="Login" class="accModal lightbox">Login</button>
+            <button id="loginBtn" data-src="files/modal.html#modal-login" data-role="Login" class="accModal lightbox">Login</button>
 
-</p>
+        </p>
 
-<div class="desc">
-<p>
-The modal is optomized for screen reader and keyboard only users.
-</p>
-<p><pre>
+        <div class="desc">
+            <p>
+                The modal is optomized for screen reader and keyboard only users.
+            </p>
+            <p>
+                <pre>
 Activate the Login button to open the modal.
 Screen reader users will be confined within the modal content, and will not be able to see the background page content. (Confirmed in both Windows platform and iOS touch screen devices)
 Keyboard focus is automatically restricted to active elements within the modal, which is handled using HTML5 attributes within the first and last form fields within the markup.
-</pre></p>
-</div>
+</pre>
+            </p>
+        </div>
 
-</div>
+    </div>
 </body>
+
 </html>

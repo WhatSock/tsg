@@ -2,13 +2,13 @@
 /* Specific styles for Accessible Tooltip */
 
 div.errorTooltip {
-	position: absolute;
-	width: auto;
-	color: #FFF;
-	background: #2E3135;
-	padding: 0.3em 0.5em;
-	-webkit-box-shadow: 0 1px 1px #afafaf, inset 0 1px 0 #868686;
-	-moz-box-shadow: 0 1px 1px #afafaf, inset 0 1px 0 #868686;
-	box-shadow: 0 1px 1px #afafaf, inset 0 1px 0 #868686;
-	z-index: 100;
+  position: absolute;
+  width: auto;
+  color: #fff;
+  background: #2e3135;
+  padding: 0.3em 0.5em;
+  -webkit-box-shadow: 0 1px 1px #afafaf, inset 0 1px 0 #868686;
+  -moz-box-shadow: 0 1px 1px #afafaf, inset 0 1px 0 #868686;
+  box-shadow: 0 1px 1px #afafaf, inset 0 1px 0 #868686;
+  z-index: 100;
 }

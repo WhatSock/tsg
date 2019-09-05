@@ -1,115 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-        <title>ARIA Data Grid (Dynamic) - AccDC Technical Style Guide</title>
-        <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
-        <link rel="stylesheet" type="text/css" href="css/grid.css" />
-        <link rel="stylesheet" type="text/css" href="css/extra.css" />
-        <script type="text/javascript" src="../../_common/js/jQuery.js">
-            // Load jQuery.
-            // This is not necessary if using the Standalone AccDC API version.
-        </script>
-        <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
-            // Load the AccDC API, which all modules are plugged into as the common interface.
-        </script>
-        <!-- Now load all desired modules, which plugs them into AccDC. --><script type="text/javascript" src="../../../2 Accessible Component Modules/aria_data_grid_module.min.js"></script>
-        <script type="text/javascript" src="js/setup.js">
-            // Run the setup script where module invocation statements are contained.
-        </script>
-    </head>
-    <body>
-    	
-		<div id="coding-arena" class="noresp">
-        	
-			<header>
-				<div class="innerHeader">
-					<a href="http://whatsock.com"><img alt="WhatSock : Changing the world one step at a time" src="../../_common/img/whatsock.svg" /> 
-					<strong>AccDC</strong> Technical Style Guide</a>
-				</div>
-			</header>
-        	
-			<main>
-				
-				<h1 class="pageTitle">ARIA Data Grid <small>(Dynamic)</small></h1>
-				
-				<div class="demo-block">
-			            <div class="tal">
-			                <div class="hd">
-			                    <h3><span>Student Records</span>:<span id="pTotal"></span></h3>
-			                </div>
-			                <div id="popupId" class="hidden">
-			                </div>
-			                <div class="mode clearfix" role="region" aria-label="mode">
-			                    <p><label for="rr"><input type="radio" id="rr" name="mode" checked="checked" /> ReadOnly</label>
-			                    	<label for="rs"> <input type="radio" id="rs" name="mode" /> Selectable</label>
-			                    	<label for="re"><input type="radio" id="re" name="mode" /> Editable</label></p>
-			                <div class="modify clearfix" role="region" aria-label="modify" id="mro">
-			                    <button id="buv">
-			                        Programmatically update the value of row "5" field "personal-email" if passed via AJAX
-			                    </button>
-			                </div>
-			                </div>
-			                <div class="configure clearfix hidden" role="region" aria-label="configuration" id="msc">
-			                    <p><label for="cbms"><input type="checkbox" id="cbms" /> Allow multiSelect</label></p>
-			                    <p><label for="cbp"><input type="checkbox" id="cbp" /> Preserve row selection across pages</label></p>
-			                    <p><label for="cbas"><input type="checkbox" id="cbas" /> Use aria-selected instead of offscreen text</label></p>
-			                    <p><label for="cbd"><input type="checkbox" id="cbd" /> Allow delete of selected rows</label></p>
-			                    <p><label for="cdbl"><input type="checkbox" id="cdbl" /> Use double click</label></p>
-			                </div>
-			                <div class="modify clearfix hidden" role="region" aria-label="modify" id="mmm">
-	                            <ul>
-									<li><button id="bsa">Select All</button></li>
-		                            <li><button id="bua">Unselect All</button></li>
-		                            <li><button id="bs246">Select row 2, 4, and 6 on page 1</button></li>
-		                            <li><button id="bgs">Get Selected</button></li>
-		                           	<li><button id="bd" disabled="disabled">Delete Selected</button></li>
-		                            <li><button id="bda" disabled="disabled">Delete All</button></li>
-		                            <li><button id="bc">Close Grid</button></li>
-		                            <li><button id="bo">Open Grid</button></li>
-								</ul>
-			                </div>
-			                <div id="dataGridId">
-			                </div>
-			                <div role="region" aria-label="pagination" class="paginate clearfix" id="pgn">
-			                    <!--
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>ARIA Data Grid (Dynamic) - AccDC Technical Style Guide</title>
+    <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+    <link rel="stylesheet" type="text/css" href="css/grid.css" />
+    <link rel="stylesheet" type="text/css" href="css/extra.css" />
+    <script type="text/javascript" src="../../_common/js/jQuery.js">
+        // Load jQuery.
+        // This is not necessary if using the Standalone AccDC API version.
+    </script>
+    <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+        // Load the AccDC API, which all modules are plugged into as the common interface.
+    </script>
+    <!-- Now load all desired modules, which plugs them into AccDC. -->
+    <script type="text/javascript" src="../../../2 Accessible Component Modules/aria_data_grid_module.min.js"></script>
+    <script type="text/javascript" src="js/setup.js">
+        // Run the setup script where module invocation statements are contained.
+    </script>
+</head>
+
+<body>
+
+    <div id="coding-arena" class="noresp">
+
+        <header>
+            <div class="innerHeader">
+                <a href="http://whatsock.com"><img alt="WhatSock : Changing the world one step at a time" src="../../_common/img/whatsock.svg" />
+                    <strong>AccDC</strong> Technical Style Guide</a>
+            </div>
+        </header>
+
+        <main>
+
+            <h1 class="pageTitle">ARIA Data Grid <small>(Dynamic)</small></h1>
+
+            <div class="demo-block">
+                <div class="tal">
+                    <div class="hd">
+                        <h3><span>Student Records</span>:<span id="pTotal"></span></h3>
+                    </div>
+                    <div id="popupId" class="hidden">
+                    </div>
+                    <div class="mode clearfix" role="region" aria-label="mode">
+                        <p><label for="rr"><input type="radio" id="rr" name="mode" checked="checked" /> ReadOnly</label>
+                            <label for="rs"> <input type="radio" id="rs" name="mode" /> Selectable</label>
+                            <label for="re"><input type="radio" id="re" name="mode" /> Editable</label></p>
+                        <div class="modify clearfix" role="region" aria-label="modify" id="mro">
+                            <button id="buv">
+                                Programmatically update the value of row "5" field "personal-email" if passed via AJAX
+                            </button>
+                        </div>
+                    </div>
+                    <div class="configure clearfix hidden" role="region" aria-label="configuration" id="msc">
+                        <p><label for="cbms"><input type="checkbox" id="cbms" /> Allow multiSelect</label></p>
+                        <p><label for="cbp"><input type="checkbox" id="cbp" /> Preserve row selection across pages</label></p>
+                        <p><label for="cbas"><input type="checkbox" id="cbas" /> Use aria-selected instead of offscreen text</label></p>
+                        <p><label for="cbd"><input type="checkbox" id="cbd" /> Allow delete of selected rows</label></p>
+                        <p><label for="cdbl"><input type="checkbox" id="cdbl" /> Use double click</label></p>
+                    </div>
+                    <div class="modify clearfix hidden" role="region" aria-label="modify" id="mmm">
+                        <ul>
+                            <li><button id="bsa">Select All</button></li>
+                            <li><button id="bua">Unselect All</button></li>
+                            <li><button id="bs246">Select row 2, 4, and 6 on page 1</button></li>
+                            <li><button id="bgs">Get Selected</button></li>
+                            <li><button id="bd" disabled="disabled">Delete Selected</button></li>
+                            <li><button id="bda" disabled="disabled">Delete All</button></li>
+                            <li><button id="bc">Close Grid</button></li>
+                            <li><button id="bo">Open Grid</button></li>
+                        </ul>
+                    </div>
+                    <div id="dataGridId">
+                    </div>
+                    <div role="region" aria-label="pagination" class="paginate clearfix" id="pgn">
+                        <!--
 			                    Since the four pagination Button elements don't include any intuitive text for screen reader users, aria-hidden is used to remove the special character from the accessibility tree.
 			                    -->
-                                <button class="paginate" id="btnFirst">First Page</button>
-                                <button class="paginate" id="btnPrev">Previous Page</button>
-                                <button class="paginate" id="btnNext">Next Page</button>
-                                <button class="paginate" id="btnLast">Last Page</button>
-                                <input title="Page" type="text" id="goTo" /><button id="btnGo"><span>Go</span></button>
-			                </div>
-						</div>
-					</div>
-	                <div class="keyboard">
-	                    <p>The data grid is keyboard accessible:</p>
-	                    <ul>
-							<li>Set focus to the grid and enter Applications Mode if using a screen reader like JAWS or NVDA.</li>
-							<li>Press <kbd class="up">Up</kbd> or <kbd class="down">Down</kbd> to navigate by row. (Infinite scrolling is supported)</li>
-							<li>Press <kbd><kbd>Control</kbd>+<kbd>Spacebar</kbd></kbd> to announce the current row when using a screen reader.</li>
-							<li>Press <kbd><kbd>Alt</kbd>+<kbd>Up</kbd></kbd> or <kbd><kbd>Alt</kbd>+<kbd>Down</kbd></kbd> to set focus to the first or last row on the current page.</li>
-							<li>Press <kbd class="left">Left</kbd> or <kbd class="right">Right</kbd> to navigate left or right by cell.</li>
-							<li>Press <kbd class="home">Home</kbd> or <kbd class="end">End</kbd> to move to the first or last cell on the current row.</li>
-							<li>Press <kbd><kbd>Control</kbd>+<kbd>Home</kbd></kbd> or <kbd><kbd>Control</kbd>+<kbd>End</kbd></kbd> to move to the first row on the first page or the last row on the last page.</li>
-							<li>Press <kbd>PageUp</kbd> or <kbd>PageDown</kbd> to open the previous or next page and set focus to the first row.</li>
-							<li>Press Alt+PageUp or Alt+PageDown to open the first or last page and set focus to the first row.</li>
-							<li>For mode 'Selectable':
-								<ul>
-									<li>Press <kbd>Space</kbd> to toggle row selection, or click to activate using a mouse.</li>
-									<li>If multiSelect is enabled, press <kbd><kbd>Control</kbd>+<kbd>A</kbd></kbd> to select all rows on the current page.</li>
-									<li>If Delete is enabled, press <kbd>Delete</kbd> to remove all selected rows.</li>
-								</ul>
-							</li>
-							<li>For mode 'Editable':
-								<ul>
-									<li>Press <kbd>Enter</kbd> or <kbd>Space</kbd> to edit or toggle a cell, or click to activate using a mouse.</li>
-							</ul></li>
-						</ul>
-	                </div>			
-			</main>
-        </div>
-    </body>
+                        <button class="paginate" id="btnFirst">First Page</button>
+                        <button class="paginate" id="btnPrev">Previous Page</button>
+                        <button class="paginate" id="btnNext">Next Page</button>
+                        <button class="paginate" id="btnLast">Last Page</button>
+                        <input title="Page" type="text" id="goTo" /><button id="btnGo"><span>Go</span></button>
+                    </div>
+                </div>
+            </div>
+            <div class="keyboard">
+                <p>The data grid is keyboard accessible:</p>
+                <ul>
+                    <li>Set focus to the grid and enter Applications Mode if using a screen reader like JAWS or NVDA.</li>
+                    <li>Press <kbd class="up">Up</kbd> or <kbd class="down">Down</kbd> to navigate by row. (Infinite scrolling is supported)</li>
+                    <li>Press <kbd><kbd>Control</kbd>+<kbd>Spacebar</kbd></kbd> to announce the current row when using a screen reader.</li>
+                    <li>Press <kbd><kbd>Alt</kbd>+<kbd>Up</kbd></kbd> or <kbd><kbd>Alt</kbd>+<kbd>Down</kbd></kbd> to set focus to the first or last row on the current page.</li>
+                    <li>Press <kbd class="left">Left</kbd> or <kbd class="right">Right</kbd> to navigate left or right by cell.</li>
+                    <li>Press <kbd class="home">Home</kbd> or <kbd class="end">End</kbd> to move to the first or last cell on the current row.</li>
+                    <li>Press <kbd><kbd>Control</kbd>+<kbd>Home</kbd></kbd> or <kbd><kbd>Control</kbd>+<kbd>End</kbd></kbd> to move to the first row on the first page or the last row on the last page.</li>
+                    <li>Press <kbd>PageUp</kbd> or <kbd>PageDown</kbd> to open the previous or next page and set focus to the first row.</li>
+                    <li>Press Alt+PageUp or Alt+PageDown to open the first or last page and set focus to the first row.</li>
+                    <li>For mode 'Selectable':
+                        <ul>
+                            <li>Press <kbd>Space</kbd> to toggle row selection, or click to activate using a mouse.</li>
+                            <li>If multiSelect is enabled, press <kbd><kbd>Control</kbd>+<kbd>A</kbd></kbd> to select all rows on the current page.</li>
+                            <li>If Delete is enabled, press <kbd>Delete</kbd> to remove all selected rows.</li>
+                        </ul>
+                    </li>
+                    <li>For mode 'Editable':
+                        <ul>
+                            <li>Press <kbd>Enter</kbd> or <kbd>Space</kbd> to edit or toggle a cell, or click to activate using a mouse.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </main>
+    </div>
+</body>
+
 </html>

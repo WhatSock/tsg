@@ -1,57 +1,68 @@
 /* WHATSOCK, 2016 */
 /* Specific styles for ARIA Footnote Generator Module */
 
-div.demo-block > p {font-size: 0.95em; line-height: 1.45;}
+div.demo-block > p {
+  font-size: 0.95em;
+  line-height: 1.45;
+}
 div.demo-block > p + p {
-	margin-top: 0.8em;
+  margin-top: 0.8em;
 }
 
 div.content {
-	color: #555;
-	background: #FFF;
-	padding: 1rem; 
-	margin-bottom: 2rem;
+  color: #555;
+  background: #fff;
+  padding: 1rem;
+  margin-bottom: 2rem;
 }
-	div.content p:last-child {font-size: 90%; text-align: right;}
+div.content p:last-child {
+  font-size: 90%;
+  text-align: right;
+}
 
 .accFootnote {
-	color: #000;
-	background: #BAE8D4;
-	text-shadow: 0 1px 0 #999;
-	padding: 0 0 0 0.2em;
+  color: #000;
+  background: #bae8d4;
+  text-shadow: 0 1px 0 #999;
+  padding: 0 0 0 0.2em;
 }
 
-	.accFootnote a, .accFootnote a:link {
-		display: inline-block;
-		width: 1em;
-		height: 1.3em;
-		line-height: 1em;
-		font-size: 110%;
-		text-decoration: none;
-		text-align: center;
-		border-radius: 1em;
-		margin: 0 2px;
-	}
-	.accFootnote a:visited {background: #EEE;}
-	.accFootnote a:hover {
-		text-decoration: none;
-		background: #F2D3A1;
-	}
+.accFootnote a,
+.accFootnote a:link {
+  display: inline-block;
+  width: 1em;
+  height: 1.3em;
+  line-height: 1em;
+  font-size: 110%;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 1em;
+  margin: 0 2px;
+}
+.accFootnote a:visited {
+  background: #eee;
+}
+.accFootnote a:hover {
+  text-decoration: none;
+  background: #f2d3a1;
+}
 
-#footnotes {margin-top: 3rem;}
-	
+#footnotes {
+  margin-top: 3rem;
+}
+
 #footnotes::before {
-	display: block;
-	position: relative;
-	top: -10px;
-	content: "";
-	width: 60%;
-	height: 4px;
-	background: #000;
+  display: block;
+  position: relative;
+  top: -10px;
+  content: "";
+  width: 60%;
+  height: 4px;
+  background: #000;
 }
 
 #footnotes p {
-	font-size: 0.85em;
-	text-indent: -0.9em;
-	margin: 0 0 0.8em 0.9em;
+  font-size: 0.85em;
+  text-indent: -0.9em;
+  margin: 0 0 0.8em 0.9em;
 }

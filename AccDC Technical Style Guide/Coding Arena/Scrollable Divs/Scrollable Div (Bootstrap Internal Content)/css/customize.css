@@ -1,29 +1,29 @@
-
 div.viewport > p {
-margin: 50px 0;
+  margin: 50px 0;
 }
 
 #scrollPane {
-height: 340px;
-width: 390px;
-padding: 5px;
-font-family: Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif;
-text-align: left;
-font-size: 1.2em;
-background: url("../img/scroll/backdrop.jpg") #000 no-repeat;
-color: #fff;
-margin-left: 26%;
-overflow-x: hidden;
-overflow-y: auto;
--webkit-box-shadow: 0 10px 6px -6px #777;
--moz-box-shadow: 0 10px 6px -6px #777;
-box-shadow: 0 10px 6px -6px #777;
+  height: 340px;
+  width: 390px;
+  padding: 5px;
+  font-family: Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida,
+    "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif;
+  text-align: left;
+  font-size: 1.2em;
+  background: url("../img/scroll/backdrop.jpg") #000 no-repeat;
+  color: #fff;
+  margin-left: 26%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-box-shadow: 0 10px 6px -6px #777;
+  -moz-box-shadow: 0 10px 6px -6px #777;
+  box-shadow: 0 10px 6px -6px #777;
 }
 
 #scrollPane > * {
-width: 390px;
+  width: 390px;
 }
 
 *:focus {
-outline: blue 1px inset;
+  outline: blue 1px inset;
 }

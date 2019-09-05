@@ -1,31 +1,29 @@
-$A.bind(window, 'load', function(){
+$A.bind(window, "load", function() {
+  $A.bind("#opt1, #opt2, #opt3, #opt4", "change", function(ev) {
+    var quantity = 0,
+      subtotal = 0.0;
 
-	$A.bind('#opt1, #opt2, #opt3, #opt4', 'change', function(ev){
+    $A.query("div.options label input:checked", function(i, o) {
+      quantity = i + 1;
+      subtotal += parseFloat($A.getAttr(o, "data-price"));
+    });
 
-		var quantity = 0, subtotal = 0.00;
+    subtotal = subtotal.toFixed(2);
 
-		$A.query('div.options label input:checked', function(i, o){
-			quantity = i + 1;
-			subtotal += parseFloat($A.getAttr(o, 'data-price'));
-		});
+    // Now display the new values
 
-		subtotal = subtotal.toFixed(2);
+    $A.getEl("quantity").innerHTML = quantity.toString();
+    $A.getEl("subtotal").innerHTML = "$" + subtotal.toString();
 
-		// Now display the new values
+    // And announce the changed values for screen reader users ($A.getEl is simply grabbing the container element with id="totals")
 
-		$A.getEl('quantity').innerHTML = quantity.toString();
-		$A.getEl('subtotal').innerHTML = ('$' + subtotal.toString());
+    var s = $A.getEl("totals");
+    $A.announce(s);
+  });
 
-// And announce the changed values for screen reader users ($A.getEl is simply grabbing the container element with id="totals")
-
-		var s = $A.getEl('totals');
-		$A.announce(s);
-	});
-
-	$A.query('input[type="checkbox"]', function(i, o){
-		$A.setAttr(o,
-						{
-						'aria-controls': 'totals'
-						});
-	});
+  $A.query('input[type="checkbox"]', function(i, o) {
+    $A.setAttr(o, {
+      "aria-controls": "totals"
+    });
+  });
 });

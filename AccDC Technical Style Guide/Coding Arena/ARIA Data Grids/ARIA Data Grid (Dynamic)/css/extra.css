@@ -1,38 +1,61 @@
-
 div.paginate input {
-	width: 50px;
+  width: 50px;
 }
 
 #popupId {
-	position: absolute;
-	top: 0;
-	right: 5%;
-	width: 300px;
-	font-size: 1rem;
-	color: #FFF;
-	background: #C1384D;
-	padding: 0.3em 0.5em;
-	box-shadow: 0 1px 3px rgba(0,0,0,.4);
-	-webkit-animation: appearance 1s;
-	-ms-animation: appearance 1s;
-	animation: appearance 1s;
-	z-index: 1;
+  position: absolute;
+  top: 0;
+  right: 5%;
+  width: 300px;
+  font-size: 1rem;
+  color: #fff;
+  background: #c1384d;
+  padding: 0.3em 0.5em;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  -webkit-animation: appearance 1s;
+  -ms-animation: appearance 1s;
+  animation: appearance 1s;
+  z-index: 1;
 }
 
 @-webkit-keyframes appearance {
-	0% {top: -50em; opacity: 0;}
-	50% {top: -20em;}
-	100% {top: 0; opacity: 1;}
+  0% {
+    top: -50em;
+    opacity: 0;
+  }
+  50% {
+    top: -20em;
+  }
+  100% {
+    top: 0;
+    opacity: 1;
+  }
 }
 
 @-ms-keyframes appearance {
-	0% {top: -50em; opacity: 0;}
-	50% {top: -20em;}
-	100% {top: 0; opacity: 1;}
+  0% {
+    top: -50em;
+    opacity: 0;
+  }
+  50% {
+    top: -20em;
+  }
+  100% {
+    top: 0;
+    opacity: 1;
+  }
 }
 
 @keyframes appearance {
-	0% {top: -50em; opacity: 0;}
-	50% {top: -20em;}
-	100% {top: 0; opacity: 1;}
+  0% {
+    top: -50em;
+    opacity: 0;
+  }
+  50% {
+    top: -20em;
+  }
+  100% {
+    top: 0;
+    opacity: 1;
+  }
 }

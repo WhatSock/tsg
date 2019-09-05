@@ -2,51 +2,57 @@
 /* Specific styles for ARIA Menus */
 
 button.menu2 {
-	font-size: 100%;
-	text-transform: uppercase;
-	color: #FFF;
-	background: #286278 url(../img/sprite.svg) right -288px no-repeat;
-	padding: 0.3em 36px 0.3em 0.5em;
-	border: none;
-	box-shadow: 0 1px 2px rgba(0,0,0,.7);
-	border-radius: 2px;
-	cursor: pointer;
+  font-size: 100%;
+  text-transform: uppercase;
+  color: #fff;
+  background: #286278 url(../img/sprite.svg) right -288px no-repeat;
+  padding: 0.3em 36px 0.3em 0.5em;
+  border: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+  border-radius: 2px;
+  cursor: pointer;
 }
-button.menu2:hover, button.menu2:focus {
-	color: #FFF;
-	background-color: #C13836;
-	box-shadow: none;
-	border-radius: 0;
+button.menu2:hover,
+button.menu2:focus {
+  color: #fff;
+  background-color: #c13836;
+  box-shadow: none;
+  border-radius: 0;
 }
 
 div.foMenu {
-	min-width: 300px;
-	background-color: #2E3135;
+  min-width: 300px;
+  background-color: #2e3135;
 }
 div.foMenu ul.menu2 {
-	list-style: none;
-	margin: 0;
+  list-style: none;
+  margin: 0;
 }
 div.foMenu ul.menu2 > li {
-	float: left;
-	width: auto;
-	text-transform: uppercase;
+  float: left;
+  width: auto;
+  text-transform: uppercase;
 }
-	div.foMenu ul.menu2 > li li {font-size: 100%;}
-	
+div.foMenu ul.menu2 > li li {
+  font-size: 100%;
+}
+
 div.foMenu ul.menu2 a {
-	display: block;
-	padding: 0.3em 0.8em;
-	text-align: center;
-	text-decoration: none;
-	color: #FFF;
-	background-color: #2E3135;
+  display: block;
+  padding: 0.3em 0.8em;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  background-color: #2e3135;
 }
-div.foMenu ul.menu2 a:focus, div.foMenu ul.menu2 a:hover, div.foMenu ul.menu2 a.submenu2:hover, div.foMenu ul.menu2 a.submenu2:focus {
-	color: #FFF;
-	background-color: #C13836;
+div.foMenu ul.menu2 a:focus,
+div.foMenu ul.menu2 a:hover,
+div.foMenu ul.menu2 a.submenu2:hover,
+div.foMenu ul.menu2 a.submenu2:focus {
+  color: #fff;
+  background-color: #c13836;
 }
 div.foMenu ul.menu2 a.submenu2 {
-	background: #2E3135 url(../img/sprite.svg) right -288px no-repeat;
-	padding: 0.3em 36px 0.3em 0.8em;
+  background: #2e3135 url(../img/sprite.svg) right -288px no-repeat;
+  padding: 0.3em 36px 0.3em 0.8em;
 }

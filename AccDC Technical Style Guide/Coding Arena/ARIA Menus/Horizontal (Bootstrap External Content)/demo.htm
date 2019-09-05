@@ -1,83 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-<title>Horizontal Menu (Bootstrap External Content) - AccDC Technical Style Guide</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Horizontal Menu (Bootstrap External Content) - AccDC Technical Style Guide</title>
 
-<link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
-<link rel="stylesheet" type="text/css" href="css/menus.css" />
+    <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+    <link rel="stylesheet" type="text/css" href="css/menus.css" />
 
-<script type="text/javascript" src="../../_common/js/jQuery.js">
-// Load jQuery.
-// This is not necessary if using the Standalone AccDC API version.
-</script>
+    <script type="text/javascript" src="../../_common/js/jQuery.js">
+        // Load jQuery.
+        // This is not necessary if using the Standalone AccDC API version.
+    </script>
 
-<script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
-// Load the AccDC API, which all modules are plugged into as the common interface.
-</script>
+    <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+        // Load the AccDC API, which all modules are plugged into as the common interface.
+    </script>
 
-<!-- Now load all desired modules, which plugs them into AccDC. -->
-<script type="text/javascript" src="../../../2 Accessible Component Modules/aria_menu_module.min.js"></script>
+    <!-- Now load all desired modules, which plugs them into AccDC. -->
+    <script type="text/javascript" src="../../../2 Accessible Component Modules/aria_menu_module.min.js"></script>
 
-<script type="text/javascript" src="../../../3 AccDC Bootstrap/accdc_bootstrap.js">
-// Load AccDC Bootstrap to enable HTML parsing.
-</script>
+    <script type="text/javascript" src="../../../3 AccDC Bootstrap/accdc_bootstrap.js">
+        // Load AccDC Bootstrap to enable HTML parsing.
+    </script>
 
 </head>
+
 <body>
-<div>
+    <div>
 
-<div class="intro tal clearfix">
+        <div class="intro tal clearfix">
 
-<!-- To ensure keyboard accessibility, an active element such as an A tag or Button tag should be used as the triggering element.
+            <!-- To ensure keyboard accessibility, an active element such as an A tag or Button tag should be used as the triggering element.
 
 Required class:
 "accMenu" : Specifies a menu triggering element to be configured by the Bootstrap module.
 
 Attributes explained:
-• data-src : The resource path and pointer to the ID attribute of the top level menu list.
+ï¿½ data-src : The resource path and pointer to the ID attribute of the top level menu list.
 If pointing to a menu list within the same document, only the ID attribute should be included here. 
-• data-internal : The ID attribute of the container element for all menu lists within the same document.
+ï¿½ data-internal : The ID attribute of the container element for all menu lists within the same document.
 If data-src is set to an external source, data-internal should be blank or not included. 
 
-• data-containerclass : The class name that will be added dynamically to the surrounding Div tag for each menu group when rendered. "menu" is set by default
+ï¿½ data-containerclass : The class name that will be added dynamically to the surrounding Div tag for each menu group when rendered. "menu" is set by default
 if no value is specified. 
-• data-menutag : The tag name for the container element that contains all menu item tags. All menu item tags must be contained within this container element,
+ï¿½ data-menutag : The tag name for the container element that contains all menu item tags. All menu item tags must be contained within this container element,
 even if they are not first level child nodes. "ol" is set by default if no value is specified. 
-• data-menuclass : The shared class name that is contained within every menu container element. All menu tags specified by data-menutag must include this
+ï¿½ data-menuclass : The shared class name that is contained within every menu container element. All menu tags specified by data-menutag must include this
 class name. "menu" is set by default if no value is specified. 
-• data-menuitemtag : The shared tag name that specifies all menu item tags. All menu item tags must be contained within the container element specified
+ï¿½ data-menuitemtag : The shared tag name that specifies all menu item tags. All menu item tags must be contained within the container element specified
 by data-menutag, even if they are not first level child nodes. "a" is set by default if no value is specified. 
-• data-menufolderclass : The shared class name that is contained within every menu tag that opens a submenu. "submenu" is set by default if no value is
+ï¿½ data-menufolderclass : The shared class name that is contained within every menu tag that opens a submenu. "submenu" is set by default if no value is
 specified. 
-• data-menulinkclass : The shared class name that is contained within every menu tag that does not open a submenu. "link" is set by default if no value
+ï¿½ data-menulinkclass : The shared class name that is contained within every menu tag that does not open a submenu. "link" is set by default if no value
 is specified. 
-• data-flyout="true" : Specifies a horizontal flyout menu where the Left and Right arrow keys will be used to navigate menu item nodes, and Up and Down
+ï¿½ data-flyout="true" : Specifies a horizontal flyout menu where the Left and Right arrow keys will be used to navigate menu item nodes, and Up and Down
 will be used to close or open submenus. If data-flyout is not included within the markup, the default vertically oriented keyboard assignments will be
 applied automatically.  
 -->
 
-<a role="button" class="accMenu menu2"
-data-src="files/menus.html#menu-options2"
-data-containerclass="foMenu"
-data-menutag="ul"
-data-menuclass="menu2"
-data-menuitemtag="a"
-data-menufolderclass="submenu2"
-data-menulinkclass="link2"
-data-flyout="true"
->Options</a>
+            <a role="button" class="accMenu menu2" data-src="files/menus.html#menu-options2" data-containerclass="foMenu" data-menutag="ul" data-menuclass="menu2" data-menuitemtag="a" data-menufolderclass="submenu2" data-menulinkclass="link2" data-flyout="true">Options</a>
 
-</div>
+        </div>
 
-<div class="intro tal">
+        <div class="intro tal">
 
-<div class="desc">
-<p>
-The menus are keyboard accessible.
-</p>
-<p><pre>
+            <div class="desc">
+                <p>
+                    The menus are keyboard accessible.
+                </p>
+                <p>
+                    <pre>
 Activate the triggering element using the keyboard.
 Press the Left and Right Arrow keys to move focus between the menu options.
 Press the Up and Down Arrow keys to open or close submenus.
@@ -86,10 +80,12 @@ Press Enter to activate a menu option.
 Press Escape to close the currently open menu.
 Press Tab or set focus back on the triggering element to close the menu and all submenus.
 Mouse users can click the desired menu option as usual.
-</pre></p>
-</div>
-</div>
+</pre>
+                </p>
+            </div>
+        </div>
 
-</div>
+    </div>
 </body>
+
 </html>

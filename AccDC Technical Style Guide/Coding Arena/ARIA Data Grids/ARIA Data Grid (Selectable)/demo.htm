@@ -1,108 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-<title>ARIA Data Grid (Selectable) - AccDC Technical Style Guide</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>ARIA Data Grid (Selectable) - AccDC Technical Style Guide</title>
 
-<link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
-<link rel="stylesheet" type="text/css" href="css/grid.css" />
-<link rel="stylesheet" type="text/css" href="css/extra.css" />
+    <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+    <link rel="stylesheet" type="text/css" href="css/grid.css" />
+    <link rel="stylesheet" type="text/css" href="css/extra.css" />
 
-<script type="text/javascript" src="../../_common/js/jQuery.js">
-// Load jQuery.
-// This is not necessary if using the Standalone AccDC API version.
-</script>
+    <script type="text/javascript" src="../../_common/js/jQuery.js">
+        // Load jQuery.
+        // This is not necessary if using the Standalone AccDC API version.
+    </script>
 
-<script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
-// Load the AccDC API, which all modules are plugged into as the common interface.
-</script>
+    <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+        // Load the AccDC API, which all modules are plugged into as the common interface.
+    </script>
 
-<!-- Now load all desired modules, which plugs them into AccDC. -->
-<script type="text/javascript" src="../../../2 Accessible Component Modules/aria_data_grid_module.min.js"></script>
+    <!-- Now load all desired modules, which plugs them into AccDC. -->
+    <script type="text/javascript" src="../../../2 Accessible Component Modules/aria_data_grid_module.min.js"></script>
 
-<script type="text/javascript" src="js/setup.js">
-// Run the setup script where module invocation statements are contained.
-</script>
+    <script type="text/javascript" src="js/setup.js">
+        // Run the setup script where module invocation statements are contained.
+    </script>
 
 </head>
+
 <body>
-<div>
+    <div>
 
-<div class="tal">
+        <div class="tal">
 
-<div class="hd">
-<h1>
-<span>Student Records</span>:
-<span id="pTotal"></span>
-</h1>
-</div>
+            <div class="hd">
+                <h1>
+                    <span>Student Records</span>:
+                    <span id="pTotal"></span>
+                </h1>
+            </div>
 
-<div class="configure clearfix" role="region" aria-label="configuration">
-<label for="cbms">
-<input type="checkbox" id="cbms" />
-Allow multiSelect
-</label>
-<label for="cbp">
-<input type="checkbox" id="cbp" />
-Preserve row selection across pages
-</label>
-<label for="cbas">
-<input type="checkbox" id="cbas" />
-Use aria-selected instead of offscreen text
-</label>
-<label for="cbd">
-<input type="checkbox" id="cbd" />
-Allow delete of selected rows
-</label>
-</div>
+            <div class="configure clearfix" role="region" aria-label="configuration">
+                <label for="cbms">
+                    <input type="checkbox" id="cbms" />
+                    Allow multiSelect
+                </label>
+                <label for="cbp">
+                    <input type="checkbox" id="cbp" />
+                    Preserve row selection across pages
+                </label>
+                <label for="cbas">
+                    <input type="checkbox" id="cbas" />
+                    Use aria-selected instead of offscreen text
+                </label>
+                <label for="cbd">
+                    <input type="checkbox" id="cbd" />
+                    Allow delete of selected rows
+                </label>
+            </div>
 
-<div class="modify clearfix" role="region" aria-label="modify">
-<button id="bsa">
-Select All
-</button>
-<button id="bua">
-Unselect All
-</button>
-<button id="bs246">
-Select row 2, 4, and 6 on page 1
-</button>
-<button id="bgs">
-Get Selected
-</button>
-<button id="bd" disabled="disabled">
-Delete Selected
-</button>
-<button id="bda" disabled="disabled">
-Delete All
-</button>
-<button id="bc">
-Close Grid
-</button>
-<button id="bo">
-Open Grid
-</button>
-</div>
+            <div class="modify clearfix" role="region" aria-label="modify">
+                <button id="bsa">
+                    Select All
+                </button>
+                <button id="bua">
+                    Unselect All
+                </button>
+                <button id="bs246">
+                    Select row 2, 4, and 6 on page 1
+                </button>
+                <button id="bgs">
+                    Get Selected
+                </button>
+                <button id="bd" disabled="disabled">
+                    Delete Selected
+                </button>
+                <button id="bda" disabled="disabled">
+                    Delete All
+                </button>
+                <button id="bc">
+                    Close Grid
+                </button>
+                <button id="bo">
+                    Open Grid
+                </button>
+            </div>
 
-<div id="dataGridId"></div>
+            <div id="dataGridId"></div>
 
-<div role="region" aria-label="pagination" class="paginate clearfix" id="pgn">
-<!--
+            <div role="region" aria-label="pagination" class="paginate clearfix" id="pgn">
+                <!--
 Since the four pagination Button elements don't include any intuitive text for screen reader users, aria-hidden is used to remove the special character from the accessibility tree.
 -->
-<button class="paginate" id="btnFirst" title="First Page"><span aria-hidden="true">&#8656;</span></button>
-<button class="paginate" id="btnPrev" title="Previous Page"><span aria-hidden="true">&#8592;</span></button>
-<button class="paginate" id="btnNext" title="Next Page"><span aria-hidden="true">&#8594;</span></button>
-<button class="paginate" id="btnLast" title="Last Page"><span aria-hidden="true">&#8658;</span></button>
-<input title="Page" type="text" id="goTo" />
-<button class="paginate" id="btnGo"><span>Go</span></button>
-</div>
+                <button class="paginate" id="btnFirst" title="First Page"><span aria-hidden="true">&#8656;</span></button>
+                <button class="paginate" id="btnPrev" title="Previous Page"><span aria-hidden="true">&#8592;</span></button>
+                <button class="paginate" id="btnNext" title="Next Page"><span aria-hidden="true">&#8594;</span></button>
+                <button class="paginate" id="btnLast" title="Last Page"><span aria-hidden="true">&#8658;</span></button>
+                <input title="Page" type="text" id="goTo" />
+                <button class="paginate" id="btnGo"><span>Go</span></button>
+            </div>
 
-<div class="desc">
-<p>
-The selectable data grid is keyboard accessible.
-</p>
-<p><pre>
+            <div class="desc">
+                <p>
+                    The selectable data grid is keyboard accessible.
+                </p>
+                <p>
+                    <pre>
 Set focus to the grid and enter Applications Mode if using a screen reader like JAWS or NVDA.
 Press Up or Down to navigate by row. (Infinite scrolling is supported)
 Press Control+Spacebar to announce the current row when using a screen reader.
@@ -115,11 +118,13 @@ Press Alt+PageUp or Alt+PageDown to open the first or last page and set focus to
 Press Space to toggle row selection, or click to activate using a mouse.
 If multiSelect is enabled, press Control+A to select all rows on the current page.
 If Delete is enabled, press Delete to remove all selected rows.
-</pre></p>
-</div>
+</pre>
+                </p>
+            </div>
 
-</div>
+        </div>
 
-</div>
+    </div>
 </body>
+
 </html>

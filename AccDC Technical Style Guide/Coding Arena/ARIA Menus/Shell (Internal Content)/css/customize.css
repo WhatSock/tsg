@@ -1,4 +1,3 @@
-
 /* This is just the triggering element */
 button.menu {
 }
@@ -9,7 +8,7 @@ div.menu {
 
 /* This is the menu container element with role="menu" */
 div.menu ol.menu {
-background-color: #F5DEB3;
+  background-color: #f5deb3;
 }
 
 /* This is the divider element between the menu container and the menuitem links */

@@ -1,41 +1,45 @@
-$A.bind(window, 'load', function(){
+$A.bind(window, "load", function() {
+  // Configure menu functionality
 
-	// Configure menu functionality
+  $A.setMenu(
+    ".menu2",
+    "hiddenDivId",
+    "menu-options2",
+    function(ev, dc) {
+      alert('Do something with this.href or id="' + this.id + '"');
+    },
+    true,
+    document,
+    {
+      role: "Menu",
+      accStart: "Start",
+      accEnd: "End",
+      openState: "Open",
+      ariaLevel: 3,
+      containerClass: "foMenu",
+      menuTag: "ul",
+      menuClass: "menu2",
+      itemTag: "a",
+      folderClass: "submenu2",
+      linkClass: "link2",
+      horizontal: true,
 
-	$A.setMenu('.menu2', 'hiddenDivId', 'menu-options2', function(ev, dc){
-		alert('Do something with this.href or id="' + this.id + '"');
-	}, true, document,
-					{
-					role: 'Menu',
-					accStart: 'Start',
-					accEnd: 'End',
-					openState: 'Open',
-					ariaLevel: 3,
-					containerClass: 'foMenu',
-					menuTag: 'ul',
-					menuClass: 'menu2',
-					itemTag: 'a',
-					folderClass: 'submenu2',
-					linkClass: 'link2',
-					horizontal: true,
-
-					// 0 = don't apply forced autoPositioning
-					autoPosition: 0,
-					offsetLeft: function(dc){
-						return 0;
-					},
-					offsetTop: function(dc){
-						return 0;
-					},
-					overrides:
-									{
-									cssObj:
-													{
-// Change the default relative positioning of menus and submenus to absolute for the positioning calculation
-													position: 'absolute',
-													zIndex: 1
-													}
-									// Additional AccDC API properties and methods can be applied here.
-									}
-					});
+      // 0 = don't apply forced autoPositioning
+      autoPosition: 0,
+      offsetLeft: function(dc) {
+        return 0;
+      },
+      offsetTop: function(dc) {
+        return 0;
+      },
+      overrides: {
+        cssObj: {
+          // Change the default relative positioning of menus and submenus to absolute for the positioning calculation
+          position: "absolute",
+          zIndex: 1
+        }
+        // Additional AccDC API properties and methods can be applied here.
+      }
+    }
+  );
 });

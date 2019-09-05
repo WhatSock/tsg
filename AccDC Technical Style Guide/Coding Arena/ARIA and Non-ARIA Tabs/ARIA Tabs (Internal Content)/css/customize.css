@@ -1,56 +1,66 @@
 /* WHATSOCK, 2016 */
 /* Specific styles for Tabs */
 
-
-ul.tabs {margin: 0; border-bottom: 3px solid #2E3135;}
+ul.tabs {
+  margin: 0;
+  border-bottom: 3px solid #2e3135;
+}
 ul.tabs + div.content {
-	background: #FFF;
-	margin-bottom: 2rem;
+  background: #fff;
+  margin-bottom: 2rem;
 }
 
 ul.tabs li {
-	list-style-type: none;
-	margin: 0 0 1px;
+  list-style-type: none;
+  margin: 0 0 1px;
 }
 
-a[role=tab], a[role=tab]:link, a[role=tab]:visited {
-	display: block;
-	color: #FFF;
-	background: #5D1F2C;
-	padding: 0.3em 0.5em 0.5em;
-	cursor: pointer;
+a[role="tab"],
+a[role="tab"]:link,
+a[role="tab"]:visited {
+  display: block;
+  color: #fff;
+  background: #5d1f2c;
+  padding: 0.3em 0.5em 0.5em;
+  cursor: pointer;
 }
 
-a[role=tab]:hover, a[role=tab]:focus {
-	text-decoration: none;
-	color: #FFF;
-	background-color: #2E3135;
+a[role="tab"]:hover,
+a[role="tab"]:focus {
+  text-decoration: none;
+  color: #fff;
+  background-color: #2e3135;
 }
 
-a[role=tab].active, a[role=tab].active:link, a[role=tab].active:visited {
-	color: #FFF;
-	background-color: #E2A037;
-	text-decoration: underline;
+a[role="tab"].active,
+a[role="tab"].active:link,
+a[role="tab"].active:visited {
+  color: #fff;
+  background-color: #e2a037;
+  text-decoration: underline;
 }
 
 #tabInsertId {
-	text-align: center;
-	background: #FFF:
-	padding: 1rem;
-	border-bottom: 3px solid #2E3135;
+  text-align: center;
+  background: #fff;
+  padding: 1rem;
+  border-bottom: 3px solid #2e3135;
 }
-	#tabInsertId div {padding: 0.5rem;}
+#tabInsertId div {
+  padding: 0.5rem;
+}
 
-	
 @media screen and (min-width: 400px) {
-	ul.tabs li {
-		display: inline-block;
-		margin: 0;
-	}
-	
-	a[role=tab], a[role=tab]:link, a[role=tab]:visited {
-		display: inline-block;
-		border-top-right-radius: 2px;
-		border-top-left-radius: 2px;
-	}
+  ul.tabs li {
+    display: inline-block;
+    margin: 0;
+  }
+
+  a[role="tab"],
+  a[role="tab"]:link,
+  a[role="tab"]:visited {
+    display: inline-block;
+    border-top-right-radius: 2px;
+    border-top-left-radius: 2px;
+  }
 }

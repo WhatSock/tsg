@@ -1,88 +1,98 @@
 /* WHATSOCK, 2016 */
 /* Specific styles for ARIA Sliders */
 
-table.sample {}
+table.sample {
+}
 
 table.sample td {
-    vertical-align: middle;
+  vertical-align: middle;
 }
 
-.slider2 {margin-right: 4rem;}
+.slider2 {
+  margin-right: 4rem;
+}
 
-.min2, .max2 {text-align: center;}
+.min2,
+.max2 {
+  text-align: center;
+}
 
-.min2 span, .max2 span {display: block; padding: 0.5rem 0;}
+.min2 span,
+.max2 span {
+  display: block;
+  padding: 0.5rem 0;
+}
 
 .slideWrapper {
-	position: relative;
-    height: 350px;
-    width: 48px;
-    padding: 1px;
-	z-index: 1;
+  position: relative;
+  height: 350px;
+  width: 48px;
+  padding: 1px;
+  z-index: 1;
 }
 
-	.slideWrapper::before {
-		display: block;
-	    position: absolute;
-	    content: "";
-	    top: 0;
-	    left: 50%;
-	    width: 0.8em;
-	    height: 0.8em;
-	    background: #CCC;
-	    border-radius: 0.8em;
-	    margin-left: -0.4em;
-		z-index: 1;
-	}
-	.slideWrapper::after {
-		display: block;
-	    position: absolute;
-	    content: "";
-	    bottom: 0;
-	    left: 50%;
-	    width: 0.8em;
-	    height: 0.8em;
-	    background: #CCC;
-	    border-radius: 0.8em;
-	    margin-left: -0.4em;
-		z-index: 1;
-	}
+.slideWrapper::before {
+  display: block;
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 50%;
+  width: 0.8em;
+  height: 0.8em;
+  background: #ccc;
+  border-radius: 0.8em;
+  margin-left: -0.4em;
+  z-index: 1;
+}
+.slideWrapper::after {
+  display: block;
+  position: absolute;
+  content: "";
+  bottom: 0;
+  left: 50%;
+  width: 0.8em;
+  height: 0.8em;
+  background: #ccc;
+  border-radius: 0.8em;
+  margin-left: -0.4em;
+  z-index: 1;
+}
 
 .slide2 {
-    position: relative; /* Important: The parentNode of the draggable nub must be relatively positioned. */
-    height: 348px;
-    width: 46px;
-	z-index: 20;
+  position: relative; /* Important: The parentNode of the draggable nub must be relatively positioned. */
+  height: 348px;
+  width: 46px;
+  z-index: 20;
 }
 
-	.slide2::before {
-		display: block;
-		position: absolute;
-		content: "";
-		top: 0;
-		left: 50%;
-		width: 0.1em;
-		height: 100%;
-		background: #CCC;
-	}
+.slide2::before {
+  display: block;
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 50%;
+  width: 0.1em;
+  height: 100%;
+  background: #ccc;
+}
 
 .slide2 > div.nub2 {
-    width: 46px;
-    height: 46px;
-    background-color: #000;
-    color: #f5f5f5;
-	border-radius: 5em;
-    cursor: pointer;
-	z-index: 20;
+  width: 46px;
+  height: 46px;
+  background-color: #000;
+  color: #f5f5f5;
+  border-radius: 5em;
+  cursor: pointer;
+  z-index: 20;
 }
 
 #handle2 {
-	width: 46px;
-	height: 46px;
-	background: url(../img/sprite.svg) 9px -1551px no-repeat,  url(../img/sprite.svg) 9px -1402px no-repeat;
-	z-index: 20;
+  width: 46px;
+  height: 46px;
+  background: url(../img/sprite.svg) 9px -1551px no-repeat,
+    url(../img/sprite.svg) 9px -1402px no-repeat;
+  z-index: 20;
 }
 
-
-#syncSelect {}
-
+#syncSelect {
+}

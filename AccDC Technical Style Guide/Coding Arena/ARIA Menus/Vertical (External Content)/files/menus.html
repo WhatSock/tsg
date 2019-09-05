@@ -1,6 +1,8 @@
-<html><body>
+<html>
 
-<!-- These are the menu structures tied to the triggering element. 
+<body>
+
+    <!-- These are the menu structures tied to the triggering element. 
 The lists can be set to any tag, such as OL, UL, etc, as long as this is specified in the menuTag property within the JavaScript declaration statement or within the data-menutag attribute if Bootstrapped.
 The same is true for the menu item nodes, which is specified using the menuItemTag property in the JavaScript declaration statement, or within the data-menuitemtag attribute if Bootstrapped.
 Menus and submenus may be nested or broken out into separate lists if desired, as long as they are all contained within the same top level container element specified by ID within the JavaScript invocation statement, or within the data-internal attribute if Bootstrapped.
@@ -10,135 +12,137 @@ All menu item nodes must include innerText to ensure accessibility for screen re
 Don't include any ARIA attributes within the menu markup, since this is handled automatically by the Menu module.
 -->
 
-<ol data-autoposition="11" data-offsetleft="25" title="Options" class="menu" id="menu-options">
-<li>
-<a href="#" class="submenu" id="-profile">
-Profile
-</a>
-</li>
-<li>
-<a href="#" class="submenu" id="-settings">
-Settings
-</a>
-</li>
-<li>
-<a href="#" class="submenu" id="-account">
-Account
-</a>
-</li>
-<li>
-<a href="#" class="submenu" id="-services">
-Services
-</a>
-</li>
-<li>
-<a href="#" class="link" id="-properties">
-Properties...
-</a>
-</li>
-<li>
-<a href="#" class="link" id="-help">
-Help...
-</a>
-</li>
-</ol>
+    <ol data-autoposition="11" data-offsetleft="25" title="Options" class="menu" id="menu-options">
+        <li>
+            <a href="#" class="submenu" id="-profile">
+                Profile
+            </a>
+        </li>
+        <li>
+            <a href="#" class="submenu" id="-settings">
+                Settings
+            </a>
+        </li>
+        <li>
+            <a href="#" class="submenu" id="-account">
+                Account
+            </a>
+        </li>
+        <li>
+            <a href="#" class="submenu" id="-services">
+                Services
+            </a>
+        </li>
+        <li>
+            <a href="#" class="link" id="-properties">
+                Properties...
+            </a>
+        </li>
+        <li>
+            <a href="#" class="link" id="-help">
+                Help...
+            </a>
+        </li>
+    </ol>
 
-<ol title="Profile" class="menu" id="menu-options-profile">
-<li>
-<a href="#" class="submenu" id="-personal">
-Personal
-</a>
-</li>
-<li>
-<a href="#" class="submenu" id="-business">
-Business
-</a>
-</li>
-</ol>
+    <ol title="Profile" class="menu" id="menu-options-profile">
+        <li>
+            <a href="#" class="submenu" id="-personal">
+                Personal
+            </a>
+        </li>
+        <li>
+            <a href="#" class="submenu" id="-business">
+                Business
+            </a>
+        </li>
+    </ol>
 
-<ol title="Personal" class="menu" id="menu-options-profile-personal">
-<li>
-<a href="#" class="link" id="-name">
-Name
-</a>
-</li>
-<li>
-<a href="#" class="link" id="-interests">
-Interests
-</a>
-</li>
-<li>
-<a href="#" class="link" id="-education">
-Education
-</a>
-</li>
-</ol>
+    <ol title="Personal" class="menu" id="menu-options-profile-personal">
+        <li>
+            <a href="#" class="link" id="-name">
+                Name
+            </a>
+        </li>
+        <li>
+            <a href="#" class="link" id="-interests">
+                Interests
+            </a>
+        </li>
+        <li>
+            <a href="#" class="link" id="-education">
+                Education
+            </a>
+        </li>
+    </ol>
 
-<ol title="Business" class="menu" id="menu-options-profile-business">
-<li>
-<a href="#" class="link" id="business-name">
-Name
-</a>
-</li>
-<li>
-<a href="#" class="link" id="business-contact">
-Contact
-</a>
-</li>
-</ol>
+    <ol title="Business" class="menu" id="menu-options-profile-business">
+        <li>
+            <a href="#" class="link" id="business-name">
+                Name
+            </a>
+        </li>
+        <li>
+            <a href="#" class="link" id="business-contact">
+                Contact
+            </a>
+        </li>
+    </ol>
 
-<ol title="Settings" class="menu" id="menu-options-settings">
-<li>
-<a href="#" class="link" id="settings-search">
-Search
-</a>
-</li>
-<li>
-<a href="#" class="link" id="settings-cookies">
-Cookies
-</a>
-</li>
-<li>
-<a href="#" class="link" id="settings-layout">
-Layout
-</a>
-</li>
-</ol>
+    <ol title="Settings" class="menu" id="menu-options-settings">
+        <li>
+            <a href="#" class="link" id="settings-search">
+                Search
+            </a>
+        </li>
+        <li>
+            <a href="#" class="link" id="settings-cookies">
+                Cookies
+            </a>
+        </li>
+        <li>
+            <a href="#" class="link" id="settings-layout">
+                Layout
+            </a>
+        </li>
+    </ol>
 
-<ol title="Account" class="menu" id="menu-options-account">
-<li>
-<a href="#" class="link" id="account-username">
-Username
-</a>
-</li>
-<li>
-<a href="#" class="link" id="account-password">
-Password
-</a>
-</li>
-<li>
-<a href="#" class="link" id="account-email">
-Email
-</a>
-</li>
-</ol>
+    <ol title="Account" class="menu" id="menu-options-account">
+        <li>
+            <a href="#" class="link" id="account-username">
+                Username
+            </a>
+        </li>
+        <li>
+            <a href="#" class="link" id="account-password">
+                Password
+            </a>
+        </li>
+        <li>
+            <a href="#" class="link" id="account-email">
+                Email
+            </a>
+        </li>
+    </ol>
 
-<ol title="Services" class="menu" id="menu-options-services">
-<li>
-<a href="#" class="link" id="services-campaigns">
-Campaigns
-</a>
-</li>
-<li>
-<a href="#" class="link" id="services-payments">
-Payments
-</a>
-</li>
-<li>
-<a href="#" class="link" id="services-billing">
-Billing
-</a>
-</li>
-</ol>
+    <ol title="Services" class="menu" id="menu-options-services">
+        <li>
+            <a href="#" class="link" id="services-campaigns">
+                Campaigns
+            </a>
+        </li>
+        <li>
+            <a href="#" class="link" id="services-payments">
+                Payments
+            </a>
+        </li>
+        <li>
+            <a href="#" class="link" id="services-billing">
+                Billing
+            </a>
+        </li>
+    </ol>
 
-</body></html>
+</body>
+
+</html>

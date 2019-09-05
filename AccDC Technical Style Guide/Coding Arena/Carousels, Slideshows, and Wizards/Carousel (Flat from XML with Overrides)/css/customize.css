@@ -4,132 +4,146 @@
 /* Styling for the Auto Rotating Carousel */
 
 #carouselId {
-    display: block;
-    height: 170px;
-	margin: 2rem 0;
+  display: block;
+  height: 170px;
+  margin: 2rem 0;
 }
-
 
 div.navDivClass {
-	position: absolute;
-	top: 178px;
-	display: -webkit-flex;
-	display: -ms-flex;
-	display: flex;
+  position: absolute;
+  top: 178px;
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
 }
 ul.dotNavClass {
-	display: -webkit-flex;
-	display: -ms-flex;
-	display: flex;
-    list-style: none;
-	padding: 0 1rem;
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  list-style: none;
+  padding: 0 1rem;
 }
-	ul.dotNavClass span {
-		display: block;
-		padding: 0.3em 0.5em;
-	}
+ul.dotNavClass span {
+  display: block;
+  padding: 0.3em 0.5em;
+}
 
 #carouselId div.carouselCls {
-    text-align: center;
+  text-align: center;
 }
 
-#carouselId div.lNav, #carouselId div.rNav {
-    position: absolute;
-    height: 158px;
-    padding: 6px;
+#carouselId div.lNav,
+#carouselId div.rNav {
+  position: absolute;
+  height: 158px;
+  padding: 6px;
 }
 
 #carouselId div.centerContent {
-    position: absolute;
-    left: 15px;
-    width: 165px;
-    height: 170px;
-    overflow: hidden;
+  position: absolute;
+  left: 15px;
+  width: 165px;
+  height: 170px;
+  overflow: hidden;
 }
-	#carouselId div.centerContent div div {transition: opacity 1s;}
-	#carouselId div.centerContent div div[aria-hidden=false] {opacity: 1;}
-	#carouselId div.centerContent div div[aria-hidden=true] {opacity: 0;}
+#carouselId div.centerContent div div {
+  transition: opacity 1s;
+}
+#carouselId div.centerContent div div[aria-hidden="false"] {
+  opacity: 1;
+}
+#carouselId div.centerContent div div[aria-hidden="true"] {
+  opacity: 0;
+}
 
-#carouselId div.rNav {left: 227px;}
+#carouselId div.rNav {
+  left: 227px;
+}
 
 #carouselId .navButton {
-    border: 0;
-    padding: 0;
-    margin: 0;
+  border: 0;
+  padding: 0;
+  margin: 0;
 }
 
 #carouselId .navButton {
-    display: block;
-	overflow: hidden;
-    width: 28px;
-    height: 28px;
+  display: block;
+  overflow: hidden;
+  width: 28px;
+  height: 28px;
 }
 
-	#carouselId .navButton span[aria-hidden=true] {display: none;}
-	
-	#carouselId .leftCol .navButton {
-		background: url(../img/sprite.svg) 0 -660px no-repeat;
-	}
-	#carouselId .rightCol .navButton {
-		background: url(../img/sprite.svg) 0 -479px no-repeat;
-	}
+#carouselId .navButton span[aria-hidden="true"] {
+  display: none;
+}
 
+#carouselId .leftCol .navButton {
+  background: url(../img/sprite.svg) 0 -660px no-repeat;
+}
+#carouselId .rightCol .navButton {
+  background: url(../img/sprite.svg) 0 -479px no-repeat;
+}
 
-ul.dotNavClass li span {cursor: pointer;}
-ul.dotNavClass li[aria-current=true] {}
+ul.dotNavClass li span {
+  cursor: pointer;
+}
+ul.dotNavClass li[aria-current="true"] {
+}
 
 ul.dotNavClass li:focus:before {
-    position: absolute;
-    height: auto;
-    width: auto;
-    color: #FFF;
-    background-color: #2E3135;
-    font-size: 0.7em;
-    content: ' ' attr(title) ' ';
-	padding: 0.3em;
-    margin-top: 20px;
-	box-shadow: 0 1px 3px rgba(0,0,0,.7);
-    z-index: 1;
+  position: absolute;
+  height: auto;
+  width: auto;
+  color: #fff;
+  background-color: #2e3135;
+  font-size: 0.7em;
+  content: " " attr(title) " ";
+  padding: 0.3em;
+  margin-top: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+  z-index: 1;
 }
-ul.dotNavClass li.active-slide {background: #CECECE; border-radius: 1em;}
+ul.dotNavClass li.active-slide {
+  background: #cecece;
+  border-radius: 1em;
+}
 
 #carouselId div.centerContent:focus:before {
-    height: auto;
-    width: auto;
-    position: absolute;
-    z-index: 1;
-    margin-top: -20px;
-    margin-left: -80px;
-    background-color: white;
-    color: blue;
-    font-size: 10px;
-    content: ' ' attr(data-keyboard) ' ';
+  height: auto;
+  width: auto;
+  position: absolute;
+  z-index: 1;
+  margin-top: -20px;
+  margin-left: -80px;
+  background-color: white;
+  color: blue;
+  font-size: 10px;
+  content: " " attr(data-keyboard) " ";
 }
 
-
 a.stopBtn {
-	position: absolute;
-	overflow: hidden;
-	width: 24px;
-	height: 24px;
-	top: 0;
-	left: 200px;
-	text-indent: -10em;
-	background: url(../img/ic_close.svg) no-repeat;
+  position: absolute;
+  overflow: hidden;
+  width: 24px;
+  height: 24px;
+  top: 0;
+  left: 200px;
+  text-indent: -10em;
+  background: url(../img/ic_close.svg) no-repeat;
 }
 
 a.stopBtn.stopped {
-	opacity: .5;
+  opacity: 0.5;
 }
 
 a.stopBtn:focus:after {
-    height: auto;
-    width: auto;
-    position: absolute;
-    z-index: 1;
-    margin-left: 5px;
-    background-color: white;
-    color: blue;
-    font-size: 10px;
-    content: ' ' attr(title) ' ';
+  height: auto;
+  width: auto;
+  position: absolute;
+  z-index: 1;
+  margin-left: 5px;
+  background-color: white;
+  color: blue;
+  font-size: 10px;
+  content: " " attr(title) " ";
 }

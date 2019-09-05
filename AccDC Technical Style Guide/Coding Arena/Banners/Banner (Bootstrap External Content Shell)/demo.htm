@@ -1,121 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-<title>Banner (Bootstrap External Content Shell) - AccDC Technical Style Guide</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Banner (Bootstrap External Content Shell) - AccDC Technical Style Guide</title>
 
-<link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
-<link rel="stylesheet" type="text/css" href="css/customize.css" />
+    <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+    <link rel="stylesheet" type="text/css" href="css/customize.css" />
 
-<script type="text/javascript" src="../../_common/js/jQuery.js">
-// Load jQuery.
-// This is not necessary if using the Standalone AccDC API version.
-</script>
+    <script type="text/javascript" src="../../_common/js/jQuery.js">
+        // Load jQuery.
+        // This is not necessary if using the Standalone AccDC API version.
+    </script>
 
-<script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
-// Load the AccDC API, which all modules are plugged into as the common interface.
-</script>
+    <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+        // Load the AccDC API, which all modules are plugged into as the common interface.
+    </script>
 
-<!-- Now load all desired modules, which plugs them into AccDC. -->
-<script type="text/javascript" src="../../../2 Accessible Component Modules/banner_module.min.js"></script>
+    <!-- Now load all desired modules, which plugs them into AccDC. -->
+    <script type="text/javascript" src="../../../2 Accessible Component Modules/banner_module.min.js"></script>
 
-<script type="text/javascript" src="../../../3 AccDC Bootstrap/accdc_bootstrap.js">
-// Load AccDC Bootstrap to enable HTML parsing.
-</script>
+    <script type="text/javascript" src="../../../3 AccDC Bootstrap/accdc_bootstrap.js">
+        // Load AccDC Bootstrap to enable HTML parsing.
+    </script>
 
 </head>
+
 <body>
-<div>
+    <div>
 
-<div class="hd">
-<h1>
-Dynamic Banner (External)
-</h1>
-</div>
+        <div class="hd">
+            <h1>
+                Dynamic Banner (External)
+            </h1>
+        </div>
 
-<div class="intro tal">
+        <div class="intro tal">
 
-<!-- Required class:
+            <!-- Required class:
 "accBanner" : Specifies the container element of a banner control that will be configured by the Bootstrap module.
 
 Attributes explained:
-• class="accBanner" : The bootstrap class name that specifies an accessible banner. 
-• data-src : The resource path and pointer to the ID attribute of the banner container element. 
-• data-role : The role name that is conveyed to screen reader users as beginning and ending boundary text for the new content. "Banner" is set by default if no value is specified. 
-• id : The unique ID of the element. This value is also registered as the ID of the banner AccDC Object, making it possible to invoke the object programmatically.
+ï¿½ class="accBanner" : The bootstrap class name that specifies an accessible banner. 
+ï¿½ data-src : The resource path and pointer to the ID attribute of the banner container element. 
+ï¿½ data-role : The role name that is conveyed to screen reader users as beginning and ending boundary text for the new content. "Banner" is set by default if no value is specified. 
+ï¿½ id : The unique ID of the element. This value is also registered as the ID of the banner AccDC Object, making it possible to invoke the object programmatically.
 E.G $A.reg.uniqueID.open();
 // All other AccDC API properties and methods are similarly available.  
 -->
 
-<div id="uniqueBannerId" data-src="files/overlays.html#ad-2" data-role="Banner" class="accBanner"><!--
+            <div id="uniqueBannerId" data-src="files/overlays.html#ad-2" data-role="Banner" class="accBanner">
+                <!--
 Position this tag where you want the banner content to appear in the DOM reading order for screen reader users.
 (Preferably towards the top of the page so it's more likely to be encountered during navigation)
---></div>
+-->
+            </div>
 
-<!-- The onclick handler below simply references the Banner AccDC Object using the ID that matches the ID of the element with class="accBanner" (this being id="uniqueBannerId"), then toggles the 'open()' and 'close()' methods of the Banner AccDC Object accordingly.
+            <!-- The onclick handler below simply references the Banner AccDC Object using the ID that matches the ID of the element with class="accBanner" (this being id="uniqueBannerId"), then toggles the 'open()' and 'close()' methods of the Banner AccDC Object accordingly.
 All such methods and properties are documented as part of the AccDC API, on the Core API tab at WhatSock.com. -->
 
-<button onclick="if ($A.reg.uniqueBannerId.loaded) $A.reg.uniqueBannerId.close(); else $A.reg.uniqueBannerId.open();" class="toggleBtn"> Toggle Banner </button>
+            <button onclick="if ($A.reg.uniqueBannerId.loaded) $A.reg.uniqueBannerId.close(); else $A.reg.uniqueBannerId.open();" class="toggleBtn"> Toggle Banner </button>
 
-</div>
+        </div>
 
-<div class="desc">
-<p>
-The banner is loaded from an external page using HTML5 attributes in the container element markup.
-</p>
-</div>
+        <div class="desc">
+            <p>
+                The banner is loaded from an external page using HTML5 attributes in the container element markup.
+            </p>
+        </div>
 
-<div class="hd">
-<h2>
-<span>
-Bootstrap Syntax
-</span>
-</h2>
-</div>
+        <div class="hd">
+            <h2>
+                <span>
+                    Bootstrap Syntax
+                </span>
+            </h2>
+        </div>
 
-<div class="intro tal">
-<p>
-<code>
-&lt;div class="accBanner"<br />
-data-src="path/file.html#containerId"<br />
-data-role="ContentPanelRoleName"<br />
-id="uniqueID"<br />
-&gt;&lt;/div&gt;
-</code>
-</p>
-</div>
+        <div class="intro tal">
+            <p>
+                <code>
+                    &lt;div class="accBanner"<br />
+                    data-src="path/file.html#containerId"<br />
+                    data-role="ContentPanelRoleName"<br />
+                    id="uniqueID"<br />
+                    &gt;&lt;/div&gt;
+                </code>
+            </p>
+        </div>
 
-<div class="hd">
-<h2>
-<span>
-Attributes
-</span>
-</h2>
-</div>
+        <div class="hd">
+            <h2>
+                <span>
+                    Attributes
+                </span>
+            </h2>
+        </div>
 
-<div class="intro tal">
-<ul class="lsn"><li>
-class="accBanner" :
-The bootstrap class name that specifies an accessible banner.
-</li><li>
-data-src :
-The resource path and pointer to the ID attribute of the banner container element.
-</li><li>
-data-role :
-The role name that is conveyed to screen reader users as beginning and ending boundary text for the new content.
-"Banner" is set by default if no value is specified.
-</li><li>
-id :
-The unique ID of the element.
-This value is also registered as the ID of the banner AccDC Object, making it possible to invoke the object programmatically.<br />
-<code>
-$A.reg.uniqueID.open();<br />
-// All other AccDC API properties and methods are similarly available.
-</code>
-</li></ul>
-</div>
+        <div class="intro tal">
+            <ul class="lsn">
+                <li>
+                    class="accBanner" :
+                    The bootstrap class name that specifies an accessible banner.
+                </li>
+                <li>
+                    data-src :
+                    The resource path and pointer to the ID attribute of the banner container element.
+                </li>
+                <li>
+                    data-role :
+                    The role name that is conveyed to screen reader users as beginning and ending boundary text for the new content.
+                    "Banner" is set by default if no value is specified.
+                </li>
+                <li>
+                    id :
+                    The unique ID of the element.
+                    This value is also registered as the ID of the banner AccDC Object, making it possible to invoke the object programmatically.<br />
+                    <code>
+                        $A.reg.uniqueID.open();<br />
+                        // All other AccDC API properties and methods are similarly available.
+                    </code>
+                </li>
+            </ul>
+        </div>
 
-</div>
+    </div>
 </body>
+
 </html>

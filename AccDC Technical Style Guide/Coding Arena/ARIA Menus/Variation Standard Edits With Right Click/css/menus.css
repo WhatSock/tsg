@@ -1,54 +1,60 @@
 /* WHATSOCK, 2016 */
-/* Specific styles for ARIA Menus */@import url(http://fonts.googleapis.com/css?family=Patrick+Hand);
+/* Specific styles for ARIA Menus */
+@import url(http://fonts.googleapis.com/css?family=Patrick+Hand);
 
-#page1edit, #page2edit {
-	width: 80%;
-	min-height: 200px;
+#page1edit,
+#page2edit {
+  width: 80%;
+  min-height: 200px;
 }
 
-button {border: 1px solid #D0D0D0;}
+button {
+  border: 1px solid #d0d0d0;
+}
 
 div.menu ol.menu {
-    float: left;
-	width: 10em;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    background-color: #f5f5f5;
-    border: solid thin black;
-    -webkit-box-shadow: 0 5px 3px -3px #777;
-    -moz-box-shadow: 0 5px 3px -3px #777;
-    box-shadow: 0 5px 3px -3px #777;
+  float: left;
+  width: 10em;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: #f5f5f5;
+  border: solid thin black;
+  -webkit-box-shadow: 0 5px 3px -3px #777;
+  -moz-box-shadow: 0 5px 3px -3px #777;
+  box-shadow: 0 5px 3px -3px #777;
 }
 
 div.menu ol.menu > li {
-    margin: 2px 0px;
-    padding: 3px 6px;
-    position: relative;
+  margin: 2px 0px;
+  padding: 3px 6px;
+  position: relative;
 }
 
 div.menu ol.menu a {
-	display: block;
-	padding: 0.3em 0.8em;
-	text-decoration: none;
-	color: #FFF;
-	background-color: #2E3135;
+  display: block;
+  padding: 0.3em 0.8em;
+  text-decoration: none;
+  color: #fff;
+  background-color: #2e3135;
 }
 
 div.menu ol.menu a.submenu {
-	background: #2E3135 url(../img/sprite.svg) right -289px no-repeat;
+  background: #2e3135 url(../img/sprite.svg) right -289px no-repeat;
 }
 
-div.menu ol.menu a:focus, div.menu ol.menu a:hover, div.menu ol.menu a.submenu:hover {
-	color: #FFF;
-	background-color: #C13836;
+div.menu ol.menu a:focus,
+div.menu ol.menu a:hover,
+div.menu ol.menu a.submenu:hover {
+  color: #fff;
+  background-color: #c13836;
 }
 
-a[role ="menuitem"][aria-disabled = "true"] {
+a[role="menuitem"][aria-disabled="true"] {
 }
 
 body {
-    height: 500px;
-    -webkit-user-select: none; /* disable selection/Copy of UIWebView */
-    -webkit-touch-callout: none; /* disable the IOS popup when long-press */
+  height: 500px;
+  -webkit-user-select: none; /* disable selection/Copy of UIWebView */
+  -webkit-touch-callout: none; /* disable the IOS popup when long-press */
 }

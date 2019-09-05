@@ -1,6 +1,8 @@
-<html><body>
+<html>
 
-<!-- Important
+<body>
+
+    <!-- Important
 
 To ensure proper keyboard focus scycling within the modal when using the Tab and Shift+Tab keys, the following HTML5 attributes must be added to the first and last focusable active elements within the modal.
 
@@ -12,20 +14,22 @@ Also, when Implementing a Close link or button, the className must match the "cl
 Doing so will automatically bind the close methods with this element, and set keyboard focus properly when the AccDC Object is closed.
 -->
 
-<div id="modalContainer">
+    <div id="modalContainer">
 
-<div>
-<a data-first="true" class="lbClose" href="#"> Close Icon for Modal </a>
-</div>
+        <div>
+            <a data-first="true" class="lbClose" href="#"> Close Icon for Modal </a>
+        </div>
 
-<div>
-Modal content goes here
-</div>
+        <div>
+            Modal content goes here
+        </div>
 
-<div>
-<a data-last="true" href="#" > Last active element in modal </a>
-</div>
+        <div>
+            <a data-last="true" href="#"> Last active element in modal </a>
+        </div>
 
-</div>
+    </div>
 
-</body></html>
+</body>
+
+</html>

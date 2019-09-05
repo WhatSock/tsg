@@ -1,55 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-        <title>Modal (Internal Content With role=dialog) - AccDC Technical Style Guide</title>
-        <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
-        <link rel="stylesheet" type="text/css" href="css/customize.css" />
-        <script type="text/javascript" src="../../_common/js/jQuery.js">
-            // Load jQuery.
-            // This is not necessary if using the Standalone AccDC API version.
-        </script>
-        <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
-            // Load the AccDC API, which all modules are plugged into as the common interface.
-        </script>
-        <!-- Now load all desired modules, which plugs them into AccDC. --><script type="text/javascript" src="../../../2 Accessible Component Modules/modal_module.min.js"></script>
-        <script type="text/javascript" src="js/setup.js">
-            // Run the setup script where module invocation statements are contained.
-        </script>
-    </head>
-    <body>
-    	<div id="coding-arena">
-			<header>
-				<div class="innerHeader">
-					<a href="http://whatsock.com"><img alt="WhatSock : Changing the world one step at a time" src="../../_common/img/whatsock.svg" /> 
-					<strong>AccDC</strong> Technical Style Guide</a></div>
-			</header>
-			
-			<main>
-				<h1 class="pageTitle">Modal <small>Internal Content</small></h1>
-            	
-				<div class="demo-block">
-					<p class="buttons-bar"><button id="loginBtn">Login</button></p>
-            	</div>
-				
-				<div class="keyboard">
-	                <p>The modal is optimized for screen reader and keyboard only users:</p>
-	                <ul>
-						<li>Activate the Login button to open the modal.</li>
-						<li>Screen reader users will be confined within the modal content, and will 
-							not be able to see the background page content. (Confirmed in both Windows 
-							platform and iOS touch screen devices)</li>
-						<li>Keyboard focus is automatically restricted to active elements within the modal, 
-							which is handled using HTML5 attributes within the first and last form fields within the markup.</li>
-					</ul>
-	            </div>
-			
-			</main>
-        </div>
-		
-        <div class="hidden">
-            <!-- Important
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Modal (Internal Content With role=dialog) - AccDC Technical Style Guide</title>
+    <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+    <link rel="stylesheet" type="text/css" href="css/customize.css" />
+    <script type="text/javascript" src="../../_common/js/jQuery.js">
+        // Load jQuery.
+        // This is not necessary if using the Standalone AccDC API version.
+    </script>
+    <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+        // Load the AccDC API, which all modules are plugged into as the common interface.
+    </script>
+    <!-- Now load all desired modules, which plugs them into AccDC. -->
+    <script type="text/javascript" src="../../../2 Accessible Component Modules/modal_module.min.js"></script>
+    <script type="text/javascript" src="js/setup.js">
+        // Run the setup script where module invocation statements are contained.
+    </script>
+</head>
+
+<body>
+    <div id="coding-arena">
+        <header>
+            <div class="innerHeader">
+                <a href="http://whatsock.com"><img alt="WhatSock : Changing the world one step at a time" src="../../_common/img/whatsock.svg" />
+                    <strong>AccDC</strong> Technical Style Guide</a></div>
+        </header>
+
+        <main>
+            <h1 class="pageTitle">Modal <small>Internal Content</small></h1>
+
+            <div class="demo-block">
+                <p class="buttons-bar"><button id="loginBtn">Login</button></p>
+            </div>
+
+            <div class="keyboard">
+                <p>The modal is optimized for screen reader and keyboard only users:</p>
+                <ul>
+                    <li>Activate the Login button to open the modal.</li>
+                    <li>Screen reader users will be confined within the modal content, and will
+                        not be able to see the background page content. (Confirmed in both Windows
+                        platform and iOS touch screen devices)</li>
+                    <li>Keyboard focus is automatically restricted to active elements within the modal,
+                        which is handled using HTML5 attributes within the first and last form fields within the markup.</li>
+                </ul>
+            </div>
+
+        </main>
+    </div>
+
+    <div class="hidden">
+        <!-- Important
             To ensure proper keyboard focus scycling within the modal when using the Tab and Shift+Tab keys, the following HTML5 attributes must be added to the first and last focusable active elements within the modal.
             data-first="true" : Must be added to the first focusable active element within the modal.
             data-last="true" : Must be added to the last focusable active element within the modal.
@@ -57,14 +60,15 @@
             (If not explicitly set, the default value "lbClose" is configured within the module script file, and should be used for all Close links or buttons)
             Doing so will automatically bind the close methods with this element, and set keyboard focus properly when the AccDC Object is closed.
             -->
-            <div id="modal-login">
-                <form id="lbForm">
-                    <p><label for="uname">Username:</label> <input data-first="true" type="text" id="uname" name="uname" /></p>
-                    <p><label for="pass">Password:</label> <input type="password" id="pass" name="pass" /></p>
-                    <p class="buttons-bar"><input type="submit" id="lbSubmit" value="OK" /> 
-                    	<input type="reset" data-last="true" class="lbClose" id="lbCancel" value="Cancel" /></p>
-                </form>
-            </div>
+        <div id="modal-login">
+            <form id="lbForm">
+                <p><label for="uname">Username:</label> <input data-first="true" type="text" id="uname" name="uname" /></p>
+                <p><label for="pass">Password:</label> <input type="password" id="pass" name="pass" /></p>
+                <p class="buttons-bar"><input type="submit" id="lbSubmit" value="OK" />
+                    <input type="reset" data-last="true" class="lbClose" id="lbCancel" value="Cancel" /></p>
+            </form>
         </div>
-    </body>
+    </div>
+</body>
+
 </html>

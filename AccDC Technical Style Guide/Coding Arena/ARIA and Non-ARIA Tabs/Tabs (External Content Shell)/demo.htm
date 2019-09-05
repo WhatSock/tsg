@@ -1,36 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-<title>Tabs (External Content Shell) - AccDC Technical Style Guide</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Tabs (External Content Shell) - AccDC Technical Style Guide</title>
 
-<link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
-<link rel="stylesheet" type="text/css" href="css/customize.css" />
+    <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+    <link rel="stylesheet" type="text/css" href="css/customize.css" />
 
-<script type="text/javascript" src="../../_common/js/jQuery.js">
-// Load jQuery.
-// This is not necessary if using the Standalone AccDC API version.
-</script>
+    <script type="text/javascript" src="../../_common/js/jQuery.js">
+        // Load jQuery.
+        // This is not necessary if using the Standalone AccDC API version.
+    </script>
 
-<script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
-// Load the AccDC API, which all modules are plugged into as the common interface.
-</script>
+    <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+        // Load the AccDC API, which all modules are plugged into as the common interface.
+    </script>
 
-<!-- Now load all desired modules, which plugs them into AccDC. -->
-<script type="text/javascript" src="../../../2 Accessible Component Modules/aria_tabs_module.min.js"></script>
+    <!-- Now load all desired modules, which plugs them into AccDC. -->
+    <script type="text/javascript" src="../../../2 Accessible Component Modules/aria_tabs_module.min.js"></script>
 
-<script type="text/javascript" src="js/setup.js">
-// Run the setup script where module invocation statements are contained.
-</script>
+    <script type="text/javascript" src="js/setup.js">
+        // Run the setup script where module invocation statements are contained.
+    </script>
 
 </head>
+
 <body>
-<div>
+    <div>
 
-<div class="intro tac">
+        <div class="intro tac">
 
-<!-- For non-ARIA tabs such as these, there should be no ARIA attributes in the markup.
+            <!-- For non-ARIA tabs such as these, there should be no ARIA attributes in the markup.
 Both the tab list container element and all tab item nodes must include unique ID values.
 The innerHTML for each tab item node must contain a textual label, which may be positioned offscreen to hide it visually if desired.
 This textual label is necessary so that screen reader users will be able to identify the purpose of the node, and also to ensure proper feedback in iOS devices when using Voiceover.
@@ -38,62 +40,65 @@ Images may also be used within tab item nodes if desired.
 If the image is non-informative, or if it only repeats the text contained within the textual label, it should include the attribute alt="" to hide it from screen reader users.
 
 Attributes explained:
-• data-src : The resource path and pointer to the ID attribute of the tab content container element. If set, data-internal should be blank or not included.
-• data-internal : The ID attribute of the tab panel container element within the same document.
+ï¿½ data-src : The resource path and pointer to the ID attribute of the tab content container element. If set, data-internal should be blank or not included.
+ï¿½ data-internal : The ID attribute of the tab panel container element within the same document.
 If data-internal is set, data-src should be blank or not included. 
-• data-defaultopen="true" : Specifies that the referenced tab will open automatically. Only one tab per group should include this attribute. 
-• data-role : The role name that is conveyed to screen reader users as beginning and ending boundary text for the tab panel content. "Tab" is set by default
+ï¿½ data-defaultopen="true" : Specifies that the referenced tab will open automatically. Only one tab per group should include this attribute. 
+ï¿½ data-role : The role name that is conveyed to screen reader users as beginning and ending boundary text for the tab panel content. "Tab" is set by default
 if no value is specified. 
-• data-insert : The ID attribute of the container element where tab panel content will be inserted. 
-• id : The unique ID of the element. This value is also registered as the ID of the individual tab AccDC Object, making it possible to invoke the object
+ï¿½ data-insert : The ID attribute of the container element where tab panel content will be inserted. 
+ï¿½ id : The unique ID of the element. This value is also registered as the ID of the individual tab AccDC Object, making it possible to invoke the object
 programmatically.
 E.G $A.reg.uniqueID.open();
 // All other AccDC API properties and methods are similarly available.    
  -->
 
-<ul class="tabs clearfix">
+            <ul class="tabs clearfix">
 
-<li>
-<a href="#" id="xTab1id" class="accTab tab1" data-src="files/tabs.html#tab1content" data-role="Tab" data-insert="tabInsertId" data-defaultopen="true">
-<span>Name 1</span>
-</a>
-</li>
+                <li>
+                    <a href="#" id="xTab1id" class="accTab tab1" data-src="files/tabs.html#tab1content" data-role="Tab" data-insert="tabInsertId" data-defaultopen="true">
+                        <span>Name 1</span>
+                    </a>
+                </li>
 
-<li>
-<a href="#" id="xTab2id" class="accTab tab2" data-src="files/tabs.html#tab2content" data-role="Tab" data-insert="tabInsertId">
-<span>Name 2</span>
-</a>
-</li>
+                <li>
+                    <a href="#" id="xTab2id" class="accTab tab2" data-src="files/tabs.html#tab2content" data-role="Tab" data-insert="tabInsertId">
+                        <span>Name 2</span>
+                    </a>
+                </li>
 
-<li>
-<a href="#" id="xTab3id" class="accTab tab3" data-src="files/tabs.html#tab3content" data-role="Tab" data-insert="tabInsertId">
-<span>Name 3</span>
-</a>
-</li>
+                <li>
+                    <a href="#" id="xTab3id" class="accTab tab3" data-src="files/tabs.html#tab3content" data-role="Tab" data-insert="tabInsertId">
+                        <span>Name 3</span>
+                    </a>
+                </li>
 
-<li>
-<a href="#" id="xTab4id" class="accTab tab4" data-src="files/tabs.html#tab4content" data-role="Tab" data-insert="tabInsertId">
-<span>Name 4</span>
-</a>
-</li>
+                <li>
+                    <a href="#" id="xTab4id" class="accTab tab4" data-src="files/tabs.html#tab4content" data-role="Tab" data-insert="tabInsertId">
+                        <span>Name 4</span>
+                    </a>
+                </li>
 
-</ul>
+            </ul>
 
-<div class="content" id="tabInsertId"></div>
+            <div class="content" id="tabInsertId"></div>
 
-<div class="desc">
-<p>
-The tab controls are keyboard accessible.
-</p>
-<p><pre>
+            <div class="desc">
+                <p>
+                    The tab controls are keyboard accessible.
+                </p>
+                <p>
+                    <pre>
 Press Tab to navigate between tab controls.
 Press Enter to open (or toggle if configured) the selected tab.
 Mouse users can click the desired tab as usual.
-</pre></p>
-</div>
+</pre>
+                </p>
+            </div>
 
-</div>
+        </div>
 
-</div>
+    </div>
 </body>
+
 </html>

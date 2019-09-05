@@ -2,25 +2,29 @@
 /* Specific styles for ARIA Scrollable Div */
 
 #scrollPane {
-	overflow: auto;
-	width: 70%;
-	max-width: 24em;
-	height: 10em;
-	font: 1.2em Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif;
-	background: url(../img/scroll/backdrop.jpg) #000 no-repeat;
-	color: #FFF;
-	padding: 1.5rem 2rem;
-	margin: 2rem 0;
-	box-shadow: 0 10px 6px -6px #777;
+  overflow: auto;
+  width: 70%;
+  max-width: 24em;
+  height: 10em;
+  font: 1.2em Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida,
+    "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif;
+  background: url(../img/scroll/backdrop.jpg) #000 no-repeat;
+  color: #fff;
+  padding: 1.5rem 2rem;
+  margin: 2rem 0;
+  box-shadow: 0 10px 6px -6px #777;
 }
-	
-	#scrollPane h3 {color: #fff; text-shadow: 0 0 5px rgba(0,0,0,1);}
+
+#scrollPane h3 {
+  color: #fff;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 1);
+}
 
 .standardWrapper {
-	overflow-x: hidden;
-	overflow-y: auto;
-	border: solid thin black;
-	position: relative;
-	height: 6em;
-	padding: 0 10px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border: solid thin black;
+  position: relative;
+  height: 6em;
+  padding: 0 10px;
 }

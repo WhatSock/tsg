@@ -1,82 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-		<title>ARIA Date Picker (with Full Calendar Display, Condense Year and Natural PageUpDown) - AccDC Technical Style Guide</title>
-		<link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
-		<link rel="stylesheet" type="text/css" href="css/customize.css" />
-		<link rel="stylesheet" type="text/css" href="css/calendar.css" />
-		<script type="text/javascript" src="../../_common/js/jQuery.js">
-			// Load jQuery.
-			// This is not necessary if using the Standalone AccDC API version.
-		</script>
-		<script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
-			// Load the AccDC API, which all modules are plugged into as the common interface.
-		</script>
-		<!-- Now load all desired modules, which plugs them into AccDC. -->
-		<script type="text/javascript" src="../../../2 Accessible Component Modules/calendar_generator.js"></script>
-		<script type="text/javascript" src="js/setup.js">
-			// Run the setup script where module invocation statements are contained.
-		</script>
-	</head>
-	<body>
-		<div id="coding-arena">
-			<header>
-				<div class="innerHeader">
-					<a href="http://whatsock.com"><img alt="WhatSock : Changing the world one step at a time" src="../../_common/img/whatsock.svg" />
-					<strong>AccDC</strong> Technical Style Guide</a>
-				</div>
-			</header>
 
-			<main>
-				<h1 class="pageTitle">ARIA Date Picker <small> (with Full Calendar Display, Condense Year and Natural PageUpDown)</small></h1>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>ARIA Date Picker (with Full Calendar Display, Condense Year and Natural PageUpDown) - AccDC Technical Style Guide</title>
+    <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+    <link rel="stylesheet" type="text/css" href="css/customize.css" />
+    <link rel="stylesheet" type="text/css" href="css/calendar.css" />
+    <script type="text/javascript" src="../../_common/js/jQuery.js">
+        // Load jQuery.
+        // This is not necessary if using the Standalone AccDC API version.
+    </script>
+    <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+        // Load the AccDC API, which all modules are plugged into as the common interface.
+    </script>
+    <!-- Now load all desired modules, which plugs them into AccDC. -->
+    <script type="text/javascript" src="../../../2 Accessible Component Modules/calendar_generator.js"></script>
+    <script type="text/javascript" src="js/setup.js">
+        // Run the setup script where module invocation statements are contained.
+    </script>
+</head>
 
-				<div class="description">
-					<ul>
-						<li>
-							Condense the year display by removing the year nav buttons
-						</li>
-						<li>
-							Draw the full calendar, including days in the previous and next months
-						</li>
-						<li>
-							Make the PageUp key go to the previous month, and the PageDown key go to the next month
-						</li>
-					</ul>
+<body>
+    <div id="coding-arena">
+        <header>
+            <div class="innerHeader">
+                <a href="http://whatsock.com"><img alt="WhatSock : Changing the world one step at a time" src="../../_common/img/whatsock.svg" />
+                    <strong>AccDC</strong> Technical Style Guide</a>
+            </div>
+        </header>
 
-					<code>
-						{<br />
-						&nbsp;&nbsp;condenseYear: true,<br />
-						&nbsp;&nbsp;drawFullCalendar: true,<br />
-						&nbsp;&nbsp;pageUpDownNatural: true<br />
-						}
-					</code>
-				</div>
+        <main>
+            <h1 class="pageTitle">ARIA Date Picker <small> (with Full Calendar Display, Condense Year and Natural PageUpDown)</small></h1>
 
-				<div class="demo-block">
-				<p class="dateField">
-						<label for="date">Set Date:</label>
-						<input id="date" type="text" name="date" placeholder="mm/dd/yyyy" />
-							<a role="button" aria-describedby="date" href="#" id="dateIcon" class="accCalendar datePicker">
-							<img src="img/calendar-button.svg" alt="Calendar" title="Calendar" /></a>
-					</p>
-				</div>
-				<div class="keyboard">
-					<p>The calendar is keyboard accessible:</p>
-					<ul>
-						<li>When the calendar is opened, focus is set on the current date.</li>
-						<li>Press the <kbd class="left">Left</kbd> and <kbd class="right">Right</kbd> arrow keys to navigate the row by week day.</li>
-						<li>Press the <kbd class="home">Home</kbd> and <kbd class="end">End</kbd> keys to jump to the beginning or end of the current row.</li>
-						<li>Press the <kbd class="up">Up</kbd> and <kbd class="down">Down</kbd> arrow keys to navigate between weeks on the same week day.</li>
-						<li>Press the <kbd>PageDown</kbd> and <kbd>PageUp</kbd> keys to navigate backwards or forwards by month.</li>
-						<li>Press <kbd><kbd>Alt</kbd>+<kbd>PageDown</kbd></kbd> and <kbd><kbd>Alt</kbd>+<kbd>PageUp</kbd></kbd> to navigate backwards or forwards by year.</li>
-						<li>Press the <kbd>Enter</kbd> key to activate the selected date.</li>
-						<li>Press <kbd>Escape</kbd> to close the calendar without making a selection.</li>
-						<li>Mouse users can click the desired date buttons as usual.</li>
-					</ul>
-				</div>
-			</main>
-		</div>
-	</body>
+            <div class="description">
+                <ul>
+                    <li>
+                        Condense the year display by removing the year nav buttons
+                    </li>
+                    <li>
+                        Draw the full calendar, including days in the previous and next months
+                    </li>
+                    <li>
+                        Make the PageUp key go to the previous month, and the PageDown key go to the next month
+                    </li>
+                </ul>
+
+                <code>
+                    {<br />
+                    &nbsp;&nbsp;condenseYear: true,<br />
+                    &nbsp;&nbsp;drawFullCalendar: true,<br />
+                    &nbsp;&nbsp;pageUpDownNatural: true<br />
+                    }
+                </code>
+            </div>
+
+            <div class="demo-block">
+                <p class="dateField">
+                    <label for="date">Set Date:</label>
+                    <input id="date" type="text" name="date" placeholder="mm/dd/yyyy" />
+                    <a role="button" aria-describedby="date" href="#" id="dateIcon" class="accCalendar datePicker">
+                        <img src="img/calendar-button.svg" alt="Calendar" title="Calendar" /></a>
+                </p>
+            </div>
+            <div class="keyboard">
+                <p>The calendar is keyboard accessible:</p>
+                <ul>
+                    <li>When the calendar is opened, focus is set on the current date.</li>
+                    <li>Press the <kbd class="left">Left</kbd> and <kbd class="right">Right</kbd> arrow keys to navigate the row by week day.</li>
+                    <li>Press the <kbd class="home">Home</kbd> and <kbd class="end">End</kbd> keys to jump to the beginning or end of the current row.</li>
+                    <li>Press the <kbd class="up">Up</kbd> and <kbd class="down">Down</kbd> arrow keys to navigate between weeks on the same week day.</li>
+                    <li>Press the <kbd>PageDown</kbd> and <kbd>PageUp</kbd> keys to navigate backwards or forwards by month.</li>
+                    <li>Press <kbd><kbd>Alt</kbd>+<kbd>PageDown</kbd></kbd> and <kbd><kbd>Alt</kbd>+<kbd>PageUp</kbd></kbd> to navigate backwards or forwards by year.</li>
+                    <li>Press the <kbd>Enter</kbd> key to activate the selected date.</li>
+                    <li>Press <kbd>Escape</kbd> to close the calendar without making a selection.</li>
+                    <li>Mouse users can click the desired date buttons as usual.</li>
+                </ul>
+            </div>
+        </main>
+    </div>
+</body>
+
 </html>

@@ -1,53 +1,71 @@
 /* WHATSOCK, 2016 */
 /* Specific styles for Simulated Checkboxes/No Aria */
 
-div.demo-block h3 {font-size: 1.3em; margin-bottom: 2rem;}
-div.demo-block a, div.demo-block a:link, div.demo-block a:visited {background: transparent;}
+div.demo-block h3 {
+  font-size: 1.3em;
+  margin-bottom: 2rem;
+}
+div.demo-block a,
+div.demo-block a:link,
+div.demo-block a:visited {
+  background: transparent;
+}
 
-#img1, #input1, #div1 {cursor: pointer;}
+#img1,
+#input1,
+#div1 {
+  cursor: pointer;
+}
 
-dl {max-width: 40em;}
+dl {
+  max-width: 40em;
+}
 
-dt {font-weight: bold; margin-bottom: 0.5rem;}
+dt {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
 
 dd {
-	display: -webkit-flex;
-	display: -ms-flex;
-	display: flex;
-	-webkit-align-items: center; 
-	-ms-align-items: center;
-	align-items: center;
-	padding-bottom: 1rem;
-	margin-bottom: 1rem;
-	border-bottom: 1px dotted #CCC;
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px dotted #ccc;
 }
-dd:last-child {border: none;}
+dd:last-child {
+  border: none;
+}
 
 dd *:nth-child(2) {
-	-webkit-flex: 1 1 30%;
-	-ms-flex: 1 1 30%;
-	flex: 1 1 30%;
-	padding: 0 1rem 0 10%;
+  -webkit-flex: 1 1 30%;
+  -ms-flex: 1 1 30%;
+  flex: 1 1 30%;
+  padding: 0 1rem 0 10%;
 }
 
 #a2 {
-	width: 134px;
-	height: 113px;
-	background: url(../img/donkey.svg) no-repeat;
+  width: 134px;
+  height: 113px;
+  background: url(../img/donkey.svg) no-repeat;
 }
 
 #a2.checked {
-	background: url(../img/donkey_checked.svg) no-repeat;
+  background: url(../img/donkey_checked.svg) no-repeat;
 }
 
 .offscreenText {
-    position: absolute;
-    clip: rect(1px 1px 1px 1px);
-    clip: rect(1px, 1px, 1px, 1px);
-    padding: 0;
-    border: 0;
-    height: 1px;
-    width: 1px;
-    overflow: hidden;
-    z-index: -1000;
+  position: absolute;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0;
+  border: 0;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  z-index: -1000;
 }

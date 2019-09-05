@@ -1,69 +1,62 @@
-$A.bind(window, 'load', function(){
+$A.bind(window, "load", function() {
+  // Set a banner to be loaded, and save a public reference to the ID
 
-	// Set a banner to be loaded, and save a public reference to the ID
+  window.bannerId = $A.setBanner({
+    // Set a unique ID for the banner AccDC Object, which can also be referenced through $A.reg['uniqueId']
+    id: "myBanner",
 
-	window.bannerId = $A.setBanner(
-					{
+    // Set the boundary text for screen reader users
+    role: "Banner",
+    accStart: "Start",
+    accEnd: "End",
 
-					// Set a unique ID for the banner AccDC Object, which can also be referenced through $A.reg['uniqueId']
-					id: 'myBanner',
+    // Specify the path and ID of the banner content to be loaded
+    source: "files/overlays.html #ad-1",
 
-					// Set the boundary text for screen reader users
-					role: 'Banner',
-					accStart: 'Start',
-					accEnd: 'End',
+    // Disable automatic positioning
+    autoFix: 0,
 
-					// Specify the path and ID of the banner content to be loaded
-					source: 'files/overlays.html #ad-1',
+    // Specify that the banner should open as soon as the page loads
+    autoStart: true,
 
-					// Disable automatic positioning
-					autoFix: 0,
+    // Set a class name for the banner top level container element
+    className: "banner",
 
-					// Specify that the banner should open as soon as the page loads
-					autoStart: true,
+    // Specify that the textual content of the banner should automatically be announced to screen reader users when opened
+    announce: true,
 
-					// Set a class name for the banner top level container element
-					className: 'banner',
+    // Choose the container element where the banner will be inserted
+    isStatic: "body",
+    // Choose to prepend the banner instead of replacing the content within the container element
+    prepend: true,
 
-// Specify that the textual content of the banner should automatically be announced to screen reader users when opened
-					announce: true,
+    // Set a hidden close link to appear for screen reader users
+    showHiddenClose: true,
+    // Remove the hidden close link from the tab order so it doesn't appear when tabbing
+    displayHiddenClose: false,
 
-					// Choose the container element where the banner will be inserted
-					isStatic: 'body',
-					// Choose to prepend the banner instead of replacing the content within the container element
-					prepend: true,
+    // Set the heading level that will be accessible for screen reader users
+    ariaLevel: 2,
 
-					// Set a hidden close link to appear for screen reader users
-					showHiddenClose: true,
-					// Remove the hidden close link from the tab order so it doesn't appear when tabbing
-					displayHiddenClose: false,
+    // Run a script after the banner finishes loading
+    runAfter: function(dc) {
+      // Set a submit handler on the form within the banner
+      $A.bind("div.banner form", "submit", function(ev) {
+        // Prevent the page from refreshing
+        ev.preventDefault();
 
-					// Set the heading level that will be accessible for screen reader users
-					ariaLevel: 2,
+        // Get a reference to the email edit field, and check for an entry
+        var email = $A.getEl("email").value;
 
-					// Run a script after the banner finishes loading
-					runAfter: function(dc){
+        if (email) alert("Do something with " + email);
 
-						// Set a submit handler on the form within the banner
-						$A.bind('div.banner form', 'submit', function(ev){
+        // Get a reference to the Banner AccDC Object using its ID
+        var dc = $A.reg[bannerId];
+        // Then close the banner
+        dc.close();
+      });
+    }
 
-							// Prevent the page from refreshing
-							ev.preventDefault();
-
-							// Get a reference to the email edit field, and check for an entry
-							var email = $A.getEl('email').value;
-
-							if (email)
-								alert('Do something with ' + email);
-
-							// Get a reference to the Banner AccDC Object using its ID
-							var dc = $A.reg[bannerId];
-							// Then close the banner
-							dc.close();
-						});
-					}
-
-					// Other AccDC API properties and methods can go here as well.
-
-					});
+    // Other AccDC API properties and methods can go here as well.
+  });
 });

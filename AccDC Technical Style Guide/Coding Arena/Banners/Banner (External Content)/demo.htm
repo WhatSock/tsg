@@ -1,61 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-<title>Banner (External Content) - AccDC Technical Style Guide</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Banner (External Content) - AccDC Technical Style Guide</title>
 
-<link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
-<link rel="stylesheet" type="text/css" href="css/customize.css" />
-<link rel="stylesheet" type="text/css" href="css/banner.css" />
-<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Alfa+Slab+One" />
-<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Boogaloo" />
+    <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+    <link rel="stylesheet" type="text/css" href="css/customize.css" />
+    <link rel="stylesheet" type="text/css" href="css/banner.css" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Alfa+Slab+One" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Boogaloo" />
 
-<script type="text/javascript" src="../../_common/js/jQuery.js">
-// Load jQuery.
-// This is not necessary if using the Standalone AccDC API version.
-</script>
+    <script type="text/javascript" src="../../_common/js/jQuery.js">
+        // Load jQuery.
+        // This is not necessary if using the Standalone AccDC API version.
+    </script>
 
-<script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
-// Load the AccDC API, which all modules are plugged into as the common interface.
-</script>
+    <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+        // Load the AccDC API, which all modules are plugged into as the common interface.
+    </script>
 
-<!-- Now load all desired modules, which plugs them into AccDC. -->
-<script type="text/javascript" src="../../../2 Accessible Component Modules/banner_module.min.js"></script>
+    <!-- Now load all desired modules, which plugs them into AccDC. -->
+    <script type="text/javascript" src="../../../2 Accessible Component Modules/banner_module.min.js"></script>
 
-<script type="text/javascript" src="js/setup.js">
-// Run the setup script where module invocation statements are contained.
-</script>
+    <script type="text/javascript" src="js/setup.js">
+        // Run the setup script where module invocation statements are contained.
+    </script>
 
 </head>
+
 <body>
-<div>
+    <div>
 
-<div class="hd">
-<h1>
-Dynamic Banner (External)
-</h1>
-</div>
+        <div class="hd">
+            <h1>
+                Dynamic Banner (External)
+            </h1>
+        </div>
 
-<div class="intro tal">
+        <div class="intro tal">
 
-<!-- The onclick handler below simply references the Banner AccDC Object using the ID that was returned in the setup script, and invokes the object's 'open()' method to rerender the banner content.
+            <!-- The onclick handler below simply references the Banner AccDC Object using the ID that was returned in the setup script, and invokes the object's 'open()' method to rerender the banner content.
 All such methods and properties are documented as part of the AccDC API, on the Core API tab at WhatSock.com. -->
 
-<button onclick="$A.reg[bannerId].open();" class="reloadBtn"> Reload Banner </button>
+            <button onclick="$A.reg[bannerId].open();" class="reloadBtn"> Reload Banner </button>
 
-</div>
+        </div>
 
-<div class="desc">
-<p>
-The banner is loaded from an external page using it's ID.
-</p>
-<p><pre>
+        <div class="desc">
+            <p>
+                The banner is loaded from an external page using it's ID.
+            </p>
+            <p>
+                <pre>
 Activate the Submit button to close the banner.
 Activate the Reload button to rerender the banner content.
-</pre></p>
-</div>
+</pre>
+            </p>
+        </div>
 
-</div>
+    </div>
 </body>
+
 </html>

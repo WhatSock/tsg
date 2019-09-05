@@ -1,4 +1,3 @@
-
 /* The wrapper Div tag surrounding the listbox container */
 .standardWrapper {
 }
@@ -24,5 +23,5 @@
 }
 
 *:focus {
-outline: orange 1px inset;
+  outline: orange 1px inset;
 }

@@ -1,17 +1,18 @@
 /* WHATSOCK, 2016 */
 /* Specific styles for Inline Form Field Validation */
 
-form {clear: both;}
-
+form {
+  clear: both;
+}
 
 div.errorTooltip {
-	min-width: 20em;
-	font-size: 0.8rem;
-	color: #FFF;
-    background: #2E3135;
-    padding: 0.3em 0.5em;
-    -webkit-box-shadow: 0 1px 1px #d3d3d3, inset 0 1px 0 #fee395;
-    -moz-box-shadow: 0 1px 1px #d3d3d3, inset 0 1px 0 #fee395;
-    box-shadow: 0 1px 1px #d3d3d3, inset 0 1px 0 #fee395;
-	z-index: 1;
+  min-width: 20em;
+  font-size: 0.8rem;
+  color: #fff;
+  background: #2e3135;
+  padding: 0.3em 0.5em;
+  -webkit-box-shadow: 0 1px 1px #d3d3d3, inset 0 1px 0 #fee395;
+  -moz-box-shadow: 0 1px 1px #d3d3d3, inset 0 1px 0 #fee395;
+  box-shadow: 0 1px 1px #d3d3d3, inset 0 1px 0 #fee395;
+  z-index: 1;
 }

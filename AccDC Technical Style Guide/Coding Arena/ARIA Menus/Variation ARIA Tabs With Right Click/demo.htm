@@ -1,98 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-        <title>Menu Variation ARIA Tabs With Right Click - AccDC Technical Style Guide</title>
-        <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
-        <link rel="stylesheet" type="text/css" href="css/customize.css" />
-        <link rel="stylesheet" type="text/css" href="css/menus.css" />
-        <script type="text/javascript" src="../../_common/js/jQuery.js">
-            // Load jQuery.
-            // This is not necessary if using the Standalone AccDC API version.
-        </script>
-        <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
-            // Load the AccDC API, which all modules are plugged into as the common interface.
-        </script>
-        <!-- Now load all desired modules, which plugs them into AccDC. --><script type="text/javascript" src="../../../2 Accessible Component Modules/aria_tabs_module.min.js"></script>
-        <script type="text/javascript" src="../../../2 Accessible Component Modules/aria_menu_module.min.js"></script>
-        <script type="text/javascript" src="js/setup.js">
-            // Run the setup script where module invocation statements are contained.
-        </script>
-    </head>
-    <body>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Menu Variation ARIA Tabs With Right Click - AccDC Technical Style Guide</title>
+    <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+    <link rel="stylesheet" type="text/css" href="css/customize.css" />
+    <link rel="stylesheet" type="text/css" href="css/menus.css" />
+    <script type="text/javascript" src="../../_common/js/jQuery.js">
+        // Load jQuery.
+        // This is not necessary if using the Standalone AccDC API version.
+    </script>
+    <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+        // Load the AccDC API, which all modules are plugged into as the common interface.
+    </script>
+    <!-- Now load all desired modules, which plugs them into AccDC. -->
+    <script type="text/javascript" src="../../../2 Accessible Component Modules/aria_tabs_module.min.js"></script>
+    <script type="text/javascript" src="../../../2 Accessible Component Modules/aria_menu_module.min.js"></script>
+    <script type="text/javascript" src="js/setup.js">
+        // Run the setup script where module invocation statements are contained.
+    </script>
+</head>
+
+<body>
     <div id="coding-arena">
-			<header>
-				<div class="innerHeader">
-					<a href="http://whatsock.com"><img alt="WhatSock : Changing the world one step at a time" src="../../_common/img/whatsock.svg" /> 
-					<strong>AccDC</strong> Technical Style Guide</a>
-                </div>
-			</header>
-        
-		<main>
-		<h1 class="pageTitle">ARIA Tabs with Right Click Popup Menu</h1>
-		
-        <div class="demo-block">
-            <!-- The tab list container element must include the attribute role="tablist", and all tab item nodes must include the attribute role="tab" to ensure accessibility for screen reader users.
+        <header>
+            <div class="innerHeader">
+                <a href="http://whatsock.com"><img alt="WhatSock : Changing the world one step at a time" src="../../_common/img/whatsock.svg" />
+                    <strong>AccDC</strong> Technical Style Guide</a>
+            </div>
+        </header>
+
+        <main>
+            <h1 class="pageTitle">ARIA Tabs with Right Click Popup Menu</h1>
+
+            <div class="demo-block">
+                <!-- The tab list container element must include the attribute role="tablist", and all tab item nodes must include the attribute role="tab" to ensure accessibility for screen reader users.
             Additionally, both the tab list container element and all tab item nodes must include unique ID values.
             The innerHTML for each tab item node must contain a textual label, which may be positioned offscreen to hide it visually if desired.
             This textual label is necessary so that screen reader users will be able to identify the purpose of the node, and also to ensure proper feedback in iOS devices when using Voiceover.
             Images may also be used within tab item nodes if desired, but should include the attribute alt="" to hide them from screen reader users.
             Even if an image is present, innerText must still be included for the accessible label text for screen reader users.
             Attributes explained:
-            • role="tablist" : The ARIA role that specifies a group of tab controls. This must only be included within the element that contains all individual tabs.
-            • role="tab" : The ARIA role that specifies an individual tab control. To ensure accessibility, this element must not contain any other active elements.
-            • data-src : The resource path and pointer to the ID attribute of the tab content container element. If set, data-internal should be blank or not included.
-            • data-internal : The ID attribute of the tab panel container element within the same document.
+            ï¿½ role="tablist" : The ARIA role that specifies a group of tab controls. This must only be included within the element that contains all individual tabs.
+            ï¿½ role="tab" : The ARIA role that specifies an individual tab control. To ensure accessibility, this element must not contain any other active elements.
+            ï¿½ data-src : The resource path and pointer to the ID attribute of the tab content container element. If set, data-internal should be blank or not included.
+            ï¿½ data-internal : The ID attribute of the tab panel container element within the same document.
             If data-internal is set, data-src should be blank or not included.
-            • data-defaultopen="true" : Specifies that the referenced tab will open automatically. Only one tab per group should include this attribute.
-            • data-role : The role name that is conveyed to screen reader users as beginning and ending boundary text for the tab panel content. "Tab" is set by default
+            ï¿½ data-defaultopen="true" : Specifies that the referenced tab will open automatically. Only one tab per group should include this attribute.
+            ï¿½ data-role : The role name that is conveyed to screen reader users as beginning and ending boundary text for the tab panel content. "Tab" is set by default
             if no value is specified.
-            • data-insert : The ID attribute of the container element where tab panel content will be inserted.
-            • id : The unique ID of the element. This value is also registered as the ID of the individual tab AccDC Object, making it possible to invoke the object
+            ï¿½ data-insert : The ID attribute of the container element where tab panel content will be inserted.
+            ï¿½ id : The unique ID of the element. This value is also registered as the ID of the individual tab AccDC Object, making it possible to invoke the object
             programmatically.
             E.G $A.reg.uniqueID.open();
             // All other AccDC API properties and methods are similarly available.
             -->
-            <ul class="tabs clearfix" role="tablist">
-                <li role="presentation"><a role="tab" href="#" id="xTab1id" class="accTab tab1" data-internal="tab1content" data-role="Tab" data-insert="tabInsertId" data-defaultopen="true"><span>Name 1<b aria-hidden="true">&#9660;</b></span></a></li>
-                <li role="presentation"><a role="tab" href="#" id="xTab2id" class="accTab tab2" data-internal="tab2content" data-role="Tab" data-insert="tabInsertId"><span>Name 2<b aria-hidden="true">&#9660;</b></span></a></li>
-                <li role="presentation"><a role="tab" href="#" id="xTab3id" class="accTab tab3" data-internal="tab3content" data-role="Tab" data-insert="tabInsertId"><span>Name 3<b aria-hidden="true">&#9660;</b></span></a></li>
-                <li role="presentation"><a role="tab" href="#" id="xTab4id" class="accTab tab4" data-internal="tab4content" data-role="Tab" data-insert="tabInsertId"><span>Name 4<b aria-hidden="true">&#9660;</b></span></a></li>
-            </ul>
-            <div class="content" id="tabInsertId">
+                <ul class="tabs clearfix" role="tablist">
+                    <li role="presentation"><a role="tab" href="#" id="xTab1id" class="accTab tab1" data-internal="tab1content" data-role="Tab" data-insert="tabInsertId" data-defaultopen="true"><span>Name 1<b aria-hidden="true">&#9660;</b></span></a></li>
+                    <li role="presentation"><a role="tab" href="#" id="xTab2id" class="accTab tab2" data-internal="tab2content" data-role="Tab" data-insert="tabInsertId"><span>Name 2<b aria-hidden="true">&#9660;</b></span></a></li>
+                    <li role="presentation"><a role="tab" href="#" id="xTab3id" class="accTab tab3" data-internal="tab3content" data-role="Tab" data-insert="tabInsertId"><span>Name 3<b aria-hidden="true">&#9660;</b></span></a></li>
+                    <li role="presentation"><a role="tab" href="#" id="xTab4id" class="accTab tab4" data-internal="tab4content" data-role="Tab" data-insert="tabInsertId"><span>Name 4<b aria-hidden="true">&#9660;</b></span></a></li>
+                </ul>
+                <div class="content" id="tabInsertId">
+                </div>
             </div>
-		</div>
-        
-		<div class="keyboard">
-            <p>The context menu is keyboard accessible:</p>
-			<ul>
-						<li>Press <kbd><kbd>Shift</kbd>+<kbd>F10</kbd></kbd> or the Applications key to open the context menu.</li>
-						<li>Press the <kbd class="up">Up</kbd> and <kbd class="down">Down</kbd> Arrow keys to move focus between the menu options.</li>
-						<li>Press the <kbd class="left">Left</kbd> and <kbd class="right">Right</kbd> Arrow keys to open or close submenus.</li>
-						<li>Press any letter or number to jump to a menu item starting with that character or digit.</li>
-						<li>Press <kbd>Enter</kbd> to activate a menu option.</li>
-						<li>Press <kbd>Escape</kbd> to close the currently open menu.</li>
-						<li>Press <kbd>Tab</kbd> to close the menu and all submenus.</li>
-						<li>Mouse users can right click on any static region of the page to open the menu as usual.</li>
-						<li>Mouse users can cancel and close the menu by clicking anywhere else on the page.</li>
-						<li>On a touch screen, touch a static region on the page and hold for about 2.5 seconds then release to open the menu,
-						tap a menu item to activate it, or tap anywhere else on the page to cancel and close the menu.</li>
-			</ul>
-			<p> The tab controls are keyboard accessible.</p>
-			<ul>
-				<li>Set focus on the tab control.</li>
-				<li>Press the Arrow keys to move focus between tabs.</li>
-				<li>Press <kbd class="home">Home</kbd> or <kbd class="end">End</kbd> to move to the first or last tab.</li>
-				<li>Press any letter or number to jump to a tab starting with that character or digit.</li>
-				<li>Press the <kbd>Spacebar</kbd> to open (or optionally toggle if configured) the selected tab.</li>
-				<li>Mouse users can click the desired tab as usual.</li>
-			</ul>
-        </div>
-        <div class="desc">
-        </div>
+
+            <div class="keyboard">
+                <p>The context menu is keyboard accessible:</p>
+                <ul>
+                    <li>Press <kbd><kbd>Shift</kbd>+<kbd>F10</kbd></kbd> or the Applications key to open the context menu.</li>
+                    <li>Press the <kbd class="up">Up</kbd> and <kbd class="down">Down</kbd> Arrow keys to move focus between the menu options.</li>
+                    <li>Press the <kbd class="left">Left</kbd> and <kbd class="right">Right</kbd> Arrow keys to open or close submenus.</li>
+                    <li>Press any letter or number to jump to a menu item starting with that character or digit.</li>
+                    <li>Press <kbd>Enter</kbd> to activate a menu option.</li>
+                    <li>Press <kbd>Escape</kbd> to close the currently open menu.</li>
+                    <li>Press <kbd>Tab</kbd> to close the menu and all submenus.</li>
+                    <li>Mouse users can right click on any static region of the page to open the menu as usual.</li>
+                    <li>Mouse users can cancel and close the menu by clicking anywhere else on the page.</li>
+                    <li>On a touch screen, touch a static region on the page and hold for about 2.5 seconds then release to open the menu,
+                        tap a menu item to activate it, or tap anywhere else on the page to cancel and close the menu.</li>
+                </ul>
+                <p> The tab controls are keyboard accessible.</p>
+                <ul>
+                    <li>Set focus on the tab control.</li>
+                    <li>Press the Arrow keys to move focus between tabs.</li>
+                    <li>Press <kbd class="home">Home</kbd> or <kbd class="end">End</kbd> to move to the first or last tab.</li>
+                    <li>Press any letter or number to jump to a tab starting with that character or digit.</li>
+                    <li>Press the <kbd>Spacebar</kbd> to open (or optionally toggle if configured) the selected tab.</li>
+                    <li>Mouse users can click the desired tab as usual.</li>
+                </ul>
+            </div>
+            <div class="desc">
+            </div>
     </div>
-	
+
     <div class="hidden" id="hiddenDivId">
         <div id="tab1content">
             <div>
@@ -131,4 +134,5 @@
         </ol>
     </div>
 </body>
+
 </html>

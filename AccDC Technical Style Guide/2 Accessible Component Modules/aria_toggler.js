@@ -10,72 +10,88 @@ All tags that support innerHTML: Use innerText (whether offscreen or visible) to
 Image links (A tag with embedded IMG): Use innerText and add alt="" to the IMG tag to set screen reader text. (This is required for iOS support using Voiceover)
 	*/
 
-(function(){
+(function() {
+  $A.Toggle = function(trigger, config) {
+    var config = config || {},
+      t = typeof trigger === "string" ? $A.getEl(trigger) : trigger,
+      that = this,
+      tRole = $A.getAttr(t, "role"),
+      isCheckbox = tRole == "checkbox" || tRole == "switch" ? true : false,
+      sraText = $A.createEl("span", null, $A.sraCSS),
+      sAP = config.suppressARIAPressed ? true : false;
 
-	$A.Toggle = function(trigger, config){
-		var config = config || {}, t = typeof trigger === 'string' ? $A.getEl(trigger) : trigger, that = this,
-			tRole = $A.getAttr(t, 'role'), isCheckbox = (tRole == 'checkbox' || tRole == 'switch') ? true : false,
-			sraText = $A.createEl('span', null, $A.sraCSS), sAP = config.suppressARIAPressed ? true : false;
+    if (!config.noToggle && config.noARIA) {
+      if (!config.roleText) config.roleText = "Toggle";
 
-		if (!config.noToggle && config.noARIA){
-			if (!config.roleText)
-				config.roleText = 'Toggle';
+      if (!config.stateText) config.stateText = "Pressed";
 
-			if (!config.stateText)
-				config.stateText = 'Pressed';
+      t.appendChild(sraText);
+    }
 
-			t.appendChild(sraText);
-		}
+    var toggle = function(state) {
+      var cr = true;
 
-		var toggle = function(state){
-			var cr = true;
+      if (config.callback && typeof config.callback === "function")
+        cr = config.callback.apply(t, [state]);
 
-			if (config.callback && typeof config.callback === 'function')
-				cr = config.callback.apply(t, [state]);
+      if (cr) {
+        if (!config.noToggle && config.noARIA)
+          sraText.innerHTML = state
+            ? "&nbsp;" + config.roleText + "&nbsp;" + config.stateText
+            : "&nbsp;" + config.roleText;
+        else if (!config.noToggle) {
+          if (!sAP)
+            $A.setAttr(
+              t,
+              isCheckbox ? "aria-checked" : "aria-pressed",
+              state ? "true" : "false"
+            );
+        }
+        that.state = state;
+      }
+    };
+    var nn = t.nodeName.toLowerCase();
 
-			if (cr){
-				if (!config.noToggle && config.noARIA)
-					sraText.innerHTML = state
-						? ('&nbsp;' + config.roleText + '&nbsp;' + config.stateText) : '&nbsp;' + config.roleText;
+    if (
+      !(
+        (nn == "input" &&
+          ($A.getAttr(t, "type") == "button" ||
+            $A.getAttr(t, "type") == "image")) ||
+        (nn == "a" && $A.getAttr(t, "href")) ||
+        nn == "button"
+      )
+    )
+      $A.setAttr(t, "tabindex", "0");
 
-				else if (!config.noToggle){
-					if (!sAP)
-						$A.setAttr(t, isCheckbox ? 'aria-checked' : 'aria-pressed', state ? 'true' : 'false');
-				}
-				that.state = state;
-			}
-		};
-		var nn = t.nodeName.toLowerCase();
+    $A.unbind(t, "click keydown");
 
-		if (!((nn == 'input' && ($A.getAttr(t, 'type') == 'button' || $A.getAttr(t, 'type') == 'image'))
-			|| (nn == 'a' && $A.getAttr(t, 'href')) || (nn == 'button')))
-			$A.setAttr(t, 'tabindex', '0');
+    $A.bind(t, {
+      keydown: function(ev) {
+        var k = ev.which || ev.keyCode;
 
-		$A.unbind(t, 'click keydown');
+        if (k == 13 || k == 32) {
+          ev.preventDefault();
+          ev.stopPropagation();
 
-		$A.bind(t,
-						{
-						keydown: function(ev){
-							var k = ev.which || ev.keyCode;
+          if (
+            !(
+              t.nodeName.toLowerCase() == "input" &&
+              t.type == "image" &&
+              k == 32
+            )
+          )
+            $A.trigger(t, "click");
+        }
+      },
+      click: function(ev) {
+        toggle.apply(t, [that.state ? false : true]) ? true : false;
+        ev.preventDefault();
+      }
+    });
+    that.set = function(state) {
+      toggle.apply(t, [state]);
+    };
 
-							if (k == 13 || k == 32){
-								ev.preventDefault();
-								ev.stopPropagation();
-
-								if (!(t.nodeName.toLowerCase() == 'input' && t.type == 'image' && k == 32))
-									$A.trigger(t, 'click');
-							}
-						},
-						click: function(ev){
-							toggle.apply(t, [that.state ? false : true]) ? true : false;
-							ev.preventDefault();
-						}
-						});
-		that.set = function(state){
-			toggle.apply(t, [state]);
-		};
-
-		if (!config.noToggle)
-			toggle.apply(t, [config.state ? true : false]);
-	};
+    if (!config.noToggle) toggle.apply(t, [config.state ? true : false]);
+  };
 })();

@@ -1,81 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-        <title>Horizontal Slider - AccDC Technical Style Guide</title>
-        <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
-        <link rel="stylesheet" type="text/css" href="css/customize.css" />
-        <script type="text/javascript" src="../../_common/js/jQuery.js">
-            // Load jQuery.
-            // This is not necessary if using the Standalone AccDC API version.
-        </script>
-        <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
-            // Load the AccDC API, which all modules are plugged into as the common interface.
-        </script>
-        <!-- Now load all desired modules, which plugs them into AccDC. --><script type="text/javascript" src="../../../2 Accessible Component Modules/css_drag_drop_module_for_jquery.min.js"></script>
-        <script type="text/javascript" src="../../../2 Accessible Component Modules/aria_slider.min.js"></script>
-        <script type="text/javascript" src="js/setup.js">
-            // Run the setup script where module invocation statements are contained.
-        </script>
-    </head>
-    <body>
-        <div id="coding-arena">
-			<header>
-				<div class="innerHeader">
-					<a href="http://whatsock.com"><img alt="WhatSock : Changing the world one step at a time" src="../../_common/img/whatsock.svg" /> 
-					<strong>AccDC</strong> Technical Style Guide</a>
-				</div>
-			</header>
-		
-        	<main>
-        		<h1 class="pageTitle">ARIA Horizontal Slider</h1>
-            	<div class="demo-block">
-	                <table class="sample">
-	                    <tr>
-	                        <!-- Simply use CSS to set the size of the slider, and the height and width of the container element, and then the slider will configure itself using these offsets.
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Horizontal Slider - AccDC Technical Style Guide</title>
+    <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+    <link rel="stylesheet" type="text/css" href="css/customize.css" />
+    <script type="text/javascript" src="../../_common/js/jQuery.js">
+        // Load jQuery.
+        // This is not necessary if using the Standalone AccDC API version.
+    </script>
+    <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+        // Load the AccDC API, which all modules are plugged into as the common interface.
+    </script>
+    <!-- Now load all desired modules, which plugs them into AccDC. -->
+    <script type="text/javascript" src="../../../2 Accessible Component Modules/css_drag_drop_module_for_jquery.min.js"></script>
+    <script type="text/javascript" src="../../../2 Accessible Component Modules/aria_slider.min.js"></script>
+    <script type="text/javascript" src="js/setup.js">
+        // Run the setup script where module invocation statements are contained.
+    </script>
+</head>
+
+<body>
+    <div id="coding-arena">
+        <header>
+            <div class="innerHeader">
+                <a href="http://whatsock.com"><img alt="WhatSock : Changing the world one step at a time" src="../../_common/img/whatsock.svg" />
+                    <strong>AccDC</strong> Technical Style Guide</a>
+            </div>
+        </header>
+
+        <main>
+            <h1 class="pageTitle">ARIA Horizontal Slider</h1>
+            <div class="demo-block">
+                <table class="sample">
+                    <tr>
+                        <!-- Simply use CSS to set the size of the slider, and the height and width of the container element, and then the slider will configure itself using these offsets.
 	                        Don't include any other ARIA attributes however, the Slider module handles this automatically.
 	                        The slide icon can be changed to anything, or an image or CSS background image can be used instead, and the styling can be configured for any layout, and it will still be accessible for screen reader and keyboard only users. -->
-	                        <td>
-	                            <div class="slider2">
-	                                <div class="min2" data-dir="d" role="button" aria-label="Decrement" title="Decrease image slider">
-	                                    <span aria-hidden="true">0%</span>
-	                                </div>
-	                                <div class="slideWrapper">
-	                                    <div class="slide2 clearfix">
-	                                        <div class="nub2" id="handle2">
-	                                            <!--
+                        <td>
+                            <div class="slider2">
+                                <div class="min2" data-dir="d" role="button" aria-label="Decrement" title="Decrease image slider">
+                                    <span aria-hidden="true">0%</span>
+                                </div>
+                                <div class="slideWrapper">
+                                    <div class="slide2 clearfix">
+                                        <div class="nub2" id="handle2">
+                                            <!--
 	                                            Style the slider thumb and all else however you wish.
 	                                            -->
-	                                        </div>
-	                                    </div>
-	                                </div>
-	                                <div class="max2" data-dir="i" role="button" aria-label="Increment" title="Increase image slider">
-	                                    <span aria-hidden="true">100%</span>
-	                                </div>
-	                            </div>
-	                        </td>
-	                    </tr>
-	                    <tr>
-	                        <td class="imageTD">
-	                           <p> <img id="earthImg" alt="Earth" src="img/earth.jpg" /></p>
-	                        </td>
-	                    </tr>
-	                </table>
-				</div>
-				
-                <div class="keyboard">
-                    <p>The Slider Control is keyboard accessible:</p>
-                    <ul>
-						<li>Set focus on the slider.
-						<li>Press the Arrow keys to move the slider.
-						<li>Press <kbd class="home">Home</kbd> or <kbd class="end">End</kbd> to jump to the beginning or end.
-						<li>Press <kbd>PageUp</kbd> or <kbd>PageDown</kbd> to jump by increments of 10%.
-						<li>Mouse users can drag the slider as usual.
-					</ul>
-                </div>
-				
-            </main>
-        </div>
-    </body>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="max2" data-dir="i" role="button" aria-label="Increment" title="Increase image slider">
+                                    <span aria-hidden="true">100%</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="imageTD">
+                            <p> <img id="earthImg" alt="Earth" src="img/earth.jpg" /></p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="keyboard">
+                <p>The Slider Control is keyboard accessible:</p>
+                <ul>
+                    <li>Set focus on the slider.
+                    <li>Press the Arrow keys to move the slider.
+                    <li>Press <kbd class="home">Home</kbd> or <kbd class="end">End</kbd> to jump to the beginning or end.
+                    <li>Press <kbd>PageUp</kbd> or <kbd>PageDown</kbd> to jump by increments of 10%.
+                    <li>Mouse users can drag the slider as usual.
+                </ul>
+            </div>
+
+        </main>
+    </div>
+</body>
+
 </html>

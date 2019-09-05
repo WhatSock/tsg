@@ -1,172 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-        <title>ARIA Comboboxes (Native Inputs, Editable with Word Match) - AccDC Technical Style Guide</title>
-        <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
-        <link rel="stylesheet" type="text/css" href="css/customize.css" />
-        <script type="text/javascript" src="js/detectmobilebrowser.js">
-            // Set flag for smart phone displays
-        </script>
-        <script type="text/javascript" src="../../_common/js/jQuery.js">
-            // Load jQuery.
-            // This is not necessary if using the Standalone AccDC API version.
-        </script>
-        <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
-            // Load the AccDC API, which all modules are plugged into as the common interface.
-        </script>
-        <!-- Now load all desired modules, which plugs them into AccDC. --><script type="text/javascript" src="../../../2 Accessible Component Modules/aria_combobox_module.min.js"></script>
-        <script type="text/javascript" src="js/zenscroll-min.js">
-            // Normalize scrollIntoView animation with Zenscroll
-        </script>
-        <script type="text/javascript" src="js/setup.js">
-            // Run the setup script where module invocation statements are contained.
-        </script>
-    </head>
-    <body>
-    	
-		<div id="coding-arena">
-        	
-			<header>
-				<div class="innerHeader">
-					<a href="http://whatsock.com"><img alt="WhatSock : Changing the world one step at a time" src="../../_common/img/whatsock.svg" /> 
-					<strong>AccDC</strong> Technical Style Guide</a>
-                </div>
-			</header>
-        	
-			<main>
-				
-				<h1 class="pageTitle">ARIA Combobox <small>(Native Inputs, Editable with Word Match)</small></h1>
-				
-				<div class="demo-block">
-					<form method="post" action="#">
-            			<legend> Search for hardware devices</legend>
-                        <!--
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>ARIA Comboboxes (Native Inputs, Editable with Word Match) - AccDC Technical Style Guide</title>
+    <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+    <link rel="stylesheet" type="text/css" href="css/customize.css" />
+    <script type="text/javascript" src="js/detectmobilebrowser.js">
+        // Set flag for smart phone displays
+    </script>
+    <script type="text/javascript" src="../../_common/js/jQuery.js">
+        // Load jQuery.
+        // This is not necessary if using the Standalone AccDC API version.
+    </script>
+    <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+        // Load the AccDC API, which all modules are plugged into as the common interface.
+    </script>
+    <!-- Now load all desired modules, which plugs them into AccDC. -->
+    <script type="text/javascript" src="../../../2 Accessible Component Modules/aria_combobox_module.min.js"></script>
+    <script type="text/javascript" src="js/zenscroll-min.js">
+        // Normalize scrollIntoView animation with Zenscroll
+    </script>
+    <script type="text/javascript" src="js/setup.js">
+        // Run the setup script where module invocation statements are contained.
+    </script>
+</head>
+
+<body>
+
+    <div id="coding-arena">
+
+        <header>
+            <div class="innerHeader">
+                <a href="http://whatsock.com"><img alt="WhatSock : Changing the world one step at a time" src="../../_common/img/whatsock.svg" />
+                    <strong>AccDC</strong> Technical Style Guide</a>
+            </div>
+        </header>
+
+        <main>
+
+            <h1 class="pageTitle">ARIA Combobox <small>(Native Inputs, Editable with Word Match)</small></h1>
+
+            <div class="demo-block">
+                <form method="post" action="#">
+                    <legend> Search for hardware devices</legend>
+                    <!--
                         The attribute role=combobox is required.
                         -->
-						<p><input title="Hardware" role="combobox" type="text" name="hardware" id="hardwareEdit" /></p>
-                        <p><input type="submit" id="hardwareBtn" value="Submit" /></p>
-	                    <div id="autoSuggest">
-	                        <!--
+                    <p><input title="Hardware" role="combobox" type="text" name="hardware" id="hardwareEdit" /></p>
+                    <p><input type="submit" id="hardwareBtn" value="Submit" /></p>
+                    <div id="autoSuggest">
+                        <!--
 	                        Suggested items will be inserted here as a static container.
 	                        -->
-	                    </div>
-           			</form>
-			
-		            <div class="note">
-		                <p>The Hardware field is an editable ARIA Combobox widget that uses a native Input element.
-		                <br/>
-		                Word matches are used to render suggestions.
-		                <br/>
-		                Type "modem", "printer", "video card", or other strings to match.</p>
-		            </div>
-				</div>
-	            <div class="keyboard">
-	                <p> The native input combobox is optimized for screen reader and keyboard only users:</p>
-	               <ul>
-							<li>Set focus to the State or Country fields to open the combobox control.</li>
-							<li>Within a combobox that is not readonly, first type into the field, then press the <kbd class="down">Down</kbd> arrow 
-							to navigate into the dropdown and use the <kbd class="up">Up</kbd> and <kbd class="down">Down</kbd> arrow keys to navigate available options.</li>
-							<li>Press any other letter or number, or the <kbd class="left">Left</kbd> or <kbd class="right">Right</kbd> arrow keys to then 
-							move focus back into the Input for editing.</li>
-							<li>Within a combobox that is readonly, press the <kbd class="down">Down</kbd> arrow or click the trigger icon to open the dropdown.</li>
-							<li>Press any letter or number within a readonly field to jump to an option starting with that character or digit.</li>
-							<li>Press <kbd>Enter</kbd> or <kbd><kbd>Alt</kbd>+<kbd>Up</kbd></kbd> to close the dropdown and save the selection.</li>
-							<li>To cancel, press <kbd>Escape</kbd>, <kbd>Tab</kbd> or <kbd><kbd>Shift</kbd>+<kbd>Tab</kbd></kbd> to close the dropdown.</li>
-							<li>Sighted mouse users can click the desired option to save the selection and close the dropdown.</li>
-					</ul>
-	            </div>
-			</main>
-        </div>
-        <select name="hardware-select" id="devicesId" style="display: none;">
-            <option value="ATI video card">ATI video card</option>
-            <option value="Alliance Promotion video   cards">Alliance Promotion video   cards</option>
-            <option value="Aztech CD drives">Aztech CD drives</option>
-            <option value="Boca modem">Boca modem</option>
-            <option value="Boca video card">Boca video card</option>
-            <option value="BTC CD Drives">BTC CD Drives</option>
-            <option value="Canon printer">Canon printer</option>
-            <option value="Chips video card">Chips video card</option>
-            <option value="Cirrus Logic video card">Cirrus Logic video card</option>
-            <option value="Citizen printer">Citizen printer</option>
-            <option value="Creative CD Drives">Creative CD Drives</option>
-            <option value="Creative modem">Creative modem</option>
-            <option value="Creative sound card">Creative sound card</option>
-            <option value="COM port">COM port</option>
-            <option value="Conner hard drive">Conner hard drive</option>
-            <option value="Diamond video card">Diamond video card</option>
-            <option value="Dip switches">Dip switches</option>
-            <option value="Epson printer">Epson printer</option>
-            <option value="Epson scanner">Epson scanner</option>
-            <option value="Floppy drive">Floppy drive</option>
-            <option value="Fujitsu hard drive">Fujitsu hard drive</option>
-            <option value="Funai CD Drives">Funai CD Drives</option>
-            <option value="Goldstar CD Drives">Goldstar CD Drives</option>
-            <option value="Hard drive">Hard drive</option>
-            <option value="Heat sink">Heat sink</option>
-            <option value="Hercules video card">Hercules video card</option>
-            <option value="Hewlett Packard CD-ROM">Hewlett Packard CD-ROM</option>
-            <option value="Hewlett Packard Printer">Hewlett Packard Printer</option>
-            <option value="Hewlett Packard scanner">Hewlett Packard scanner</option>
-            <option value="Infrared port">Infrared port</option>
-            <option value="Intel OverDrive processor">Intel OverDrive processor</option>
-            <option value="Intel Pentium processor">Intel Pentium processor</option>
-            <option value="IntelliMouse">IntelliMouse</option>
-            <option value="Iomega Jaz drive">Iomega Jaz drive</option>
-            <option value="Jaz drive">Jaz drive</option>
-            <option value="Lexmark printer">Lexmark printer</option>
-            <option value="LG Electronics CD drives">LG Electronics CD drives</option>
-            <option value="LITE-ON CD drives">LITE-ON CD drives</option>
-            <option value="Matrox video card">Matrox video card</option>
-            <option value="Maxtor hard drive">Maxtor hard drive</option>
-            <option value="Mitsumi CD drives">Mitsumi CD drives</option>
-            <option value="Mustek scanner">Mustek scanner</option>
-            <option value="NEC CD-ROM">NEC CD-ROM</option>
-            <option value="NEC floppy drive">NEC floppy drive</option>
-            <option value="NEC hard drive">NEC hard drive</option>
-            <option value="NEC monitor">NEC monitor</option>
-            <option value="NEC printers">NEC printers</option>
-            <option value="Network card">Network card</option>
-            <option value="NICad batteries">NICad batteries</option>
-            <option value="NiMH batteries">NiMH batteries</option>
-            <option value="Number Nine video card">Number Nine video card</option>
-            <option value="Oak Technologies video   card">Oak Technologies video   card</option>
-            <option value="Okidata printer">Okidata printer</option>
-            <option value="Packard Bell drawer   scanner">Packard Bell drawer   scanner</option>
-            <option value="Packard Bell printer">Packard Bell printer</option>
-            <option value="Packard Bell sound card">Packard Bell sound card</option>
-            <option value="Paradise video card">Paradise video card</option>
-            <option value="Parallel port">Parallel port</option>
-            <option value="Palm Pilot">Palm Pilot</option>
-            <option value="Panasonic CD drives">Panasonic CD drives</option>
-            <option value="Panasonic printers">Panasonic printers</option>
-            <option value="PCMCIA and PC Card">PCMCIA and PC Card</option>
-            <option value="Pioneer CD drives">Pioneer CD drives</option>
-            <option value="Plextor CD drives">Plextor CD drives</option>
-            <option value="Power supply">Power supply</option>
-            <option value="Power management">Power management</option>
-            <option value="Quantum   hard drive">Quantum   hard drive</option>
-            <option value="Riser board">Riser board</option>
-            <option value="S3 video card">S3 video card</option>
-            <option value="Serial port">Serial port</option>
-            <option value="SIS video card">SIS video card</option>
-            <option value="Sony CD-ROM">Sony CD-ROM</option>
-            <option value="Star printer">Star printer</option>
-            <option value="Surge suppressor">Surge suppressor</option>
-            <option value="Tandy printer">Tandy printer</option>
-            <option value="Tape drive">Tape drive</option>
-            <option value="Tektronix printers">Tektronix printers</option>
-            <option value="Texas Instruments printers">Texas Instruments printers</option>
-            <option value="Top drawer scanner">Top drawer scanner</option>
-            <option value="Toshiba CD-ROM">Toshiba CD-ROM</option>
-            <option value="Toshiba printers">Toshiba printers</option>
-            <option value="Video card">Video card</option>
-            <option value="Western digital hard drive">Western digital hard drive</option>
-            <option value="Western digital video card">Western digital video card</option>
-            <option value="Worm drive">Worm drive</option>
-            <option value="Xircom network cards">Xircom network cards</option>
-            <option value="Zip drive">Zip drive</option>
-        </select>
-    </body>
+                    </div>
+                </form>
+
+                <div class="note">
+                    <p>The Hardware field is an editable ARIA Combobox widget that uses a native Input element.
+                        <br />
+                        Word matches are used to render suggestions.
+                        <br />
+                        Type "modem", "printer", "video card", or other strings to match.</p>
+                </div>
+            </div>
+            <div class="keyboard">
+                <p> The native input combobox is optimized for screen reader and keyboard only users:</p>
+                <ul>
+                    <li>Set focus to the State or Country fields to open the combobox control.</li>
+                    <li>Within a combobox that is not readonly, first type into the field, then press the <kbd class="down">Down</kbd> arrow
+                        to navigate into the dropdown and use the <kbd class="up">Up</kbd> and <kbd class="down">Down</kbd> arrow keys to navigate available options.</li>
+                    <li>Press any other letter or number, or the <kbd class="left">Left</kbd> or <kbd class="right">Right</kbd> arrow keys to then
+                        move focus back into the Input for editing.</li>
+                    <li>Within a combobox that is readonly, press the <kbd class="down">Down</kbd> arrow or click the trigger icon to open the dropdown.</li>
+                    <li>Press any letter or number within a readonly field to jump to an option starting with that character or digit.</li>
+                    <li>Press <kbd>Enter</kbd> or <kbd><kbd>Alt</kbd>+<kbd>Up</kbd></kbd> to close the dropdown and save the selection.</li>
+                    <li>To cancel, press <kbd>Escape</kbd>, <kbd>Tab</kbd> or <kbd><kbd>Shift</kbd>+<kbd>Tab</kbd></kbd> to close the dropdown.</li>
+                    <li>Sighted mouse users can click the desired option to save the selection and close the dropdown.</li>
+                </ul>
+            </div>
+        </main>
+    </div>
+    <select name="hardware-select" id="devicesId" style="display: none;">
+        <option value="ATI video card">ATI video card</option>
+        <option value="Alliance Promotion video   cards">Alliance Promotion video cards</option>
+        <option value="Aztech CD drives">Aztech CD drives</option>
+        <option value="Boca modem">Boca modem</option>
+        <option value="Boca video card">Boca video card</option>
+        <option value="BTC CD Drives">BTC CD Drives</option>
+        <option value="Canon printer">Canon printer</option>
+        <option value="Chips video card">Chips video card</option>
+        <option value="Cirrus Logic video card">Cirrus Logic video card</option>
+        <option value="Citizen printer">Citizen printer</option>
+        <option value="Creative CD Drives">Creative CD Drives</option>
+        <option value="Creative modem">Creative modem</option>
+        <option value="Creative sound card">Creative sound card</option>
+        <option value="COM port">COM port</option>
+        <option value="Conner hard drive">Conner hard drive</option>
+        <option value="Diamond video card">Diamond video card</option>
+        <option value="Dip switches">Dip switches</option>
+        <option value="Epson printer">Epson printer</option>
+        <option value="Epson scanner">Epson scanner</option>
+        <option value="Floppy drive">Floppy drive</option>
+        <option value="Fujitsu hard drive">Fujitsu hard drive</option>
+        <option value="Funai CD Drives">Funai CD Drives</option>
+        <option value="Goldstar CD Drives">Goldstar CD Drives</option>
+        <option value="Hard drive">Hard drive</option>
+        <option value="Heat sink">Heat sink</option>
+        <option value="Hercules video card">Hercules video card</option>
+        <option value="Hewlett Packard CD-ROM">Hewlett Packard CD-ROM</option>
+        <option value="Hewlett Packard Printer">Hewlett Packard Printer</option>
+        <option value="Hewlett Packard scanner">Hewlett Packard scanner</option>
+        <option value="Infrared port">Infrared port</option>
+        <option value="Intel OverDrive processor">Intel OverDrive processor</option>
+        <option value="Intel Pentium processor">Intel Pentium processor</option>
+        <option value="IntelliMouse">IntelliMouse</option>
+        <option value="Iomega Jaz drive">Iomega Jaz drive</option>
+        <option value="Jaz drive">Jaz drive</option>
+        <option value="Lexmark printer">Lexmark printer</option>
+        <option value="LG Electronics CD drives">LG Electronics CD drives</option>
+        <option value="LITE-ON CD drives">LITE-ON CD drives</option>
+        <option value="Matrox video card">Matrox video card</option>
+        <option value="Maxtor hard drive">Maxtor hard drive</option>
+        <option value="Mitsumi CD drives">Mitsumi CD drives</option>
+        <option value="Mustek scanner">Mustek scanner</option>
+        <option value="NEC CD-ROM">NEC CD-ROM</option>
+        <option value="NEC floppy drive">NEC floppy drive</option>
+        <option value="NEC hard drive">NEC hard drive</option>
+        <option value="NEC monitor">NEC monitor</option>
+        <option value="NEC printers">NEC printers</option>
+        <option value="Network card">Network card</option>
+        <option value="NICad batteries">NICad batteries</option>
+        <option value="NiMH batteries">NiMH batteries</option>
+        <option value="Number Nine video card">Number Nine video card</option>
+        <option value="Oak Technologies video   card">Oak Technologies video card</option>
+        <option value="Okidata printer">Okidata printer</option>
+        <option value="Packard Bell drawer   scanner">Packard Bell drawer scanner</option>
+        <option value="Packard Bell printer">Packard Bell printer</option>
+        <option value="Packard Bell sound card">Packard Bell sound card</option>
+        <option value="Paradise video card">Paradise video card</option>
+        <option value="Parallel port">Parallel port</option>
+        <option value="Palm Pilot">Palm Pilot</option>
+        <option value="Panasonic CD drives">Panasonic CD drives</option>
+        <option value="Panasonic printers">Panasonic printers</option>
+        <option value="PCMCIA and PC Card">PCMCIA and PC Card</option>
+        <option value="Pioneer CD drives">Pioneer CD drives</option>
+        <option value="Plextor CD drives">Plextor CD drives</option>
+        <option value="Power supply">Power supply</option>
+        <option value="Power management">Power management</option>
+        <option value="Quantum   hard drive">Quantum hard drive</option>
+        <option value="Riser board">Riser board</option>
+        <option value="S3 video card">S3 video card</option>
+        <option value="Serial port">Serial port</option>
+        <option value="SIS video card">SIS video card</option>
+        <option value="Sony CD-ROM">Sony CD-ROM</option>
+        <option value="Star printer">Star printer</option>
+        <option value="Surge suppressor">Surge suppressor</option>
+        <option value="Tandy printer">Tandy printer</option>
+        <option value="Tape drive">Tape drive</option>
+        <option value="Tektronix printers">Tektronix printers</option>
+        <option value="Texas Instruments printers">Texas Instruments printers</option>
+        <option value="Top drawer scanner">Top drawer scanner</option>
+        <option value="Toshiba CD-ROM">Toshiba CD-ROM</option>
+        <option value="Toshiba printers">Toshiba printers</option>
+        <option value="Video card">Video card</option>
+        <option value="Western digital hard drive">Western digital hard drive</option>
+        <option value="Western digital video card">Western digital video card</option>
+        <option value="Worm drive">Worm drive</option>
+        <option value="Xircom network cards">Xircom network cards</option>
+        <option value="Zip drive">Zip drive</option>
+    </select>
+</body>
+
 </html>

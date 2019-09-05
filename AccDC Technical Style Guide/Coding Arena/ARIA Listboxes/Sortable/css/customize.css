@@ -1,48 +1,70 @@
 /* WHATSOCK, 2016 */
 /* Specific styles for ARIA Listboxes */
 
-.sortableWrapper {text-align: center; padding: 1rem;}
+.sortableWrapper {
+  text-align: center;
+  padding: 1rem;
+}
 
 #sortableLB {
-	padding: 0;
-	margin: 0;
-	list-style: none;
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }
 
-#sortableLB > li {padding: 0.3em;}
+#sortableLB > li {
+  padding: 0.3em;
+}
 
 #sortableLB > li > a span {
-	display: block;
-	font-size: 1em;
-	font-weight: bold;
-	text-transform: uppercase;	
-	background: transparent;
-	padding: 0.3em 0.5em;
-	border-radius: 0.3em;
-	box-shadow: 0 2px 5px rgba(0,0,0,.7);
+  display: block;
+  font-size: 1em;
+  font-weight: bold;
+  text-transform: uppercase;
+  background: transparent;
+  padding: 0.3em 0.5em;
+  border-radius: 0.3em;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
 }
-#sortableLB > li > a:hover {text-decoration: none;}
+#sortableLB > li > a:hover {
+  text-decoration: none;
+}
 
 #sortableLB > li > a:hover span {
-	box-shadow: none;
+  box-shadow: none;
 }
 
-#sortableLB > li > a[aria-selected=true] span {}
-
-#sortableLB > li > a[aria-grabbed=true] span {
-	opacity: .5;
+#sortableLB > li > a[aria-selected="true"] span {
 }
 
-#sortableLB > li > a[aria-grabbed=true][aria-selected=true] span {
-	box-shadow: 0 2px 5px rgba(241,249,0,.7);
+#sortableLB > li > a[aria-grabbed="true"] span {
+  opacity: 0.5;
 }
 
-#sortableLB #sortableOpt1 span {background: #F90;}
+#sortableLB > li > a[aria-grabbed="true"][aria-selected="true"] span {
+  box-shadow: 0 2px 5px rgba(241, 249, 0, 0.7);
+}
 
-#sortableLB #sortableOpt2 span {color: #FFF; background: #639;}
+#sortableLB #sortableOpt1 span {
+  background: #f90;
+}
 
-#sortableLB #sortableOpt3 span {color: #FFF; background: #00965A;}
+#sortableLB #sortableOpt2 span {
+  color: #fff;
+  background: #639;
+}
 
-#sortableLB #sortableOpt4 span {color: #FFF; background: #015684;}
+#sortableLB #sortableOpt3 span {
+  color: #fff;
+  background: #00965a;
+}
 
-#sortableLB #sortableOpt5 span {color: #FFF; background: #000;}
+#sortableLB #sortableOpt4 span {
+  color: #fff;
+  background: #015684;
+}
+
+#sortableLB #sortableOpt5 span {
+  color: #fff;
+  background: #000;
+}

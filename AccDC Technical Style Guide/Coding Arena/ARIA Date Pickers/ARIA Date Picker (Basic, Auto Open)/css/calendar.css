@@ -2,221 +2,237 @@
 /* Specific styles for ARIA Calendar */
 
 #datepicker-demo {
-	background: #E0E0E0;
-	padding: 1rem;
-	margin: 1rem 0 2rem;
+  background: #e0e0e0;
+  padding: 1rem;
+  margin: 1rem 0 2rem;
 }
 
 #datepicker-demo em {
-	display: block;
-	font-size: 90%;
+  display: block;
+  font-size: 90%;
 }
 
 #date,
 #party {
-	width: 90%;
-	max-width: 25em;
-	vertical-align: 20px;
+  width: 90%;
+  max-width: 25em;
+  vertical-align: 20px;
 }
 
 a.accCalendar {
-	display: inline-block;
-	background: transparent;
+  display: inline-block;
+  background: transparent;
 }
 
 div.calendar {
-	text-align: center;
-	color: #FFF;
-	background: #2E3135;
-	padding: 0.5rem;
-	border-radius: 0.3rem;
-	-webkit-box-shadow: 0 10px 6px -6px #777;
-	-moz-box-shadow: 0 10px 6px -6px #777;
-	box-shadow: 0 10px 6px -6px #777;
+  text-align: center;
+  color: #fff;
+  background: #2e3135;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  -webkit-box-shadow: 0 10px 6px -6px #777;
+  -moz-box-shadow: 0 10px 6px -6px #777;
+  box-shadow: 0 10px 6px -6px #777;
 }
 
 table.calendar {
-	margin-top: 20px;
-	border-collapse: separate;
-	border-spacing: 1px;
+  margin-top: 20px;
+  border-collapse: separate;
+  border-spacing: 1px;
 }
 
 table.calendar td,
 table.calendar th {
-	padding: 0.3em 0.5em;
-	border-radius: 0.15rem;
+  padding: 0.3em 0.5em;
+  border-radius: 0.15rem;
 }
 
 td.empty {
-	background: rgba(255, 255, 255, .07);
+  background: rgba(255, 255, 255, 0.07);
 }
 
-th.week {}
+th.week {
+}
 
 td.nav,
 td.day {
-	cursor: pointer;
+  cursor: pointer;
 }
 
 td.day {
-	text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
-	color: #000;
-	background: #63B7C2;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  color: #000;
+  background: #63b7c2;
 }
 
 td.dayToday {
-	color: #000;
-	background: #db7093;
+  color: #000;
+  background: #db7093;
 }
 
 td.dayInPrevMonth,
 td.dayInNextMonth {
-	color: #000;
-	background: #e6e6e6;
+  color: #000;
+  background: #e6e6e6;
 }
 
 td.day:hover {
-	background: #E2A037;
+  background: #e2a037;
 }
 
 td[aria-current="date"] {
-	background: #E2A037;
+  background: #e2a037;
 }
 
 div.calendar *:focus,
 div.commentAdd *:focus {
-	outline: blue 2px inset;
+  outline: blue 2px inset;
 }
 
 td.month {
-	font-weight: 600;
-	color: #63B7C2;
-	text-shadow: 0 1px 0 #000;
+  font-weight: 600;
+  color: #63b7c2;
+  text-shadow: 0 1px 0 #000;
 }
 
 td.comment {
-	position: relative;
+  position: relative;
 }
 td.comment span::after {
-	display: block;
-	position: absolute;
-	width: 7px;
-	height: 7px;
-	top: 0.2rem;
-	right: 0.2rem;
-	content: "";
-	background: #49182E;
-	border-radius: 7px;
+  display: block;
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  top: 0.2rem;
+  right: 0.2rem;
+  content: "";
+  background: #49182e;
+  border-radius: 7px;
 }
 
 td.comment.selected {
-	background: #E2A037;
+  background: #e2a037;
 }
-
 
 td.disabled,
 td.disabled:hover {
-	color: #CCC;
-	background: #bdbdbd;
-	cursor: auto;
+  color: #ccc;
+  background: #bdbdbd;
+  cursor: auto;
 }
 
 td.disabled.selected {
-	background: #C2C2C2;
+  background: #c2c2c2;
 }
 
 div.commentTooltip {
-	width: 271px;
-	padding: 0.5rem;
-	color: #FFF;
-	background: #3D4043;
-	font-size: 0.8em;
-	font-weight: bold;
-	max-height: 50px;
-	overflow-x: hidden;
-	overflow-y: auto;
-	word-wrap: break-word;
-	text-align: left;
+  width: 271px;
+  padding: 0.5rem;
+  color: #fff;
+  background: #3d4043;
+  font-size: 0.8em;
+  font-weight: bold;
+  max-height: 50px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  word-wrap: break-word;
+  text-align: left;
 }
 
 div.commentAdd {
-	background: #2E3135;
-	border-radius: 0.3rem;
+  background: #2e3135;
+  border-radius: 0.3rem;
 }
 
 div.commentAdd button {
-	font-size: 100%;
-	text-transform: uppercase;
-	color: #FFF;
-	background: #2E3135;
-	padding: 0.5rem;
-	margin-top: -5px;
-	border: none;
-	border-bottom-left-radius: 0.3rem;
-	border-bottom-right-radius: 0.3rem;
-	-webkit-box-shadow: 0 10px 6px -6px #777;
-	-moz-box-shadow: 0 10px 6px -6px #777;
-	box-shadow: 0 10px 6px -6px #777;
+  font-size: 100%;
+  text-transform: uppercase;
+  color: #fff;
+  background: #2e3135;
+  padding: 0.5rem;
+  margin-top: -5px;
+  border: none;
+  border-bottom-left-radius: 0.3rem;
+  border-bottom-right-radius: 0.3rem;
+  -webkit-box-shadow: 0 10px 6px -6px #777;
+  -moz-box-shadow: 0 10px 6px -6px #777;
+  box-shadow: 0 10px 6px -6px #777;
 }
 
 div.commentAdd textarea {
-	width: 270px;
-	height: 2em;
-	overflow: auto;
-	word-wrap: break-word;
-	text-align: left;
-	padding: 0.2em;
-	margin: 0.5rem 0.5rem 0;
+  width: 270px;
+  height: 2em;
+  overflow: auto;
+  word-wrap: break-word;
+  text-align: left;
+  padding: 0.2em;
+  margin: 0.5rem 0.5rem 0;
 }
 
-
 div.monthMessage {
-	border: 1px solid #000;
-	margin: 20px 10px 10px 10px;
-	padding: 10px;
+  border: 1px solid #000;
+  margin: 20px 10px 10px 10px;
+  padding: 10px;
 }
 
 kbd {
-	font-size: 110%;
-	text-transform: uppercase;
-	padding: 0 0.3em;
-	border: 2px solid #2E3135;
-	border-radius: 2px;
+  font-size: 110%;
+  text-transform: uppercase;
+  padding: 0 0.3em;
+  border: 2px solid #2e3135;
+  border-radius: 2px;
 }
-	kbd kbd {padding: 0; border: none;}
+kbd kbd {
+  padding: 0;
+  border: none;
+}
 
-	kbd[class] {
-		border: none;
-	}
-	kbd[class]::before {
-		display: inline-block;
-		line-height: 1;
-		padding: 0 0.3em 0.2em;
-		margin-right: 0.5em;
-		border: 2px solid #2E3135;
-		border-radius: 2px;
-		vertical-align: top;
-	}
-	kbd.left::before {content: "\2190";}
-	kbd.right::before {content: "\2192";}
-	kbd.up::before {content: "\2191";}
-	kbd.down::before {content: "\2193";}
-	kbd.home::before {content: "\21E4";}
-	kbd.end::before {content: "\21E5";}
-	kbd.esc::before {content: "\238B";}
+kbd[class] {
+  border: none;
+}
+kbd[class]::before {
+  display: inline-block;
+  line-height: 1;
+  padding: 0 0.3em 0.2em;
+  margin-right: 0.5em;
+  border: 2px solid #2e3135;
+  border-radius: 2px;
+  vertical-align: top;
+}
+kbd.left::before {
+  content: "\2190";
+}
+kbd.right::before {
+  content: "\2192";
+}
+kbd.up::before {
+  content: "\2191";
+}
+kbd.down::before {
+  content: "\2193";
+}
+kbd.home::before {
+  content: "\21E4";
+}
+kbd.end::before {
+  content: "\21E5";
+}
+kbd.esc::before {
+  content: "\238B";
+}
 
 button.esc-button {
-	position: absolute;
-	text-transform: uppercase;
-	color: red;
-	background: #FFF;
-	font-weight: 700;
-	padding: 0.3rem;
-	border: none;
-	border-radius: 0.3rem;
-	-webkit-box-shadow: 0 10px 6px -6px #777;
-	-moz-box-shadow: 0 10px 6px -6px #777;
-	box-shadow: 0 10px 6px -6px #777;
-	top: 0;
-	right: 0;
+  position: absolute;
+  text-transform: uppercase;
+  color: red;
+  background: #fff;
+  font-weight: 700;
+  padding: 0.3rem;
+  border: none;
+  border-radius: 0.3rem;
+  -webkit-box-shadow: 0 10px 6px -6px #777;
+  -moz-box-shadow: 0 10px 6px -6px #777;
+  box-shadow: 0 10px 6px -6px #777;
+  top: 0;
+  right: 0;
 }

@@ -1,67 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-        <title>Menu Variation Simulated Edit With Right Click - AccDC Technical Style Guide</title>
-        <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
-        <link rel="stylesheet" type="text/css" href="css/menus.css" />
-        <script type="text/javascript" src="../../_common/js/jQuery.js">
-            // Load jQuery.
-            // This is not necessary if using the Standalone AccDC API version.
-        </script>
-        <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
-            // Load the AccDC API, which all modules are plugged into as the common interface.
-        </script>
-        <!-- Now load all desired modules, which plugs them into AccDC. --><script type="text/javascript" src="../../../2 Accessible Component Modules/aria_menu_module.min.js"></script>
-        <script type="text/javascript" src="js/setup.js">
-            // Now run the setup script where module invocation statements are contained.
-        </script>
-    </head>
-    <body>
-        <div id="coding-arena">
-			<header>
-				<div class="innerHeader">
-					<a href="http://whatsock.com"><img alt="WhatSock : Changing the world one step at a time" src="../../_common/img/whatsock.svg" /> 
-					<strong>AccDC</strong> Technical Style Guide</a>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Menu Variation Simulated Edit With Right Click - AccDC Technical Style Guide</title>
+    <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+    <link rel="stylesheet" type="text/css" href="css/menus.css" />
+    <script type="text/javascript" src="../../_common/js/jQuery.js">
+        // Load jQuery.
+        // This is not necessary if using the Standalone AccDC API version.
+    </script>
+    <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+        // Load the AccDC API, which all modules are plugged into as the common interface.
+    </script>
+    <!-- Now load all desired modules, which plugs them into AccDC. -->
+    <script type="text/javascript" src="../../../2 Accessible Component Modules/aria_menu_module.min.js"></script>
+    <script type="text/javascript" src="js/setup.js">
+        // Now run the setup script where module invocation statements are contained.
+    </script>
+</head>
+
+<body>
+    <div id="coding-arena">
+        <header>
+            <div class="innerHeader">
+                <a href="http://whatsock.com"><img alt="WhatSock : Changing the world one step at a time" src="../../_common/img/whatsock.svg" />
+                    <strong>AccDC</strong> Technical Style Guide</a>
+            </div>
+        </header>
+
+        <main>
+            <h1 class="pageTitle">ARIA Horizontal Menu <small> (Internal Content)</small></h1>
+            <div class="demo-block">
+                <h3 id="titleId">Blackboard</h3>
+                <div class="intro tal clearfix">
+                    <!-- The context menu is tied to menu structures within a hidden Div at the bottom of this page. -->
+                    <div>
+                        <div class="blackboard" id="blackboardId" tabindex="0" contenteditable="true" role="textbox" aria-multiline="true" aria-labelledby="titleId">
+                        </div>
+                    </div>
+                    <p><button><em>Just another active element on the page to focus to.</em></button></p>
                 </div>
-			</header>
-		
-        	<main>
-        		<h1 class="pageTitle">ARIA Horizontal Menu <small> (Internal Content)</small></h1>
-				<div class="demo-block">
-		            <h3 id="titleId">Blackboard</h3>
-		            <div class="intro tal clearfix">
-		                <!-- The context menu is tied to menu structures within a hidden Div at the bottom of this page. -->
-		                <div>
-		                    <div class="blackboard" id="blackboardId" tabindex="0" contenteditable="true" role="textbox" aria-multiline="true" aria-labelledby="titleId">
-		                    </div>
-		                </div>
-		                <p><button><em>Just another active element on the page to focus to.</em></button></p>
-		            </div>
-				</div>
-				
-	            <div class="keyboard">
-	               <p>The context menu is keyboard accessible:</p>
-	               <ul>
-						<li>Press <kbd><kbd>Shift</kbd>+<kbd>F10</kbd></kbd> or the Applications key to open the context menu.</li>
-						<li>Press the <kbd class="up">Up</kbd> and <kbd class="down">Down</kbd> Arrow keys to move focus between the menu options.</li>
-						<li>Press the <kbd class="left">Left</kbd> and <kbd class="right">Right</kbd> Arrow keys to open or close submenus.</li>
-						<li>Press any letter or number to jump to a menu item starting with that character or digit.</li>
-						<li>Press <kbd>Enter</kbd> to activate a menu option.</li>
-						<li>Press <kbd>Escape</kbd> to close the currently open menu.</li>
-						<li>Press <kbd>Tab</kbd> to close the menu and all submenus.</li>
-						<li>Mouse users can right click on any static region of the page to open the menu as usual.</li>
-						<li>Mouse users can cancel and close the menu by clicking anywhere else on the page.</li>
-						<li>On a touch screen, touch a static region on the page and hold for about 2.5 seconds then release to open the menu,
-						tap a menu item to activate it, or tap anywhere else on the page to cancel and close the menu.</li>
-					</ul>
-	            </div>
-			</main>
-        </div>
-		
-        <div id="hiddenDivId" class="hidden">
-            <!-- Basic menu structure
+            </div>
+
+            <div class="keyboard">
+                <p>The context menu is keyboard accessible:</p>
+                <ul>
+                    <li>Press <kbd><kbd>Shift</kbd>+<kbd>F10</kbd></kbd> or the Applications key to open the context menu.</li>
+                    <li>Press the <kbd class="up">Up</kbd> and <kbd class="down">Down</kbd> Arrow keys to move focus between the menu options.</li>
+                    <li>Press the <kbd class="left">Left</kbd> and <kbd class="right">Right</kbd> Arrow keys to open or close submenus.</li>
+                    <li>Press any letter or number to jump to a menu item starting with that character or digit.</li>
+                    <li>Press <kbd>Enter</kbd> to activate a menu option.</li>
+                    <li>Press <kbd>Escape</kbd> to close the currently open menu.</li>
+                    <li>Press <kbd>Tab</kbd> to close the menu and all submenus.</li>
+                    <li>Mouse users can right click on any static region of the page to open the menu as usual.</li>
+                    <li>Mouse users can cancel and close the menu by clicking anywhere else on the page.</li>
+                    <li>On a touch screen, touch a static region on the page and hold for about 2.5 seconds then release to open the menu,
+                        tap a menu item to activate it, or tap anywhere else on the page to cancel and close the menu.</li>
+                </ul>
+            </div>
+        </main>
+    </div>
+
+    <div id="hiddenDivId" class="hidden">
+        <!-- Basic menu structure
             The lists can be set to any tag, such as OL, UL, etc, as long as this is specified in the menuTag property within the JavaScript declaration statement.
             The same is true for the menu item nodes, which is specified using the menuItemTag property in the JavaScript declaration statement.
             Menus and submenus may be nested or broken out into separate lists if desired, as long as they are all contained within the same top level container element specified by ID within the JavaScript invocation statement.
@@ -70,21 +73,22 @@
             All menu item nodes must include innerText to ensure accessibility for screen reader users.
             Don't include any ARIA attributes within the menu markup, since this is handled automatically by the Menu module.
             -->
-            <ol class="menu" id="context-menu">
-                <li><a href="#" class="link" id="-load"> Reload from DB</a></li>
-                <li><a href="#" class="link" id="-save"> Save to DB</a></li>
-                <li><a href="#" class="link" id="-parse"> Parse Markdown</a></li>
-                <li><a href="#" class="submenu" id="-help"> Help</a></li>
-            </ol>
-            <ol class="menu" id="context-menu-help">
-                <li><a href="#" class="link" id="-keyboard"> Keyboard Shortcuts</a></li>
-                <li><a href="#" class="link" id="-instructions"> App Instructions</a></li>
-                <li><a href="#" class="submenu" id="-more-help"> More Help</a></li>
-            </ol>
-            <ol class="menu" id="context-menu-help-more-help">
-                <li><a href="#" class="link" id="-forum"> Community Forum</a></li>
-                <li><a href="#" class="link" id="-contact"> Contact Us</a></li>
-            </ol>
-        </div>
-    </body>
+        <ol class="menu" id="context-menu">
+            <li><a href="#" class="link" id="-load"> Reload from DB</a></li>
+            <li><a href="#" class="link" id="-save"> Save to DB</a></li>
+            <li><a href="#" class="link" id="-parse"> Parse Markdown</a></li>
+            <li><a href="#" class="submenu" id="-help"> Help</a></li>
+        </ol>
+        <ol class="menu" id="context-menu-help">
+            <li><a href="#" class="link" id="-keyboard"> Keyboard Shortcuts</a></li>
+            <li><a href="#" class="link" id="-instructions"> App Instructions</a></li>
+            <li><a href="#" class="submenu" id="-more-help"> More Help</a></li>
+        </ol>
+        <ol class="menu" id="context-menu-help-more-help">
+            <li><a href="#" class="link" id="-forum"> Community Forum</a></li>
+            <li><a href="#" class="link" id="-contact"> Contact Us</a></li>
+        </ol>
+    </div>
+</body>
+
 </html>

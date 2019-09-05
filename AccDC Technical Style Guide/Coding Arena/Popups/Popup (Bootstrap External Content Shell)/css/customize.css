@@ -1,12 +1,11 @@
-
 /* This is simply the triggering element */
 a.accPopup {
-float: left;
-margin: 100px;
+  float: left;
+  margin: 100px;
 }
 
 /* The top level Div container  for the popup,
 which matches the className property referenced in the setup script. */
 div.popup {
-background-color: #f5f5f5;
+  background-color: #f5f5f5;
 }

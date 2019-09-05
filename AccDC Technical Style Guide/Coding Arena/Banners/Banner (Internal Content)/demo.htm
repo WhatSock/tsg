@@ -1,92 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-        <title>Banner (Internal Content) - AccDC Technical Style Guide</title>
-        <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
-        <link rel="stylesheet" type="text/css" href="css/customize.css" />
-        <link rel="stylesheet" type="text/css" href="css/banner.css" />
-        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Alfa+Slab+One" />
-        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Boogaloo" />
-        <script type="text/javascript" src="../../_common/js/jQuery.js">
-            // Load jQuery.
-            // This is not necessary if using the Standalone AccDC API version.
-        </script>
-        <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
-            // Load the AccDC API, which all modules are plugged into as the common interface.
-        </script>
-        <!-- Now load all desired modules, which plugs them into AccDC. --><script type="text/javascript" src="../../../2 Accessible Component Modules/banner_module.min.js"></script>
-        <script type="text/javascript" src="js/setup.js">
-            // Run the setup script where module invocation statements are contained.
-        </script>
-    </head>
-    <body>
-    
-	<div id="coding-arena">
-			<header>
-				<div class="innerHeader">
-					<a href="http://whatsock.com"><img alt="WhatSock : Changing the world one step at a time" src="../../_common/img/whatsock.svg" /> 
-					<strong>AccDC</strong> Technical Style Guide</a>
-				</div>
-			</header>
-		
-		<main>
-		    <h1 class="pageTitle">Dynamic Banner (Internal)</h1>					 
-		            <div class="demo-block">
-		                <!-- The onclick handler below simply references the Banner AccDC Object using the ID that was returned in the setup script, and invokes the object's 'open()' method to rerender the banner content.
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Banner (Internal Content) - AccDC Technical Style Guide</title>
+    <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+    <link rel="stylesheet" type="text/css" href="css/customize.css" />
+    <link rel="stylesheet" type="text/css" href="css/banner.css" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Alfa+Slab+One" />
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Boogaloo" />
+    <script type="text/javascript" src="../../_common/js/jQuery.js">
+        // Load jQuery.
+        // This is not necessary if using the Standalone AccDC API version.
+    </script>
+    <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+        // Load the AccDC API, which all modules are plugged into as the common interface.
+    </script>
+    <!-- Now load all desired modules, which plugs them into AccDC. -->
+    <script type="text/javascript" src="../../../2 Accessible Component Modules/banner_module.min.js"></script>
+    <script type="text/javascript" src="js/setup.js">
+        // Run the setup script where module invocation statements are contained.
+    </script>
+</head>
+
+<body>
+
+    <div id="coding-arena">
+        <header>
+            <div class="innerHeader">
+                <a href="http://whatsock.com"><img alt="WhatSock : Changing the world one step at a time" src="../../_common/img/whatsock.svg" />
+                    <strong>AccDC</strong> Technical Style Guide</a>
+            </div>
+        </header>
+
+        <main>
+            <h1 class="pageTitle">Dynamic Banner (Internal)</h1>
+            <div class="demo-block">
+                <!-- The onclick handler below simply references the Banner AccDC Object using the ID that was returned in the setup script, and invokes the object's 'open()' method to rerender the banner content.
 		                All such methods and properties are documented as part of the AccDC API, on the Core API tab at WhatSock.com. -->
-						<button onclick="$A.reg[bannerId].open();" class="reloadBtn"> Reload Banner </button>
-		                <p class="note">The banner is loaded from an external page using it's ID.</p>
-					</div>
-					
-		            <div class="keyboard">
-		                <ul>
-							<li>Activate the Submit button to close the banner.</li>
-							<li>Activate the Reload button to rerender the banner content.</li>
-						</ul>
-		            </div>
-		        </div>
-				
-		        <div class="hidden">
-		            <div id="ad-1">
-		                <div id="content">
-		                    <div class="h2">
-		                        Lost at sea?
-		                    </div>
-		                    <div class="h3">
-		                        Relax - we've got your rudder.
-		                    </div>
-		                    <form>
-		                        <input type="text" id="email" title="Email address..." /><input type="submit" id="submit" value="Guide me" />
-		                    </form>
-		                </div>
-		                <div id="clouds">
-		                    <ul id="cloud-group-1">
-		                        <li class="cloud-1"></li>
-		                        <li class="cloud-2"></li>
-		                        <li class="cloud-3"></li>
-		                    </ul>
-		                    <ul id="cloud-group-2">
-		                        <li class="cloud-1"></li>
-		                        <li class="cloud-2"></li>
-		                        <li class="cloud-3"></li>
-		                    </ul>
-		                </div>
-		                <ul id="boat">
-		                    <li>
-		                        <div id="question-mark">
-		                        </div>
-		                    </li>
-		                </ul>
-		                <ul id="water">
-		                    <li id="water-back"></li>
-		                    <li id="water-front"></li>
-		                </ul>
-		            </div>
-		        </div>
-    
-			</main>
-		</div>
-	</body>
+                <button onclick="$A.reg[bannerId].open();" class="reloadBtn"> Reload Banner </button>
+                <p class="note">The banner is loaded from an external page using it's ID.</p>
+            </div>
+
+            <div class="keyboard">
+                <ul>
+                    <li>Activate the Submit button to close the banner.</li>
+                    <li>Activate the Reload button to rerender the banner content.</li>
+                </ul>
+            </div>
+    </div>
+
+    <div class="hidden">
+        <div id="ad-1">
+            <div id="content">
+                <div class="h2">
+                    Lost at sea?
+                </div>
+                <div class="h3">
+                    Relax - we've got your rudder.
+                </div>
+                <form>
+                    <input type="text" id="email" title="Email address..." /><input type="submit" id="submit" value="Guide me" />
+                </form>
+            </div>
+            <div id="clouds">
+                <ul id="cloud-group-1">
+                    <li class="cloud-1"></li>
+                    <li class="cloud-2"></li>
+                    <li class="cloud-3"></li>
+                </ul>
+                <ul id="cloud-group-2">
+                    <li class="cloud-1"></li>
+                    <li class="cloud-2"></li>
+                    <li class="cloud-3"></li>
+                </ul>
+            </div>
+            <ul id="boat">
+                <li>
+                    <div id="question-mark">
+                    </div>
+                </li>
+            </ul>
+            <ul id="water">
+                <li id="water-back"></li>
+                <li id="water-front"></li>
+            </ul>
+        </div>
+    </div>
+
+    </main>
+    </div>
+</body>
+
 </html>

@@ -1,63 +1,56 @@
-$A.bind(window, 'load', function(){
+$A.bind(window, "load", function() {
+  // Tooltip AccDC Object
+  var tooltipId = $A.setTooltip({
+    // Set a unique ID for the tooltip AccDC Object, which can also be referenced through $A.reg['uniqueId']
+    id: "myTooltip",
 
-	// Tooltip AccDC Object
-	var tooltipId = $A.setTooltip(
-					{
+    // Set the role name for the container
+    role: "tooltip",
 
-					// Set a unique ID for the tooltip AccDC Object, which can also be referenced through $A.reg['uniqueId']
-					id: 'myTooltip',
+    // Set the triggering element using a DOM node or a CSS Selector
+    trigger: "a#helpIcon",
 
-					// Set the role name for the container
-					role: 'tooltip',
+    // Set an optional time delay in milliseconds
+    wait: 1500,
 
-					// Set the triggering element using a DOM node or a CSS Selector
-					trigger: 'a#helpIcon',
+    // Set the file path and ID of the tooltip container
+    source: "files/tooltip.html #tooltip-help",
 
-					// Set an optional time delay in milliseconds
-					wait: 1500,
+    // Position the tooltip on the right of the triggering element
+    autoPosition: 3,
 
-					// Set the file path and ID of the tooltip container
-					source: 'files/tooltip.html #tooltip-help',
+    // Move the Tooltip AccDC Object 10px to the right when opened
+    offsetLeft: 10,
 
-					// Position the tooltip on the right of the triggering element
-					autoPosition: 3,
+    // Set the class name for the top level container element
+    className: "tooltip"
 
-					// Move the Tooltip AccDC Object 10px to the right when opened
-					offsetLeft: 10,
+    // (Other AccDC API properties and methods can be declared here also to customize functionality and behavior)
+  });
 
-					// Set the class name for the top level container element
-					className: 'tooltip'
+  var passwordTooltipId = $A.setTooltip({
+    // Set a unique ID for the tooltip AccDC Object, which can also be referenced through $A.reg['uniqueId']
+    id: "myPasswordTooltip",
+    role: "tooltip",
 
-					// (Other AccDC API properties and methods can be declared here also to customize functionality and behavior)
+    // Set the triggering element using a DOM node or a CSS Selector
+    trigger: "input#pWord",
 
-					});
+    // Set an optional time delay in milliseconds
+    wait: 1500,
 
-	var passwordTooltipId = $A.setTooltip(
-					{
+    // Set the file path and ID of the tooltip container
+    source: "files/tooltip.html #tooltip-password",
 
-					// Set a unique ID for the tooltip AccDC Object, which can also be referenced through $A.reg['uniqueId']
-					id: 'myPasswordTooltip',
-					role: 'tooltip',
+    // Position the tooltip on the right of the triggering element
+    autoPosition: 3,
 
-					// Set the triggering element using a DOM node or a CSS Selector
-					trigger: 'input#pWord',
+    // Move the Tooltip AccDC Object 10px to the right when opened
+    offsetLeft: 10,
 
-					// Set an optional time delay in milliseconds
-					wait: 1500,
+    // Set the class name for the top level container element
+    className: "tooltip"
 
-					// Set the file path and ID of the tooltip container
-					source: 'files/tooltip.html #tooltip-password',
-
-					// Position the tooltip on the right of the triggering element
-					autoPosition: 3,
-
-					// Move the Tooltip AccDC Object 10px to the right when opened
-					offsetLeft: 10,
-
-					// Set the class name for the top level container element
-					className: 'tooltip'
-
-					// (Other AccDC API properties and methods can be declared here also to customize functionality and behavior)
-
-					});
+    // (Other AccDC API properties and methods can be declared here also to customize functionality and behavior)
+  });
 });

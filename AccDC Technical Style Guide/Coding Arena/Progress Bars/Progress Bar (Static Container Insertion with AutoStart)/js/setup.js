@@ -1,72 +1,66 @@
-$A.bind(window, 'load', function(){
+$A.bind(window, "load", function() {
+  // Create a Progress Bar AccDC Object and save it in "myProgressBar"
 
-	// Create a Progress Bar AccDC Object and save it in "myProgressBar"
+  var myProgressBar = $A.setProgressBar({
+    // Set a unique ID, which will also be the ID attribute value for the 'progress' element
+    id: "progressbar1",
 
-	var myProgressBar = $A.setProgressBar(
-					{
+    // Set the boundary text for screen reader users
+    role: "Loading",
+    accStart: "Start",
+    accEnd: "End",
 
-					// Set a unique ID, which will also be the ID attribute value for the 'progress' element
-					id: 'progressbar1',
+    // Set initial values for the progress bar, may be Int or Float
+    config: {
+      value: 0,
+      max: 100
+    },
 
-					// Set the boundary text for screen reader users
-					role: 'Loading',
-					accStart: 'Start',
-					accEnd: 'End',
+    // Specify the container element where the progress bar AccDC Object will be inserted
+    isStatic: "#progressBarContainer",
 
-					// Set initial values for the progress bar, may be Int or Float
-					config:
-									{
-									value: 0,
-									max: 100
-									},
+    // Set the class name for the top level container Div that surrounds the 'progress' element
+    className: "progressBar",
 
-					// Specify the container element where the progress bar AccDC Object will be inserted
-					isStatic: '#progressBarContainer',
+    // Load the polyfill script after the progress bar is rendered for cross-browser compatibility
+    // (The accompanying CSS file must also be included in the header of the page)
+    runJSAfter: ["js/progress-polyfill.min.js"],
 
-					// Set the class name for the top level container Div that surrounds the 'progress' element
-					className: 'progressBar',
+    // Run script after the progress bar finishes rendering
+    runAfter: function(dc) {
+      // Optionally do something
+      // dc.source is the DOM node for the rendered 'progress' element
+    },
 
-					// Load the polyfill script after the progress bar is rendered for cross-browser compatibility
-					// (The accompanying CSS file must also be included in the header of the page)
-					runJSAfter: ['js/progress-polyfill.min.js'],
+    // Run script after the progress bar finishes closing
+    runAfterClose: function(dc) {
+      // Optionally do something
+    }
 
-					// Run script after the progress bar finishes rendering
-					runAfter: function(dc){
-					// Optionally do something
-					// dc.source is the DOM node for the rendered 'progress' element
-					},
+    // Other AccDC API properties and methods can be applied here as well if desired
+  });
 
-					// Run script after the progress bar finishes closing
-					runAfterClose: function(dc){
-					// Optionally do something
-					}
+  // Open the progress bar AccDC Object
+  myProgressBar.open();
 
-					// Other AccDC API properties and methods can be applied here as well if desired
+  // Now, let's set up a timer to show the animation in action
 
-					});
+  // Set a starting value
+  var iVal = 0;
 
-	// Open the progress bar AccDC Object
-	myProgressBar.open();
+  // Set an interval
+  var inter = setInterval(function() {
+    // Set a new value for the previously instantiated progress bar AccDC Object
+    myProgressBar.set(iVal);
 
-	// Now, let's set up a timer to show the animation in action
+    iVal++;
 
-	// Set a starting value
-	var iVal = 0;
+    // Stop the interval when it reaches 100
+    if (iVal > 100) {
+      clearInterval(inter);
 
-	// Set an interval
-	var inter = setInterval(function(){
-
-		// Set a new value for the previously instantiated progress bar AccDC Object
-		myProgressBar.set(iVal);
-
-		iVal++;
-
-		// Stop the interval when it reaches 100
-		if (iVal > 100){
-			clearInterval(inter);
-
-			// Now close the progress bar, since processing has completed
-			myProgressBar.close();
-		}
-	}, 300);
+      // Now close the progress bar, since processing has completed
+      myProgressBar.close();
+    }
+  }, 300);
 });

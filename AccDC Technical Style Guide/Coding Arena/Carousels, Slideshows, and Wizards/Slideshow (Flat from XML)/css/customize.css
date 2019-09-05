@@ -3,83 +3,94 @@
 
 /* Styling for the Auto Rotating Carousel */
 
-
 /* The container element where the dynamically generated carousel will be inserted */
 #carouselId {
-    display: block;
-    height: 170px;
-	margin: 1rem auto 2rem;
+  display: block;
+  height: 170px;
+  margin: 1rem auto 2rem;
 }
 
 /* The top level Div element that holds all carousel nodes */
 #carouselId div.carouselCls {
-	width: 80%;
-    text-align: center;
-	margin: 0 10%;
+  width: 80%;
+  text-align: center;
+  margin: 0 10%;
 }
 
 /* The left and right content Div elements where Nav buttons are added */
-#carouselId div.lNav, #carouselId div.rNav {
-    position: absolute;
-    height: 158px;
-    padding: 6px;
+#carouselId div.lNav,
+#carouselId div.rNav {
+  position: absolute;
+  height: 158px;
+  padding: 6px;
 }
 
 /* The center Div element where rotating slides are added */
 #carouselId div.centerContent {
-    position: absolute;
-    overflow: hidden;
-    left: 50%;
-    width: 165px;
-    height: 170px;
-	margin-left: -82px
+  position: absolute;
+  overflow: hidden;
+  left: 50%;
+  width: 165px;
+  height: 170px;
+  margin-left: -82px;
 }
-	#carouselId div.centerContent div div {transition: opacity 1s;}
-	#carouselId div.centerContent div div[aria-hidden=false] {opacity: 1;}
-	#carouselId div.centerContent div div[aria-hidden=true] {opacity: 0;}
-
+#carouselId div.centerContent div div {
+  transition: opacity 1s;
+}
+#carouselId div.centerContent div div[aria-hidden="false"] {
+  opacity: 1;
+}
+#carouselId div.centerContent div div[aria-hidden="true"] {
+  opacity: 0;
+}
 
 /* The right content Div element where Nav buttons are added */
-#carouselId div.rNav {right: 0;}
+#carouselId div.rNav {
+  right: 0;
+}
 
 /* Point to all Nav buttons in the carousel */
 #carouselId .navButton {
-    display: block;
-	overflow: hidden;
-    width: 28px;
-    height: 28px;
-    border: 0;
-    padding: 0;
-    margin: 0;
+  display: block;
+  overflow: hidden;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  padding: 0;
+  margin: 0;
 }
 
-	#carouselId .navButton span[aria-hidden=true] {display: none;}
-	
-	#carouselId .navButton[aria-label="Previous Slide"] {
-		background: url(../img/sprite.svg) 0 -297px no-repeat;
-	}
-	#carouselId .navButton[aria-label="Next Slide"] {
-		background: url(../img/sprite.svg) 0 -118px no-repeat;
-	}
+#carouselId .navButton span[aria-hidden="true"] {
+  display: none;
+}
+
+#carouselId .navButton[aria-label="Previous Slide"] {
+  background: url(../img/sprite.svg) 0 -297px no-repeat;
+}
+#carouselId .navButton[aria-label="Next Slide"] {
+  background: url(../img/sprite.svg) 0 -118px no-repeat;
+}
 
 /* Point to the Previous and Next Slide buttons */
-#carouselId .navSlideButton {margin-top: 40px;}
+#carouselId .navSlideButton {
+  margin-top: 40px;
+}
 
 #carouselId .navGroupButton {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 #carouselId div.groupName {
-    position: absolute;
-    width: 165px;
-	font-size: 1.3em;
-    text-align: center;
-    z-index: 1;
+  position: absolute;
+  width: 165px;
+  font-size: 1.3em;
+  text-align: center;
+  z-index: 1;
 }
 
 #carouselId div.groupName span {
-	position: relative;
-	top: -1rem;
-	text-transform: uppercase;
-	color: #49182E;
+  position: relative;
+  top: -1rem;
+  text-transform: uppercase;
+  color: #49182e;
 }

@@ -1,121 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-<title>Accordion (Bootstrap Internal Content) - AccDC Technical Style Guide</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Accordion (Bootstrap Internal Content) - AccDC Technical Style Guide</title>
 
-<link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
-<link rel="stylesheet" type="text/css" href="css/customize.css" />
+    <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+    <link rel="stylesheet" type="text/css" href="css/customize.css" />
 
-<script type="text/javascript" src="../../_common/js/jQuery.js">
-// Load jQuery.
-// This is not necessary if using the Standalone AccDC API version.
-</script>
+    <script type="text/javascript" src="../../_common/js/jQuery.js">
+        // Load jQuery.
+        // This is not necessary if using the Standalone AccDC API version.
+    </script>
 
-<script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
-// Load the AccDC API, which all modules are plugged into as the common interface.
-</script>
+    <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+        // Load the AccDC API, which all modules are plugged into as the common interface.
+    </script>
 
-<!-- Now load all desired modules, which plugs them into AccDC. -->
-<script type="text/javascript" src="../../../2 Accessible Component Modules/acordion_generator.min.js"></script>
+    <!-- Now load all desired modules, which plugs them into AccDC. -->
+    <script type="text/javascript" src="../../../2 Accessible Component Modules/acordion_generator.min.js"></script>
 
-<script type="text/javascript" src="../../../3 AccDC Bootstrap/accdc_bootstrap.js">
-// Load AccDC Bootstrap to enable HTML parsing.
-</script>
+    <script type="text/javascript" src="../../../3 AccDC Bootstrap/accdc_bootstrap.js">
+        // Load AccDC Bootstrap to enable HTML parsing.
+    </script>
 
 </head>
-<body>
-<div>
 
-<!-- Attributes explained:
-• class="accAccordion" : The bootstrap class name that specifies an accessible accordion node. 
-• data-src : The resource path and pointer to the ID attribute of the accordion content container element.
+<body>
+    <div>
+
+        <!-- Attributes explained:
+ï¿½ class="accAccordion" : The bootstrap class name that specifies an accessible accordion node. 
+ï¿½ data-src : The resource path and pointer to the ID attribute of the accordion content container element.
 If set, data-internal should be blank or not included. 
-• data-internal : The ID attribute of the accordion content container element within the same document.
+ï¿½ data-internal : The ID attribute of the accordion content container element within the same document.
 If data-internal is set, data-src should be blank or not included. 
-• data-insert : The ID attribute of the container element where the accordion content will be inserted when rendered. (This must not be inside the triggering element)
-• data-defaultopen="true" : Specifies that the referenced accordion node will open automatically. Only one accordion node per group should include this
+ï¿½ data-insert : The ID attribute of the container element where the accordion content will be inserted when rendered. (This must not be inside the triggering element)
+ï¿½ data-defaultopen="true" : Specifies that the referenced accordion node will open automatically. Only one accordion node per group should include this
 attribute. 
-• data-role : The role name that is conveyed to screen reader users within the accordion link. "Accordion" is set by default if no value is specified. 
-• data-openstate : The open state text that is conveyed to screen reader users within the accordion link when open. "Expanded" is set by default if no value
+ï¿½ data-role : The role name that is conveyed to screen reader users within the accordion link. "Accordion" is set by default if no value is specified. 
+ï¿½ data-openstate : The open state text that is conveyed to screen reader users within the accordion link when open. "Expanded" is set by default if no value
 is specified. 
-• data-insert : The ID attribute of the container element where accordion node content will be inserted. The referenced container element must not be included
+ï¿½ data-insert : The ID attribute of the container element where accordion node content will be inserted. The referenced container element must not be included
 within the accordion link node. 
-• data-group : The shared group name for all related nodes within an accordion. This is used to differentiate separate accordion groups within the same
+ï¿½ data-group : The shared group name for all related nodes within an accordion. This is used to differentiate separate accordion groups within the same
 document. 
-• id : The unique ID of the element. This value is also registered as the ID of the individual accordion node AccDC Object, making it possible to invoke
+ï¿½ id : The unique ID of the element. This value is also registered as the ID of the individual accordion node AccDC Object, making it possible to invoke
 the object programmatically.
 E.G $A.reg.uniqueID.open();
 // All other AccDC API properties and methods are similarly available.  
 -->
 
-<div id="accordionGroup">
+        <div id="accordionGroup">
 
-<div role="heading" aria-level="2" class="clearfix">
-<a href="#" class="accAccordion" data-internal="accordion-sect1" data-insert="sect1" data-defaultopen="true" data-role="Accordion" data-openstate="Expanded" data-group="SharedGroupName" id="accordion1id">
-<span class="icon"></span>
-<span class="lbl">Section One</span>
-</a>
-</div>
+            <div role="heading" aria-level="2" class="clearfix">
+                <a href="#" class="accAccordion" data-internal="accordion-sect1" data-insert="sect1" data-defaultopen="true" data-role="Accordion" data-openstate="Expanded" data-group="SharedGroupName" id="accordion1id">
+                    <span class="icon"></span>
+                    <span class="lbl">Section One</span>
+                </a>
+            </div>
 
-<span id="sect1" class="insertContent"></span>
-<div role="heading" aria-level="2" class="clearfix">
-<a href="#" class="accAccordion" data-internal="accordion-sect2" data-insert="sect2" data-role="Accordion" data-openstate="Expanded" data-group="SharedGroupName" id="accordion2id">
-<span class="icon"></span>
-<span class="lbl">Section Two</span>
-</a>
-</div>
+            <span id="sect1" class="insertContent"></span>
+            <div role="heading" aria-level="2" class="clearfix">
+                <a href="#" class="accAccordion" data-internal="accordion-sect2" data-insert="sect2" data-role="Accordion" data-openstate="Expanded" data-group="SharedGroupName" id="accordion2id">
+                    <span class="icon"></span>
+                    <span class="lbl">Section Two</span>
+                </a>
+            </div>
 
-<span id="sect2" class="insertContent"></span>
+            <span id="sect2" class="insertContent"></span>
 
-<div role="heading" aria-level="2" class="clearfix">
-<a href="#" class="accAccordion" data-internal="accordion-sect3" data-insert="sect3" data-role="Accordion" data-openstate="Expanded" data-group="SharedGroupName" id="accordion3id">
-<span class="icon"></span>
-<span class="lbl">Section Three</span>
-</a>
-</div>
+            <div role="heading" aria-level="2" class="clearfix">
+                <a href="#" class="accAccordion" data-internal="accordion-sect3" data-insert="sect3" data-role="Accordion" data-openstate="Expanded" data-group="SharedGroupName" id="accordion3id">
+                    <span class="icon"></span>
+                    <span class="lbl">Section Three</span>
+                </a>
+            </div>
 
-<span id="sect3" class="insertContent"></span>
+            <span id="sect3" class="insertContent"></span>
 
-</div>
+        </div>
 
-<div class="desc">
-<p>
-The accordion controls are keyboard accessible.
-</p>
-<p><pre>
+        <div class="desc">
+            <p>
+                The accordion controls are keyboard accessible.
+            </p>
+            <p>
+                <pre>
 Press Tab to navigate between accordion controls.
 Press Enter to expand an accordion section.
 Mouse users can click the desired accordion as usual to activate.
-</pre></p>
-</div>
+</pre>
+            </p>
+        </div>
 
-</div>
+    </div>
 
-<div class="hidden">
+    <div class="hidden">
 
-<!-- Accordion sections to dynamically display -->
+        <!-- Accordion sections to dynamically display -->
 
-<div id="accordion-sect1">
-<div>
-Section One Content
-</div>
-</div>
+        <div id="accordion-sect1">
+            <div>
+                Section One Content
+            </div>
+        </div>
 
-<div id="accordion-sect2">
-<div>
-Section Two Content
-</div>
-</div>
+        <div id="accordion-sect2">
+            <div>
+                Section Two Content
+            </div>
+        </div>
 
-<div id="accordion-sect3">
-<div>
-Section Three Content
-</div>
-</div>
+        <div id="accordion-sect3">
+            <div>
+                Section Three Content
+            </div>
+        </div>
 
-</div>
+    </div>
 
 </body>
+
 </html>

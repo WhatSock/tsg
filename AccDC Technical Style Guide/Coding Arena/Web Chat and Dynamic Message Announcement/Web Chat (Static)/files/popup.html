@@ -1,20 +1,21 @@
 <html>
-    <body>
-        <!-- Important
+
+<body>
+    <!-- Important
         When Implementing a Close link or button, the className must match the "closeClassName" property within the script declaration.
         (If not explicitly set, the default value "popupClose" is configured within the module script file, and should be used for all Close links or buttons)
         Doing so will automatically bind the close methods with this element, and set keyboard focus properly when the AccDC Object is closed.
         -->
-        <div id="popup-chat">
-            <h3>Chatting with Blurt</h3>
-            <p class="close">
-                <a href="#" class="popupClose"><img src="img/ic_close.svg" alt="Close Chat" title="Close Chat" /></a>
-            </p>
-            <div class="chatPane">
-                <div id="chatPaneInsert">
-                </div>
+    <div id="popup-chat">
+        <h3>Chatting with Blurt</h3>
+        <p class="close">
+            <a href="#" class="popupClose"><img src="img/ic_close.svg" alt="Close Chat" title="Close Chat" /></a>
+        </p>
+        <div class="chatPane">
+            <div id="chatPaneInsert">
             </div>
-            <!-- Important
+        </div>
+        <!-- Important
             The message field is constructed using a Textarea element.
             This is important, because when using a screen reader like JAWS, pressing Enter to submit a new message won't automatically exit Forms Mode,
             but will, instead, simply pass the keystroke through to the field for processing.
@@ -22,10 +23,11 @@
             Also, notice that role="application" is used on the surrounding Div.
             This is to force JAWS 14 and NVDA into Forms Mode when the field receives focus.
             -->
-            <div class="msg" role="application">
-                <textarea title="Chat Message" id="msgField">
+        <div class="msg" role="application">
+            <textarea title="Chat Message" id="msgField">
                 </textarea>
-            </div>
         </div>
-    </body>
+    </div>
+</body>
+
 </html>

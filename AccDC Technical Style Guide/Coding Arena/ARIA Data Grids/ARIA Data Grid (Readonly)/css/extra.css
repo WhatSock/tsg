@@ -1,10 +1,8 @@
-
 div.paginate > * {
-float: left;
-margin-left: 10px;
+  float: left;
+  margin-left: 10px;
 }
 
 div.paginate input {
-width: 50px;
+  width: 50px;
 }
-

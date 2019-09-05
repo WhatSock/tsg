@@ -1,80 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-        <title>Popup (Internal Content) - AccDC Technical Style Guide</title>
-        <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
-        <link rel="stylesheet" type="text/css" href="css/customize.css" />
-        <script type="text/javascript" src="../../_common/js/jQuery.js">
-            // Load jQuery.
-            // This is not necessary if using the Standalone AccDC API version.
-        </script>
-        <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
-            // Load the AccDC API, which all modules are plugged into as the common interface.
-        </script>
-        <!-- Now load all desired modules, which plugs them into AccDC. --><script type="text/javascript" src="../../../2 Accessible Component Modules/popup_module.min.js"></script>
-        <script type="text/javascript" src="js/setup.js">
-            // Run the setup script where module invocation statements are contained.
-        </script>
-    </head>
-    <body>
-    	<div id="coding-arena">
-			<header>
-				<div class="innerHeader">
-					<a href="http://whatsock.com"><img alt="WhatSock : Changing the world one step at a time" src="../../_common/img/whatsock.svg" /> 
-					<strong>AccDC</strong> Technical Style Guide</a></div>
-			</header>
-			
-			<main>
-				<h1 class="pageTitle">Popup <small>Internal Content</small></h1>
-            	
-				<div class="demo-block">    	
-	            	<p><a id="myPopup" href="#" class="accPopup excerpt">Show me the Shakespeare Quote of the Day!</a></p>
-				</div>
-				
-	            <div class="intro tal keyboard">
-	                <p>The popup is optimized for screen reader and keyboard only users:</p>
-	               	<ul>
-	               		<li>Activate the Quote link to open the popup.</li>
-						<li>The content will be inserted inline with the triggering element,
-	and focus will automatically move to the beginning of the new content.</li>
-						<li>Press <kbd>Tab</kbd> to set focus to the Close link and press <kbd>Enter</kbd> to close the popup,
-	or press <kbd>Escape</kbd> to close the popup directly.</li>
-						<li>When closed, focus will move back to the triggering element.</li>
-	               	</ul>
-				</div>
-	        </main>
-		</div>
-		
-        <div class="hidden">
-            <!-- Important
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Popup (Internal Content) - AccDC Technical Style Guide</title>
+    <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+    <link rel="stylesheet" type="text/css" href="css/customize.css" />
+    <script type="text/javascript" src="../../_common/js/jQuery.js">
+        // Load jQuery.
+        // This is not necessary if using the Standalone AccDC API version.
+    </script>
+    <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+        // Load the AccDC API, which all modules are plugged into as the common interface.
+    </script>
+    <!-- Now load all desired modules, which plugs them into AccDC. -->
+    <script type="text/javascript" src="../../../2 Accessible Component Modules/popup_module.min.js"></script>
+    <script type="text/javascript" src="js/setup.js">
+        // Run the setup script where module invocation statements are contained.
+    </script>
+</head>
+
+<body>
+    <div id="coding-arena">
+        <header>
+            <div class="innerHeader">
+                <a href="http://whatsock.com"><img alt="WhatSock : Changing the world one step at a time" src="../../_common/img/whatsock.svg" />
+                    <strong>AccDC</strong> Technical Style Guide</a></div>
+        </header>
+
+        <main>
+            <h1 class="pageTitle">Popup <small>Internal Content</small></h1>
+
+            <div class="demo-block">
+                <p><a id="myPopup" href="#" class="accPopup excerpt">Show me the Shakespeare Quote of the Day!</a></p>
+            </div>
+
+            <div class="intro tal keyboard">
+                <p>The popup is optimized for screen reader and keyboard only users:</p>
+                <ul>
+                    <li>Activate the Quote link to open the popup.</li>
+                    <li>The content will be inserted inline with the triggering element,
+                        and focus will automatically move to the beginning of the new content.</li>
+                    <li>Press <kbd>Tab</kbd> to set focus to the Close link and press <kbd>Enter</kbd> to close the popup,
+                        or press <kbd>Escape</kbd> to close the popup directly.</li>
+                    <li>When closed, focus will move back to the triggering element.</li>
+                </ul>
+            </div>
+        </main>
+    </div>
+
+    <div class="hidden">
+        <!-- Important
             When Implementing a Close link or button, the className must match the "closeClassName" property within the script declaration.
             (If not explicitly set, the default value "popupClose" is configured within the module script file, and should be used for all Close links or buttons)
             Doing so will automatically bind the close methods with this element, and set keyboard focus properly when the AccDC Object is closed.
             -->
-           <div id="popup-info">
-	            <h4>Hamlet: Act 3, Scene 2</h4>
-	            <p class="close">
-	                <a href="#" class="popupClose"><img src="img/ic_close.svg" alt="Close Popup" title="Close Popup" /></a>
-	            </p>
-	            <dl>
-	                <dt>HAMLET</dt>
-	                <dd>Do you see yonder cloud that's almost in shape of a camel?</dd>
-	                <dt>POLONIUS</dt> 
-	                <dd>By th' mass, and 'tis like a camel indeed.</dd>
-	               	<dt>HAMLET</dt>
-	                <dd>Methinks it is like a weasel.</dd>
-	                <dt>POLONIUS</dt> 
-	                <dd>It is backed like a weasel.</dd>
-	                <dt>HAMLET</dt>
-	                <dd>Or like a whale.</dd>
-	                <dt>POLONIUS</dt> 
-	                <dd>Very like a whale.</dd>
-	            </dl>
-        	</div>
-		</div>
-		
-		
-    </body>
+        <div id="popup-info">
+            <h4>Hamlet: Act 3, Scene 2</h4>
+            <p class="close">
+                <a href="#" class="popupClose"><img src="img/ic_close.svg" alt="Close Popup" title="Close Popup" /></a>
+            </p>
+            <dl>
+                <dt>HAMLET</dt>
+                <dd>Do you see yonder cloud that's almost in shape of a camel?</dd>
+                <dt>POLONIUS</dt>
+                <dd>By th' mass, and 'tis like a camel indeed.</dd>
+                <dt>HAMLET</dt>
+                <dd>Methinks it is like a weasel.</dd>
+                <dt>POLONIUS</dt>
+                <dd>It is backed like a weasel.</dd>
+                <dt>HAMLET</dt>
+                <dd>Or like a whale.</dd>
+                <dt>POLONIUS</dt>
+                <dd>Very like a whale.</dd>
+            </dl>
+        </div>
+    </div>
+
+
+</body>
+
 </html>

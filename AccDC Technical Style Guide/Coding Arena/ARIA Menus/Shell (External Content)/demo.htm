@@ -1,48 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-<title>Menu Shell (External Content) - AccDC Technical Style Guide</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Menu Shell (External Content) - AccDC Technical Style Guide</title>
 
-<link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
-<link rel="stylesheet" type="text/css" href="css/customize.css" />
+    <link rel="stylesheet" type="text/css" href="../../_common/css/global.css" />
+    <link rel="stylesheet" type="text/css" href="css/customize.css" />
 
-<script type="text/javascript" src="../../_common/js/jQuery.js">
-// Load jQuery.
-// This is not necessary if using the Standalone AccDC API version.
-</script>
+    <script type="text/javascript" src="../../_common/js/jQuery.js">
+        // Load jQuery.
+        // This is not necessary if using the Standalone AccDC API version.
+    </script>
 
-<script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
-// Load the AccDC API, which all modules are plugged into as the common interface.
-</script>
+    <script type="text/javascript" src="../../../1 AccDC API/For jQuery/Acc.DC.API.js">
+        // Load the AccDC API, which all modules are plugged into as the common interface.
+    </script>
 
-<!-- Now load all desired modules, which plugs them into AccDC. -->
-<script type="text/javascript" src="../../../2 Accessible Component Modules/aria_menu_module.min.js"></script>
+    <!-- Now load all desired modules, which plugs them into AccDC. -->
+    <script type="text/javascript" src="../../../2 Accessible Component Modules/aria_menu_module.min.js"></script>
 
-<script type="text/javascript" src="js/setup.js">
-// Now run the setup script where module invocation statements are contained.
-</script>
+    <script type="text/javascript" src="js/setup.js">
+        // Now run the setup script where module invocation statements are contained.
+    </script>
 
 </head>
+
 <body>
-<div>
+    <div>
 
-<div class="intro tal clearfix">
+        <div class="intro tal clearfix">
 
-<!-- The Dropdown is tied to menu structures within the external file 'files\menus.html'. -->
+            <!-- The Dropdown is tied to menu structures within the external file 'files\menus.html'. -->
 
-<button role="button" class="menu">Options (Vertical Dropdown)</button>
+            <button role="button" class="menu">Options (Vertical Dropdown)</button>
 
-</div>
+        </div>
 
-<div class="intro tal">
+        <div class="intro tal">
 
-<div class="desc">
-<p>
-The menus are keyboard accessible.
-</p>
-<p><pre>
+            <div class="desc">
+                <p>
+                    The menus are keyboard accessible.
+                </p>
+                <p>
+                    <pre>
 Activate the triggering element using the keyboard.
 Press the Up and Down Arrow keys to move focus between the menu options.
 Press the Left and Right Arrow keys to open or close submenus.
@@ -51,10 +54,12 @@ Press Enter to activate a menu option.
 Press Escape to close the currently open menu.
 Press Tab or set focus back on the triggering element to close the menu and all submenus.
 Mouse users can click the desired menu option as usual, or click anywhere outside the menu to close it.
-</pre></p>
-</div>
-</div>
+</pre>
+                </p>
+            </div>
+        </div>
 
-</div>
+    </div>
 </body>
+
 </html>

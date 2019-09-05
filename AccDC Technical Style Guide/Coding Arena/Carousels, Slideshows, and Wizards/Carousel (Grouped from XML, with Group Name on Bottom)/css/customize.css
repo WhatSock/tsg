@@ -4,80 +4,94 @@
 /* Styling for the Auto Rotating Carousel */
 
 #carouselId {
-    display: block;
-    height: 170px;
-	margin: 2rem 0;
+  display: block;
+  height: 170px;
+  margin: 2rem 0;
 }
 
 #carouselId div.carouselCls {
-	width: 80%;
-    text-align: center;
-	margin: 0 10%;
+  width: 80%;
+  text-align: center;
+  margin: 0 10%;
 }
 
-#carouselId div.lNav, #carouselId div.rNav {
-    position: absolute;
-    height: 158px;
+#carouselId div.lNav,
+#carouselId div.rNav {
+  position: absolute;
+  height: 158px;
 }
 
 #carouselId div.centerContent {
-    position: absolute;
-    overflow: hidden;
-    left: 50%;
-    width: 165px;
-    height: 170px;
-	margin-left: -82px;
+  position: absolute;
+  overflow: hidden;
+  left: 50%;
+  width: 165px;
+  height: 170px;
+  margin-left: -82px;
 }
-	#carouselId div.centerContent div div {transition: opacity 1s;}
-	#carouselId div.centerContent div div[aria-hidden=false] {opacity: 1;}
-	#carouselId div.centerContent div div[aria-hidden=true] {opacity: 0;}
+#carouselId div.centerContent div div {
+  transition: opacity 1s;
+}
+#carouselId div.centerContent div div[aria-hidden="false"] {
+  opacity: 1;
+}
+#carouselId div.centerContent div div[aria-hidden="true"] {
+  opacity: 0;
+}
 
-#carouselId div.rNav {right: 0;}
+#carouselId div.rNav {
+  right: 0;
+}
 
-#carouselId + .buttons-bar {margin-top: 5em;}
+#carouselId + .buttons-bar {
+  margin-top: 5em;
+}
 
 #carouselId .navButton {
-    border: 0;
-    padding: 0;
-    margin: 0;
+  border: 0;
+  padding: 0;
+  margin: 0;
 }
 
 #carouselId .navButton {
-    display: block;
-	overflow: hidden;
-    width: 28px;
-    height: 28px;
+  display: block;
+  overflow: hidden;
+  width: 28px;
+  height: 28px;
 }
 
-	#carouselId .navButton span[aria-hidden=true] {display: none;}
-	
-	#carouselId .navButton[aria-label="Previous Slide"] {
-		background: url(../img/sprite.svg) 0 -660px no-repeat;
-	}
-	#carouselId .navButton[aria-label="Previous Group"] {
-		background: url(../img/sprite.svg) 0 -1020px no-repeat;
-	}
-	
-	#carouselId .navButton[aria-label="Next Slide"] {
-		background: url(../img/sprite.svg) 0 -479px no-repeat;
-	}
-	#carouselId .navButton[aria-label="Next Group"] {
-		background: url(../img/sprite.svg) 0 -839px no-repeat;
-	}
+#carouselId .navButton span[aria-hidden="true"] {
+  display: none;
+}
 
-#carouselId .navSlideButton {margin-bottom: 40px;}
+#carouselId .navButton[aria-label="Previous Slide"] {
+  background: url(../img/sprite.svg) 0 -660px no-repeat;
+}
+#carouselId .navButton[aria-label="Previous Group"] {
+  background: url(../img/sprite.svg) 0 -1020px no-repeat;
+}
+
+#carouselId .navButton[aria-label="Next Slide"] {
+  background: url(../img/sprite.svg) 0 -479px no-repeat;
+}
+#carouselId .navButton[aria-label="Next Group"] {
+  background: url(../img/sprite.svg) 0 -839px no-repeat;
+}
+
+#carouselId .navSlideButton {
+  margin-bottom: 40px;
+}
 
 #carouselId div.groupName {
-    position: absolute;
-    width: 165px;
-	font-size: 1.1em;
-    text-align: center;
-    z-index: 1;
+  position: absolute;
+  width: 165px;
+  font-size: 1.1em;
+  text-align: center;
+  z-index: 1;
 }
 
 #carouselId div.groupName span {
-	position: relative;
-	text-transform: uppercase;
-	color: #49182E;
+  position: relative;
+  text-transform: uppercase;
+  color: #49182e;
 }
-
