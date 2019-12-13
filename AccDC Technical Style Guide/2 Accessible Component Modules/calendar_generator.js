@@ -1,5 +1,5 @@
 /*!
-ARIA Calendar Module R2.16
+ARIA Calendar Module R3.0
 Copyright 2019 Bryan Garaventa (WhatSock.com)
 Refactoring Contributions Copyright 2018 Danny Allen (dannya.com) / Wonderscore Ltd (wonderscore.co.uk)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
@@ -17,7 +17,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
     var config = config || {},
       helpTextShort = config.helpTextShort
         ? config.helpTextShort
-        : "Press H for help.",
+        : "Press F1 for help.",
       helpText = config.helpText
         ? config.helpText
         : "Press the arrow keys to navigate by day, PageUp and PageDown to navigate by month, Alt+PageUp and Alt+PageDown to navigate by year, or Escape to cancel.",
@@ -85,8 +85,10 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
           offsetLeft: isNaN(config.offsetLeft) ? 0 : config.offsetLeft,
           posAnchor: config.posAnchor,
           targetObj: config.targetObj,
-          inputDateFormat: config.inputDateFormat || "dddd MMMM D, YYYY",
-          audibleDateFormat: config.audibleDateFormat || "D, dddd MMMM YYYY",
+          // Mod:12/2019
+          // inputDateFormat: config.inputDateFormat || "dddd MMMM D, YYYY",
+          inputDateFormat: config.inputDateFormat || "MM/DD/YYYY",
+          audibleDateFormat: config.audibleDateFormat || "dddd D MMMM YYYY",
           initialDate:
             config.initialDate instanceof Date
               ? config.initialDate
@@ -400,19 +402,23 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
             if (!s) {
               if (dc.navBtn === "PM") {
                 dc.buttons.pM.focus();
-                $A.announce(dc.range[dc.range.current.month].name);
+                // Mod:12/2019
+                $A.announce(dc.range[dc.range.current.month].name, false, true);
                 dc.navBtnS = true;
               } else if (dc.navBtn === "NM") {
                 dc.buttons.nM.focus();
-                $A.announce(dc.range[dc.range.current.month].name);
+                // Mod:12/2019
+                $A.announce(dc.range[dc.range.current.month].name, false, true);
                 dc.navBtnS = true;
               } else if (dc.navBtn === "PY") {
                 dc.buttons.pY.focus();
-                $A.announce(dc.range.current.year.toString());
+                // Mod:12/2019
+                $A.announce(dc.range.current.year.toString(), false, true);
                 dc.navBtnS = true;
               } else if (dc.navBtn === "NY") {
                 dc.buttons.nY.focus();
-                $A.announce(dc.range.current.year.toString());
+                // Mod:12/2019
+                $A.announce(dc.range.current.year.toString(), false, true);
                 dc.navBtnS = true;
               } else {
                 // Toggles for openOnFocus support.
@@ -657,7 +663,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
             if (comm) {
               cell += comm.replace(/<|>|\n/g, " ").replace(/\"/g, '"');
             }
-            cell += '" role="link" tabindex="-1" ';
+            cell += '" role="button" tabindex="-1" ';
 
             // CSS classes
             cell += 'class="day ' + (cssClasses ? cssClasses : "");
@@ -818,7 +824,21 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
               dc.setDate(dc);
             }
           },
+          // Mod:12/2019
+          rerenderTable: function(dc) {
+            dc.rerendering = true;
+            dc.runAfterClose(dc);
+            dc.runBefore(dc);
+            dc.runDuring(dc);
+            dc.runAfter(dc);
+            dc.rerendering = false;
+          },
           runBefore: function(dc) {
+            // Mod:12/2019
+            if (!dc.rerendering && targ.value) {
+              dc.presetDate(dc, new Date(targ.value));
+            }
+
             // Run custom specified function?
             if (typeof config.runBefore === "function") {
               config.runBefore(dc);
@@ -1009,7 +1029,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
               '<table role="presentation" class="calendar">' +
               yearSelector +
               monthSelector +
-              '<tr role="presentation">';
+              '<tr role="presentation" aria-hidden="true">'; // Mod:12/2019
             dc.iter = 0;
 
             // Draw day headers
@@ -1128,18 +1148,33 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
             }
             dc.source += "</tr></table>";
 
+            // Mod:12/2019
+            dc.messageContainer = $A.createEl(
+              "div",
+              {
+                id: $A.genId()
+              },
+              {},
+              "monthMessage"
+            );
             // if a message is set for the month, draw it
             if (
               dc.range[dc.range.current.month].message[dc.range.current.year]
             ) {
-              dc.source +=
-                '<div class="monthMessage">' +
-                "	<p>" +
+              dc.messageContainer.innerHTML =
+                "<p>" +
                 dc.range[dc.range.current.month].message[
                   dc.range.current.year
                 ] +
-                "</p>" +
-                "</div>";
+                "</p>";
+              $A.setAttr(
+                dc.containerDiv,
+                "aria-labelledby",
+                dc.monthCellId + " " + dc.messageContainer.id
+              );
+            } else {
+              dc.messageContainer.innerHTML = "<p>" + dc.helpTextShort + "</p>";
+              $A.remAttr(dc.containerDiv, "aria-labelledby");
             }
 
             // Reconfigured for Esc btn processing
@@ -1157,13 +1192,15 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
             }
 
             // Close other calendar pickers that are currently open
-            $A.find("*", function(dc) {
+            // Mod:12/2019
+            $A.find("*", function(dc2) {
               if (
-                dc.controlType &&
-                dc.controlType === "DatePicker" &&
-                dc.loaded
+                dc2.controlType &&
+                dc2.controlType === "DatePicker" &&
+                dc2.loaded &&
+                dc2.id !== dc.id
               )
-                dc.close();
+                dc2.close();
             });
           },
           click: function(ev, dc) {
@@ -1172,42 +1209,61 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
           keyDown: function(ev, dc) {
             var k = ev.which || ev.keyCode;
 
-            if (k === 72) {
-              $A.announce(dc.helpText);
+            // Mod:12/2019
+            if (k === 112) {
+              $A.remAttr(dc.containerDiv, "aria-labelledby");
+              dc.containerDiv.appendChild(dc.messageContainer);
+              $A.setAttr(dc.messageContainer, {
+                role: "alert"
+              });
+              dc.messageContainer.innerHTML = "<p>" + dc.helpText + "</p>";
               ev.preventDefault();
               ev.stopPropagation();
             }
           },
           runDuring: function(dc) {
-            dc.datepickerLoaded = false;
-            $A.bind("body", "click.datepicker", function(ev) {
-              if (dc.datepickerLoaded) dc.close();
-            });
+            // Mod:12/2019
+            if (dc.rerendering) {
+              dc.containerDiv.innerHTML = dc.source;
+            } else {
+              dc.datepickerLoaded = false;
+              $A.bind("body", "click.datepicker", function(ev) {
+                if (dc.datepickerLoaded) dc.close();
+              });
+              $A.bind(window, "resize.datepicker", function(ev) {
+                dc.setPosition();
+              });
 
-            $A.setAttr(dc.accDCObj, {
-              role: "dialog",
-              "data-helptext": dc.helpText,
-              "aria-label": dc.range[dc.range.current.month].name
-            });
+              $A.setAttr(dc.accDCObj, {
+                role: "dialog",
+                // Mod:12/2019
+                "aria-label": dc.role,
+                title: dc.helpTextShort
+              });
 
-            // Reconfigured for Esc btn processing
-            $A.setAttr(dc.containerDiv, {
-              role: "application"
-            });
+              // Reconfigured for Esc btn processing
+              $A.setAttr(dc.containerDiv, {
+                role: "application"
+              });
+
+              dc.fn.sraStart.innerHTML = dc.fn.sraEnd.innerHTML = "";
+              $A.setAttr(dc.fn.sraStart, {
+                "aria-hidden": "true"
+              });
+
+              $A.setAttr(dc.fn.sraEnd, {
+                "aria-hidden": "true"
+              });
+            }
+
+            if (dc.messageContainer.innerHTML) {
+              dc.containerDiv.appendChild(dc.messageContainer);
+            }
 
             // Reconfigured for Esc btn processing
             if (dc.showEscBtn) {
               dc.escBtn = $A.query("button.esc-button", dc.containerDiv)[0];
             }
-
-            dc.fn.sraStart.innerHTML = dc.fn.sraEnd.innerHTML = "";
-            $A.setAttr(dc.fn.sraStart, {
-              "aria-hidden": "true"
-            });
-
-            $A.setAttr(dc.fn.sraEnd, {
-              "aria-hidden": "true"
-            });
           },
           runAfter: function(dc) {
             dc.buttons = {
@@ -1279,7 +1335,8 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
                 dc.setCurrent(dc);
                 dc.reopen = true;
-                dc.open();
+                // Mod:12/2019 dc.open();
+                dc.rerenderTable(dc);
               },
               pMonth = function() {
                 if (
@@ -1330,7 +1387,8 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
                 dc.setCurrent(dc);
                 dc.reopen = true;
-                dc.open();
+                // Mod:12/2019 dc.open();
+                dc.rerenderTable(dc);
               },
               gYear = function(forward) {
                 if (
@@ -1370,7 +1428,8 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                 dc.date = intendedDate;
                 dc.setCurrent(dc);
                 dc.reopen = true;
-                dc.open();
+                // Mod:12/2019 dc.open();
+                dc.rerenderTable(dc);
               };
             var isKP = false;
             $A.bind("#" + dc.containerDivId + " td.day", {
@@ -1464,7 +1523,10 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                 changePressed(ev);
                 var k = ev.which || ev.keyCode;
 
-                if (k === 13) {
+                if (
+                  k === 13 ||
+                  (k === 32 && !commentsEnabled && !config.editor)
+                ) {
                   isKP = true;
 
                   if (!dc.checkDisabled(this)) {
@@ -1535,7 +1597,8 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                       );
                       dc.setCurrent(dc);
                       dc.reopen = true;
-                      dc.open();
+                      // Mod:12/2019 dc.open();
+                      dc.rerenderTable(dc);
                     }
                   } else if (k === 39) {
                     // Right arrow key
@@ -1570,7 +1633,8 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                       dc.date = new Date(dateValues.year, dateValues.month, 1);
                       dc.setCurrent(dc);
                       dc.reopen = true;
-                      dc.open();
+                      // Mod:12/2019 dc.open();
+                      dc.rerenderTable(dc);
                     }
                   } else if (k === 38) {
                     // Up arrow key
@@ -1618,7 +1682,8 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                         dc.date = intendedDate;
                         dc.setCurrent(dc);
                         dc.reopen = true;
-                        dc.open();
+                        // Mod:12/2019 dc.open();
+                        dc.rerenderTable(dc);
                       }
                     }
                   } else if (k === 40) {
@@ -1663,7 +1728,8 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                         dc.date = intendedDate;
                         dc.setCurrent(dc);
                         dc.reopen = true;
-                        dc.open();
+                        // Mod:12/2019 dc.open();
+                        dc.rerenderTable(dc);
                       }
                     }
                   } else if (k === 27) {
@@ -2179,42 +2245,21 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
             if (commentsEnabled && config.editor && config.editor.show)
               dc.children[1].open();
 
-            $A.bind(window, "resize.datepicker", function(ev) {
-              dc.setPosition();
-            });
+            // Mod:12/2019 Removed
 
-            if (dc.openOnFocus) $A.setAttr(targ, "aria-expanded", "true");
-
-            $A.setAttr(dc.triggerObj, "aria-expanded", "true");
-            setTimeout(function() {
-              dc.datepickerLoaded = true;
-            }, 750);
-
-            if (!dc.navBtnS) {
-              if (
-                !(
-                  "ontouchstart" in window ||
-                  navigator.maxTouchPoints > 0 ||
-                  navigator.msMaxTouchPoints > 0
-                )
-              ) {
-                // Toggles for openOnFocus support.
-                if (
-                  !config.openOnFocus ||
-                  (config.openOnFocus === true &&
-                    !onFocusInit &&
-                    onFocusTraverse)
-                ) {
-                  if (!dc.setFocus.firstOpen) $A.announce(dc.helpTextShort);
-                }
-              }
+            if (!dc.rerendering) {
+              if (dc.openOnFocus) $A.setAttr(targ, "aria-expanded", "true");
+              $A.setAttr(dc.triggerObj, "aria-expanded", "true");
+              setTimeout(function() {
+                dc.datepickerLoaded = true;
+              }, 750);
             }
-            dc.navBtnS = false;
           },
           helpTextShort: helpTextShort,
           helpText: helpText,
           runAfterClose: function(dc) {
-            if (!dc.reopen) {
+            // Mod:12/2019
+            if (!dc.rerendering) {
               if (config.resetCurrent) {
                 dc.date = new Date();
                 dc.setCurrent(dc);
@@ -2227,22 +2272,23 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                 dc.children[1].lock = false;
                 dc.children[1].close();
               }
-            } else dc.reopen = false;
 
-            if (config.ajax && typeof config.ajax === "function")
-              dc.lock = dc.ajaxLoading = false;
+              if (config.ajax && typeof config.ajax === "function")
+                dc.lock = dc.ajaxLoading = false;
 
-            $A.unbind(window, ".datepicker");
-            $A.unbind("body", ".datepicker");
+              $A.unbind(window, ".datepicker");
+              $A.unbind("body", ".datepicker");
 
-            $A.setAttr(dc.triggerObj, "aria-expanded", "false");
+              $A.setAttr(dc.triggerObj, "aria-expanded", "false");
 
-            if (dc.openOnFocus) $A.setAttr(targ, "aria-expanded", "false");
+              if (dc.openOnFocus) $A.setAttr(targ, "aria-expanded", "false");
 
-            // Run custom specified function?
-            if (typeof config.runAfterClose === "function") {
-              config.runAfterClose(dc);
+              // Run custom specified function?
+              if (typeof config.runAfterClose === "function") {
+                config.runAfterClose(dc);
+              }
             }
+            dc.reopen = false;
           }
         }
       ],
@@ -2656,7 +2702,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
             onFocusInit = false;
             onFocusTraverse = true;
             odc.setFocus(odc.range.index[odc.range.current.mDay - 1]);
-            $A.announce(odc.helpTextShort);
+            // Mod:12/2019 $A.announce(odc.helpTextShort);
             ev.preventDefault();
             ev.stopPropagation();
           } else if (k === 40 && !odc.loaded && !odcDel) {
@@ -2668,7 +2714,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
             onFocusInit = false;
             onFocusTraverse = true;
             odc.setFocus(odc.range.index[odc.range.current.mDay - 1]);
-            $A.announce(odc.helpTextShort);
+            // Mod:12/2019 $A.announce(odc.helpTextShort);
             ev.preventDefault();
             ev.stopPropagation();
           } else if (
@@ -2702,7 +2748,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
             onFocusInit = false;
             onFocusTraverse = true;
             odc.setFocus(odc.range.index[odc.range.current.mDay - 1]);
-            $A.announce(odc.helpTextShort);
+            // Mod:12/2019 $A.announce(odc.helpTextShort);
             ev.preventDefault();
             ev.stopPropagation();
           }
@@ -2731,6 +2777,9 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
         }
       });
     }
+
+    // Mod:12/2019
+    return $A.reg[pId];
   };
 
   var trim = function(str) {
