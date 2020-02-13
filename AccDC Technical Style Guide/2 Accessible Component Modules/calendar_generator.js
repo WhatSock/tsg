@@ -1,5 +1,5 @@
 /*!
-ARIA Calendar Module R3.0
+ARIA Calendar Module R3.1
 Copyright 2019 Bryan Garaventa (WhatSock.com)
 Refactoring Contributions Copyright 2018 Danny Allen (dannya.com) / Wonderscore Ltd (wonderscore.co.uk)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
@@ -1173,7 +1173,9 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                 dc.monthCellId + " " + dc.messageContainer.id
               );
             } else {
-              dc.messageContainer.innerHTML = "<p>" + dc.helpTextShort + "</p>";
+              if (!triggeredByTouch)
+                dc.messageContainer.innerHTML =
+                  "<p>" + dc.helpTextShort + "</p>";
               $A.remAttr(dc.containerDiv, "aria-labelledby");
             }
 
@@ -1216,7 +1218,8 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
               $A.setAttr(dc.messageContainer, {
                 role: "alert"
               });
-              dc.messageContainer.innerHTML = "<p>" + dc.helpText + "</p>";
+              if (!triggeredByTouch)
+                dc.messageContainer.innerHTML = "<p>" + dc.helpText + "</p>";
               ev.preventDefault();
               ev.stopPropagation();
             }
@@ -1238,7 +1241,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                 role: "dialog",
                 // Mod:12/2019
                 "aria-label": dc.role,
-                title: dc.helpTextShort
+                title: !triggeredByTouch ? dc.helpTextShort : ""
               });
 
               // Reconfigured for Esc btn processing
@@ -2683,7 +2686,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
           ) {
             odcDel = true;
             $A.trigger(trigger, "opendatepicker");
-            $A.announce(odc.openOnFocusHelpText);
+            if (!triggeredByTouch) $A.announce(odc.openOnFocusHelpText);
             setTimeout(odcDelFn, 1000);
           }
           onFocusInit = true;
