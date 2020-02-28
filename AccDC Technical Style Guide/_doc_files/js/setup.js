@@ -31,7 +31,7 @@
 
     $A.query("div.Modules .panel > .control > button", function(i, o) {
       $A.setAttr(o, "aria-expanded", "false");
-      moduleMap[o.id] = new $A.Toggle(o, {
+      moduleMap["#" + o.id] = new $A.Toggle(o, {
         state: false,
         suppressARIAPressed: true,
         callback: function(state) {
@@ -47,7 +47,7 @@
           return true;
         }
       });
-      moduleToggles.push(moduleMap[o.id]);
+      moduleToggles.push(moduleMap["#" + o.id]);
     });
 
     $A.query("div.ARIA .panel > .control > button", function(i, o) {
@@ -179,7 +179,7 @@
     }
 
     var loc = top.location.href || "",
-      hsh = loc.slice(loc.indexOf("tgl-2-"));
+      hsh = loc.slice(loc.indexOf("#"));
     if (moduleMap[hsh]) {
       moduleMap[hsh].set(true);
     }
