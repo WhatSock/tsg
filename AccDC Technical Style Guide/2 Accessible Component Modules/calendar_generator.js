@@ -835,8 +835,12 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
           },
           runBefore: function(dc) {
             // Mod:12/2019
-            if (!dc.rerendering && targ.value) {
-              dc.presetDate(dc, new Date(targ.value));
+            if (!dc.rerendering) {
+              var dateToPreset = dc.date || (targ.value ? new Date(targ.value) : null);
+
+              if (dateToPreset) {
+                dc.presetDate(dc, dateToPreset);
+              }
             }
 
             // Run custom specified function?
