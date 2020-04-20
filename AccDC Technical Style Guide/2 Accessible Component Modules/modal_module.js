@@ -1,6 +1,6 @@
 /*!
-Modal Module R1.10
-Copyright 2010-2018 Bryan Garaventa (WhatSock.com)
+Modal Module R1.11
+Copyright 2020 Bryan Garaventa (WhatSock.com)
 Refactoring Contributions Copyright 2018 Danny Allen (dannya.com) / Wonderscore Ltd (wonderscore.co.uk)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
@@ -33,12 +33,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
         isStatic: "body",
         // Choose to append the AccDC Object instead of replacing prior content
         append: true,
-        // Set screen reader accessible hidden text for
-        // The start action word
-        accStart: "Start",
-        // The end action word
-        accEnd: "End",
-        // and the hidden Close link action word
+        showHiddenBounds: false,
         accClose: "Close",
         // Fix the visual positioning to the middle center of the viewport
         autoFix: 9,
@@ -50,40 +45,30 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
             $A.setAttr(this, "aria-hidden", "true");
           });
           $A.addClass(dc.containerDiv, "containerDiv");
-          dc.firstField = $A.query('*[data-first="true"]', dc.containerDiv)[0];
+          $A.setAttr(dc.containerDiv, "tabindex", "-1");
+          dc.firstField =
+            $A.query('*[data-first="true"]', dc.containerDiv)[0] ||
+            dc.containerDiv;
           dc.lastField = $A.query('*[data-last="true"]', dc.containerDiv)[0];
-          $A.remAttr(
-            $A.setAttr(dc.fn.closeLink, {
-              tabindex: "0",
-              role: "presentation"
-            }),
-            "href"
-          ).innerHTML = "";
 
           if (overrides.ariaDialog) {
             $A.setAttr(dc.accDCObj, {
               role: "dialog",
               "aria-label": dc.role,
-              "aria-describedby": dc.containerDivId,
               "aria-modal": "true"
             });
+            var desc = "";
+            $A.query("*[data-description]", dc.containerDiv, function(i, o) {
+              if (!o.id) o.id = $A.genId();
+              desc += (desc ? " " : "") + o.id;
+            });
+            if (desc) $A.setAttr(dc.accDCObj, "aria-describedby", desc);
           } else {
             $A.setAttr(dc.accDCObj, {
               role: "region",
               "aria-label": dc.role
             });
           }
-
-          dc.fn.sraStart.innerHTML = dc.fn.sraEnd.innerHTML = "";
-          $A.setAttr(dc.fn.sraStart, {
-            "aria-hidden": "true"
-          });
-
-          $A.setAttr(dc.fn.sraEnd, {
-            "aria-hidden": "true"
-          });
-
-          if (overrides.alertDialog) dc.announce = false;
         },
 
         // Run script after the AccDC Object finishes loading
