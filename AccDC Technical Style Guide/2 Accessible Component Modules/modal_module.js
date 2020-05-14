@@ -1,5 +1,5 @@
 /*!
-Modal Module R1.11
+Modal Module R1.12
 Copyright 2020 Bryan Garaventa (WhatSock.com)
 Refactoring Contributions Copyright 2018 Danny Allen (dannya.com) / Wonderscore Ltd (wonderscore.co.uk)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
@@ -27,8 +27,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
         // Set the role for screen reader users
         role: "Dialog",
         bind: "click",
-        // Force focus to the beginning of the new content section when rendered
-        forceFocus: true,
+        forceFocus: false,
         // Set the container element where the AccDC Object will be inserted
         isStatic: "body",
         // Choose to append the AccDC Object instead of replacing prior content
@@ -49,7 +48,9 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
           dc.firstField =
             $A.query('*[data-first="true"]', dc.containerDiv)[0] ||
             dc.containerDiv;
-          dc.lastField = $A.query('*[data-last="true"]', dc.containerDiv)[0];
+          dc.lastField =
+            $A.query('*[data-last="true"]', dc.containerDiv)[0] ||
+            dc.containerDiv;
 
           if (overrides.ariaDialog) {
             $A.setAttr(dc.accDCObj, {
@@ -80,14 +81,25 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
             $A.bind("body", "focusin.accmodal", function(ev) {
               if (openModals[openModals.length - 1].tempFocus)
                 openModals[openModals.length - 1].tempFocus = null;
-              else if (openModals[openModals.length - 1].lastField)
+              else if (
+                openModals[openModals.length - 1].lastField &&
+                !openModals[openModals.length - 1].forwardTab
+              )
                 openModals[openModals.length - 1].lastField.focus();
+              else if (
+                openModals[openModals.length - 1].firstField &&
+                openModals[openModals.length - 1].forwardTab
+              )
+                openModals[openModals.length - 1].firstField.focus();
             });
           }
 
           openModals.push(dc);
 
           if (overrides.alertDialog) $A.announce(dc.containerDiv, false, true);
+
+          if (openModals[openModals.length - 1].firstField)
+            openModals[openModals.length - 1].firstField.focus();
         },
 
         // Run script before the AccDC Object closes
@@ -145,16 +157,26 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
           // dc.tempFocus will bubble up to the body focusIn handler to verify if focus is still within the AccDC Object or not
           dc.tempFocus = this;
         },
-        tabOut: function(ev, dc) {
-          // Move to the first form field if tabbing forward out of the AccDC Object
-          if (dc.firstField) dc.firstField.focus();
-        },
-        // Add a keyDown handler to the AccDC Object
         keyDown: function(ev, dc) {
           var k = ev.which || ev.keyCode;
 
           // If Escape is pressed, close the modal
-          if (k == 27) dc.close();
+          if (k === 27) dc.close();
+          else if (k === 9) {
+            dc.forwardTab = ev.shiftKey ? false : true;
+            if (
+              ev.target === dc.lastField &&
+              !ev.shiftKey &&
+              dc.lastField !== dc.firstField &&
+              dc.lastField !== dc.containerDiv
+            ) {
+              dc.firstField.focus();
+              ev.preventDefault();
+            } else if (ev.target === dc.firstField && ev.shiftKey) {
+              dc.lastField.focus();
+              ev.preventDefault();
+            }
+          }
         },
         // Set the className for the close link, must match the className for any other close links in the rendered content
         // AccDC Object close functionality is automatically configured

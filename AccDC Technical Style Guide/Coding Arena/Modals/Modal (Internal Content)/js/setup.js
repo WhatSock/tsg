@@ -77,8 +77,6 @@ $A.bind(window, "load", function() {
         ev.preventDefault();
       });
 
-      // Optionally set focus to the first form field in the dialog
-      $A.getEl("uname").focus();
     },
     runAfterClose: function(dc) {
       if (dc.backdrop) dc.backdrop.parentNode.removeChild(dc.backdrop);
