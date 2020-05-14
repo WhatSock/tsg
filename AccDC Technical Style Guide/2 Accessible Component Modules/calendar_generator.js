@@ -1,5 +1,5 @@
 /*!
-ARIA Calendar Module R3.2
+ARIA Calendar Module R3.3
 Copyright 2020 Bryan Garaventa (WhatSock.com)
 Refactoring Contributions Copyright 2018 Danny Allen (dannya.com) / Wonderscore Ltd (wonderscore.co.uk)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
@@ -36,7 +36,10 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
               targ.value = dc.formatDate(dc);
 
               dc.close();
-              targ.focus();
+
+              if (!dc.triggerClicked) targ.focus();
+              else trigger.focus();
+              dc.triggerClicked = false;
             },
       pressed = {},
       changePressed = function(ev) {
@@ -1746,8 +1749,10 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                     dc.close();
                     // Toggles for openOnFocus support.
                     onFocusInit = false;
-                    onFocusTraverse = true;
-                    targ.focus();
+                    onFocusTraverse = !dc.triggerClicked ? true : false;
+                    if (!dc.triggerClicked) targ.focus();
+                    else trigger.focus();
+                    dc.triggerClicked = false;
                   } else if (k === 33) {
                     // PageUp key
                     $A.internal.extend(true, dc.prevCurrent, dc.range.current);
@@ -1912,8 +1917,10 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                 click: function(ev) {
                   dc.close();
                   onFocusInit = false;
-                  onFocusTraverse = true;
-                  targ.focus();
+                  onFocusTraverse = !dc.triggerClicked ? true : false;
+                  if (!dc.triggerClicked) targ.focus();
+                  else trigger.focus();
+                  dc.triggerClicked = false;
                   ev.preventDefault();
                 },
                 keydown: function(ev) {
@@ -1923,8 +1930,10 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                   if (k === 27 || k === 13 || k === 32) {
                     dc.close();
                     onFocusInit = false;
-                    onFocusTraverse = true;
-                    targ.focus();
+                    onFocusTraverse = !dc.triggerClicked ? true : false;
+                    if (!dc.triggerClicked) targ.focus();
+                    else trigger.focus();
+                    dc.triggerClicked = false;
                   } else if (
                     k === 9 &&
                     !pressed.alt &&
@@ -1979,8 +1988,10 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                   dc.close();
                   // Toggles for openOnFocus support.
                   onFocusInit = false;
-                  onFocusTraverse = true;
-                  targ.focus();
+                  onFocusTraverse = !dc.triggerClicked ? true : false;
+                  if (!dc.triggerClicked) targ.focus();
+                  else trigger.focus();
+                  dc.triggerClicked = false;
                   ev.preventDefault();
                 } else if (!config.condenseYear && k === 38) {
                   dc.buttons.pY.focus();
@@ -2052,8 +2063,10 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                   dc.close();
                   // Toggles for openOnFocus support.
                   onFocusInit = false;
-                  onFocusTraverse = true;
-                  targ.focus();
+                  onFocusTraverse = !dc.triggerClicked ? true : false;
+                  if (!dc.triggerClicked) targ.focus();
+                  else trigger.focus();
+                  dc.triggerClicked = false;
                   ev.preventDefault();
                 } else if (!config.condenseYear && k === 38) {
                   dc.buttons.nY.focus();
@@ -2125,8 +2138,10 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                     dc.close();
                     // Toggles for openOnFocus support.
                     onFocusInit = false;
-                    onFocusTraverse = true;
-                    targ.focus();
+                    onFocusTraverse = !dc.triggerClicked ? true : false;
+                    if (!dc.triggerClicked) targ.focus();
+                    else trigger.focus();
+                    dc.triggerClicked = false;
                     ev.preventDefault();
                   } else if (k === 39) {
                     dc.buttons.nY.focus();
@@ -2194,8 +2209,10 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                     dc.close();
                     // Toggles for openOnFocus support.
                     onFocusInit = false;
-                    onFocusTraverse = true;
-                    targ.focus();
+                    onFocusTraverse = !dc.triggerClicked ? true : false;
+                    if (!dc.triggerClicked) targ.focus();
+                    else trigger.focus();
+                    dc.triggerClicked = false;
                     ev.preventDefault();
                   } else if (k === 37) {
                     dc.buttons.pY.focus();
@@ -2644,6 +2661,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
         triggeredByTouch = true;
       },
       click: function(ev) {
+        odc.triggerClicked = true;
         odcFn.call(this);
         ev.preventDefault();
       },
@@ -2651,6 +2669,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
         var k = ev.which || ev.keyCode;
 
         if (k === 32) {
+          odc.triggerClicked = true;
           odcFn.call(this);
           ev.preventDefault();
           ev.stopPropagation();
