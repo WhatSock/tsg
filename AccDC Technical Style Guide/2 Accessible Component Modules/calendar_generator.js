@@ -1,6 +1,6 @@
 /*!
-ARIA Calendar Module R3.1
-Copyright 2019 Bryan Garaventa (WhatSock.com)
+ARIA Calendar Module R3.2
+Copyright 2020 Bryan Garaventa (WhatSock.com)
 Refactoring Contributions Copyright 2018 Danny Allen (dannya.com) / Wonderscore Ltd (wonderscore.co.uk)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
@@ -1204,6 +1204,12 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
               )
                 dc2.close();
             });
+          },
+          mouseEnter: function(ev, dc) {
+            dc.mouseWithin = true;
+          },
+          mouseLeave: function(ev, dc) {
+            dc.mouseWithin = false;
           },
           click: function(ev, dc) {
             ev.stopPropagation();
@@ -2693,7 +2699,12 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
           onFocusTraverse = false;
         },
         blur: function(ev) {
-          if (odc.loaded && onFocusInit && !onFocusTraverse) {
+          if (
+            odc.loaded &&
+            onFocusInit &&
+            !onFocusTraverse &&
+            !odc.mouseWithin
+          ) {
             odc.close();
           }
           onFocusInit = false;
