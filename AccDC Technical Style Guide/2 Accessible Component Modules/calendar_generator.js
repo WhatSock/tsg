@@ -1,5 +1,5 @@
 /*!
-ARIA Calendar Module R3.3
+ARIA Calendar Module R3.4
 Copyright 2020 Bryan Garaventa (WhatSock.com)
 Refactoring Contributions Copyright 2018 Danny Allen (dannya.com) / Wonderscore Ltd (wonderscore.co.uk)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
@@ -2716,6 +2716,10 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
           }
           onFocusInit = true;
           onFocusTraverse = false;
+        },
+        mousedown: function(ev) {
+          this.blur();
+          this.focus();
         },
         blur: function(ev) {
           if (
