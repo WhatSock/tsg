@@ -1,7 +1,7 @@
 /*!
-ARIA Combobox Module R2.2
+ARIA Combobox Module R2.3
 (Requires AccDC API version 3.3 (11/15/2016) +> )
-Copyright 2019 Bryan Garaventa (WhatSock.com)
+Copyright 2020 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
 
@@ -635,8 +635,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                           : 0;
                       $A.setAttr(e, {
                         "aria-activedescendant":
-                          dc.cb.options[dc.cb.matches[dc.cb.sIndex]].o.id,
-                        "aria-expanded": "true"
+                          dc.cb.options[dc.cb.matches[dc.cb.sIndex]].o.id
                       });
 
                       $A.remClass(
@@ -714,7 +713,6 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                       ev.preventDefault();
                     } else if (k == 27 || k == 37 || k == 39) {
                       $A.setAttr(e, {
-                        "aria-expanded": "false",
                         "aria-activedescendant": "",
                         "aria-controls": ""
                       });
@@ -818,10 +816,10 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
               set: function() {
                 var dc = this.dc;
                 $A.setAttr(dc.triggerObj, {
-                  "aria-expanded": "false",
                   "aria-autocomplete": "list",
                   "aria-activedescendant": "",
-                  "aria-controls": ""
+                  "aria-controls": "",
+                  "aria-expanded": "false"
                 });
 
                 if (!dc.cb.isInput) {
@@ -921,10 +919,6 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                   }
 
                   ev.preventDefault();
-                },
-                focus: function(ev) {
-                  if (dc.cb.multiple)
-                    $A.setAttr(dc.triggerObj, "aria-expanded", "true");
                 }
               });
             });
@@ -934,8 +928,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
             if (dc.cb.readonly) {
               $A.setAttr(dc.triggerObj, {
                 "aria-activedescendant":
-                  dc.cb.options[dc.cb.matches[dc.cb.sIndex]].o.id,
-                "aria-expanded": "true"
+                  dc.cb.options[dc.cb.matches[dc.cb.sIndex]].o.id
               });
 
               $A.remClass(
@@ -957,12 +950,11 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
             $A.announce(dc.cb.options[dc.cb.matches[dc.cb.sIndex]].no, true);
 
+            $A.setAttr(dc.triggerObj, "aria-expanded", "true");
+
             if (dc.cb.altTrigger && dc.cb.altTrigger.nodeType === 1) {
               $A.addClass(dc.cb.altTrigger, dc.toggleClass);
-
-              $A.setAttr(dc.cb.altTrigger, {
-                "aria-expanded": "true"
-              });
+              $A.setAttr(dc.cb.altTrigger, "aria-expanded", "true");
 
               if (
                 dc.cb.fn.onTriggerChange &&
@@ -1080,7 +1072,6 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
     that.close = function() {
       $A.setAttr(dc.triggerObj, {
-        "aria-expanded": "false",
         "aria-activedescendant": "",
         "aria-controls": ""
       });
@@ -1102,8 +1093,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
           if (!passive) {
             $A.setAttr(dc.triggerObj, {
               "aria-activedescendant":
-                dc.cb.options[dc.cb.matches[dc.cb.sIndex]].o.id,
-              "aria-expanded": "true"
+                dc.cb.options[dc.cb.matches[dc.cb.sIndex]].o.id
             });
 
             $A.remClass(
