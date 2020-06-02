@@ -1,6 +1,6 @@
 /*!
-ARIA Combobox Module R2.3
-(Requires AccDC API version 3.3 (11/15/2016) +> )
+ARIA Combobox Module R2.4
+Requires AccDC API version 3.4 (12/11/2017) +>
 Copyright 2020 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
 */
@@ -10,14 +10,14 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
     if (!sel || !combobox) return null;
 
     var isInput =
-      combobox.nodeName.toLowerCase() == "input" ||
-      combobox.nodeName.toLowerCase() == "textarea"
+      combobox.nodeName.toLowerCase() === "input" ||
+      combobox.nodeName.toLowerCase() === "textarea"
         ? true
         : false;
 
     if (!isInput && !child) return null;
 
-    if ($A.getAttr(combobox, "role") != "combobox") {
+    if ($A.getAttr(combobox, "role") !== "combobox") {
       alert(
         'The combobox element is missing the role="combobox" attribute, which is required.'
       );
@@ -116,7 +116,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                   ? $A.getAttr(dc.triggerObj, "required")
                     ? true
                     : false
-                  : $A.getAttr(dc.triggerObj, "aria-required") == "true"
+                  : $A.getAttr(dc.triggerObj, "aria-required") === "true"
                   ? true
                   : false;
                 dc.cb.multiple = $A.getAttr(dc.cb.sel, "multiple")
@@ -255,18 +255,21 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                       dc.cb.value = dc.cb.currentOption[0].no;
                     }
 
-                    if (!dc.cb.multiple)
+                    if (!dc.cb.multiple) {
                       $A.setAttr(
                         dc.triggerObj,
                         "aria-activedescendant",
                         dc.cb.currentOption.o.id
                       );
-                    else
+                      dc.cb.activeDescendant = true;
+                    } else {
                       $A.setAttr(
                         dc.triggerObj,
                         "aria-activedescendant",
                         dc.cb.currentOption[0].o.id
                       );
+                      dc.cb.activeDescendant = true;
+                    }
                   }
 
                   $A.remClass(
@@ -302,7 +305,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                               trim(vA[z]) &&
                               trim(nA[y]) &&
                               $A.inArray(trim(vA[z]), trim(nA[y])) !== -1 &&
-                              trim(vA[z]).length == trim(nA[y]).length
+                              trim(vA[z]).length === trim(nA[y]).length
                             ) {
                               nx++;
                               break;
@@ -339,7 +342,6 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
                   if (dc.cb.readonly) {
                     dc.cb.showAll = pShowAll;
-                    dc.cb.activeDescendant = true;
                     dc.cb.currentObject =
                       dc.cb.options[dc.cb.matches[dc.cb.sIndex]];
                   }
@@ -350,21 +352,10 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                 if (!o || o.nodeType !== 1) return;
                 var dc = this.dc;
 
-                if (
-                  "ontouchstart" in window ||
-                  navigator.maxTouchPoints > 0 ||
-                  navigator.msMaxTouchPoints > 0
-                ) {
-                  $A.setAttr(o, {
-                    role: "button",
-                    "aria-expanded": "false"
-                  });
-                } else {
-                  $A.setAttr(o, {
-                    "aria-hidden": "true",
-                    tabindex: "-1"
-                  });
-                }
+                $A.setAttr(o, {
+                  role: "button",
+                  "aria-expanded": "false"
+                });
 
                 dc.cb.altClicked = false;
 
@@ -375,6 +366,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                     dc.cb.altClicked = true;
 
                     if (!dc.loaded) {
+                      dc.cb.activeDescendant = true;
                       that.open();
                     } else {
                       if (dc.cb.multiple && dc.cb.mClicked) {
@@ -414,7 +406,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                       dc.cb.sel
                     ]);
 
-                    if (nv || typeof nv == "string") dc.cb.value = nv;
+                    if (nv || typeof nv === "string") dc.cb.value = nv;
                   } else if (dc.cb.isInput) {
                     if (manual || dc.cb.setDefault)
                       dc.triggerObj.value = dc.cb.value;
@@ -442,7 +434,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
                     if (!pass) {
                       option.checked =
-                        $A.getAttr(option.o, "aria-checked") == "true"
+                        $A.getAttr(option.o, "aria-checked") === "true"
                           ? true
                           : false;
                       option.so.selected = option.checked ? "selected" : false;
@@ -469,7 +461,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                       dc.cb.sel
                     ]);
 
-                    if (nv || typeof nv == "string") dc.cb.value = nv;
+                    if (nv || typeof nv === "string") dc.cb.value = nv;
                   } else if (dc.cb.isInput) {
                     if (manual || dc.cb.setDefault)
                       dc.triggerObj.value = dc.cb.value;
@@ -489,7 +481,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                 for (var i = 0; i < dc.cb.names.length; i++) {
                   if (
                     trim(v) &&
-                    trim(v.toLowerCase()) == trim(dc.cb.names[i].toLowerCase())
+                    trim(v.toLowerCase()) === trim(dc.cb.names[i].toLowerCase())
                   ) {
                     return i;
                   }
@@ -514,14 +506,21 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
                 if (dc.cb.bound) return;
 
-                $A.unbind(dc.triggerObj, "keydown keyup click focus blur");
+                $A.unbind(
+                  dc.triggerObj,
+                  "keydown keyup click focus blur touchstart"
+                );
+                var touched = false;
 
                 $A.bind(dc.triggerObj, {
+                  touchstart: function(ev) {
+                    touched = true;
+                  },
                   keydown: function(ev) {
                     var e = this,
                       k = ev.which || ev.keyCode;
 
-                    if (k == 9) {
+                    if (k === 9) {
                       if (dc.loaded) {
                         if (dc.cb.autoComplete && dc.cb.activeDescendant) {
                           if (!dc.cb.multiple)
@@ -535,16 +534,17 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                         that.close();
                       }
                     } else if (
-                      k == 13 &&
+                      k === 13 &&
                       !dc.cb.isInput &&
                       !dc.cb.activeDescendant &&
                       !dc.loaded
                     ) {
+                      dc.cb.activeDescendant = true;
                       that.open();
                       ev.preventDefault();
                     } else if (
                       !dc.cb.multiple &&
-                      (k == 13 || k == 32) &&
+                      (k === 13 || k === 32) &&
                       dc.cb.activeDescendant &&
                       dc.loaded
                     ) {
@@ -558,7 +558,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                       ev.preventDefault();
                     } else if (
                       dc.cb.multiple &&
-                      k == 13 &&
+                      k === 13 &&
                       dc.cb.activeDescendant &&
                       dc.loaded
                     ) {
@@ -569,7 +569,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                       ev.preventDefault();
                     } else if (
                       dc.cb.multiple &&
-                      k == 32 &&
+                      k === 32 &&
                       dc.cb.activeDescendant &&
                       dc.loaded
                     ) {
@@ -579,12 +579,15 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                         $A.getAttr(
                           dc.cb.options[dc.cb.matches[dc.cb.sIndex]].o,
                           "aria-checked"
-                        ) == "true"
+                        ) === "true"
                           ? "false"
                           : "true"
                       );
+                      if (dc.cb.autoSaveIfChecked) {
+                        dc.cb.fn.setValue(false, false, true);
+                      }
                       ev.preventDefault();
-                    } else if (k == 38 || k == 40) {
+                    } else if (k === 38 || k === 40) {
                       ev.preventDefault();
                     } else if (
                       dc.cb.readonly &&
@@ -603,40 +606,60 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                     var e = this,
                       k = ev.which || ev.keyCode;
 
-                    if (dc.cb.readonly && dc.loaded && (k == 37 || k == 39)) {
+                    if (dc.cb.showAllIfEmpty && e.value) {
+                      dc.cb.showAll = dc.fn.showAll;
+                    }
+
+                    if (dc.cb.readonly && dc.loaded && (k === 37 || k === 39)) {
                       ev.preventDefault();
                     } else if (
-                      ((ev.altKey && k == 40) || k == 40) &&
+                      k === 40 &&
+                      !dc.cb.activeDescendant &&
+                      !dc.loaded &&
+                      !e.value &&
+                      dc.cb.showAllIfEmpty
+                    ) {
+                      dc.cb.showAll = true;
+                      dc.cb.sIndex =
+                        (dc.cb.readonly || dc.cb.showAll) &&
+                        dc.cb.sel.selectedIndex >= 0
+                          ? dc.cb.sel.selectedIndex
+                          : 0;
+                      if (typeof dc.cb.sIndex !== "number") dc.cb.sIndex = 0;
+                      dc.cb.activeDescendant = true;
+                      that.open();
+                      ev.preventDefault();
+                    } else if (
+                      k === 40 &&
                       !dc.cb.activeDescendant &&
                       !dc.loaded &&
                       dc.cb.readonly
                     ) {
-                      dc.cb.activeDescendant = true;
                       dc.cb.sIndex =
                         (dc.cb.readonly || dc.cb.showAll) &&
-                        dc.cb.sel.selectedIndex >= 0 &&
-                        !dc.cb.multiple
+                        dc.cb.sel.selectedIndex >= 0
                           ? dc.cb.sel.selectedIndex
                           : 0;
+                      if (typeof dc.cb.sIndex !== "number") dc.cb.sIndex = 0;
+                      dc.cb.activeDescendant = true;
                       that.open();
                       ev.preventDefault();
                     } else if (
-                      ((ev.altKey && k == 40) || k == 40) &&
+                      k === 40 &&
                       !dc.cb.activeDescendant &&
-                      dc.loaded &&
-                      !dc.cb.readonly
+                      dc.loaded
                     ) {
-                      dc.cb.activeDescendant = true;
                       dc.cb.sIndex =
-                        (dc.cb.readonly || dc.cb.showAll) &&
-                        dc.cb.sel.selectedIndex >= 0 &&
-                        !dc.cb.multiple
+                        dc.cb.readonly &&
+                        dc.cb.showAll &&
+                        dc.cb.sel.selectedIndex >= 0
                           ? dc.cb.sel.selectedIndex
                           : 0;
                       $A.setAttr(e, {
                         "aria-activedescendant":
                           dc.cb.options[dc.cb.matches[dc.cb.sIndex]].o.id
                       });
+                      dc.cb.activeDescendant = true;
 
                       $A.remClass(
                         $A.query("." + dc.activeClass, dc.source),
@@ -651,7 +674,11 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                         that
                       );
                       ev.preventDefault();
-                    } else if (k == 40 && dc.cb.activeDescendant && dc.loaded) {
+                    } else if (
+                      k === 40 &&
+                      dc.cb.activeDescendant &&
+                      dc.loaded
+                    ) {
                       if (dc.cb.sIndex < dc.cb.matches.length - 1)
                         dc.cb.sIndex++;
                       else dc.cb.sIndex = 0;
@@ -660,6 +687,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                         "aria-activedescendant",
                         dc.cb.options[dc.cb.matches[dc.cb.sIndex]].o.id
                       );
+                      dc.cb.activeDescendant = true;
                       $A.remClass(
                         $A.query("." + dc.activeClass, dc.source),
                         dc.activeClass
@@ -675,7 +703,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                       ev.preventDefault();
                     } else if (
                       ev.altKey &&
-                      k == 38 &&
+                      k === 38 &&
                       dc.cb.activeDescendant &&
                       dc.loaded
                     ) {
@@ -690,7 +718,11 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                       announceVal();
 
                       ev.preventDefault();
-                    } else if (k == 38 && dc.cb.activeDescendant && dc.loaded) {
+                    } else if (
+                      k === 38 &&
+                      dc.cb.activeDescendant &&
+                      dc.loaded
+                    ) {
                       if (dc.cb.sIndex > 0) dc.cb.sIndex--;
                       else dc.cb.sIndex = dc.cb.matches.length - 1;
                       $A.setAttr(
@@ -698,6 +730,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                         "aria-activedescendant",
                         dc.cb.options[dc.cb.matches[dc.cb.sIndex]].o.id
                       );
+                      dc.cb.activeDescendant = true;
                       $A.remClass(
                         $A.query("." + dc.activeClass, dc.source),
                         dc.activeClass
@@ -711,24 +744,19 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                         that
                       );
                       ev.preventDefault();
-                    } else if (k == 27 || k == 37 || k == 39) {
+                    } else if (k === 27 || k === 37 || k === 39) {
                       $A.setAttr(e, {
                         "aria-activedescendant": "",
                         "aria-controls": ""
                       });
-
                       dc.cb.activeDescendant = false;
                       $A.remClass(
                         $A.query("." + dc.activeClass, dc.source),
                         dc.activeClass
                       );
 
-                      if (k == 27) that.close();
-                    } else if (
-                      !dc.cb.readonly &&
-                      k != 9 &&
-                      !(k == 9 && ev.shiftKey)
-                    ) {
+                      if (k === 27) that.close();
+                    } else if (!dc.cb.readonly && k !== 9) {
                       if (dc.cb.isInput) dc.cb.value = e.value;
                       var x = dc.cb.fn.checkValue(dc.cb.value);
 
@@ -753,7 +781,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                           if (skp) {
                             if (
                               !dc.cb.pValue ||
-                              dc.cb.pValue.length != combobox.value.length
+                              dc.cb.pValue !== combobox.value
                             ) {
                               dc.cb.pValue = combobox.value;
                               skp = false;
@@ -764,14 +792,18 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                             dc.cb.fn.render();
                             that.open(true);
                           }
-                        } else that.close();
+                        } else if (!(dc.cb.multiple && k === 32)) {
+                          that.close();
+                        }
                       }
                     }
                   },
                   click: function(ev) {
                     if (!dc.cb.altTrigger) {
-                      if (!dc.cb.isInput && !dc.loaded) that.open();
-                      else if (
+                      if (!dc.cb.isInput && !dc.loaded) {
+                        dc.cb.activeDescendant = true;
+                        that.open();
+                      } else if (
                         (!dc.cb.isInput || (dc.cb.isInput && dc.cb.multiple)) &&
                         dc.loaded
                       )
@@ -782,14 +814,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                   },
                   focus: function(ev) {},
                   blur: function(ev) {
-                    if (
-                      !(
-                        "ontouchstart" in window ||
-                        navigator.maxTouchPoints > 0 ||
-                        navigator.msMaxTouchPoints > 0
-                      ) &&
-                      !dc.cb.multiple
-                    ) {
+                    if (!touched && !dc.cb.multiple) {
                       setTimeout(function() {
                         if (!dc.cb.altClicked) {
                           if (dc.loaded) {
@@ -821,6 +846,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                   "aria-controls": "",
                   "aria-expanded": "false"
                 });
+                dc.cb.activeDescendant = false;
 
                 if (!dc.cb.isInput) {
                   dc.cb.baseInc++;
@@ -911,7 +937,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                       $A.setAttr(
                         o,
                         "aria-checked",
-                        $A.getAttr(o, "aria-checked") == "true"
+                        $A.getAttr(o, "aria-checked") === "true"
                           ? "false"
                           : "true"
                       );
@@ -930,6 +956,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                 "aria-activedescendant":
                   dc.cb.options[dc.cb.matches[dc.cb.sIndex]].o.id
               });
+              dc.cb.activeDescendant = true;
 
               $A.remClass(
                 $A.query("." + dc.activeClass, dc.source),
@@ -1039,11 +1066,19 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
     };
 
     that.setCharMin = function(v) {
-      if (typeof v == "number" && v >= 0) dc.cb.charMin = v;
+      if (typeof v === "number" && v >= 0) dc.cb.charMin = v;
     };
 
     that.setShowAll = function(v) {
-      dc.cb.showAll = v ? true : false;
+      dc.cb.showAll = dc.fn.showAll = v ? true : false;
+    };
+
+    that.setShowAllIfEmpty = function(v) {
+      dc.cb.showAllIfEmpty = v ? true : false;
+    };
+
+    that.setAutoSaveIfChecked = function(v) {
+      dc.cb.autoSaveIfChecked = v ? true : false;
     };
 
     that.setSubstringMatch = function(v) {
@@ -1075,11 +1110,11 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
         "aria-activedescendant": "",
         "aria-controls": ""
       });
+      dc.cb.activeDescendant = false;
 
       $A.remClass($A.query("." + dc.activeClass, dc.source), dc.activeClass);
 
       dc.close();
-      dc.cb.activeDescendant = false;
     };
 
     that.open = function(passive) {
@@ -1095,6 +1130,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
               "aria-activedescendant":
                 dc.cb.options[dc.cb.matches[dc.cb.sIndex]].o.id
             });
+            dc.cb.activeDescendant = true;
 
             $A.remClass(
               $A.query("." + dc.activeClass, dc.source),
@@ -1152,7 +1188,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
     };
 
     that.setMultipleDivider = function(fn) {
-      if (fn && typeof fn == "function") dc.cb.multipleDivider = fn;
+      if (fn && typeof fn === "function") dc.cb.multipleDivider = fn;
     };
 
     that.clearAll = function() {
@@ -1182,9 +1218,10 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
       dc.cb.fn.update();
 
       if (
-        document.activeElement == combobox &&
+        document.activeElement === combobox &&
         (dc.cb.readonly || dc.cb.value)
       ) {
+        dc.cb.activeDescendant = true;
         that.open();
       }
     };
@@ -1227,7 +1264,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
       var i = document.documentElement.scrollLeft;
       o.scrollIntoView();
 
-      if (document.documentElement.scrollLeft != i)
+      if (document.documentElement.scrollLeft !== i)
         document.documentElement.scrollLeft = i;
     };
 
@@ -1309,7 +1346,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
 
       if (css && xDef(e.offsetHeight) && xStr(e.style.height)) {
         if (h >= 0) {
-          if (document.compatMode == "CSS1Compat") {
+          if (document.compatMode === "CSS1Compat") {
             pt = xGetComputedStyle(e, "padding-top", 1);
 
             if (pt !== null) {
@@ -1359,7 +1396,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
         dv = document.defaultView;
 
       if (dv && dv.getComputedStyle) {
-        if (e == document) e = document.body;
+        if (e === document) e = document.body;
         s = dv.getComputedStyle(e, "");
 
         if (s) v = s.getPropertyValue(p);

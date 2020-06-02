@@ -36,6 +36,9 @@ $A.bind(window, "load", function() {
   // Use substring match instead of default left-string match
   myAuthorCombobox.setSubstringMatch(true);
 
+  // Enable full listbox content browsing from the keyboard when the down arrow key is pressed. (Applicable only when the value is empty.)
+  myAuthorCombobox.setShowAllIfEmpty(true);
+
   // Set CSS autopositioning relative to the triggering element.
   // Accepted AccDC API values between 0-disabled-default and 12
   // For details, see WhatSock.com > Core API > CSS > .autoPosition

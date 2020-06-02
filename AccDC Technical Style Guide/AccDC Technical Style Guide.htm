@@ -1067,6 +1067,9 @@ myCombobox.start();
 // Set the listbox to render all Select Options regardless of the current value
 myCombobox.setShowAll(Boolean); // Default: False
 
+// Enable full listbox content browsing from the keyboard when the down arrow key is pressed. (Applicable only when the value is empty.)
+myCombobox.setShowAllIfEmpty(Boolean); // Default: False
+
 // Set the listbox to render only Select Options that match the substring value
 myCombobox.setSubstringMatch(Boolean); // Default: False
 
@@ -1172,6 +1175,10 @@ return values.join('	');
 // Clear all selected options when multiple is set on the hidden select element.
 // (Only available when using the ARIA Combobox Module R2.0 or greater.)
 myCombobox.clearAll();
+
+// Enable auto saving of checked options, even when typing to narrow the filtered list of options at the same time.
+// Applicable only when Multiselect is enabled.
+myCombobox.setAutoSaveIfChecked(Boolean); // Default: False
 
 // Set a character minimum when typing into an editable combobox before autosuggested options are rendered.
 // (Only available when using the ARIA Combobox Module R2.0 or greater.)

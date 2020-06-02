@@ -28,6 +28,12 @@ $A.bind(window, "load", function() {
   myAuthorCombobox.setSubstringMatch(true);
   myAuthorCombobox.setCharMin(2);
 
+  // Enable full listbox content browsing from the keyboard when the down arrow key is pressed. (Applicable only when the value is empty.)
+  myAuthorCombobox.setShowAllIfEmpty(true);
+
+  // Enable auto saving of checked options, even when typing to narrow the filtered list of options at the same time.
+  myAuthorCombobox.setAutoSaveIfChecked(true);
+
   // Set CSS autopositioning relative to the triggering element.
   // Accepted AccDC API values between 0-disabled-default and 12
   // For details, see WhatSock.com > Core API > CSS > .autoPosition

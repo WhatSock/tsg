@@ -21,6 +21,9 @@ $A.bind(window, "load", function() {
   // Disable auto population of default value
   myStateCombobox.setDefault(false);
 
+  // Enable full listbox content browsing from the keyboard when the down arrow key is pressed. (Applicable only when the value is empty.)
+  myStateCombobox.setShowAllIfEmpty(true);
+
   // Set CSS autopositioning relative to the triggering element.
   // Accepted AccDC API values between 0-disabled-default and 12
   // For details, see WhatSock.com > Core API > CSS > .autoPosition
