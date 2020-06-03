@@ -1,5 +1,5 @@
 /*!
-ARIA Combobox Module R2.4
+ARIA Combobox Module R2.5
 Requires AccDC API version 3.4 (12/11/2017) +>
 Copyright 2020 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
@@ -510,11 +510,27 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                   dc.triggerObj,
                   "keydown keyup click focus blur touchstart"
                 );
-                var touched = false;
+                var touched = false,
+                  handleClick = function(ev) {
+                    if (!dc.cb.altTrigger) {
+                      if (!dc.loaded) {
+                        dc.cb.activeDescendant = true;
+                        that.open();
+                      } else if (dc.loaded) that.close();
+                    }
+                  };
 
                 $A.bind(dc.triggerObj, {
                   touchstart: function(ev) {
                     touched = true;
+                  },
+                  mousedown: function(ev) {
+                    if (dc.cb.isInput) handleClick.call(this, ev);
+                    ev.stopPropagation();
+                  },
+                  click: function(ev) {
+                    if (!dc.cb.isInput) handleClick.call(this, ev);
+                    ev.stopPropagation();
                   },
                   keydown: function(ev) {
                     var e = this,
@@ -798,20 +814,6 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                       }
                     }
                   },
-                  click: function(ev) {
-                    if (!dc.cb.altTrigger) {
-                      if (!dc.cb.isInput && !dc.loaded) {
-                        dc.cb.activeDescendant = true;
-                        that.open();
-                      } else if (
-                        (!dc.cb.isInput || (dc.cb.isInput && dc.cb.multiple)) &&
-                        dc.loaded
-                      )
-                        that.close();
-                    }
-                    ev.stopPropagation();
-                    ev.preventDefault();
-                  },
                   focus: function(ev) {},
                   blur: function(ev) {
                     if (!touched && !dc.cb.multiple) {
@@ -944,7 +946,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                     dc.cb.mClicked = true;
                   }
 
-                  ev.preventDefault();
+                  ev.stopPropagation();
                 }
               });
             });
@@ -992,16 +994,6 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                   dc.loaded
                 ]);
             }
-
-            $A.bind("body", "click.acccombobox", function(ev) {
-              if (
-                (!dc.cb.isInput || (dc.cb.isInput && dc.cb.multiple)) &&
-                dc.loaded
-              ) {
-                that.close();
-                ev.preventDefault();
-              }
-            });
 
             if (dc.cb.fn.onOpen && typeof dc.cb.fn.onOpen === "function")
               dc.cb.fn.onOpen.apply(dc.triggerObj, [dc]);
