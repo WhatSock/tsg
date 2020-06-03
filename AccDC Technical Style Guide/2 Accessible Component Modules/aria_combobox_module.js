@@ -1,5 +1,5 @@
 /*!
-ARIA Combobox Module R2.5
+ARIA Combobox Module R2.6
 Requires AccDC API version 3.4 (12/11/2017) +>
 Copyright 2020 Bryan Garaventa (WhatSock.com)
 Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under the terms of the Open Source Initiative OSI - MIT License
@@ -511,6 +511,7 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                   "keydown keyup click focus blur touchstart"
                 );
                 var touched = false,
+                  touchDelay = null,
                   handleClick = function(ev) {
                     if (!dc.cb.altTrigger) {
                       if (!dc.loaded) {
@@ -523,6 +524,10 @@ Part of AccDC, a Cross-Browser JavaScript accessibility API, distributed under t
                 $A.bind(dc.triggerObj, {
                   touchstart: function(ev) {
                     touched = true;
+                    if (!touchDelay) handleClick.call(this, ev);
+                    touchDelay = setTimeout(function() {
+                      touchDelay = null;
+                    }, 1000);
                   },
                   mousedown: function(ev) {
                     if (dc.cb.isInput) handleClick.call(this, ev);
