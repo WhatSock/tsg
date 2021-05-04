@@ -1,6 +1,8 @@
 AccDC Technical Style Guide for jQuery (02/25/2019)
 ===
 
+IMPORTANT: All of the AccDC projects have been deprecated as of May4, 2021. All future development will instead be done through the Apex 4X project, which is much more powerful and feature rich. To learn more, read the Apex 4X release article at:  https://www.linkedin.com/pulse/released-apex-4x-comprehensive-aria-development-suite-bryan-garaventa
+
 The AccDC Technical Style Guide is designed to provide reliable and consistent interaction designs that are accessible to the highest percentage of people possible, and to establish a baseline for Functional Accessibility that can be utilized, built upon, studied, and tested against. 
 
 Functional Accessibility means that each component is fully accessible from the keyboard, with or without a screen reader running. 
