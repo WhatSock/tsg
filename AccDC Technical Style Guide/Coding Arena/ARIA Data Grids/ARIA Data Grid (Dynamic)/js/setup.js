@@ -63,9 +63,9 @@ $A.bind(window, "load", function() {
   });
 
   grid.setEditOffset(function(cellObject) {
-    var o = $A.xOffset(cellObject.cellNodeA);
-    o.height = $A.xHeight(cellObject.cellNodeA);
-    o.width = $A.xWidth(cellObject.cellNodeA);
+    var o = $A.xOffset(cellObject.cellNode);
+    o.height = $A.xHeight(cellObject.cellNode);
+    o.width = $A.xWidth(cellObject.cellNode);
     return o;
   });
 
